@@ -5,6 +5,7 @@ import { MakeAppointmentComponent } from './Components/make-appointment/make-app
 import { BillsComponent } from './Components/bills/bills.component';
 
 const routes: Routes = [
+  { path: "", redirectTo: "client_home", pathMatch: "full" },
   { path: 'client_home', component: HomeComponent},
   { path: 'make_appointment', component: MakeAppointmentComponent},
   { path: 'bills', component: BillsComponent}
