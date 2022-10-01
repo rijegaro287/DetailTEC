@@ -1,0 +1,33 @@
+.message-container {
+    padding: 1rem;
+    border-style: solid;
+    border-width: 0.2rem;
+    border-radius: 1rem;
+
+    &.none {
+        display: none;
+    }
+
+    &.error {
+        display: block;
+        background-color: lightcoral;
+        border-color: darken(lightcoral, 10);
+    }
+
+    &.warning {
+        display: block;
+        background-color: lighten(gold, 20);
+        border-color: gold
+    }
+
+    &.success {
+        display: block;
+        background-color: yellowgreen;
+        border-color: darken(yellowgreen, 10);
+    }
+
+    & .message-text {
+        margin: 0;
+        font-size: 1.8rem;
+    }
+}
