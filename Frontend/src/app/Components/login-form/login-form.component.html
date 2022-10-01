@@ -2,12 +2,12 @@
     <app-message [messageInfo]="messageService.messageInfo"></app-message>
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-        <label for="emailInput">E-mail: </label>
+        <label for="emailInput">Correo Electrónico: </label>
         <input id="emailInput" type="email" formControlName="email">
 
-        <label for="passwordInput">Password: </label>
+        <label for="passwordInput">Contraseña: </label>
         <input id="passwordInput" type="password" formControlName="password">
 
-        <input type="submit" value="Log in">
+        <input type="submit" value="Iniciar Sesión">
     </form>
 </div>
