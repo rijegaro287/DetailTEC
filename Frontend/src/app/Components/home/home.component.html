@@ -1,12 +1,12 @@
-<p>home works!</p>
 <section>
     <div>
         <p>Menú Principal</p>
         <div>
-            <button>Registro de Citas</button>
-            <button>Facturas</button>
-            <label>Puntos actuales: </label>
+            <button routerLink="/make_appointment" routerLinkActive="active" ariaCurrentWhenActive="page">Registro de Citas</button>
+            <button routerLink="/bills" routerLinkActive="active" ariaCurrentWhenActive="page">Facturas</button>
+            <label>Puntos actuales: X</label>
         </div>
 
     </div>
 </section>
+<router-outlet></router-outlet>
