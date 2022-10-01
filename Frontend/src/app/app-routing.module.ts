@@ -7,16 +7,13 @@ import { BillsComponent } from './Components/bills/bills.component';
 import { LoginFormComponent } from './Components/login-form/login-form.component'
 
 const routes: Routes = [
-  { path: "", redirectTo: "client_home", pathMatch: "full" },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  // { path: "", redirectTo: "client_home", pathMatch: "full" },
+  { path: 'login', component: LoginFormComponent },
   { path: 'client_home', component: HomeComponent},
   { path: 'make_appointment', component: MakeAppointmentComponent},
   { path: 'bills', component: BillsComponent}
 ];
-
-const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginFormComponent }
-]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

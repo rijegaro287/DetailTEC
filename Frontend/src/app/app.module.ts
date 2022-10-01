@@ -18,14 +18,14 @@ import { MessageComponent } from './Components/message/message.component';
     AppComponent,
     HomeComponent,
     LoginFormComponent,
-    MessageComponent
+    MessageComponent,
     MakeAppointmentComponent,
     BillsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule
   ],
