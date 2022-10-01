@@ -1,0 +1,13 @@
+<div *ngIf="hero">
+    <!-- Two-Way Binding -->
+    <h2>{{hero.name | uppercase}} DETAILS</h2>
+    <div><span>ID:</span> {{hero.id}}</div>
+    <div><span>Name:</span> {{hero.name}}</div>
+
+    <div>
+        <label for="heroName">Hero name:</label>
+        <input id="heroName" type="text" placeholder="Name" [(ngModel)]="hero.name">
+    </div>
+
+    <button type="button" (click)="goBack()">go back</button>
+</div>
