@@ -48,7 +48,7 @@ export class LoginFormComponent implements OnInit {
       return false
     }
     else if (this.password?.errors) {
-      this.showPasswordErrors();
+      this.showPasswordErrors()
       return false
     }
     else {

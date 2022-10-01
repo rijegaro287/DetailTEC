@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core'
 
-import { MessageInfo } from 'src/app/Interfaces/MessageInfo';
+import { MessageInfo } from 'src/app/Interfaces/MessageInfo'
 
 @Component({
   selector: 'app-message',
