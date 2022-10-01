@@ -1,0 +1,17 @@
+<section>
+    <div>
+        <p>Registro de Citas</p>
+        <div>
+            <label for="client">Cliente:</label>
+            <input type="text"  id="client" [(ngModel)]="client">
+            <label for="vehicle">Vehiculo:</label>
+            <input type="text" id="vehicle" [(ngModel)]="vehicle">
+            <label for="branch">Sucursal</label>
+            <input type="text" id="branch" [(ngModel)]="branch">
+            <label for="washingType">Tipo de lavado:</label>
+            <input type="text" id="WashingType" [(ngModel)]="washingType">
+            <button (click) = makeAppointment()>Registrar Cita</button>
+        </div>
+
+    </div>
+</section>
