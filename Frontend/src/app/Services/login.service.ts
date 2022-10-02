@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 import { Observable, of } from 'rxjs'
 
-import { LoginForm } from '../Interfaces/LoginForm';
-import { ServerResponse } from '../Interfaces/ServerResponse';
+import { LoginForm } from '../Interfaces/LoginForm'
+import { ServerResponse } from '../Interfaces/ServerResponse'
 
 @Injectable({
   providedIn: 'root'
