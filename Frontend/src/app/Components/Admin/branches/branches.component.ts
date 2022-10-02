@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-branches',
+  selector: 'app-admin-branches',
   templateUrl: './branches.component.html',
   styleUrls: ['./branches.component.scss']
 })
-export class BranchesComponent implements OnInit {
+export class AdminBranchesComponent implements OnInit {
 
   constructor() { }
 

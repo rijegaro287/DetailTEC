@@ -1,19 +1,35 @@
-import { NgModule } from '@angular/core'
-import { RouterModule, Routes } from '@angular/router'
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-import { LoginFormComponent } from './Components/login-form/login-form.component'
-import { AdminMainComponent } from './Components/admin-main/admin-main.component'
-import { EmployeesComponent } from './Components/employees/employees.component'
-import { BranchesComponent } from './Components/branches/branches.component'
+/* Generales */
+import { LoginComponent } from './Components/login/login.component'
 
+/* Admin */
+import { AdminMainComponent } from './Components/Admin/main/main.component'
+import { AdminEmployeesComponent } from './Components/Admin/employees/employees.component'
+import { AdminBranchesComponent } from './Components/Admin/branches/branches.component'
+
+/* Client */
+import { HomeComponent } from './Components/Client/home/home.component';
+import { MakeAppointmentComponent } from './Components/Client/make-appointment/make-appointment.component';
+import { BillsComponent } from './Components/Client/bills/bills.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginFormComponent },
-  { path: 'admin', component: AdminMainComponent },
-  { path: 'admin/employees', component: EmployeesComponent },
-  { path: 'admin/branches', component: BranchesComponent }
-]
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'admin',
+    component: AdminMainComponent,
+    children: [
+      { path: '', redirectTo: 'employees', pathMatch: 'full' },
+      { path: 'employees', component: AdminEmployeesComponent },
+      { path: 'branches', component: AdminBranchesComponent },
+    ]
+  },
+  { path: 'client_home', component: HomeComponent },
+  { path: 'make_appointment', component: MakeAppointmentComponent },
+  { path: 'bills', component: BillsComponent }
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

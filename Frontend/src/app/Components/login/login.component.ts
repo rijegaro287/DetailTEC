@@ -7,11 +7,11 @@ import { LoginService } from 'src/app/Services/login.service'
 import { MessageService } from 'src/app/Services/message.service'
 
 @Component({
-  selector: 'app-login-form',
-  templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class LoginFormComponent implements OnInit {
+export class LoginComponent implements OnInit {
   constructor(
     private loginService: LoginService,
     protected messageService: MessageService

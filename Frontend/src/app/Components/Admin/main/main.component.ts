@@ -3,8 +3,8 @@ import { NavbarLink } from 'src/app/Interfaces/NavbarLink'
 
 @Component({
   selector: 'app-admin-main',
-  templateUrl: './admin-main.component.html',
-  styleUrls: ['./admin-main.component.scss']
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss']
 })
 export class AdminMainComponent implements OnInit {
   navbarLinks: NavbarLink[] = [
