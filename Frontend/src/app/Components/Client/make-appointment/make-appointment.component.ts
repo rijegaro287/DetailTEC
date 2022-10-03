@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Branch } from 'src/app/Interfaces/branch';
-import { WashingType } from 'src/app/Interfaces/washing-type';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
