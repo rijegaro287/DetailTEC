@@ -26,9 +26,13 @@ const routes: Routes = [
       { path: 'branches', component: AdminBranchesComponent },
     ]
   },
-  { path: 'client_home', component: HomeComponent },
-  { path: 'make_appointment', component: MakeAppointmentComponent },
-  { path: 'bills', component: BillsComponent }
+  {path: "client", component: HomeComponent, 
+  children: [
+    { path: 'home', component: HomeComponent },
+    { path: 'make_appointment', component: MakeAppointmentComponent },
+    { path: 'bills', component: BillsComponent }
+    ]
+  }
 ];
 
 @NgModule({

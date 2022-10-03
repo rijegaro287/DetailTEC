@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Branch } from 'src/app/Interfaces/branch';
 import { WashingType } from 'src/app/Interfaces/washing-type';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-make-appointment',
@@ -9,13 +9,13 @@ import { WashingType } from 'src/app/Interfaces/washing-type';
   styleUrls: ['./make-appointment.component.sass']
 })
 export class MakeAppointmentComponent implements OnInit {
-  client = "";
-  vehicle = "";
-  branch = "";
-  washingType = "";
-  branchesToShow: Branch[] = [];
-  typesOFWahingToShow: WashingType[] = [];
-  rappointmentResult:boolean = false;
+  
+  appointmentForm:FormGroup = new FormGroup({
+    client: new FormControl(),
+    vehicle: new FormControl(),
+    branch: new FormControl(),
+    washingType: new FormControl()
+  });
 
   constructor() { }
 
@@ -23,8 +23,7 @@ export class MakeAppointmentComponent implements OnInit {
   ngOnInit(): void {
   }
   
-  
-  makeAppointment() {
-    console.log("Make appointment");
+  onSubmit(){
+    console.log(this.appointmentForm.value);
   }
 }
