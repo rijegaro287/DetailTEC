@@ -1,12 +1,6 @@
-<section>
-    <div>
-        <p>Menú Principal</p>
-        <div>
-            <button routerLink="/make_appointment" routerLinkActive="active" ariaCurrentWhenActive="page">Registro de Citas</button>
-            <button routerLink="/bills" routerLinkActive="active" ariaCurrentWhenActive="page">Facturas</button>
-            <label>Puntos actuales: X</label>
-        </div>
+<header>DetailTEC</header>
+<app-navbar [links]="navbarLinks"></app-navbar>
 
-    </div>
-</section>
-<router-outlet></router-outlet>
+<footer>
+    <p>Número de puntos: X</p>
+</footer>
