@@ -8,15 +8,14 @@ import { MessageInfo } from 'src/app/Interfaces/MessageInfo'
   styleUrls: ['./message.component.scss']
 })
 export class MessageComponent implements OnInit {
-  @Input() messageInfo: MessageInfo = {
-    message: '',
-    type: 'none'
+  @Input() messageInfo: MessageInfo
+
+  constructor() {
+    this.messageInfo = {
+      message: '',
+      type: 'none'
+    }
   }
 
-  constructor() { }
-
-  ngOnInit(): void {
-    this.messageInfo.message = ''
-    this.messageInfo.type = 'none'
-  }
+  ngOnInit(): void { }
 }

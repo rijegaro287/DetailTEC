@@ -8,11 +8,11 @@ import { NavbarLink } from 'src/app/Interfaces/NavbarLink';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  @Input() links?: NavbarLink[]
+  @Input() links: NavbarLink[]
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
+    this.links = []
   }
 
+  ngOnInit(): void { }
 }
