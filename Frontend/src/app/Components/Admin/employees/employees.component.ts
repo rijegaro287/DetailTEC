@@ -21,11 +21,11 @@ export class AdminEmployeesComponent implements OnInit {
     protected messageService: MessageService
   ) {
     this.tableColumns = [
-      { key: "name", replacement: "Nombre" },
-      { key: "lastName", replacement: "Apellido" },
+      { key: "nombre", replacement: "Nombre" },
+      { key: "apellido", replacement: "Apellido" },
       { key: "id", replacement: "Cédula" },
       { key: "email", replacement: "Correo" },
-      { key: "position", replacement: "Puesto" },
+      { key: "puesto", replacement: "Puesto" },
     ]
 
     this.tableData = []

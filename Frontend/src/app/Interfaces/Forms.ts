@@ -3,4 +3,6 @@ interface LoginForm {
     password: string
 }
 
-export { LoginForm }
+export {
+    LoginForm
+}

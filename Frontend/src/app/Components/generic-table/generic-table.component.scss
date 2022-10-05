@@ -1,3 +1,7 @@
+th {
+    border-bottom: 1px solid lighten(#000, 75);
+}
+
 .clickable-row {
     &:hover {
         cursor: pointer;
