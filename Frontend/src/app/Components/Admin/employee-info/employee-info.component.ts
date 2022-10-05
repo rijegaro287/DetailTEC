@@ -23,14 +23,14 @@ export class AdminEmployeeInfoComponent implements OnInit {
   ) {
     this.employeeInfoTitles = [
       { key: "id", replacement: "Cédula" },
-      { key: "name", replacement: "Nombre" },
-      { key: "lastName", replacement: "Apellido" },
+      { key: "nombre", replacement: "Nombre" },
+      { key: "apellido", replacement: "Apellido" },
       { key: "email", replacement: "Correo" },
-      { key: "birthDate", replacement: "Fecha de nacimiento" },
-      { key: "age", replacement: "Edad" },
-      { key: "startingDate", replacement: "Fecha de inicio" },
-      { key: "position", replacement: "Puesto" },
-      { key: "paymentFrequency", replacement: "Frecuencia de pago" },
+      { key: "fechaNacimiento", replacement: "Fecha de nacimiento" },
+      { key: "edad", replacement: "Edad" },
+      { key: "fechaInicio", replacement: "Fecha de inicio" },
+      { key: "puesto", replacement: "Puesto" },
+      { key: "frecuenciaPago", replacement: "Frecuencia de pago" },
     ]
 
     this.employee = {} as Employee

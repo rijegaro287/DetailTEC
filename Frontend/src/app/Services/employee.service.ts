@@ -45,4 +45,8 @@ export class EmployeeService {
 
     return of(okResponse)
   }
+
+  // addEmployee = (employee: Employee): Observable<ServerResponse> => {
+
+  // }
 }

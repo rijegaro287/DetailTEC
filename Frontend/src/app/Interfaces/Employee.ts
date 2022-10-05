@@ -1,13 +1,13 @@
 interface Employee {
     id: number
-    name: string
-    lastName: string
+    nombre: string
+    apellido: string
     email: string
-    age: number
-    birthDate: Date
-    startingDate: Date
-    position: string
-    paymentFrequency: string
+    edad: number
+    fechaNacimiento: Date
+    fechaInicio: Date
+    puesto: string
+    frecuenciaPago: string
 }
 
 export { Employee }
