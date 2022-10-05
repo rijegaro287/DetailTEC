@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core'
 import { Observable, of } from 'rxjs'
 
-import { LoginForm } from '../Interfaces/LoginForm'
-import { ServerResponse } from '../Interfaces/ServerResponse'
+import { LoginForm } from '../Interfaces/Forms'
+import { ServerResponse } from '../Interfaces/ServerResponses'
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class LoginService {
 
     const errorResponse: ServerResponse = {
       status: 'error',
-      body: 'No se pudo iniciar sesión'
+      message: 'No se pudo iniciar sesión'
     }
 
     return of(errorResponse)

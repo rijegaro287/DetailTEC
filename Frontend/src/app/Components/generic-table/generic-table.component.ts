@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TableHead } from 'src/app/Interfaces/TableHead';
-
+import {
+  HasID,
+  KeyReplacement
+} from 'src/app/Interfaces/Auxiliaries';
 
 @Component({
   selector: 'app-generic-table',
@@ -8,8 +10,8 @@ import { TableHead } from 'src/app/Interfaces/TableHead';
   styleUrls: ['./generic-table.component.scss',
   ]
 })
-export class GenericTableComponent<Type> implements OnInit {
-  @Input() tableColumns: TableHead<Type>[]
+export class GenericTableComponent<Type extends HasID> implements OnInit {
+  @Input() tableColumns: KeyReplacement<Type>[]
   @Input() tableData: Type[]
 
   //TODO: No sé como hacer para pasar el arreglo de atributos al html y que no de error
@@ -23,6 +25,10 @@ export class GenericTableComponent<Type> implements OnInit {
     this.tableData = []
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  onRowClicked = (row: Type) => {
+    const location = window.location
+    location.href = `${location.pathname}/${row.id}`
   }
 }

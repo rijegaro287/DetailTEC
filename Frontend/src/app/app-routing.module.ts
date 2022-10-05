@@ -13,7 +13,7 @@ import { AdminBranchesComponent } from './Components/Admin/branches/branches.com
 import { HomeComponent } from './Components/Client/home/home.component';
 import { MakeAppointmentComponent } from './Components/Client/make-appointment/make-appointment.component';
 import { BillsComponent } from './Components/Client/bills/bills.component';
-import { GenericTableComponent } from './Components/generic-table/generic-table.component';
+import { AdminEmployeeInfoComponent } from './Components/Admin/employee-info/employee-info.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -24,14 +24,17 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'employees', pathMatch: 'full' },
       { path: 'employees', component: AdminEmployeesComponent },
+      { path: 'employees/:id', component: AdminEmployeeInfoComponent },
       { path: 'branches', component: AdminBranchesComponent },
     ]
   },
-  {path: "client", component: HomeComponent, 
-  children: [
-    { path: 'home', component: HomeComponent },
-    { path: 'make_appointment', component: MakeAppointmentComponent },
-    { path: 'bills', component: BillsComponent },
+  {
+    path: "client",
+    component: HomeComponent,
+    children: [
+      { path: 'home', component: HomeComponent },
+      { path: 'make_appointment', component: MakeAppointmentComponent },
+      { path: 'bills', component: BillsComponent },
     ]
   }
 ];

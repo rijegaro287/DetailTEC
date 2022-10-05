@@ -1,13 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
+
+import { MessageService } from 'src/app/Services/message.service'
+import { EmployeeService } from 'src/app/Services/employee.service'
+
+import { Employee } from 'src/app/Interfaces/Employee'
+import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries'
 
 @Component({
   selector: 'app-admin-employees',
   templateUrl: './employees.component.html',
   styleUrls: ['./employees.component.scss']
 })
+
 export class AdminEmployeesComponent implements OnInit {
+  tableColumns: KeyReplacement<Employee>[]
+  tableData: Employee[]
 
-  constructor() { }
+  constructor(
+    private employeeService: EmployeeService,
+    protected messageService: MessageService
+  ) {
+    this.tableColumns = [
+      { key: "name", replacement: "Nombre" },
+      { key: "lastName", replacement: "Apellido" },
+      { key: "id", replacement: "Cédula" },
+      { key: "email", replacement: "Correo" },
+      { key: "position", replacement: "Puesto" },
+    ]
 
-  ngOnInit(): void { }
+    this.tableData = []
+  }
+
+  ngOnInit(): void {
+    this.messageService.resetMessageInfo()
+
+    this.employeeService.getAllEmployees()
+      .subscribe(response => {
+        if (response.status === 'error') {
+          this.messageService.setMessageInfo(response.message!, 'error')
+        }
+        else if (response.employees) {
+          this.tableData = response.employees
+        }
+        else {
+          console.log(response)
+        }
+      })
+  }
 }

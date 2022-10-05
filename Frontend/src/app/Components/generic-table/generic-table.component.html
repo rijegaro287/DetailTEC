@@ -2,15 +2,15 @@
     <thead>
         <tr>
             <th *ngFor="let col of tableColumns">
-                {{col.header}}
+                {{col.replacement}}
             </th>
         </tr>
     </thead>
 
     <tbody>
-        <tr *ngFor="let row of tableData">
+        <tr class="clickable-row" *ngFor="let row of tableData" (click)="onRowClicked(row)">
             <td *ngFor="let col of tableColumns">
-                {{row[col.field]}}
+                {{row[col.key]}}
             </td>
         </tr>
     </tbody>

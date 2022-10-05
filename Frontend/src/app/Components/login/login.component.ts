@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms'
 
-import { LoginForm } from 'src/app/Interfaces/LoginForm'
+import { LoginForm } from 'src/app/Interfaces/Forms'
 
 import { LoginService } from 'src/app/Services/login.service'
 import { MessageService } from 'src/app/Services/message.service'
@@ -39,10 +39,10 @@ export class LoginComponent implements OnInit {
       this.loginService.postLogin(loginInfo)
         .subscribe(response => {
           if (response.status === 'error') {
-            this.messageService.setMessageInfo(response.body!, 'error')
+            this.messageService.setMessageInfo(response.message!, 'error')
           }
           else {
-            console.log(`status: ${response.status}`, `body: ${response.body}`)
+            console.log(`status: ${response.status}`, `message: ${response.message}`)
           }
         })
     }

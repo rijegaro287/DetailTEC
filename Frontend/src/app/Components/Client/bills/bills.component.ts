@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Bill } from 'src/app/Interfaces/bill';
-import { TableHead } from 'src/app/Interfaces/TableHead';
+import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries';
 
 @Component({
   selector: 'app-bills',
@@ -8,12 +9,12 @@ import { TableHead } from 'src/app/Interfaces/TableHead';
   styleUrls: ['./bills.component.sass']
 })
 export class BillsComponent implements OnInit {
-  tableColumns: TableHead<Bill>[] = [
-    { field: "id", header: "ID" },
-    { field: "date", header: "Fecha" },
-    { field: "clientID", header: "Cédula del Cliente" },
-    { field: "branch", header: "Sucursal" },
-    { field: "total", header: "Total" }
+  tableColumns: KeyReplacement<Bill>[] = [
+    { key: "id", replacement: "ID" },
+    { key: "date", replacement: "Fecha" },
+    { key: "clientID", replacement: "Cédula del Cliente" },
+    { key: "branch", replacement: "Sucursal" },
+    { key: "total", replacement: "Total" }
   ];
 
   tableData: Bill[] = [

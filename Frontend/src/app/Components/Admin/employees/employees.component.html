@@ -1,1 +1,7 @@
-Employees
+<div>
+    <h1>Lista de empleados</h1>
+
+    <app-message [messageInfo]="messageService.messageInfo"></app-message>
+
+    <app-generic-table [tableColumns]="tableColumns" [tableData]="tableData"></app-generic-table>
+</div>

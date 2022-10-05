@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
-import { NavbarLink } from 'src/app/Interfaces/NavbarLink'
+
+import { NavbarLink } from 'src/app/Interfaces/Auxiliaries'
 
 @Component({
   selector: 'app-admin-main',
