@@ -12,8 +12,12 @@ export class HomeComponent implements OnInit {
     { href: 'bills', name: 'Facturas' },
     { href: 'make_appointment', name: 'Registrar Cita' }
   ]
+  points:number;
 
-  constructor() { }
+
+  constructor() {
+    this.points = 100;
+  }
 
   ngOnInit(): void {
   }
