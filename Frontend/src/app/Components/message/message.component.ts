@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core'
 
-import { MessageInfo } from 'src/app/Interfaces/MessageInfo'
+import { MessageInfo } from 'src/app/Interfaces/Auxiliaries'
 
 @Component({
   selector: 'app-message',
@@ -8,15 +8,11 @@ import { MessageInfo } from 'src/app/Interfaces/MessageInfo'
   styleUrls: ['./message.component.scss']
 })
 export class MessageComponent implements OnInit {
-  @Input() messageInfo: MessageInfo = {
-    message: '',
-    type: 'none'
+  @Input() messageInfo: MessageInfo
+
+  constructor() {
+    this.messageInfo = {} as MessageInfo
   }
 
-  constructor() { }
-
-  ngOnInit(): void {
-    this.messageInfo.message = ''
-    this.messageInfo.type = 'none'
-  }
+  ngOnInit(): void { }
 }

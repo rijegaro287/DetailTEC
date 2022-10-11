@@ -9,7 +9,5 @@ export class AdminBranchesComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void { }
 }

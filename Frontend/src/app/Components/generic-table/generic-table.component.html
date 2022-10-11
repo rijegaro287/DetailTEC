@@ -1,17 +1,17 @@
-
-<p-table [columns]="tableColumns" [value]="tableData" responsiveLayout="scroll">
-    <ng-template pTemplate="header" let-columns>
+<table class="table table-borderless table-hover">
+    <thead>
         <tr>
-            <th *ngFor="let col of columns">
-                {{col.header}}
+            <th class="bg-light text-center position-sticky top-0" scope="col" *ngFor="let col of tableColumns">
+                {{col.replacement}}
             </th>
         </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr>
-            <td *ngFor="let col of columns">
-                {{rowData[col.field]}}
+    </thead>
+
+    <tbody>
+        <tr scope="row" class="clickable-row text-center" *ngFor="let row of tableData" (click)="onRowClicked(row)">
+            <td *ngFor="let col of tableColumns">
+                {{row[col.key]}}
             </td>
         </tr>
-    </ng-template>
-</p-table>
+    </tbody>
+</table>

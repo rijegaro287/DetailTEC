@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core'
 import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms'
 
-import { LoginForm } from 'src/app/Interfaces/LoginForm'
+import { LoginForm } from 'src/app/Interfaces/Forms'
 
 import { LoginService } from 'src/app/Services/login.service'
+import { FormsService } from 'src/app/Services/forms.service'
 import { MessageService } from 'src/app/Services/message.service'
 
 @Component({
@@ -12,18 +13,24 @@ import { MessageService } from 'src/app/Services/message.service'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  loginForm: FormGroup
+  email: FormControl
+  password: FormControl
+
   constructor(
     private loginService: LoginService,
     protected messageService: MessageService
-  ) { }
+  ) {
+    this.email = new FormControl('', [Validators.required, Validators.email])
+    this.password = new FormControl('', [Validators.required])
 
-  loginForm: FormGroup = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required])
-  })
+    this.loginForm = new FormGroup({ email: this.email, password: this.password })
+  }
 
-  get email() { return this.loginForm.get('email') }
-  get password() { return this.loginForm.get('password') }
+  ngOnInit(): void {
+    this.loginForm.reset()
+    this.messageService.resetMessageInfo()
+  }
 
   onSubmit = () => {
     const validInputs = this.validateInputs()
@@ -33,21 +40,21 @@ export class LoginComponent implements OnInit {
       this.loginService.postLogin(loginInfo)
         .subscribe(response => {
           if (response.status === 'error') {
-            this.messageService.setMessageInfo(response.body!, 'error')
+            this.messageService.setMessageInfo(response.message!, 'error')
           }
           else {
-            console.log(`status: ${response.status}`, `body: ${response.body}`)
+            console.log(`status: ${response.status}`, `message: ${response.message}`)
           }
         })
     }
   }
 
   validateInputs = (): boolean => {
-    if (this.email?.errors) {
+    if (this.email.errors) {
       this.showEmailErrors(this.email.errors)
       return false
     }
-    else if (this.password?.errors) {
+    else if (this.password.errors) {
       this.showPasswordErrors()
       return false
     }
@@ -67,10 +74,5 @@ export class LoginComponent implements OnInit {
 
   showPasswordErrors = () => {
     this.messageService.setMessageInfo('Introduzca su contraseña', 'error')
-  }
-
-  ngOnInit(): void {
-    this.loginForm.reset()
-    this.messageService.resetMessageInfo()
   }
 }

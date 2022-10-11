@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { NavbarLink } from 'src/app/Interfaces/NavbarLink';
+import { NavbarLink } from 'src/app/Interfaces/Auxiliaries';
 
 @Component({
   selector: 'app-navbar',
@@ -8,11 +8,11 @@ import { NavbarLink } from 'src/app/Interfaces/NavbarLink';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  @Input() links?: NavbarLink[]
+  @Input() links: NavbarLink[]
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
+    this.links = []
   }
 
+  ngOnInit(): void { }
 }

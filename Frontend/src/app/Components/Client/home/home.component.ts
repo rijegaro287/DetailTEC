@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavbarLink } from 'src/app/Interfaces/NavbarLink';
+
+import { NavbarLink } from 'src/app/Interfaces/Auxiliaries';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ export class HomeComponent implements OnInit {
     { href: 'bills', name: 'Facturas' },
     { href: 'make_appointment', name: 'Registrar Cita' }
   ]
-  
+
   constructor() { }
 
   ngOnInit(): void {

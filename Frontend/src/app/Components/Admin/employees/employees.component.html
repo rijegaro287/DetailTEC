@@ -1,1 +1,17 @@
-Employees
+<div class="container-md">
+    <h1 class="text-center mb-3">Lista de empleados</h1>
+
+    <app-message [messageInfo]="messageService.messageInfo"></app-message>
+
+    <div class="d-flex justify-content-end mb-3">
+        <app-modal [options]="{size:'lg', scrollable:true}" [showModalButtonText]="'Crear empleado'"
+            [modalHeader]="'Creación de empleado'">
+            <app-add-employee-form></app-add-employee-form>
+        </app-modal>
+    </div>
+
+    <div class="overflow-scroll" style="height: 60vh;">
+        <app-generic-table [tableColumns]="tableColumns" [tableData]="tableData"></app-generic-table>
+    </div>
+
+</div>
