@@ -1,1 +1,10 @@
-<app-generic-table [tableColumns]="tableColumns" [tableData]="tableData"></app-generic-table>
+<div class="container-md">
+    <h1 class="text-center mb-3">Facturas pasadas</h1>
+
+    <app-message [messageInfo]="messageService.messageInfo"></app-message>
+
+    <div class="overflow-scroll" style="height: 60vh;">
+        <app-generic-table [tableColumns]="tableColumns" [tableData]="tableData"></app-generic-table>
+    </div>
+
+</div>

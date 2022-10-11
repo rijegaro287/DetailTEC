@@ -14,6 +14,7 @@ import { HomeComponent } from './Components/Client/home/home.component';
 import { MakeAppointmentComponent } from './Components/Client/make-appointment/make-appointment.component';
 import { BillsComponent } from './Components/Client/bills/bills.component';
 import { AdminEmployeeInfoComponent } from './Components/Admin/employee-info/employee-info.component';
+import { BillInfoComponent } from './Components/Client/bill-info/bill-info.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -35,6 +36,7 @@ const routes: Routes = [
       { path: 'home', component: HomeComponent },
       { path: 'make_appointment', component: MakeAppointmentComponent },
       { path: 'bills', component: BillsComponent },
+      { path: "bills/:id", component: BillInfoComponent}
     ]
   }
 ];

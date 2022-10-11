@@ -1,3 +1,4 @@
+import { Bill } from './bill';
 import { Employee } from './Employee';
 
 interface ServerResponse {
@@ -13,8 +14,17 @@ interface EmployeeResponse extends ServerResponse {
     employee?: Employee
 }
 
+interface AllBillsResponse extends ServerResponse {
+    bills?: Bill[]
+}
+
+interface BillResponse extends ServerResponse {
+    bill?: Bill
+}
 export {
     ServerResponse,
     AllEmployeesResponse,
-    EmployeeResponse
+    EmployeeResponse,
+    AllBillsResponse,
+    BillResponse
 }

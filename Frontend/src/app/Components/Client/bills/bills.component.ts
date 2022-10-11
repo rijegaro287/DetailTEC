@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { MessageService } from 'src/app/Services/message.service';
+import { BillService } from 'src/app/Services/bill.service';
+
 import { Bill } from 'src/app/Interfaces/bill';
 import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries';
 
@@ -9,24 +12,36 @@ import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries';
   styleUrls: ['./bills.component.sass']
 })
 export class BillsComponent implements OnInit {
-  tableColumns: KeyReplacement<Bill>[] = [
-    { key: "id", replacement: "ID" },
-    { key: "date", replacement: "Fecha" },
-    { key: "clientID", replacement: "Cédula del Cliente" },
-    { key: "branch", replacement: "Sucursal" },
-    { key: "total", replacement: "Total" }
-  ];
+  tableColumns: KeyReplacement<Bill>[];
+  tableData: Bill[] = []
 
-  tableData: Bill[] = [
-    { id: 1, date: new Date(), clientID: 123456789, branch: 1, total: 1000 },
-    { id: 2, date: new Date(), clientID: 123456789, branch: 1, total: 1000 },
-    { id: 3, date: new Date(), clientID: 123456789, branch: 1, total: 1000 },
-    { id: 4, date: new Date(), clientID: 123456789, branch: 1, total: 1000 },
-  ]
-
-  constructor() { }
+  constructor(
+    private billService: BillService,
+    protected messageService: MessageService
+  ) {
+    this.tableColumns = [
+      { key: "id", replacement: "ID" },
+      { key: "date", replacement: "Fecha" },
+      { key: "clientID", replacement: "Cédula del Cliente" },
+      { key: "total", replacement: "Total" }
+    ];
+  }
+  
 
   ngOnInit(): void {
-  }
+    this.messageService.resetMessageInfo();
 
+    this.billService.getAllBills()
+      .subscribe(response => {
+        if (response.status === 'error') {
+          this.messageService.setMessageInfo(response.message!, 'error');
+        }
+        else if (response.bills) {
+          this.tableData = response.bills;
+        }
+        else {
+          console.log(response);
+        }
+      })
+  }
 }
