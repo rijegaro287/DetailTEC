@@ -17,4 +17,10 @@ export class InfoCardComponent<Type> implements OnInit {
   }
 
   ngOnInit(): void { }
+
+  isArray = (value: any): boolean => Array.isArray(value)
+
+  toAny = (array: Type[keyof Type]): any => {
+    return array
+  }
 }

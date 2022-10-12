@@ -24,7 +24,10 @@ import { BillsComponent } from './Components/Client/bills/bills.component'
 import { InfoCardComponent } from './Components/info-card/info-card.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
 import { ModalComponent } from './Components/modal/modal.component';
-import { AddEmployeeFormComponent } from './Components/Admin/add-employee-form/add-employee-form.component'
+import { AddEmployeeFormComponent } from './Components/Admin/add-employee-form/add-employee-form.component';
+import { AdminClientsComponent } from './Components/Admin/clients/clients.component';
+import { AddClientFormComponent } from './Components/Admin/add-client-form/add-client-form.component';
+import { AdminClientInfoComponent } from './Components/Admin/client-info/client-info.component'
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import { AddEmployeeFormComponent } from './Components/Admin/add-employee-form/a
     AdminEmployeeInfoComponent,
     ModalComponent,
     AddEmployeeFormComponent,
+    AdminClientsComponent,
+    AddClientFormComponent,
+    AdminClientInfoComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core'
+import { RouterModule, Routes } from '@angular/router'
 
 /* Generales */
 import { LoginComponent } from './Components/login/login.component'
@@ -7,13 +7,15 @@ import { LoginComponent } from './Components/login/login.component'
 /* Admin */
 import { AdminMainComponent } from './Components/Admin/main/main.component'
 import { AdminEmployeesComponent } from './Components/Admin/employees/employees.component'
+import { AdminEmployeeInfoComponent } from './Components/Admin/employee-info/employee-info.component'
+import { AdminClientsComponent } from './Components/Admin/clients/clients.component'
+import { AdminClientInfoComponent } from './Components/Admin/client-info/client-info.component'
 import { AdminBranchesComponent } from './Components/Admin/branches/branches.component'
 
 /* Client */
-import { HomeComponent } from './Components/Client/home/home.component';
-import { MakeAppointmentComponent } from './Components/Client/make-appointment/make-appointment.component';
-import { BillsComponent } from './Components/Client/bills/bills.component';
-import { AdminEmployeeInfoComponent } from './Components/Admin/employee-info/employee-info.component';
+import { HomeComponent } from './Components/Client/home/home.component'
+import { MakeAppointmentComponent } from './Components/Client/make-appointment/make-appointment.component'
+import { BillsComponent } from './Components/Client/bills/bills.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -25,6 +27,8 @@ const routes: Routes = [
       { path: '', redirectTo: 'employees', pathMatch: 'full' },
       { path: 'employees', component: AdminEmployeesComponent },
       { path: 'employees/:id', component: AdminEmployeeInfoComponent },
+      { path: 'clients', component: AdminClientsComponent },
+      { path: 'clients/:id', component: AdminClientInfoComponent },
       { path: 'branches', component: AdminBranchesComponent },
     ]
   },
@@ -37,7 +41,7 @@ const routes: Routes = [
       { path: 'bills', component: BillsComponent },
     ]
   }
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
