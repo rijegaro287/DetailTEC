@@ -13,5 +13,7 @@ export class FormsService {
 
   getFormValue = () => this.form.value
 
+  setFormValue = (value: any) => this.form.setValue(value)
+
   printFormValue = () => console.log(this.form.value)
 }
