@@ -7,9 +7,9 @@ const EMPLOYEES: Employee[] = [
         "apellido": "Doe",
         "email": "JohnDoe@email.com",
         "edad": 25,
-        "fechaNacimiento": new Date(),
-        "fechaInicio": new Date(),
-        "puesto": "Developer",
+        "fechaNacimiento": new Date().toISOString().split('T')[0],
+        "fechaInicio": new Date().toISOString().split('T')[0],
+        "puesto": "Pulidor",
         "frecuenciaPago": "Mensual"
     },
     {
@@ -18,9 +18,9 @@ const EMPLOYEES: Employee[] = [
         "apellido": "Doe",
         "email": "JaneDoe@email.com",
         "edad": 25,
-        "fechaNacimiento": new Date(),
-        "fechaInicio": new Date(),
-        "puesto": "Developer",
+        "fechaNacimiento": new Date().toISOString().split('T')[0],
+        "fechaInicio": new Date().toISOString().split('T')[0],
+        "puesto": "Pulidor",
         "frecuenciaPago": "Semanal"
     },
     {
@@ -29,9 +29,9 @@ const EMPLOYEES: Employee[] = [
         "apellido": "Smith",
         "email": "JohnSmith@email.com",
         "edad": 25,
-        "fechaNacimiento": new Date(),
-        "fechaInicio": new Date(),
-        "puesto": "Developer",
+        "fechaNacimiento": new Date().toISOString().split('T')[0],
+        "fechaInicio": new Date().toISOString().split('T')[0],
+        "puesto": "Pulidor",
         "frecuenciaPago": "Quincenal"
 
     },
@@ -41,9 +41,9 @@ const EMPLOYEES: Employee[] = [
         "apellido": "Smith",
         "email": "JaneSmith@email.com",
         "edad": 25,
-        "fechaNacimiento": new Date(),
-        "fechaInicio": new Date(),
-        "puesto": "Developer",
+        "fechaNacimiento": new Date().toISOString().split('T')[0],
+        "fechaInicio": new Date().toISOString().split('T')[0],
+        "puesto": "Pulidor",
         "frecuenciaPago": "Mensual"
     },
     {
@@ -52,9 +52,9 @@ const EMPLOYEES: Employee[] = [
         "apellido": "Doe",
         "email": "JohnDoe@email.com",
         "edad": 25,
-        "fechaNacimiento": new Date(),
-        "fechaInicio": new Date(),
-        "puesto": "Developer",
+        "fechaNacimiento": new Date().toISOString().split('T')[0],
+        "fechaInicio": new Date().toISOString().split('T')[0],
+        "puesto": "Pulidor",
         "frecuenciaPago": "Mensual"
     },
     {
@@ -63,9 +63,9 @@ const EMPLOYEES: Employee[] = [
         "apellido": "Doe",
         "email": "JaneDoe@email.com",
         "edad": 25,
-        "fechaNacimiento": new Date(),
-        "fechaInicio": new Date(),
-        "puesto": "Developer",
+        "fechaNacimiento": new Date().toISOString().split('T')[0],
+        "fechaInicio": new Date().toISOString().split('T')[0],
+        "puesto": "Lavador",
         "frecuenciaPago": "Semanal"
     },
     {
@@ -74,9 +74,9 @@ const EMPLOYEES: Employee[] = [
         "apellido": "Smith",
         "email": "JohnSmith@email.com",
         "edad": 25,
-        "fechaNacimiento": new Date(),
-        "fechaInicio": new Date(),
-        "puesto": "Developer",
+        "fechaNacimiento": new Date().toISOString().split('T')[0],
+        "fechaInicio": new Date().toISOString().split('T')[0],
+        "puesto": "Lavador",
         "frecuenciaPago": "Quincenal"
 
     },
@@ -86,9 +86,9 @@ const EMPLOYEES: Employee[] = [
         "apellido": "Smith",
         "email": "JaneSmith@email.com",
         "edad": 25,
-        "fechaNacimiento": new Date(),
-        "fechaInicio": new Date(),
-        "puesto": "Developer",
+        "fechaNacimiento": new Date().toISOString().split('T')[0],
+        "fechaInicio": new Date().toISOString().split('T')[0],
+        "puesto": "Lavador",
         "frecuenciaPago": "Mensual"
     },
     {
@@ -97,9 +97,9 @@ const EMPLOYEES: Employee[] = [
         "apellido": "Smith",
         "email": "JohnSmith@email.com",
         "edad": 25,
-        "fechaNacimiento": new Date(),
-        "fechaInicio": new Date(),
-        "puesto": "Developer",
+        "fechaNacimiento": new Date().toISOString().split('T')[0],
+        "fechaInicio": new Date().toISOString().split('T')[0],
+        "puesto": "Lavador",
         "frecuenciaPago": "Quincenal"
 
     },
@@ -109,9 +109,9 @@ const EMPLOYEES: Employee[] = [
         "apellido": "Smith",
         "email": "JaneSmith@email.com",
         "edad": 25,
-        "fechaNacimiento": new Date(),
-        "fechaInicio": new Date(),
-        "puesto": "Developer",
+        "fechaNacimiento": new Date().toISOString().split('T')[0],
+        "fechaInicio": new Date().toISOString().split('T')[0],
+        "puesto": "Lavador",
         "frecuenciaPago": "Mensual"
     }
 ]
