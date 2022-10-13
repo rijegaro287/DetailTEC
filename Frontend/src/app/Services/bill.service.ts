@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { 
-  ServerResponse, 
-  AllBillsResponse, 
-  BillResponse 
+import {
+  ServerResponse,
+  AllBillsResponse,
+  BillResponse
 } from '../Interfaces/ServerResponses';
 
-import { Bill } from '../Interfaces/bill';
+import { Bill } from '../Interfaces/Bill';
 
 import { BILLS } from '../TestDB/Bills';
 
@@ -47,5 +47,5 @@ export class BillService {
 
     return of(okResponse)
   }
-  
+
 }

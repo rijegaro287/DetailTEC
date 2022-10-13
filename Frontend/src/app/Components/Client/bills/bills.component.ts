@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'src/app/Services/message.service';
 import { BillService } from 'src/app/Services/bill.service';
 
-import { Bill } from 'src/app/Interfaces/bill';
+import { Bill } from 'src/app/Interfaces/Bill';
 import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries';
 
 @Component({
@@ -26,7 +26,7 @@ export class BillsComponent implements OnInit {
       { key: "total", replacement: "Total" }
     ];
   }
-  
+
 
   ngOnInit(): void {
     this.messageService.resetMessageInfo();

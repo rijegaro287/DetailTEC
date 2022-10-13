@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { DateInput } from '../Interfaces/Date';
+import { DateInput } from '../Interfaces/Auxiliaries';
 
 @Injectable({
   providedIn: 'root'

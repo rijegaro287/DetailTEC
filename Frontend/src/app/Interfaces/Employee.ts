@@ -1,5 +1,3 @@
-import { DateInput } from "./Date"
-
 interface Employee {
     id: number
     nombre: string

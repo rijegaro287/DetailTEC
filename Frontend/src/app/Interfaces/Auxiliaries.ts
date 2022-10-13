@@ -17,9 +17,16 @@ interface MessageInfo {
     type: 'error' | 'warning' | 'success' | 'none'
 }
 
+interface DateInput {
+    year: number
+    month: number
+    day: number
+}
+
 export {
     HasID,
     NavbarLink,
     KeyReplacement,
-    MessageInfo
+    MessageInfo,
+    DateInput
 }

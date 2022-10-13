@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries';
-import { Bill } from 'src/app/Interfaces/bill';
+import { Bill } from 'src/app/Interfaces/Bill';
 
 import { BillService } from 'src/app/Services/bill.service';
 import { FormsService } from 'src/app/Services/forms.service';
@@ -15,19 +15,19 @@ import { MessageService } from 'src/app/Services/message.service';
 })
 export class BillInfoComponent implements OnInit {
   billInfoTitles: KeyReplacement<Bill>[];
-  bill:Bill;
-  
+  bill: Bill;
+
   constructor(
     private route: ActivatedRoute,
-    private billService: BillService, 
-    private formsService: FormsService, 
-    protected messageService: MessageService)  { 
+    private billService: BillService,
+    private formsService: FormsService,
+    protected messageService: MessageService) {
     this.billInfoTitles = [
-      {key: "id", replacement: "Número de factura"},
-      {key: "date", replacement: "Fecha"},
-      {key: "clientID", replacement: "Cédula del cliente"},
-      {key: "branch", replacement: "Número de sucursal"},
-      {key: "total", replacement: "Total"}
+      { key: "id", replacement: "Número de factura" },
+      { key: "date", replacement: "Fecha" },
+      { key: "clientID", replacement: "Cédula del cliente" },
+      { key: "branch", replacement: "Número de sucursal" },
+      { key: "total", replacement: "Total" }
     ]
     this.bill = {} as Bill;
   }
