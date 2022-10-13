@@ -27,7 +27,8 @@ import { ModalComponent } from './Components/modal/modal.component';
 import { AddEmployeeFormComponent } from './Components/Admin/add-employee-form/add-employee-form.component';
 import { AdminClientsComponent } from './Components/Admin/clients/clients.component';
 import { AddClientFormComponent } from './Components/Admin/add-client-form/add-client-form.component';
-import { AdminClientInfoComponent } from './Components/Admin/client-info/client-info.component'
+import { AdminClientInfoComponent } from './Components/Admin/client-info/client-info.component';
+import { MultivaluedInputComponent } from './Components/multivalued-input/multivalued-input.component'
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { AdminClientInfoComponent } from './Components/Admin/client-info/client-
     AdminClientsComponent,
     AddClientFormComponent,
     AdminClientInfoComponent,
+    MultivaluedInputComponent,
   ],
   imports: [
     BrowserModule,

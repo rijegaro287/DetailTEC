@@ -1,0 +1,12 @@
+<label class="form-label">{{label}}:</label>
+<ul>
+    <li *ngFor="let control of formArray.controls; index as i" class="d-flex align-items-center gap-2 mb-2">
+        <input class="form-control" type="{{inputType}}" [formControl]="$any(control)">
+        <i class="bi bi-x-circle fs-4" (click)="deleteElement(i)"></i>
+    </li>
+</ul>
+
+<button type="button" class="btn btn-sm btn-outline-secondary mb-2" (click)="addElement()">
+    <i class="bi bi-plus-circle-fill"></i>
+    Agregar
+</button>

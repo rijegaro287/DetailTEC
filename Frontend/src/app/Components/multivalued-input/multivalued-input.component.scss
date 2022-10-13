@@ -1,0 +1,13 @@
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+i.bi-x-circle {
+    color: red;
+
+    &:hover {
+        cursor: pointer;
+    }
+}

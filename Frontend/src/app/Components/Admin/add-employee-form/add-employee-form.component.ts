@@ -30,7 +30,7 @@ export class AddEmployeeFormComponent implements OnInit {
     this.nombre = new FormControl('', [Validators.required])
     this.apellido = new FormControl('', [Validators.required])
     this.id = new FormControl('', [Validators.required])
-    this.email = new FormControl('', [Validators.required])
+    this.email = new FormControl('', [Validators.required, Validators.email])
     this.fechaNacimiento = new FormControl('', [Validators.required])
     this.puesto = new FormControl('', [Validators.required])
     this.fechaInicio = new FormControl('', [Validators.required])
@@ -58,7 +58,7 @@ export class AddEmployeeFormComponent implements OnInit {
       employeeInfo.fechaNacimiento = this.auxFunctionsService
         .stringToDate(this.employeeInfo.fechaNacimiento)
 
-      this.formsService.setFormValue(employeeInfo);
+      this.formsService.patchFormValue(employeeInfo);
     }
   }
 
