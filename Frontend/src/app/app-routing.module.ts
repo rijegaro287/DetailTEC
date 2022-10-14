@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 
-/* Generales */
 import { LoginComponent } from './Components/login/login.component'
 
 /* Admin */
@@ -12,14 +11,16 @@ import { AdminClientsComponent } from './Components/Admin/clients/clients.compon
 import { AdminClientInfoComponent } from './Components/Admin/client-info/client-info.component'
 import { AdminBranchesComponent } from './Components/Admin/branches/branches.component'
 import { AdminBranchInfoComponent } from './Components/Admin/branch-info/branch-info.component'
+import { AdminSuppliersComponent } from './Components/Admin/suppliers/suppliers.component'
+import { AdminSupplierInfoComponent } from './Components/Admin/supplier-info/supplier-info.component'
+import { AdminProductsComponent } from './Components/Admin/products/products.component'
+import { AdminProductInfoComponent } from './Components/Admin/product-info/product-info.component'
 
 /* Client */
 import { HomeComponent } from './Components/Client/home/home.component'
 import { MakeAppointmentComponent } from './Components/Client/make-appointment/make-appointment.component'
 import { BillsComponent } from './Components/Client/bills/bills.component'
 import { BillInfoComponent } from './Components/Client/bill-info/bill-info.component'
-import { AdminSuppliersComponent } from './Components/Admin/suppliers/suppliers.component'
-import { AdminSupplierInfoComponent } from './Components/Admin/supplier-info/supplier-info.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -37,6 +38,8 @@ const routes: Routes = [
       { path: 'branches/:name', component: AdminBranchInfoComponent },
       { path: 'suppliers', component: AdminSuppliersComponent },
       { path: 'suppliers/:id', component: AdminSupplierInfoComponent },
+      { path: 'products', component: AdminProductsComponent },
+      { path: 'products/:name', component: AdminProductInfoComponent },
     ]
   },
   {
