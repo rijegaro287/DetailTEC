@@ -16,7 +16,6 @@ export class AdminMainComponent implements OnInit {
       { href: 'clients', name: 'Clientes' },
       { href: 'appointments', name: 'Citas' },
       { href: 'branches', name: 'Sucursales' },
-      { href: 'services', name: 'Servicios' },
       { href: 'suppliers', name: 'Proveedores' },
       { href: 'products', name: 'Productos' },
       { href: 'bills', name: 'Facturas' }

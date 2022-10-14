@@ -31,7 +31,10 @@ import { AddClientFormComponent } from './Components/Admin/add-client-form/add-c
 import { MultivaluedInputComponent } from './Components/multivalued-input/multivalued-input.component'
 import { BillInfoComponent } from './Components/Client/bill-info/bill-info.component';
 import { AddBranchFormComponent } from './Components/Admin/add-branch-form/add-branch-form.component';
-import { AdminBranchInfoComponent } from './Components/Admin/branch-info/branch-info.component'
+import { AdminBranchInfoComponent } from './Components/Admin/branch-info/branch-info.component';
+import { AdminSuppliersComponent } from './Components/Admin/suppliers/suppliers.component';
+import { AdminSupplierInfoComponent } from './Components/Admin/supplier-info/supplier-info.component';
+import { AddSupplierFormComponent } from './Components/Admin/add-supplier-form/add-supplier-form.component';
 
 @NgModule({
   declarations: [
@@ -56,7 +59,11 @@ import { AdminBranchInfoComponent } from './Components/Admin/branch-info/branch-
     MultivaluedInputComponent,
     BillInfoComponent,
     AddBranchFormComponent,
-    AdminBranchInfoComponent
+    AdminBranchInfoComponent,
+    AdminSuppliersComponent,
+    AdminSupplierInfoComponent,
+    AddSupplierFormComponent,
+
   ],
   imports: [
     BrowserModule,

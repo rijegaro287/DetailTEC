@@ -1,76 +1,74 @@
-<div>
-    <form [formGroup]="this.formsService.form" (ngSubmit)="onSubmit()">
-        <div class="row mb-3">
-            <div class="col-6">
-                <label class="form-label" for="nameInput">Nombre:</label>
-                <input class="form-control" id="nameInput" type="text" formControlName="nombre">
-            </div>
+<form [formGroup]="this.formsService.form" (ngSubmit)="onSubmit()">
+    <div class="row mb-3">
+        <div class="col-6">
+            <label class="form-label" for="nameInput">Nombre:</label>
+            <input class="form-control" id="nameInput" type="text" formControlName="nombre">
+        </div>
 
-            <div class="col-6">
-                <label class="form-label" for="lastNameInput">Apellido:</label>
-                <input class="form-control" id="lastNameInput" type="text" formControlName="apellido">
+        <div class="col-6">
+            <label class="form-label" for="lastNameInput">Apellido:</label>
+            <input class="form-control" id="lastNameInput" type="text" formControlName="apellido">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-6">
+            <label class="form-label" for="idInput">Cédula:</label>
+            <input class="form-control" id=" idInput" type="number" formControlName="id">
+        </div>
+
+        <div class="col-6">
+            <label class="form-label" for="emailInput">Correo electrónico:</label>
+            <input class="form-control" id="emailInput" type="email" formControlName="email">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-6">
+            <label class="form-label" for="positionInput">Puesto:</label>
+            <select class="form-select" id="positionInput" formControlName="puesto">
+                <option value="Lavador">Lavador</option>
+                <option value="Pulidor">Pulidor</option>
+            </select>
+        </div>
+
+        <div class="col-6">
+            <label class="form-label" for="paymentFrequencyInput">Frecuencia de pago:</label>
+            <select class="form-select" id="paymentFrequencyInput" formControlName="frecuenciaPago">
+                <option value="Semanal">Semanal</option>
+                <option value="Quincenal">Quincenal</option>
+                <option value="Mensual">Mensual</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-6">
+            <label class="form-label" for="birthDateInput">Fecha de nacimiento:</label>
+            <div class="input-group">
+                <input [minDate]="{year: 1922, month: 1, day: 1}" [maxDate]="{year: 2022, month: 12, day: 31}"
+                    ngbDatepicker id="birthDateInput" class="form-control" placeholder="yyyy-mm-dd" #d1="ngbDatepicker"
+                    formControlName="fechaNacimiento">
+                <button class="btn btn-outline-secondary" (click)="d1.toggle()" type="button">
+                    <i class="bi bi-calendar-date-fill"></i>
+                </button>
             </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col-6">
-                <label class="form-label" for="idInput">Cédula:</label>
-                <input class="form-control" id=" idInput" type="number" formControlName="id">
-            </div>
-
-            <div class="col-6">
-                <label class="form-label" for="emailInput">Correo electrónico:</label>
-                <input class="form-control" id="emailInput" type="email" formControlName="email">
-            </div>
-        </div>
-
-        <div class="row mb-3">
-            <div class="col-6">
-                <label class="form-label" for="positionInput">Puesto:</label>
-                <select class="form-select" id="positionInput" formControlName="puesto">
-                    <option value="Lavador">Lavador</option>
-                    <option value="Pulidor">Pulidor</option>
-                </select>
-            </div>
-
-            <div class="col-6">
-                <label class="form-label" for="paymentFrequencyInput">Frecuencia de pago:</label>
-                <select class="form-select" id="paymentFrequencyInput" formControlName="frecuenciaPago">
-                    <option value="Semanal">Semanal</option>
-                    <option value="Quincenal">Quincenal</option>
-                    <option value="Mensual">Mensual</option>
-                </select>
+        <div class="col-6">
+            <label class="form-label" for="startingDateInput">Fecha de inicio:</label>
+            <div class="input-group">
+                <input [minDate]="{year: 1922, month: 1, day: 1}" [maxDate]="{year: 2022, month: 12, day: 31}"
+                    ngbDatepicker id="startingDateInput" class="form-control" placeholder="yyyy-mm-dd"
+                    #d2="ngbDatepicker" formControlName="fechaInicio">
+                <button class="btn btn-outline-secondary" (click)="d2.toggle()" type="button">
+                    <i class="bi bi-calendar-date-fill"></i>
+                </button>
             </div>
         </div>
+    </div>
 
-        <div class="row mb-3">
-            <div class="col-6">
-                <label class="form-label" for="birthDateInput">Fecha de nacimiento:</label>
-                <div class="input-group">
-                    <input [minDate]="{year: 1922, month: 1, day: 1}" [maxDate]="{year: 2022, month: 12, day: 31}"
-                        ngbDatepicker id="birthDateInput" class="form-control" placeholder="yyyy-mm-dd"
-                        #d1="ngbDatepicker" formControlName="fechaNacimiento">
-                    <button class="btn btn-outline-secondary" (click)="d1.toggle()" type="button">
-                        <i class="bi bi-calendar-date-fill"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="col-6">
-                <label class="form-label" for="startingDateInput">Fecha de inicio:</label>
-                <div class="input-group">
-                    <input [minDate]="{year: 1922, month: 1, day: 1}" [maxDate]="{year: 2022, month: 12, day: 31}"
-                        ngbDatepicker id="startingDateInput" class="form-control" placeholder="yyyy-mm-dd"
-                        #d2="ngbDatepicker" formControlName="fechaInicio">
-                    <button class="btn btn-outline-secondary" (click)="d2.toggle()" type="button">
-                        <i class="bi bi-calendar-date-fill"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="d-flex justify-content-end">
-            <input type="submit" class="btn btn-success btn-lg" value="{{employeeInfo ? 'Editar' : 'Crear'}}">
-        </div>
-    </form>
-</div>
+    <div class="d-flex justify-content-end">
+        <input type="submit" class="btn btn-success btn-lg" value="{{employeeInfo ? 'Editar' : 'Crear'}}">
+    </div>
+</form>

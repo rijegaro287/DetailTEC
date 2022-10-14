@@ -18,6 +18,8 @@ import { HomeComponent } from './Components/Client/home/home.component'
 import { MakeAppointmentComponent } from './Components/Client/make-appointment/make-appointment.component'
 import { BillsComponent } from './Components/Client/bills/bills.component'
 import { BillInfoComponent } from './Components/Client/bill-info/bill-info.component'
+import { AdminSuppliersComponent } from './Components/Admin/suppliers/suppliers.component'
+import { AdminSupplierInfoComponent } from './Components/Admin/supplier-info/supplier-info.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -33,6 +35,8 @@ const routes: Routes = [
       { path: 'clients/:id', component: AdminClientInfoComponent },
       { path: 'branches', component: AdminBranchesComponent },
       { path: 'branches/:name', component: AdminBranchInfoComponent },
+      { path: 'suppliers', component: AdminSuppliersComponent },
+      { path: 'suppliers/:id', component: AdminSupplierInfoComponent },
     ]
   },
   {
