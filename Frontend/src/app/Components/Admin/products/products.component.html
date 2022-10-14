@@ -1,0 +1,16 @@
+<div class="container-md">
+    <h1 class="text-center mb-3">Lista de productos</h1>
+
+    <app-message [messageInfo]="messageService.messageInfo"></app-message>
+
+    <div class="d-flex justify-content-end mb-3">
+        <app-modal [options]="{size:'md', scrollable:true}" [showModalButtonText]="'Crear producto'"
+            [modalHeader]="'Creación de producto'">
+            <app-add-product-form></app-add-product-form>
+        </app-modal>
+    </div>
+
+    <div class="overflow-scroll" style="height: 60vh;">
+        <app-generic-table [tableColumns]="tableColumns" [tableData]="tableData" rowIDKey="nombre"></app-generic-table>
+    </div>
+</div>

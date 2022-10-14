@@ -14,10 +14,15 @@ import { GenericTableComponent } from './Components/generic-table/generic-table.
 /* Componentes de administrador */
 import { AdminMainComponent } from './Components/Admin/main/main.component'
 import { AdminEmployeesComponent } from './Components/Admin/employees/employees.component'
-import { AdminBranchesComponent } from './Components/Admin/branches/branches.component'
 import { AdminEmployeeInfoComponent } from './Components/Admin/employee-info/employee-info.component'
+import { AdminBranchesComponent } from './Components/Admin/branches/branches.component'
+import { AdminBranchInfoComponent } from './Components/Admin/branch-info/branch-info.component';
 import { AdminClientsComponent } from './Components/Admin/clients/clients.component';
 import { AdminClientInfoComponent } from './Components/Admin/client-info/client-info.component';
+import { AdminSuppliersComponent } from './Components/Admin/suppliers/suppliers.component';
+import { AdminSupplierInfoComponent } from './Components/Admin/supplier-info/supplier-info.component';
+import { AdminProductsComponent } from './Components/Admin/products/products.component';
+import { AdminProductInfoComponent } from './Components/Admin/product-info/product-info.component'
 
 /* Componentes de cliente */
 import { HomeComponent } from './Components/Client/home/home.component'
@@ -31,10 +36,8 @@ import { AddClientFormComponent } from './Components/Admin/add-client-form/add-c
 import { MultivaluedInputComponent } from './Components/multivalued-input/multivalued-input.component'
 import { BillInfoComponent } from './Components/Client/bill-info/bill-info.component';
 import { AddBranchFormComponent } from './Components/Admin/add-branch-form/add-branch-form.component';
-import { AdminBranchInfoComponent } from './Components/Admin/branch-info/branch-info.component';
-import { AdminSuppliersComponent } from './Components/Admin/suppliers/suppliers.component';
-import { AdminSupplierInfoComponent } from './Components/Admin/supplier-info/supplier-info.component';
 import { AddSupplierFormComponent } from './Components/Admin/add-supplier-form/add-supplier-form.component';
+import { AddProductFormComponent } from './Components/Admin/add-product-form/add-product-form.component';
 
 @NgModule({
   declarations: [
@@ -45,25 +48,27 @@ import { AddSupplierFormComponent } from './Components/Admin/add-supplier-form/a
     AdminMainComponent,
     AdminEmployeesComponent,
     AdminBranchesComponent,
+    AdminEmployeeInfoComponent,
+    AdminClientsComponent,
+    AdminClientInfoComponent,
+    AdminBranchInfoComponent,
+    AdminSuppliersComponent,
+    AdminSupplierInfoComponent,
+    AdminProductsComponent,
+    AdminProductInfoComponent,
     HomeComponent,
     MakeAppointmentComponent,
     BillsComponent,
     GenericTableComponent,
     InfoCardComponent,
-    AdminEmployeeInfoComponent,
     ModalComponent,
     AddEmployeeFormComponent,
-    AdminClientsComponent,
     AddClientFormComponent,
-    AdminClientInfoComponent,
     MultivaluedInputComponent,
     BillInfoComponent,
     AddBranchFormComponent,
-    AdminBranchInfoComponent,
-    AdminSuppliersComponent,
-    AdminSupplierInfoComponent,
     AddSupplierFormComponent,
-
+    AddProductFormComponent
   ],
   imports: [
     BrowserModule,

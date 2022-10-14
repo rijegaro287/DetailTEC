@@ -3,6 +3,7 @@ import { Client } from './Client';
 import { Branch } from './Branch';
 import { Bill } from './Bill';
 import { Supplier } from './Supplier';
+import { Product } from './Product';
 
 interface ServerResponse {
     status?: string
@@ -41,6 +42,14 @@ interface SupplierResponse extends ServerResponse {
     supplier?: Supplier
 }
 
+interface AllProductsResponse extends ServerResponse {
+    products?: Product[]
+}
+
+interface ProductResponse extends ServerResponse {
+    product?: Product
+}
+
 interface AllBillsResponse extends ServerResponse {
     bills?: Bill[]
 }
@@ -62,5 +71,7 @@ export {
     AllBranchesResponse,
     BranchResponse,
     AllSuppliersResponse,
-    SupplierResponse
+    SupplierResponse,
+    AllProductsResponse,
+    ProductResponse
 }
