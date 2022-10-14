@@ -1,7 +1,13 @@
-export interface Branch {
-    id: number;
-    name: string;
-    provincia: string;
-    canton: string;
-    district: string;
+interface Branch {
+    nombre: string
+    provincia: string
+    canton: string
+    distrito: string
+    telefono: number
+    idGerente: number
+    nombreGerente: string
+    fechaApertura: string
+    fechaInicioGerente: string
 }
+
+export { Branch }

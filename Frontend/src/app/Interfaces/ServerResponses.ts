@@ -1,6 +1,7 @@
-import { Client } from './Client';
-import { Bill } from './Bill';
 import { Employee } from './Employee';
+import { Client } from './Client';
+import { Branch } from './Branch';
+import { Bill } from './Bill';
 
 interface ServerResponse {
     status?: string
@@ -23,6 +24,14 @@ interface ClientResponse extends ServerResponse {
     client?: Client
 }
 
+interface AllBranchesResponse extends ServerResponse {
+    branches?: Branch[]
+}
+
+interface BranchResponse extends ServerResponse {
+    branch?: Branch
+}
+
 interface AllBillsResponse extends ServerResponse {
     bills?: Bill[]
 }
@@ -40,5 +49,7 @@ export {
     AllBillsResponse,
     BillResponse,
     AllClientsResponse,
-    ClientResponse
+    ClientResponse,
+    AllBranchesResponse,
+    BranchResponse
 }

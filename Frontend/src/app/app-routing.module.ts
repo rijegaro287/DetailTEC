@@ -11,6 +11,7 @@ import { AdminEmployeeInfoComponent } from './Components/Admin/employee-info/emp
 import { AdminClientsComponent } from './Components/Admin/clients/clients.component'
 import { AdminClientInfoComponent } from './Components/Admin/client-info/client-info.component'
 import { AdminBranchesComponent } from './Components/Admin/branches/branches.component'
+import { AdminBranchInfoComponent } from './Components/Admin/branch-info/branch-info.component'
 
 /* Client */
 import { HomeComponent } from './Components/Client/home/home.component'
@@ -31,6 +32,7 @@ const routes: Routes = [
       { path: 'clients', component: AdminClientsComponent },
       { path: 'clients/:id', component: AdminClientInfoComponent },
       { path: 'branches', component: AdminBranchesComponent },
+      { path: 'branches/:name', component: AdminBranchInfoComponent },
     ]
   },
   {

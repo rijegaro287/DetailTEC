@@ -30,7 +30,7 @@ export class AdminEmployeeInfoComponent implements OnInit {
       { key: "edad", replacement: "Edad" },
       { key: "fechaInicio", replacement: "Fecha de inicio" },
       { key: "puesto", replacement: "Puesto" },
-      { key: "frecuenciaPago", replacement: "Frecuencia de pago" },
+      { key: "frecuenciaPago", replacement: "Frecuencia de pago" }
     ]
 
     this.employee = {} as Employee

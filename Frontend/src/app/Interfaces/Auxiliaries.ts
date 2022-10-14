@@ -1,7 +1,3 @@
-interface HasID {
-    id: number
-}
-
 interface NavbarLink {
     href: string
     name: string
@@ -24,7 +20,6 @@ interface DateInput {
 }
 
 export {
-    HasID,
     NavbarLink,
     KeyReplacement,
     MessageInfo,
