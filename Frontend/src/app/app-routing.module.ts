@@ -21,6 +21,8 @@ import { HomeComponent } from './Components/Client/home/home.component'
 import { MakeAppointmentComponent } from './Components/Client/make-appointment/make-appointment.component'
 import { BillsComponent } from './Components/Client/bills/bills.component'
 import { BillInfoComponent } from './Components/Client/bill-info/bill-info.component'
+import { AdminWashingTypesComponent } from './Components/Admin/washing-types/washing-types.component'
+import { AdminWashingTypeInfoComponent } from './Components/Admin/washing-type-info/washing-type-info.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -36,6 +38,8 @@ const routes: Routes = [
       { path: 'clients/:id', component: AdminClientInfoComponent },
       { path: 'branches', component: AdminBranchesComponent },
       { path: 'branches/:name', component: AdminBranchInfoComponent },
+      { path: 'washing_types', component: AdminWashingTypesComponent },
+      { path: 'washing_types/:name', component: AdminWashingTypeInfoComponent },
       { path: 'suppliers', component: AdminSuppliersComponent },
       { path: 'suppliers/:id', component: AdminSupplierInfoComponent },
       { path: 'products', component: AdminProductsComponent },

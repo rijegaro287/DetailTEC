@@ -4,6 +4,7 @@ import { Branch } from './Branch';
 import { Bill } from './Bill';
 import { Supplier } from './Supplier';
 import { Product } from './Product';
+import { WashingType } from './WashingType';
 
 interface ServerResponse {
     status?: string
@@ -42,6 +43,14 @@ interface SupplierResponse extends ServerResponse {
     supplier?: Supplier
 }
 
+interface AllWashingTypesResponse extends ServerResponse {
+    washingTypes?: WashingType[]
+}
+
+interface WashingTypeResponse extends ServerResponse {
+    washingType?: WashingType
+}
+
 interface AllProductsResponse extends ServerResponse {
     products?: Product[]
 }
@@ -64,14 +73,16 @@ export {
     ServerResponse,
     AllEmployeesResponse,
     EmployeeResponse,
-    AllBillsResponse,
-    BillResponse,
     AllClientsResponse,
     ClientResponse,
     AllBranchesResponse,
     BranchResponse,
+    AllWashingTypesResponse,
+    WashingTypeResponse,
+    AllProductsResponse,
+    ProductResponse,
     AllSuppliersResponse,
     SupplierResponse,
-    AllProductsResponse,
-    ProductResponse
+    AllBillsResponse,
+    BillResponse,
 }

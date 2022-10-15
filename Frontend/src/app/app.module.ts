@@ -38,6 +38,10 @@ import { BillInfoComponent } from './Components/Client/bill-info/bill-info.compo
 import { AddBranchFormComponent } from './Components/Admin/add-branch-form/add-branch-form.component';
 import { AddSupplierFormComponent } from './Components/Admin/add-supplier-form/add-supplier-form.component';
 import { AddProductFormComponent } from './Components/Admin/add-product-form/add-product-form.component';
+import { AdminWashingTypesComponent } from './Components/Admin/washing-types/washing-types.component';
+import { AdminWashingTypeInfoComponent } from './Components/Admin/washing-type-info/washing-type-info.component';
+import { AddWashingTypeFormComponent } from './Components/Admin/add-washing-type-form/add-washing-type-form.component';
+import { MultivaluedSelectComponent } from './Components/multivalued-select/multivalued-select.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +72,11 @@ import { AddProductFormComponent } from './Components/Admin/add-product-form/add
     BillInfoComponent,
     AddBranchFormComponent,
     AddSupplierFormComponent,
-    AddProductFormComponent
+    AddProductFormComponent,
+    AdminWashingTypesComponent,
+    AdminWashingTypeInfoComponent,
+    AddWashingTypeFormComponent,
+    MultivaluedSelectComponent
   ],
   imports: [
     BrowserModule,
