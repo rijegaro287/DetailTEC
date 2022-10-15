@@ -19,9 +19,16 @@ interface DateInput {
     day: number
 }
 
+interface SelectOption {
+    value: string
+    text: string
+    disabled?: boolean
+}
+
 export {
     NavbarLink,
     KeyReplacement,
     MessageInfo,
-    DateInput
+    DateInput,
+    SelectOption
 }

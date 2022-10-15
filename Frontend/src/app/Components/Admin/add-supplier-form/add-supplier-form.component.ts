@@ -19,10 +19,7 @@ export class AddSupplierFormComponent implements OnInit {
 
   @Input() supplierInfo?: Supplier
 
-  constructor(
-    private auxFunctionsService: AuxFunctionsService,
-    protected formsService: FormsService
-  ) {
+  constructor(protected formsService: FormsService) {
     this.id = new FormControl('', [Validators.required])
     this.nombre = new FormControl('', [Validators.required])
     this.email = new FormControl('', [Validators.required])

@@ -25,7 +25,7 @@ export class AdminSupplierInfoComponent implements OnInit {
       { key: "id", replacement: "Cédula jurídica" },
       { key: "nombre", replacement: "Nombre" },
       { key: "email", replacement: "Correo electrónico" },
-      { key: "direccion", replacement: "Dirección" },
+      { key: "direccion", replacement: "Dirección" }
     ]
 
     this.supplier = {} as Supplier
