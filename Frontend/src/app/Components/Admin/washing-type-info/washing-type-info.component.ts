@@ -23,6 +23,8 @@ export class AdminWashingTypeInfoComponent implements OnInit {
   ) {
     this.washingTypeInfoTitles = [
       { key: "nombre", replacement: "Nombre" },
+      { key: "cantidadEmpleados", replacement: "Cantidad de empleados" },
+      { key: "comisionEmpleado", replacement: "Comisión de cada empleado" },
       { key: "costo", replacement: "Costo" },
       { key: "precio", replacement: "Precio" },
       { key: "duracionMinutos", replacement: "Duración" },

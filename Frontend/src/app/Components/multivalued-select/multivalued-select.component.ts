@@ -15,6 +15,7 @@ export class MultivaluedSelectComponent implements OnInit {
   @Input() inputName: string
   @Input() options: SelectOption[]
   @Input() optionsState: SelectOption[]
+  @Input() onChangeCallback: () => void
 
   formArray: FormArray
 
@@ -23,6 +24,7 @@ export class MultivaluedSelectComponent implements OnInit {
     this.inputName = ''
     this.options = []
     this.optionsState = []
+    this.onChangeCallback = () => { }
 
     this.formArray = new FormArray([], [Validators.required]) as any
   }
@@ -59,5 +61,7 @@ export class MultivaluedSelectComponent implements OnInit {
         }
       })
     })
+
+    this.onChangeCallback()
   }
 }

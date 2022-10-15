@@ -17,11 +17,15 @@ import { MessageService } from 'src/app/Services/message.service';
 export class AddWashingTypeFormComponent implements OnInit {
   nombre: FormControl
   duracionMinutos: FormControl
-  costo: FormControl
+  cantidadEmpleados: FormControl
+  comisionEmpleado: FormControl
   precio: FormControl
   productos: FormArray
   puntuacion: FormControl
+  allProducts: Product[]
   productOptions: SelectOption[]
+  cost: number
+
 
   @Input() washingTypeInfo?: WashingType
 
@@ -32,15 +36,20 @@ export class AddWashingTypeFormComponent implements OnInit {
   ) {
     this.nombre = new FormControl('', [Validators.required])
     this.duracionMinutos = new FormControl('', [Validators.required])
-    this.costo = new FormControl('', [Validators.required])
+    this.cantidadEmpleados = new FormControl(0, [Validators.required])
+    this.comisionEmpleado = new FormControl(0, [Validators.required])
     this.precio = new FormControl('', [Validators.required])
     this.productos = new FormArray([new FormControl('')], [Validators.required])
     this.puntuacion = new FormControl('', [Validators.required])
 
-    this.productOptions = this.getProducts()
+    this.allProducts = this.getProducts()
+
+    this.productOptions = this.allProducts
       .map((product): SelectOption => {
         return { value: product.nombre, text: product.nombre }
       })
+
+    this.cost = 0
   }
 
   ngOnInit(): void {
@@ -48,7 +57,8 @@ export class AddWashingTypeFormComponent implements OnInit {
 
     this.formsService.form.addControl('nombre', this.nombre)
     this.formsService.form.addControl('duracionMinutos', this.duracionMinutos)
-    this.formsService.form.addControl('costo', this.costo)
+    this.formsService.form.addControl('cantidadEmpleados', this.cantidadEmpleados)
+    this.formsService.form.addControl('comisionEmpleado', this.comisionEmpleado)
     this.formsService.form.addControl('precio', this.precio)
     this.formsService.form.addControl('productos', this.productos)
     this.formsService.form.addControl('puntuacion', this.puntuacion)
@@ -64,11 +74,14 @@ export class AddWashingTypeFormComponent implements OnInit {
       this.washingTypeInfo.nombresProductos.forEach(productName => {
         productsFormArray.push(new FormControl(productName))
       })
-
     }
+
+    this.calculateCost()
   }
 
   onSubmit = () => {
+    this.formsService.getFormValue().costo = this.cost
+
     if (this.washingTypeInfo) {
       // Modify washingType info
     } else {
@@ -94,5 +107,27 @@ export class AddWashingTypeFormComponent implements OnInit {
       })
 
     return products
+  }
+
+  calculateCost = () => {
+    this.cost = 0
+
+    const selectedProductsNames = this.formsService.form
+      .controls['productos'].value
+
+    const employeeNumber = this.formsService.form
+      .controls['cantidadEmpleados'].value
+
+    const employeeCommission = this.formsService.form
+      .controls['comisionEmpleado'].value
+
+    this.cost += Number(employeeNumber) * Number(employeeCommission)
+
+    selectedProductsNames.forEach((name: string) => {
+      const product = this.allProducts
+        .find(product => product.nombre === name)
+
+      if (product) this.cost += product.precio
+    })
   }
 }
