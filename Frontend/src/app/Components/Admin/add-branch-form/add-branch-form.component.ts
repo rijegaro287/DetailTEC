@@ -20,7 +20,7 @@ export class AddBranchFormComponent implements OnInit {
   canton: FormControl
   distrito: FormControl
   telefono: FormControl
-  nombreGerente: FormControl
+  idGerente: FormControl
   fechaApertura: FormControl
   employees: Employee[]
 
@@ -37,7 +37,7 @@ export class AddBranchFormComponent implements OnInit {
     this.canton = new FormControl('', [Validators.required])
     this.distrito = new FormControl('', [Validators.required])
     this.telefono = new FormControl('', [Validators.required])
-    this.nombreGerente = new FormControl('', [Validators.required])
+    this.idGerente = new FormControl('', [Validators.required])
     this.fechaApertura = new FormControl('', [Validators.required])
 
     this.employees = this.getEmployees()
@@ -51,7 +51,7 @@ export class AddBranchFormComponent implements OnInit {
     this.formsService.form.addControl('canton', this.canton)
     this.formsService.form.addControl('distrito', this.distrito)
     this.formsService.form.addControl('telefono', this.telefono)
-    this.formsService.form.addControl('nombreGerente', this.nombreGerente)
+    this.formsService.form.addControl('idGerente', this.idGerente)
     this.formsService.form.addControl('fechaApertura', this.fechaApertura)
 
     if (this.branchInfo) {
@@ -61,7 +61,7 @@ export class AddBranchFormComponent implements OnInit {
         .stringToDate(this.branchInfo.fechaApertura)
 
       this.formsService.patchFormValue(branchInfo);
-      this.formsService.form.controls['nombreGerente']
+      this.formsService.form.controls['idGerente']
         .setValue(this.branchInfo.idGerente);
     }
   }

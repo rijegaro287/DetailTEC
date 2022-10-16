@@ -7,7 +7,7 @@
 
         <div class="col-6">
             <label class="form-label" for="managerInput">Gerente:</label>
-            <select class="form-select" id="managerInput" formControlName="nombreGerente">
+            <select class="form-select" id="managerInput" formControlName="idGerente">
                 <option *ngFor="let employee of employees" value="{{employee.id}}">{{employee.nombre}}
                     {{employee.apellido}}</option>
             </select>

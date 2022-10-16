@@ -7,7 +7,7 @@ import { Product } from './Product';
 import { WashingType } from './WashingType';
 
 interface ServerResponse {
-    status?: string
+    status?: 'ok' | 'error'
     message?: string
 }
 
@@ -66,8 +66,6 @@ interface AllBillsResponse extends ServerResponse {
 interface BillResponse extends ServerResponse {
     bill?: Bill
 }
-
-
 
 export {
     ServerResponse,
