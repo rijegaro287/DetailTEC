@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 
+import { Employee } from 'src/app/Interfaces/Employee';
+
 import { FormsService } from 'src/app/Services/forms.service';
+import { AuxFunctionsService } from 'src/app/Services/aux-functions.service';
 
 @Component({
   selector: 'app-add-employee-form',
@@ -18,11 +21,16 @@ export class AddEmployeeFormComponent implements OnInit {
   fechaInicio: FormControl
   frecuenciaPago: FormControl
 
-  constructor(protected formsService: FormsService) {
+  @Input() employeeInfo?: Employee
+
+  constructor(
+    private auxFunctionsService: AuxFunctionsService,
+    protected formsService: FormsService
+  ) {
     this.nombre = new FormControl('', [Validators.required])
     this.apellido = new FormControl('', [Validators.required])
     this.id = new FormControl('', [Validators.required])
-    this.email = new FormControl('', [Validators.required])
+    this.email = new FormControl('', [Validators.required, Validators.email])
     this.fechaNacimiento = new FormControl('', [Validators.required])
     this.puesto = new FormControl('', [Validators.required])
     this.fechaInicio = new FormControl('', [Validators.required])
@@ -40,9 +48,26 @@ export class AddEmployeeFormComponent implements OnInit {
     this.formsService.form.addControl('puesto', this.puesto)
     this.formsService.form.addControl('fechaInicio', this.fechaInicio)
     this.formsService.form.addControl('frecuenciaPago', this.frecuenciaPago)
+
+    if (this.employeeInfo) {
+      const { edad, ...employeeInfo } = this.employeeInfo as any
+
+      employeeInfo.fechaInicio = this.auxFunctionsService
+        .stringToDate(this.employeeInfo.fechaInicio)
+
+      employeeInfo.fechaNacimiento = this.auxFunctionsService
+        .stringToDate(this.employeeInfo.fechaNacimiento)
+
+      this.formsService.patchFormValue(employeeInfo);
+    }
   }
 
   onSubmit = () => {
+    if (this.employeeInfo) {
+      // Modify employee info
+    } else {
+      // Add new employee
+    }
     this.formsService.printFormValue()
   }
 }

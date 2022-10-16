@@ -4,8 +4,8 @@ interface Employee {
     apellido: string
     email: string
     edad: number
-    fechaNacimiento: Date
-    fechaInicio: Date
+    fechaNacimiento: string
+    fechaInicio: string
     puesto: string
     frecuenciaPago: string
 }

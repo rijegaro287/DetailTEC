@@ -1,7 +1,3 @@
-interface HasID {
-    id: number
-}
-
 interface NavbarLink {
     href: string
     name: string
@@ -17,9 +13,22 @@ interface MessageInfo {
     type: 'error' | 'warning' | 'success' | 'none'
 }
 
+interface DateInput {
+    year: number
+    month: number
+    day: number
+}
+
+interface SelectOption {
+    value: string
+    text: string
+    disabled?: boolean
+}
+
 export {
-    HasID,
     NavbarLink,
     KeyReplacement,
-    MessageInfo
+    MessageInfo,
+    DateInput,
+    SelectOption
 }

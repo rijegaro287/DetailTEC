@@ -6,7 +6,6 @@ import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries'
 
 import { EmployeeService } from 'src/app/Services/employee.service'
 import { MessageService } from 'src/app/Services/message.service'
-import { FormsService } from 'src/app/Services/forms.service'
 
 @Component({
   selector: 'app-employee-info',
@@ -20,7 +19,6 @@ export class AdminEmployeeInfoComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private employeeService: EmployeeService,
-    private formsService: FormsService,
     protected messageService: MessageService
   ) {
     this.employeeInfoTitles = [
@@ -32,7 +30,7 @@ export class AdminEmployeeInfoComponent implements OnInit {
       { key: "edad", replacement: "Edad" },
       { key: "fechaInicio", replacement: "Fecha de inicio" },
       { key: "puesto", replacement: "Puesto" },
-      { key: "frecuenciaPago", replacement: "Frecuencia de pago" },
+      { key: "frecuenciaPago", replacement: "Frecuencia de pago" }
     ]
 
     this.employee = {} as Employee
@@ -47,8 +45,6 @@ export class AdminEmployeeInfoComponent implements OnInit {
         }
         else if (response.employee) {
           this.employee = response.employee
-
-          this.formsService.form.get('nombre')?.setValue(this.employee.nombre)
         }
         else {
           console.log(response)

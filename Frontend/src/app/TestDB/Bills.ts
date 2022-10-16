@@ -1,6 +1,6 @@
-import { Bill } from "../Interfaces/bill";
+import { Bill } from "../Interfaces/Bill";
 
-const BILLS:Bill[] = [
+const BILLS: Bill[] = [
     {
         "id": 1,
         "date": new Date(),
@@ -38,4 +38,4 @@ const BILLS:Bill[] = [
     }
 ]
 
-export {BILLS}
+export { BILLS }

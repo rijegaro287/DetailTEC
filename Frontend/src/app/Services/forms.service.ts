@@ -13,5 +13,9 @@ export class FormsService {
 
   getFormValue = () => this.form.value
 
+  patchFormValue = (value: any) => this.form.patchValue(value)
+
+  setFormValue = (value: any) => this.form.setValue(value)
+
   printFormValue = () => console.log(this.form.value)
 }

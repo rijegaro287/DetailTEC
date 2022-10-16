@@ -14,11 +14,11 @@ export class AdminMainComponent implements OnInit {
     this.navbarLinks = [
       { href: 'employees', name: 'Empleados' },
       { href: 'clients', name: 'Clientes' },
-      { href: 'branches', name: 'Sucursales' },
       { href: 'appointments', name: 'Citas' },
+      { href: 'branches', name: 'Sucursales' },
+      { href: 'washing_types', name: 'Lavados' },
       { href: 'suppliers', name: 'Proveedores' },
       { href: 'products', name: 'Productos' },
-      { href: 'services', name: 'Servicios' },
       { href: 'bills', name: 'Facturas' }
     ]
   }

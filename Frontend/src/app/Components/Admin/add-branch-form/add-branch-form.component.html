@@ -1,0 +1,56 @@
+<form [formGroup]="this.formsService.form" (ngSubmit)="onSubmit()">
+    <div class="row mb-3">
+        <div class="col-6">
+            <label class="form-label" for="nameInput">Nombre:</label>
+            <input class="form-control" id="nameInput" type="text" formControlName="nombre">
+        </div>
+
+        <div class="col-6">
+            <label class="form-label" for="managerInput">Gerente:</label>
+            <select class="form-select" id="managerInput" formControlName="nombreGerente">
+                <option *ngFor="let employee of employees" value="{{employee.id}}">{{employee.nombre}}
+                    {{employee.apellido}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-4">
+            <label class="form-label" for="lastNameInput">Provincia:</label>
+            <input class="form-control" id="lastNameInput" type="text" formControlName="provincia">
+        </div>
+
+        <div class="col-4">
+            <label class="form-label" for="cantonInput">Cantón:</label>
+            <input class="form-control" id="cantonInput" type="text" formControlName="canton">
+        </div>
+
+        <div class="col-4">
+            <label class="form-label" for="districtInput">Distrito:</label>
+            <input class="form-control" id="districtInput" type="text" formControlName="distrito">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-6">
+            <label class="form-label" for="telInput">Teléfono:</label>
+            <input class="form-control" id="telInput" type="number" formControlName="telefono">
+        </div>
+
+        <div class="col-6">
+            <label class="form-label" for="openingDateInput">Fecha de apertura:</label>
+            <div class="input-group">
+                <input [minDate]="{year: 1922, month: 1, day: 1}" [maxDate]="{year: 2022, month: 12, day: 31}"
+                    ngbDatepicker id="openingDateInput" class="form-control" placeholder="yyyy-mm-dd"
+                    #d1="ngbDatepicker" formControlName="fechaApertura">
+                <button class="btn btn-outline-secondary" (click)="d1.toggle()" type="button">
+                    <i class="bi bi-calendar-date-fill"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <input type="submit" class="btn btn-success btn-lg" value="{{branchInfo ? 'Editar' : 'Crear'}}">
+    </div>
+</form>
