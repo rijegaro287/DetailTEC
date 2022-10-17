@@ -4,7 +4,7 @@ export interface Appointment {
     branchId: number;
     clientId: number;
     typeOfWash: number;
-    date: Date;
+    date: string;
     // time: 
 
 }

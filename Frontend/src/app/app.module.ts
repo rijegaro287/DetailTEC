@@ -42,6 +42,7 @@ import { AdminWashingTypesComponent } from './Components/Admin/washing-types/was
 import { AdminWashingTypeInfoComponent } from './Components/Admin/washing-type-info/washing-type-info.component';
 import { AddWashingTypeFormComponent } from './Components/Admin/add-washing-type-form/add-washing-type-form.component';
 import { MultivaluedSelectComponent } from './Components/multivalued-select/multivalued-select.component';
+import { AddAppointmentFormComponent } from './Components/Client/add-appointment-form/add-appointment-form.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { MultivaluedSelectComponent } from './Components/multivalued-select/mult
     AdminWashingTypesComponent,
     AdminWashingTypeInfoComponent,
     AddWashingTypeFormComponent,
-    MultivaluedSelectComponent
+    MultivaluedSelectComponent,
+    AddAppointmentFormComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,11 @@
 <header>DetailTEC</header>
+
 <app-navbar [links]="navbarLinks"></app-navbar>
 
-<footer>
-    <p>Puntos actuales: {{points}}</p>
-</footer>
+<div class = "mb-3">
+    <app-modal [options]="{size:'lg', scrollable:true}" [showModalButtonText]="'Solicitar una Cita'"
+        [modalHeader]="'Creación de Citas'">
+        <app-add-appointment-form></app-add-appointment-form>
+    </app-modal>
+</div>
+

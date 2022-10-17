@@ -2,6 +2,7 @@ import { WashingType } from "../Interfaces/WashingType";
 
 const WASHINGTYPES: WashingType[] = [
     {
+        id: 1,
         nombre: 'Lavado y aspirado',
         costo: 1000,
         cantidadEmpleados: 1,
@@ -12,6 +13,7 @@ const WASHINGTYPES: WashingType[] = [
         puntuacion: 100
     },
     {
+        id: 2,
         nombre: 'Lavado y encerado',
         costo: 1500,
         cantidadEmpleados: 1,
@@ -22,6 +24,7 @@ const WASHINGTYPES: WashingType[] = [
         puntuacion: 200
     },
     {
+        id: 3,
         nombre: 'Lavado premium',
         costo: 2000,
         cantidadEmpleados: 2,
@@ -32,6 +35,7 @@ const WASHINGTYPES: WashingType[] = [
         puntuacion: 350
     },
     {
+        id: 4,
         nombre: 'Pulido',
         costo: 1500,
         cantidadEmpleados: 1,
