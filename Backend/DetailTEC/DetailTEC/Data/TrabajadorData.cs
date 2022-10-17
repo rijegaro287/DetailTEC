@@ -6,7 +6,7 @@ namespace DetailTEC.Data
 {
     public class TrabajadorData
     {
-        public static bool RegistrarTrabajador(Trabajador trabajador)
+        public static bool Registrar(Trabajador trabajador)
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
@@ -36,7 +36,7 @@ namespace DetailTEC.Data
             }
         }
 
-        public static bool ModificarTrabajador(Trabajador trabajador)
+        public static bool Modificar(Trabajador trabajador)
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
@@ -66,7 +66,7 @@ namespace DetailTEC.Data
             }
         }
 
-        public static List<Trabajador> ListarTrabajadores()
+        public static List<Trabajador> Listar()
         {
             List<Trabajador> oListaUsuario = new List<Trabajador>();
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
