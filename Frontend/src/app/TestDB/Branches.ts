@@ -5,7 +5,6 @@ const BRANCHES: Branch[] = []
 for (let index = 0; index < 6; index++) {
     BRANCHES.push(
         {
-            id: index,
             nombre: `Sede ${index}`,
             provincia: `Provincia ${index}`,
             canton: `Cantón ${index}`,

@@ -6,7 +6,7 @@ import { FormsService } from 'src/app/Services/forms.service';
 @Component({
   selector: 'app-make-appointment',
   templateUrl: './make-appointment.component.html',
-  styleUrls: ['./make-appointment.component.sass']
+  styleUrls: ['./make-appointment.component.scss']
 })
 // TODO: Agregar la hora de la cita, mostrar las sucursales.
 export class MakeAppointmentComponent implements OnInit {
@@ -19,7 +19,7 @@ export class MakeAppointmentComponent implements OnInit {
   // time:FormControl;
 
 
-  constructor(protected formsService: FormsService) { 
+  constructor(protected formsService: FormsService) {
     this.id = new FormControl('', [Validators.required]);
     this.clientId = new FormControl('', [Validators.required]);
     this.licensePlate = new FormControl('', [Validators.required]);
@@ -28,7 +28,7 @@ export class MakeAppointmentComponent implements OnInit {
     this.date = new FormControl('', [Validators.required]);
   }
 
-  
+
   ngOnInit(): void {
     this.formsService.resetForm()
 
@@ -39,8 +39,8 @@ export class MakeAppointmentComponent implements OnInit {
     this.formsService.form.addControl('typeOfWash', this.typeOfWash)
     this.formsService.form.addControl('date', this.date);
   }
-  
-  onSubmit(){
+
+  onSubmit() {
     this.formsService.printFormValue();
   }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
 import { Product } from '../Interfaces/Product';
-import { AllProductsResponse, ServerResponse, ProductResponse } from '../Interfaces/ServerResponses';
+import { ProductsResponse, ServerResponse, ProductResponse } from '../Interfaces/ServerResponses';
 
 import { PRODUCTS } from '../TestDB/Products';
 
@@ -12,8 +12,8 @@ import { PRODUCTS } from '../TestDB/Products';
 export class ProductService {
   constructor() { }
 
-  getAllProducts = (): Observable<AllProductsResponse> => {
-    const okResponse: AllProductsResponse = {
+  getAllProducts = (): Observable<ProductsResponse> => {
+    const okResponse: ProductsResponse = {
       status: 'ok',
       products: PRODUCTS
     }

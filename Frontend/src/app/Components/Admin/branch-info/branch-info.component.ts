@@ -24,7 +24,6 @@ export class AdminBranchInfoComponent implements OnInit {
     protected messageService: MessageService
   ) {
     this.branchInfoTitles = [
-      {key: "id", replacement: "Id"},
       { key: "nombre", replacement: "Nombre" },
       { key: "provincia", replacement: "Provincia" },
       { key: "canton", replacement: "Cantón" },

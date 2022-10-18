@@ -5,13 +5,14 @@ import { Bill } from './Bill';
 import { Supplier } from './Supplier';
 import { Product } from './Product';
 import { WashingType } from './WashingType';
+import { Appointment } from './Appointment';
 
 interface ServerResponse {
     status?: 'ok' | 'error'
     message?: string
 }
 
-interface AllEmployeesResponse extends ServerResponse {
+interface EmployeesResponse extends ServerResponse {
     employees?: Employee[]
 }
 
@@ -19,7 +20,7 @@ interface EmployeeResponse extends ServerResponse {
     employee?: Employee
 }
 
-interface AllClientsResponse extends ServerResponse {
+interface ClientsResponse extends ServerResponse {
     clients?: Client[]
 }
 
@@ -27,7 +28,7 @@ interface ClientResponse extends ServerResponse {
     client?: Client
 }
 
-interface AllBranchesResponse extends ServerResponse {
+interface BranchesResponse extends ServerResponse {
     branches?: Branch[]
 }
 
@@ -35,7 +36,7 @@ interface BranchResponse extends ServerResponse {
     branch?: Branch
 }
 
-interface AllSuppliersResponse extends ServerResponse {
+interface SuppliersResponse extends ServerResponse {
     suppliers?: Supplier[]
 }
 
@@ -43,7 +44,7 @@ interface SupplierResponse extends ServerResponse {
     supplier?: Supplier
 }
 
-interface AllWashingTypesResponse extends ServerResponse {
+interface WashingTypesResponse extends ServerResponse {
     washingTypes?: WashingType[]
 }
 
@@ -51,7 +52,7 @@ interface WashingTypeResponse extends ServerResponse {
     washingType?: WashingType
 }
 
-interface AllProductsResponse extends ServerResponse {
+interface ProductsResponse extends ServerResponse {
     products?: Product[]
 }
 
@@ -59,7 +60,15 @@ interface ProductResponse extends ServerResponse {
     product?: Product
 }
 
-interface AllBillsResponse extends ServerResponse {
+interface AppointmentsResponse extends ServerResponse {
+    appointments?: Appointment[]
+}
+
+interface AppointmentResponse extends ServerResponse {
+    appointment?: Appointment
+}
+
+interface BillsResponse extends ServerResponse {
     bills?: Bill[]
 }
 
@@ -69,18 +78,20 @@ interface BillResponse extends ServerResponse {
 
 export {
     ServerResponse,
-    AllEmployeesResponse,
+    EmployeesResponse,
     EmployeeResponse,
-    AllClientsResponse,
+    ClientsResponse,
     ClientResponse,
-    AllBranchesResponse,
+    BranchesResponse,
     BranchResponse,
-    AllWashingTypesResponse,
+    WashingTypesResponse,
     WashingTypeResponse,
-    AllProductsResponse,
+    ProductsResponse,
     ProductResponse,
-    AllSuppliersResponse,
+    SuppliersResponse,
     SupplierResponse,
-    AllBillsResponse,
+    AppointmentsResponse,
+    AppointmentResponse,
+    BillsResponse,
     BillResponse,
 }

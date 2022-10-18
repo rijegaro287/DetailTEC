@@ -1,5 +1,4 @@
 interface Branch {
-    id: number
     nombre: string
     provincia: string
     canton: string

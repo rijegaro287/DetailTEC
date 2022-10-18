@@ -51,5 +51,4 @@ export class BillInfoComponent implements OnInit {
         }
       })
   }
-
 }

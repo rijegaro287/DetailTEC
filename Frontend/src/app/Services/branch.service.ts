@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import {
   ServerResponse,
   BranchResponse,
-  AllBranchesResponse
+  BranchesResponse
 } from '../Interfaces/ServerResponses';
 import { Branch } from '../Interfaces/Branch';
 
@@ -16,8 +16,8 @@ import { BRANCHES } from '../TestDB/Branches';
 export class BranchService {
   constructor() { }
 
-  getAllBranches = (): Observable<AllBranchesResponse> => {
-    const okResponse: AllBranchesResponse = {
+  getAllBranches = (): Observable<BranchesResponse> => {
+    const okResponse: BranchesResponse = {
       status: 'ok',
       branches: BRANCHES
     }

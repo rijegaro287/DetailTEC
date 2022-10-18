@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
-import { AllWashingTypesResponse, ServerResponse, WashingTypeResponse } from '../Interfaces/ServerResponses';
+import { WashingTypesResponse, ServerResponse, WashingTypeResponse } from '../Interfaces/ServerResponses';
 
 import { WashingType } from '../Interfaces/WashingType';
 
@@ -13,8 +13,8 @@ import { WASHINGTYPES } from '../TestDB/WashingTypes';
 export class WashingTypeService {
   constructor() { }
 
-  getAllWashingTypes = (): Observable<AllWashingTypesResponse> => {
-    const okResponse: AllWashingTypesResponse = {
+  getAllWashingTypes = (): Observable<WashingTypesResponse> => {
+    const okResponse: WashingTypesResponse = {
       status: 'ok',
       washingTypes: WASHINGTYPES
     }

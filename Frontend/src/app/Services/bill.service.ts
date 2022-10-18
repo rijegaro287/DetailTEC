@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 
 import {
   ServerResponse,
-  AllBillsResponse,
+  BillsResponse,
   BillResponse
 } from '../Interfaces/ServerResponses';
 
@@ -18,8 +18,8 @@ export class BillService {
 
   constructor() { }
 
-  getAllBills = (): Observable<AllBillsResponse> => {
-    const okResponse: AllBillsResponse = {
+  getAllBills = (): Observable<BillsResponse> => {
+    const okResponse: BillsResponse = {
       status: 'ok',
       bills: BILLS
     }
@@ -47,5 +47,4 @@ export class BillService {
 
     return of(okResponse)
   }
-
 }

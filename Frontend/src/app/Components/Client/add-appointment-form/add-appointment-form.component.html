@@ -1,52 +1,49 @@
-<div>
-    <form [formGroup]="this.formsService.form" (ngSubmit)="onSubmit()">
-        <div class="row mb-3">
-            <div class="col-5">
-                <label class="form-label" for="clientIdInput">Cédula de cliente:</label>
-                <input class="form-control" id="clientIdInput" type="number" formControlName="clientId">
-            </div>
-        
-            <div class="col-5">
-                <label class="form-label" for="licensePlate">Placa del vehículo:</label>
-                <input class="form-control" id="licensePlate" type="text" formControlName="licensePlate">
-            </div>
+<form [formGroup]="this.formsService.form" (ngSubmit)="onSubmit()">
+    <div class="col-12 mb-3">
+        <label class="form-label" for="licensePlateInput">Placa del vehículo:</label>
+        <input class="form-control" id="licensePlateInput" type="text" formControlName="licensePlate">
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-6">
+            <label class="form-label" for="branchInput">Sucursal:</label>
+            <select class="form-select" id="branchInput" formControlName="branch">
+                <option *ngFor="let branch of branches" value="{{branch.nombre}}">
+                    {{branch.nombre}}
+                </option>
+
+            </select>
         </div>
-        <div class="row mb-3">
-            <div class="col-5">
-                <label class="form-label" for="branch">Sucursal:</label>
-                <select class="form-select" id="branch" formControlName="branch">
-                    <option *ngFor="let branch of branches" value="{{branch.id}}">
-                        {{branch.nombre}}
-                    </option>
-                    
-                </select>
-            </div>
-            <div class="col-5">
-                <label class="form-label" for="typeOfWashInput">Tipo de lavado:</label>
-                <select class="form-select" id="typeOfWashInput" formControlName="typeOfWash">
-                    <option *ngFor="let typeOfWash of typeOfWashes" value="{{typeOfWash.id}}"> 
-                        {{typeOfWash.nombre}}
-                    </option>
-                </select>
+        <div class="col-6">
+            <label class="form-label" for="washingTypeInput">Tipo de lavado:</label>
+            <select class="form-select" id="washingTypeInput" formControlName="washingType">
+                <option *ngFor="let washingType of washingTypes" value="{{washingType.nombre}}">
+                    {{washingType.nombre}}
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-6">
+            <label class="form-label" for="dateInput">Fecha:</label>
+            <div class="input-group">
+                <input [minDate]="{year: 1922, month: 1, day: 1}" [maxDate]="{year: 2022, month: 12, day: 31}"
+                    ngbDatepicker id="dateInput" class="form-control" placeholder="yyyy-mm-dd" #d1="ngbDatepicker"
+                    formControlName="date">
+                <button class="btn btn-outline-secondary" (click)="d1.toggle()" type="button">
+                    <i class="bi bi-calendar-date-fill"></i>
+                </button>
             </div>
         </div>
 
-        <div class="row mb-3">
-            <div class="col-4">
-                <label class="form-label" for="dateInput">Fecha de la cita:</label>
-                <div class="input-group">
-                    <input [minDate]="{year: 1922, month: 1, day: 1}" [maxDate]="{year: 2022, month: 12, day: 31}"
-                        ngbDatepicker id="dateInput" class="form-control" placeholder="yyyy-mm-dd"
-                        #d1="ngbDatepicker" formControlName="date">
-                    <button class="btn btn-outline-secondary" (click)="d1.toggle()" type="button">
-                        <i class="bi bi-calendar-date-fill"></i>
-                    </button>
-                </div>
-            </div>
+        <div class="col-6">
+            <label class="form-label">Hora:</label>
+            <ngb-timepicker formControlName="time" [meridian]="true" [spinners]="false"></ngb-timepicker>
         </div>
+    </div>
 
-        <div class="d-flex justify-content-end">
-            <input type="submit" class="btn btn-success btn-lg" value="Crear">
-        </div>
-    </form>
-</div>
+    <div class="d-flex justify-content-end">
+        <input type="submit" class="btn btn-success btn-lg" value="Crear">
+    </div>
+</form>

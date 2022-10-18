@@ -25,7 +25,7 @@ import { AdminProductsComponent } from './Components/Admin/products/products.com
 import { AdminProductInfoComponent } from './Components/Admin/product-info/product-info.component'
 
 /* Componentes de cliente */
-import { HomeComponent } from './Components/Client/home/home.component'
+import { ClientMainComponent } from './Components/Client/main/main.component'
 import { MakeAppointmentComponent } from './Components/Client/make-appointment/make-appointment.component'
 import { BillsComponent } from './Components/Client/bills/bills.component'
 import { InfoCardComponent } from './Components/info-card/info-card.component'
@@ -42,7 +42,9 @@ import { AdminWashingTypesComponent } from './Components/Admin/washing-types/was
 import { AdminWashingTypeInfoComponent } from './Components/Admin/washing-type-info/washing-type-info.component';
 import { AddWashingTypeFormComponent } from './Components/Admin/add-washing-type-form/add-washing-type-form.component';
 import { MultivaluedSelectComponent } from './Components/multivalued-select/multivalued-select.component';
-import { AddAppointmentFormComponent } from './Components/Client/add-appointment-form/add-appointment-form.component';
+import { ClientAddAppointmentFormComponent } from './Components/Client/add-appointment-form/add-appointment-form.component';
+import { ClientAppointmentsComponent } from './Components/Client/appointments/appointments.component';
+import { ClientAppointmentInfoComponent } from './Components/Client/appointment-info/appointment-info.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,7 @@ import { AddAppointmentFormComponent } from './Components/Client/add-appointment
     AdminSupplierInfoComponent,
     AdminProductsComponent,
     AdminProductInfoComponent,
-    HomeComponent,
+    ClientMainComponent,
     MakeAppointmentComponent,
     BillsComponent,
     GenericTableComponent,
@@ -78,7 +80,9 @@ import { AddAppointmentFormComponent } from './Components/Client/add-appointment
     AdminWashingTypeInfoComponent,
     AddWashingTypeFormComponent,
     MultivaluedSelectComponent,
-    AddAppointmentFormComponent
+    ClientAddAppointmentFormComponent,
+    ClientAppointmentsComponent,
+    ClientAppointmentInfoComponent
   ],
   imports: [
     BrowserModule,
