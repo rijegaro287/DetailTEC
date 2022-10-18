@@ -1,13 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core'
+import { FormControl, Validators } from '@angular/forms'
 
-import { AuxFunctionsService } from 'src/app/Services/aux-functions.service';
-import { EmployeeService } from 'src/app/Services/employee.service';
-import { FormsService } from 'src/app/Services/forms.service';
+import { AuxFunctionsService } from 'src/app/Services/aux-functions.service'
+import { EmployeeService } from 'src/app/Services/employee.service'
+import { FormsService } from 'src/app/Services/forms.service'
 
-import { Branch } from 'src/app/Interfaces/Branch';
-import { Employee } from 'src/app/Interfaces/Employee';
-import { MessageService } from 'src/app/Services/message.service';
+import { Branch } from 'src/app/Interfaces/Branch'
+import { Employee } from 'src/app/Interfaces/Employee'
+import { MessageService } from 'src/app/Services/message.service'
 
 @Component({
   selector: 'app-add-branch-form',
@@ -60,9 +60,9 @@ export class AddBranchFormComponent implements OnInit {
       branchInfo.fechaApertura = this.auxFunctionsService
         .stringToDate(this.branchInfo.fechaApertura)
 
-      this.formsService.patchFormValue(branchInfo);
+      this.formsService.patchFormValue(branchInfo)
       this.formsService.form.controls['idGerente']
-        .setValue(this.branchInfo.idGerente);
+        .setValue(this.branchInfo.idGerente)
     }
   }
 

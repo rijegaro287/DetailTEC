@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
-import { NavbarLink } from 'src/app/Interfaces/Auxiliaries';
+import { NavbarLink } from 'src/app/Interfaces/Auxiliaries'
 
 @Component({
   selector: 'app-home',
@@ -8,14 +8,14 @@ import { NavbarLink } from 'src/app/Interfaces/Auxiliaries';
   styleUrls: ['./main.component.scss']
 })
 export class ClientMainComponent implements OnInit {
-  navbarLinks: NavbarLink[];
+  navbarLinks: NavbarLink[]
 
   constructor() {
     this.navbarLinks = [
       { href: 'data', name: 'Mis datos' },
       { href: 'appointments', name: 'Citas' },
       { href: 'bills', name: 'Facturas' }
-    ];
+    ]
   }
 
   ngOnInit(): void { }

@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Injectable } from '@angular/core'
+import { Observable, of } from 'rxjs'
 
 import {
   ServerResponse,
   BranchResponse,
   BranchesResponse
-} from '../Interfaces/ServerResponses';
-import { Branch } from '../Interfaces/Branch';
+} from '../Interfaces/ServerResponses'
+import { Branch } from '../Interfaces/Branch'
 
-import { BRANCHES } from '../TestDB/Branches';
+import { BRANCHES } from '../TestDB/Branches'
 
 @Injectable({
   providedIn: 'root'

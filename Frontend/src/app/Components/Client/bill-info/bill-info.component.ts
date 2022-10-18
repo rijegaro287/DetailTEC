@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
 
-import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries';
-import { Bill } from 'src/app/Interfaces/Bill';
+import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries'
+import { Bill } from 'src/app/Interfaces/Bill'
 
-import { BillService } from 'src/app/Services/bill.service';
-import { FormsService } from 'src/app/Services/forms.service';
-import { MessageService } from 'src/app/Services/message.service';
+import { BillService } from 'src/app/Services/bill.service'
+import { FormsService } from 'src/app/Services/forms.service'
+import { MessageService } from 'src/app/Services/message.service'
 
 @Component({
   selector: 'app-bill-info',
@@ -14,8 +14,8 @@ import { MessageService } from 'src/app/Services/message.service';
   styleUrls: ['./bill-info.component.scss']
 })
 export class BillInfoComponent implements OnInit {
-  billInfoTitles: KeyReplacement<Bill>[];
-  bill: Bill;
+  billInfoTitles: KeyReplacement<Bill>[]
+  bill: Bill
 
   constructor(
     private route: ActivatedRoute,
@@ -31,7 +31,7 @@ export class BillInfoComponent implements OnInit {
       { key: "montoPagado", replacement: "Monto pagado" },
       { key: "puntosUtilizados", replacement: "Puntos utilizados" }
     ]
-    this.bill = {} as Bill;
+    this.bill = {} as Bill
   }
 
   ngOnInit(): void {

@@ -1,10 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core'
+import { FormControl, Validators } from '@angular/forms'
 
-import { Supplier } from 'src/app/Interfaces/Supplier';
+import { Supplier } from 'src/app/Interfaces/Supplier'
 
-import { AuxFunctionsService } from 'src/app/Services/aux-functions.service';
-import { FormsService } from 'src/app/Services/forms.service';
+import { FormsService } from 'src/app/Services/forms.service'
 
 @Component({
   selector: 'app-add-supplier-form',
@@ -35,7 +34,7 @@ export class AddSupplierFormComponent implements OnInit {
     this.formsService.form.addControl('direccion', this.direccion)
 
     if (this.supplierInfo) {
-      this.formsService.patchFormValue(this.supplierInfo);
+      this.formsService.patchFormValue(this.supplierInfo)
     }
   }
 

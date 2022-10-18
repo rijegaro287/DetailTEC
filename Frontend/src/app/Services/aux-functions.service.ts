@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
 
-import { DateInput } from '../Interfaces/Auxiliaries';
+import { DateInput } from '../Interfaces/Auxiliaries'
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ export class AuxFunctionsService {
   constructor() { }
 
   stringToDate = (dateString: string): DateInput => {
-    const dateStringArray = dateString.split('-');
+    const dateStringArray = dateString.split('-')
     const dateObject: DateInput = {
       year: Number(dateStringArray[0]),
       month: Number(dateStringArray[1]),
@@ -22,7 +22,7 @@ export class AuxFunctionsService {
 
   dateToString = (dateObject: DateInput): string => {
     const dateString =
-      `${dateObject.year}-${dateObject.month}-${dateObject.day}`;
+      `${dateObject.year}-${dateObject.month}-${dateObject.day}`
 
     return dateString
   }

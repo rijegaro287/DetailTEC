@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core'
 
-import { NavbarLink } from 'src/app/Interfaces/Auxiliaries';
+import { NavbarLink } from 'src/app/Interfaces/Auxiliaries'
 
 @Component({
   selector: 'app-navbar',

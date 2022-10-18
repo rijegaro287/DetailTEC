@@ -13,7 +13,7 @@ import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries'
   styleUrls: ['./bills.component.sass']
 })
 export class BillsComponent implements OnInit {
-  tableColumns: KeyReplacement<Bill>[];
+  tableColumns: KeyReplacement<Bill>[]
   tableData: Bill[]
   clientID: number
 
@@ -29,7 +29,7 @@ export class BillsComponent implements OnInit {
       { key: "hora", replacement: "Hora" },
       { key: "montoPagado", replacement: "Monto pagado" },
       { key: "puntosUtilizados", replacement: "Puntos utilizados" }
-    ];
+    ]
 
     this.tableData = []
     this.clientID = 0
@@ -38,7 +38,7 @@ export class BillsComponent implements OnInit {
 
   ngOnInit(): void {
     this.messageService.resetMessageInfo()
-    this.clientID = this.loginService.getLoggedClientID();
+    this.clientID = this.loginService.getLoggedClientID()
 
     this.billService.getClientBills(this.clientID)
       .subscribe(response => {
