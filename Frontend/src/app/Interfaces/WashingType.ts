@@ -1,5 +1,4 @@
 interface WashingType {
-    id: number
     nombre: string
     costo: number
     cantidadEmpleados: number

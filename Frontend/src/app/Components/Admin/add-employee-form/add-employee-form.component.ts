@@ -1,10 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core'
+import { FormControl, Validators } from '@angular/forms'
 
-import { Employee } from 'src/app/Interfaces/Employee';
+import { Employee } from 'src/app/Interfaces/Employee'
 
-import { FormsService } from 'src/app/Services/forms.service';
-import { AuxFunctionsService } from 'src/app/Services/aux-functions.service';
+import { FormsService } from 'src/app/Services/forms.service'
+import { AuxFunctionsService } from 'src/app/Services/aux-functions.service'
 
 @Component({
   selector: 'app-add-employee-form',
@@ -58,7 +58,7 @@ export class AddEmployeeFormComponent implements OnInit {
       employeeInfo.fechaNacimiento = this.auxFunctionsService
         .stringToDate(this.employeeInfo.fechaNacimiento)
 
-      this.formsService.patchFormValue(employeeInfo);
+      this.formsService.patchFormValue(employeeInfo)
     }
   }
 

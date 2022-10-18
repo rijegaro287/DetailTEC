@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
-import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries';
-import { Product } from 'src/app/Interfaces/Product';
+import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries'
+import { Product } from 'src/app/Interfaces/Product'
 
-import { MessageService } from 'src/app/Services/message.service';
-import { ProductService } from 'src/app/Services/product.service';
+import { MessageService } from 'src/app/Services/message.service'
+import { ProductService } from 'src/app/Services/product.service'
 
 @Component({
   selector: 'app-products',

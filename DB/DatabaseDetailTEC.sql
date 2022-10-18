@@ -1,9 +1,13 @@
+create database DetailTEC
+
+go 
 
 use DetailTEC
-GO
 
+go
+
+if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'TRABAJADOR')
 create table TRABAJADOR(
-	
 	Cedula char(9) not null,
 	Nombre varchar(20) not null,
 	Apellido1 varchar(20) not null,
@@ -15,10 +19,11 @@ create table TRABAJADOR(
 	Rol varchar(20) not null,
 	Tipo_pago varchar(10) not null,
 	PRIMARY KEY(Cedula)
-
 )
 
+go
 
+if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'TRABAJADOR')
 create table SUCURSAL(
 
 	Nombre varchar(20) not null,

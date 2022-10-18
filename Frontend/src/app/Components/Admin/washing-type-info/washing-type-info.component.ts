@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
 
-import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries';
-import { WashingType } from 'src/app/Interfaces/WashingType';
+import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries'
+import { WashingType } from 'src/app/Interfaces/WashingType'
 
-import { MessageService } from 'src/app/Services/message.service';
-import { WashingTypeService } from 'src/app/Services/washing-type.service';
+import { MessageService } from 'src/app/Services/message.service'
+import { WashingTypeService } from 'src/app/Services/washing-type.service'
 
 @Component({
   selector: 'app-washing-type-info',
@@ -22,7 +22,6 @@ export class AdminWashingTypeInfoComponent implements OnInit {
     protected messageService: MessageService
   ) {
     this.washingTypeInfoTitles = [
-      {key: "id", replacement: "Id"},
       { key: "nombre", replacement: "Nombre" },
       { key: "cantidadEmpleados", replacement: "Cantidad de empleados" },
       { key: "comisionEmpleado", replacement: "Comisión de cada empleado" },

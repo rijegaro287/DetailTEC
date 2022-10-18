@@ -1,12 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core'
+import { FormControl, Validators } from '@angular/forms'
 
-import { Product } from 'src/app/Interfaces/Product';
-import { Supplier } from 'src/app/Interfaces/Supplier';
+import { Product } from 'src/app/Interfaces/Product'
+import { Supplier } from 'src/app/Interfaces/Supplier'
 
-import { FormsService } from 'src/app/Services/forms.service';
-import { SupplierService } from 'src/app/Services/supplier.service';
-import { MessageService } from 'src/app/Services/message.service';
+import { FormsService } from 'src/app/Services/forms.service'
+import { SupplierService } from 'src/app/Services/supplier.service'
+import { MessageService } from 'src/app/Services/message.service'
 
 @Component({
   selector: 'app-add-product-form',
@@ -46,9 +46,9 @@ export class AddProductFormComponent implements OnInit {
     if (this.productInfo) {
       const { ...productInfo } = this.productInfo as any
 
-      this.formsService.patchFormValue(productInfo);
+      this.formsService.patchFormValue(productInfo)
       this.formsService.form.controls['proveedor']
-        .setValue(this.productInfo.idProveedor);
+        .setValue(this.productInfo.idProveedor)
     }
   }
 

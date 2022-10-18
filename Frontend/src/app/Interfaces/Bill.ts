@@ -1,7 +1,14 @@
-export interface Bill {
-    id: number;
-    date: Date;
-    clientID: number;
-    branch: number;
-    total: number;
+interface Bill {
+    id: number
+    placaVehiculo: string
+    nombreSucursal: string
+    idCliente: number
+    nombreCliente: string
+    tipoLavado: string
+    fecha: string
+    hora: string
+    montoPagado: number
+    puntosUtilizados: number
 }
+
+export { Bill }
