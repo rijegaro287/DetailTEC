@@ -25,6 +25,7 @@ import { BillsComponent } from './Components/Client/bills/bills.component'
 import { BillInfoComponent } from './Components/Client/bill-info/bill-info.component'
 import { ClientAppointmentsComponent } from './Components/Client/appointments/appointments.component'
 import { ClientAppointmentInfoComponent } from './Components/Client/appointment-info/appointment-info.component'
+import { ClientInfoComponent } from './Components/Client/client-info/client-info.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -53,7 +54,7 @@ const routes: Routes = [
     component: ClientMainComponent,
     children: [
       { path: '', redirectTo: 'data', pathMatch: 'full' },
-      { path: 'data', component: AdminClientInfoComponent },
+      { path: 'data', component: ClientInfoComponent },
       { path: 'appointments', component: ClientAppointmentsComponent },
       { path: 'appointments/:id', component: ClientAppointmentInfoComponent },
       { path: 'bills', component: BillsComponent },

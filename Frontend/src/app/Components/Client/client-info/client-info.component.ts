@@ -1,23 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ClientService } from 'src/app/Services/client.service';
-import { MessageService } from 'src/app/Services/message.service';
-
-import { Client } from 'src/app/Interfaces/Client';
 import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries';
+import { Client } from 'src/app/Interfaces/Client';
+
+import { ClientService } from 'src/app/Services/client.service';
+import { LoginService } from 'src/app/Services/login.service';
+import { MessageService } from 'src/app/Services/message.service';
 
 @Component({
   selector: 'app-client-info',
   templateUrl: './client-info.component.html',
   styleUrls: ['./client-info.component.scss']
 })
-export class AdminClientInfoComponent implements OnInit {
+export class ClientInfoComponent implements OnInit {
   clientInfoTitles: KeyReplacement<Client>[]
   client: Client
 
   constructor(
-    private route: ActivatedRoute,
+    private loginService: LoginService,
     private clientService: ClientService,
     protected messageService: MessageService
   ) {
@@ -36,7 +37,7 @@ export class AdminClientInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'))
+    const id = this.loginService.getLoggedClientID()
     this.clientService.getClient(id)
       .subscribe(response => {
         if (response.status === 'error') {

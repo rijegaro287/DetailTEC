@@ -26,7 +26,6 @@ import { AdminProductInfoComponent } from './Components/Admin/product-info/produ
 
 /* Componentes de cliente */
 import { ClientMainComponent } from './Components/Client/main/main.component'
-import { MakeAppointmentComponent } from './Components/Client/make-appointment/make-appointment.component'
 import { BillsComponent } from './Components/Client/bills/bills.component'
 import { InfoCardComponent } from './Components/info-card/info-card.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
@@ -45,6 +44,7 @@ import { MultivaluedSelectComponent } from './Components/multivalued-select/mult
 import { ClientAddAppointmentFormComponent } from './Components/Client/add-appointment-form/add-appointment-form.component';
 import { ClientAppointmentsComponent } from './Components/Client/appointments/appointments.component';
 import { ClientAppointmentInfoComponent } from './Components/Client/appointment-info/appointment-info.component';
+import { ClientInfoComponent } from './Components/Client/client-info/client-info.component'
 
 @NgModule({
   declarations: [
@@ -64,7 +64,6 @@ import { ClientAppointmentInfoComponent } from './Components/Client/appointment-
     AdminProductsComponent,
     AdminProductInfoComponent,
     ClientMainComponent,
-    MakeAppointmentComponent,
     BillsComponent,
     GenericTableComponent,
     InfoCardComponent,
@@ -82,7 +81,8 @@ import { ClientAppointmentInfoComponent } from './Components/Client/appointment-
     MultivaluedSelectComponent,
     ClientAddAppointmentFormComponent,
     ClientAppointmentsComponent,
-    ClientAppointmentInfoComponent
+    ClientAppointmentInfoComponent,
+    ClientInfoComponent
   ],
   imports: [
     BrowserModule,
