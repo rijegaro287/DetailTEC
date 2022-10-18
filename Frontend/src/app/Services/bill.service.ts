@@ -32,6 +32,22 @@ export class BillService {
     return of(okResponse)
   }
 
+  getClientBills = (client_id: number): Observable<BillsResponse> => {
+    const bills: Bill[] = BILLS.filter(bill => bill.idCliente === client_id)!
+
+    const okResponse: BillsResponse = {
+      status: 'ok',
+      bills: bills
+    }
+
+    const errorResponse: ServerResponse = {
+      status: 'error',
+      message: 'No se pudieron obtener las facturas'
+    }
+
+    return of(okResponse)
+  }
+
   getBill = (id: number): Observable<BillResponse> => {
     const bill: Bill = BILLS.find(bill => bill.id === id)!
 

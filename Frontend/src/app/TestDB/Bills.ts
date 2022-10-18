@@ -1,41 +1,22 @@
 import { Bill } from "../Interfaces/Bill";
 
-const BILLS: Bill[] = [
-    {
-        "id": 1,
-        "date": new Date(),
-        "clientID": 305230771,
-        "branch": 1,
-        "total": 1000
-    },
-    {
-        "id": 2,
-        "date": new Date(),
-        "clientID": 305230772,
-        "branch": 1,
-        "total": 570
-    },
-    {
-        "id": 3,
-        "date": new Date(),
-        "clientID": 305230773,
-        "branch": 1,
-        "total": 20700
-    },
-    {
-        "id": 4,
-        "date": new Date(),
-        "clientID": 305230774,
-        "branch": 1,
-        "total": 65000
-    },
-    {
-        "id": 5,
-        "date": new Date(),
-        "clientID": 305230775,
-        "branch": 1,
-        "total": 100
-    }
-]
+const BILLS: Bill[] = []
+for (let index = 1; index < 10; index++) {
+    let ID = index;
+    if (index <= 3) { ID = 1 }
+
+    BILLS.push({
+        id: index,
+        placaVehiculo: "ABC123",
+        nombreSucursal: `Sucursal ${index}`,
+        idCliente: ID,
+        nombreCliente: `Cliente ${ID}`,
+        tipoLavado: `Lavado ${index}`,
+        fecha: "2021-10-10",
+        hora: "10:10",
+        montoPagado: index * 1000,
+        puntosUtilizados: index * 100
+    })
+}
 
 export { BILLS }

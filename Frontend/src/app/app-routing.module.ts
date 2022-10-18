@@ -15,17 +15,16 @@ import { AdminSuppliersComponent } from './Components/Admin/suppliers/suppliers.
 import { AdminSupplierInfoComponent } from './Components/Admin/supplier-info/supplier-info.component'
 import { AdminProductsComponent } from './Components/Admin/products/products.component'
 import { AdminProductInfoComponent } from './Components/Admin/product-info/product-info.component'
-
 import { AdminWashingTypesComponent } from './Components/Admin/washing-types/washing-types.component'
 import { AdminWashingTypeInfoComponent } from './Components/Admin/washing-type-info/washing-type-info.component'
 
 /* Client */
 import { ClientMainComponent } from './Components/Client/main/main.component'
+import { ClientInfoComponent } from './Components/Client/client-info/client-info.component'
 import { BillsComponent } from './Components/Client/bills/bills.component'
 import { BillInfoComponent } from './Components/Client/bill-info/bill-info.component'
 import { ClientAppointmentsComponent } from './Components/Client/appointments/appointments.component'
 import { ClientAppointmentInfoComponent } from './Components/Client/appointment-info/appointment-info.component'
-import { ClientInfoComponent } from './Components/Client/client-info/client-info.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -53,8 +52,8 @@ const routes: Routes = [
     path: 'client',
     component: ClientMainComponent,
     children: [
-      { path: '', redirectTo: 'data', pathMatch: 'full' },
-      { path: 'data', component: ClientInfoComponent },
+      { path: '', redirectTo: 'info', pathMatch: 'full' },
+      { path: 'info', component: ClientInfoComponent },
       { path: 'appointments', component: ClientAppointmentsComponent },
       { path: 'appointments/:id', component: ClientAppointmentInfoComponent },
       { path: 'bills', component: BillsComponent },
