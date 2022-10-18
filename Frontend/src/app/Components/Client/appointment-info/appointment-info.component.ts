@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
 
-import { Appointment } from 'src/app/Interfaces/Appointment';
-import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries';
+import { Appointment } from 'src/app/Interfaces/Appointment'
+import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries'
 
-import { AppointmentsService } from 'src/app/Services/appointments.service';
-import { MessageService } from 'src/app/Services/message.service';
+import { AppointmentsService } from 'src/app/Services/appointments.service'
+import { MessageService } from 'src/app/Services/message.service'
 
 @Component({
   selector: 'app-appointment-info',
@@ -13,8 +13,8 @@ import { MessageService } from 'src/app/Services/message.service';
   styleUrls: ['./appointment-info.component.scss']
 })
 export class ClientAppointmentInfoComponent implements OnInit {
-  appointmentInfoTitles: KeyReplacement<Appointment>[];
-  appointment: Appointment;
+  appointmentInfoTitles: KeyReplacement<Appointment>[]
+  appointment: Appointment
 
   constructor(
     private route: ActivatedRoute,
@@ -30,7 +30,7 @@ export class ClientAppointmentInfoComponent implements OnInit {
       { key: "hora", replacement: "Hora" }
     ]
 
-    this.appointment = {} as Appointment;
+    this.appointment = {} as Appointment
   }
 
   ngOnInit(): void {

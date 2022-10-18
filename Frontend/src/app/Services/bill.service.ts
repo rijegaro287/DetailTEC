@@ -1,15 +1,15 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Injectable } from '@angular/core'
+import { Observable, of } from 'rxjs'
 
 import {
   ServerResponse,
   BillsResponse,
   BillResponse
-} from '../Interfaces/ServerResponses';
+} from '../Interfaces/ServerResponses'
 
-import { Bill } from '../Interfaces/Bill';
+import { Bill } from '../Interfaces/Bill'
 
-import { BILLS } from '../TestDB/Bills';
+import { BILLS } from '../TestDB/Bills'
 
 @Injectable({
   providedIn: 'root'

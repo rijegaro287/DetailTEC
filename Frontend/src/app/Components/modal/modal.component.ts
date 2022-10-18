@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core'
-import { NgbModal, ModalDismissReasons, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap'
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap'
 
 @Component({
   selector: 'app-modal',

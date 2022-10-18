@@ -1,8 +1,14 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { SuppliersResponse, ServerResponse, SupplierResponse } from '../Interfaces/ServerResponses';
-import { Supplier } from '../Interfaces/Supplier';
-import { SUPPLIERS } from '../TestDB/Suppliers';
+import { Injectable } from '@angular/core'
+import { Observable, of } from 'rxjs'
+
+import {
+  ServerResponse,
+  SuppliersResponse,
+  SupplierResponse
+} from '../Interfaces/ServerResponses'
+import { Supplier } from '../Interfaces/Supplier'
+
+import { SUPPLIERS } from '../TestDB/Suppliers'
 
 @Injectable({
   providedIn: 'root'

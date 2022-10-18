@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core'
 
-import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries';
-import { Client } from 'src/app/Interfaces/Client';
+import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries'
+import { Client } from 'src/app/Interfaces/Client'
 
-import { ClientService } from 'src/app/Services/client.service';
-import { LoginService } from 'src/app/Services/login.service';
-import { MessageService } from 'src/app/Services/message.service';
+import { ClientService } from 'src/app/Services/client.service'
+import { LoginService } from 'src/app/Services/login.service'
+import { MessageService } from 'src/app/Services/message.service'
 
 @Component({
   selector: 'app-client-info',

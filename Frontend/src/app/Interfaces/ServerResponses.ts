@@ -1,11 +1,11 @@
-import { Employee } from './Employee';
-import { Client } from './Client';
-import { Branch } from './Branch';
-import { Bill } from './Bill';
-import { Supplier } from './Supplier';
-import { Product } from './Product';
-import { WashingType } from './WashingType';
-import { Appointment } from './Appointment';
+import { Employee } from './Employee'
+import { Client } from './Client'
+import { Branch } from './Branch'
+import { Bill } from './Bill'
+import { Supplier } from './Supplier'
+import { Product } from './Product'
+import { WashingType } from './WashingType'
+import { Appointment } from './Appointment'
 
 interface ServerResponse {
     status?: 'ok' | 'error'

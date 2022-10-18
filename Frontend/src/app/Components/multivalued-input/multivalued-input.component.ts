@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core'
+import { FormArray, FormControl, Validators } from '@angular/forms'
 
-import { FormsService } from 'src/app/Services/forms.service';
+import { FormsService } from 'src/app/Services/forms.service'
 
 @Component({
   selector: 'app-multivalued-input',

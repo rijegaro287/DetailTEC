@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
-import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries';
-import { Branch } from 'src/app/Interfaces/Branch';
+import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries'
+import { Branch } from 'src/app/Interfaces/Branch'
 
-import { MessageService } from 'src/app/Services/message.service';
-import { BranchService } from 'src/app/Services/branch.service';
+import { MessageService } from 'src/app/Services/message.service'
+import { BranchService } from 'src/app/Services/branch.service'
 
 @Component({
   selector: 'app-admin-branches',

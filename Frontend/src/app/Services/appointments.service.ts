@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core'
 import { Observable, of } from 'rxjs'
 
 import { Appointment } from '../Interfaces/Appointment'
-import { AppointmentsResponse, ServerResponse, AppointmentResponse } from '../Interfaces/ServerResponses'
+import {
+  ServerResponse,
+  AppointmentsResponse,
+  AppointmentResponse
+} from '../Interfaces/ServerResponses'
 
 import { APPOINTMENTS } from '../TestDB/Appointments'
 

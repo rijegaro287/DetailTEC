@@ -1,12 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 
-import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries';
-import { Branch } from 'src/app/Interfaces/Branch';
+import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries'
+import { Branch } from 'src/app/Interfaces/Branch'
 
-import { BranchService } from 'src/app/Services/branch.service';
-import { EmployeeService } from 'src/app/Services/employee.service';
-import { MessageService } from 'src/app/Services/message.service';
+import { BranchService } from 'src/app/Services/branch.service'
+import { MessageService } from 'src/app/Services/message.service'
 
 @Component({
   selector: 'app-branch-info',

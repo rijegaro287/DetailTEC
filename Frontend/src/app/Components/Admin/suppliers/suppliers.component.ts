@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
-import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries';
-import { Supplier } from 'src/app/Interfaces/Supplier';
+import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries'
+import { Supplier } from 'src/app/Interfaces/Supplier'
 
-import { MessageService } from 'src/app/Services/message.service';
-import { SupplierService } from 'src/app/Services/supplier.service';
+import { MessageService } from 'src/app/Services/message.service'
+import { SupplierService } from 'src/app/Services/supplier.service'
 
 @Component({
   selector: 'app-suppliers',

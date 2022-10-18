@@ -1,13 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormControl, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core'
+import { FormArray, FormControl, Validators } from '@angular/forms'
 
-import { WashingType } from 'src/app/Interfaces/WashingType';
-import { Product } from 'src/app/Interfaces/Product';
-import { SelectOption } from 'src/app/Interfaces/Auxiliaries';
+import { WashingType } from 'src/app/Interfaces/WashingType'
+import { Product } from 'src/app/Interfaces/Product'
+import { SelectOption } from 'src/app/Interfaces/Auxiliaries'
 
-import { FormsService } from 'src/app/Services/forms.service';
-import { ProductService } from 'src/app/Services/product.service';
-import { MessageService } from 'src/app/Services/message.service';
+import { FormsService } from 'src/app/Services/forms.service'
+import { ProductService } from 'src/app/Services/product.service'
+import { MessageService } from 'src/app/Services/message.service'
 
 @Component({
   selector: 'app-add-washing-type-form',
@@ -64,7 +64,7 @@ export class AddWashingTypeFormComponent implements OnInit {
     this.formsService.form.addControl('puntuacion', this.puntuacion)
 
     if (this.washingTypeInfo) {
-      this.formsService.patchFormValue(this.washingTypeInfo);
+      this.formsService.patchFormValue(this.washingTypeInfo)
 
       const productsFormArray: FormArray = this.formsService
         .form.controls['productos'] as any
