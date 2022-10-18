@@ -1,6 +1,6 @@
-create database DetailTEC
 
 use DetailTEC
+GO
 
 create table TRABAJADOR(
 	
