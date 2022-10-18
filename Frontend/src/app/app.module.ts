@@ -25,8 +25,7 @@ import { AdminProductsComponent } from './Components/Admin/products/products.com
 import { AdminProductInfoComponent } from './Components/Admin/product-info/product-info.component'
 
 /* Componentes de cliente */
-import { HomeComponent } from './Components/Client/home/home.component'
-import { MakeAppointmentComponent } from './Components/Client/make-appointment/make-appointment.component'
+import { ClientMainComponent } from './Components/Client/main/main.component'
 import { BillsComponent } from './Components/Client/bills/bills.component'
 import { InfoCardComponent } from './Components/info-card/info-card.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap'
@@ -42,6 +41,10 @@ import { AdminWashingTypesComponent } from './Components/Admin/washing-types/was
 import { AdminWashingTypeInfoComponent } from './Components/Admin/washing-type-info/washing-type-info.component';
 import { AddWashingTypeFormComponent } from './Components/Admin/add-washing-type-form/add-washing-type-form.component';
 import { MultivaluedSelectComponent } from './Components/multivalued-select/multivalued-select.component';
+import { ClientAddAppointmentFormComponent } from './Components/Client/add-appointment-form/add-appointment-form.component';
+import { ClientAppointmentsComponent } from './Components/Client/appointments/appointments.component';
+import { ClientAppointmentInfoComponent } from './Components/Client/appointment-info/appointment-info.component';
+import { ClientInfoComponent } from './Components/Client/client-info/client-info.component'
 
 @NgModule({
   declarations: [
@@ -60,8 +63,7 @@ import { MultivaluedSelectComponent } from './Components/multivalued-select/mult
     AdminSupplierInfoComponent,
     AdminProductsComponent,
     AdminProductInfoComponent,
-    HomeComponent,
-    MakeAppointmentComponent,
+    ClientMainComponent,
     BillsComponent,
     GenericTableComponent,
     InfoCardComponent,
@@ -76,7 +78,11 @@ import { MultivaluedSelectComponent } from './Components/multivalued-select/mult
     AdminWashingTypesComponent,
     AdminWashingTypeInfoComponent,
     AddWashingTypeFormComponent,
-    MultivaluedSelectComponent
+    MultivaluedSelectComponent,
+    ClientAddAppointmentFormComponent,
+    ClientAppointmentsComponent,
+    ClientAppointmentInfoComponent,
+    ClientInfoComponent
   ],
   imports: [
     BrowserModule,

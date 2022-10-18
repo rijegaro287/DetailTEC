@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs'
 
 import {
   ServerResponse,
-  AllEmployeesResponse,
+  EmployeesResponse,
   EmployeeResponse,
 } from '../Interfaces/ServerResponses'
 import { Employee } from '../Interfaces/Employee'
@@ -16,8 +16,8 @@ import { EMPLOYEES } from '../TestDB/Employees'
 export class EmployeeService {
   constructor() { }
 
-  getAllEmployees = (): Observable<AllEmployeesResponse> => {
-    const okResponse: AllEmployeesResponse = {
+  getAllEmployees = (): Observable<EmployeesResponse> => {
+    const okResponse: EmployeesResponse = {
       status: 'ok',
       employees: EMPLOYEES
     }

@@ -23,16 +23,16 @@ export class BillInfoComponent implements OnInit {
     private formsService: FormsService,
     protected messageService: MessageService) {
     this.billInfoTitles = [
-      { key: "id", replacement: "Número de factura" },
-      { key: "date", replacement: "Fecha" },
-      { key: "clientID", replacement: "Cédula del cliente" },
-      { key: "branch", replacement: "Número de sucursal" },
-      { key: "total", replacement: "Total" }
+      { key: "placaVehiculo", replacement: "Placa del vehículo" },
+      { key: "nombreSucursal", replacement: "Sucursal" },
+      { key: "tipoLavado", replacement: "Servicio brindado" },
+      { key: "fecha", replacement: "Fecha" },
+      { key: "hora", replacement: "Hora" },
+      { key: "montoPagado", replacement: "Monto pagado" },
+      { key: "puntosUtilizados", replacement: "Puntos utilizados" }
     ]
     this.bill = {} as Bill;
   }
-
-
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'))
@@ -51,5 +51,4 @@ export class BillInfoComponent implements OnInit {
         }
       })
   }
-
 }

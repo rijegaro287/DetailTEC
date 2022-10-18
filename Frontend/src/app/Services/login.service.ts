@@ -8,7 +8,13 @@ import { ServerResponse } from '../Interfaces/ServerResponses'
   providedIn: 'root'
 })
 export class LoginService {
-  constructor() { }
+  private loggedClientID: number
+
+  constructor() {
+    this.loggedClientID = 1
+  }
+
+  getLoggedClientID = () => this.loggedClientID
 
   postLogin = (loginInfo: LoginForm): Observable<ServerResponse> => {
     console.log(loginInfo)

@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { Client } from '../Interfaces/Client';
 import {
   ServerResponse,
-  AllClientsResponse,
+  ClientsResponse,
   ClientResponse
 } from '../Interfaces/ServerResponses';
 
@@ -16,8 +16,8 @@ import { CLIENTS } from '../TestDB/Clients';
 export class ClientService {
   constructor() { }
 
-  getAllClients = (): Observable<AllClientsResponse> => {
-    const okResponse: AllClientsResponse = {
+  getAllClients = (): Observable<ClientsResponse> => {
+    const okResponse: ClientsResponse = {
       status: 'ok',
       clients: CLIENTS
     }
