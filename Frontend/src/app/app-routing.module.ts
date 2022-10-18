@@ -18,7 +18,6 @@ import { AdminProductInfoComponent } from './Components/Admin/product-info/produ
 
 /* Client */
 import { HomeComponent } from './Components/Client/home/home.component'
-import { MakeAppointmentComponent } from './Components/Client/make-appointment/make-appointment.component'
 import { BillsComponent } from './Components/Client/bills/bills.component'
 import { BillInfoComponent } from './Components/Client/bill-info/bill-info.component'
 import { AdminWashingTypesComponent } from './Components/Admin/washing-types/washing-types.component'
@@ -50,8 +49,8 @@ const routes: Routes = [
     path: "client",
     component: HomeComponent,
     children: [
-      { path: 'home', component: HomeComponent },
-      { path: 'make_appointment', component: MakeAppointmentComponent },
+      {path: "", redirectTo: "bills", pathMatch: "full"},
+      {path: "data/:id", component: AdminClientInfoComponent},
       { path: 'bills', component: BillsComponent },
       { path: "bills/:id", component: BillInfoComponent }
     ]
