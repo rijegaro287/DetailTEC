@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Injectable } from '@angular/core'
+import { Observable, of } from 'rxjs'
 
 import {
   ServerResponse,
   BranchResponse,
-  AllBranchesResponse
-} from '../Interfaces/ServerResponses';
-import { Branch } from '../Interfaces/Branch';
+  BranchesResponse
+} from '../Interfaces/ServerResponses'
+import { Branch } from '../Interfaces/Branch'
 
-import { BRANCHES } from '../TestDB/Branches';
+import { BRANCHES } from '../TestDB/Branches'
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +16,8 @@ import { BRANCHES } from '../TestDB/Branches';
 export class BranchService {
   constructor() { }
 
-  getAllBranches = (): Observable<AllBranchesResponse> => {
-    const okResponse: AllBranchesResponse = {
+  getAllBranches = (): Observable<BranchesResponse> => {
+    const okResponse: BranchesResponse = {
       status: 'ok',
       branches: BRANCHES
     }

@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries';
+import { Component, Input, OnInit } from '@angular/core'
+import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries'
 
 @Component({
   selector: 'app-generic-table',
@@ -23,6 +23,6 @@ export class GenericTableComponent<Type> implements OnInit {
   onRowClicked = (row: Type) => {
     const location = window.location
     const rowID = row[this.rowIDKey]
-    location.href = `${location.pathname}/${rowID}`;
+    location.href = `${location.pathname}/${rowID}`
   }
 }

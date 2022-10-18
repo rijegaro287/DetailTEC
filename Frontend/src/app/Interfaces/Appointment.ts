@@ -1,10 +1,12 @@
-export interface Appointment {
-    id: number;
-    licensePlate: string;
-    branchId: number;
-    clientId: number;
-    typeOfWash: number;
-    date: string;
-    // time: 
-
+interface Appointment {
+    id: number
+    placaVehiculo: string
+    nombreSucursal: string
+    idCliente: number
+    nombreCliente: string
+    tipoLavado: string
+    fecha: string
+    hora: string
 }
+
+export { Appointment }

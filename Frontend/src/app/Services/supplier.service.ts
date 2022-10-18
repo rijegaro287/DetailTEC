@@ -1,8 +1,14 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { AllSuppliersResponse, ServerResponse, SupplierResponse } from '../Interfaces/ServerResponses';
-import { Supplier } from '../Interfaces/Supplier';
-import { SUPPLIERS } from '../TestDB/Suppliers';
+import { Injectable } from '@angular/core'
+import { Observable, of } from 'rxjs'
+
+import {
+  ServerResponse,
+  SuppliersResponse,
+  SupplierResponse
+} from '../Interfaces/ServerResponses'
+import { Supplier } from '../Interfaces/Supplier'
+
+import { SUPPLIERS } from '../TestDB/Suppliers'
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +16,8 @@ import { SUPPLIERS } from '../TestDB/Suppliers';
 export class SupplierService {
   constructor() { }
 
-  getAllSuppliers = (): Observable<AllSuppliersResponse> => {
-    const okResponse: AllSuppliersResponse = {
+  getAllSuppliers = (): Observable<SuppliersResponse> => {
+    const okResponse: SuppliersResponse = {
       status: 'ok',
       suppliers: SUPPLIERS
     }

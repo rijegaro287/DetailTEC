@@ -19,6 +19,11 @@ interface DateInput {
     day: number
 }
 
+interface TimeInput {
+    hour: number
+    minute: number
+}
+
 interface SelectOption {
     value: string
     text: string
@@ -30,5 +35,6 @@ export {
     KeyReplacement,
     MessageInfo,
     DateInput,
+    TimeInput,
     SelectOption
 }

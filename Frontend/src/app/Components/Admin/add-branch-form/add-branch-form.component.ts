@@ -1,13 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core'
+import { FormControl, Validators } from '@angular/forms'
 
-import { AuxFunctionsService } from 'src/app/Services/aux-functions.service';
-import { EmployeeService } from 'src/app/Services/employee.service';
-import { FormsService } from 'src/app/Services/forms.service';
+import { AuxFunctionsService } from 'src/app/Services/aux-functions.service'
+import { EmployeeService } from 'src/app/Services/employee.service'
+import { FormsService } from 'src/app/Services/forms.service'
 
-import { Branch } from 'src/app/Interfaces/Branch';
-import { Employee } from 'src/app/Interfaces/Employee';
-import { MessageService } from 'src/app/Services/message.service';
+import { Branch } from 'src/app/Interfaces/Branch'
+import { Employee } from 'src/app/Interfaces/Employee'
+import { MessageService } from 'src/app/Services/message.service'
 
 @Component({
   selector: 'app-add-branch-form',
@@ -20,7 +20,7 @@ export class AddBranchFormComponent implements OnInit {
   canton: FormControl
   distrito: FormControl
   telefono: FormControl
-  nombreGerente: FormControl
+  idGerente: FormControl
   fechaApertura: FormControl
   employees: Employee[]
 
@@ -37,7 +37,7 @@ export class AddBranchFormComponent implements OnInit {
     this.canton = new FormControl('', [Validators.required])
     this.distrito = new FormControl('', [Validators.required])
     this.telefono = new FormControl('', [Validators.required])
-    this.nombreGerente = new FormControl('', [Validators.required])
+    this.idGerente = new FormControl('', [Validators.required])
     this.fechaApertura = new FormControl('', [Validators.required])
 
     this.employees = this.getEmployees()
@@ -51,7 +51,7 @@ export class AddBranchFormComponent implements OnInit {
     this.formsService.form.addControl('canton', this.canton)
     this.formsService.form.addControl('distrito', this.distrito)
     this.formsService.form.addControl('telefono', this.telefono)
-    this.formsService.form.addControl('nombreGerente', this.nombreGerente)
+    this.formsService.form.addControl('idGerente', this.idGerente)
     this.formsService.form.addControl('fechaApertura', this.fechaApertura)
 
     if (this.branchInfo) {
@@ -60,9 +60,9 @@ export class AddBranchFormComponent implements OnInit {
       branchInfo.fechaApertura = this.auxFunctionsService
         .stringToDate(this.branchInfo.fechaApertura)
 
-      this.formsService.patchFormValue(branchInfo);
-      this.formsService.form.controls['nombreGerente']
-        .setValue(this.branchInfo.idGerente);
+      this.formsService.patchFormValue(branchInfo)
+      this.formsService.form.controls['idGerente']
+        .setValue(this.branchInfo.idGerente)
     }
   }
 
