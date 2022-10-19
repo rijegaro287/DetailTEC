@@ -10,7 +10,7 @@ namespace DetailTEC.Data
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("trabajadorRegistrar", oConexion);
+                SqlCommand cmd = new SqlCommand("trabajador_registrar", oConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Cedula", trabajador.cedula);
                 cmd.Parameters.AddWithValue("@Nombre", trabajador.nombre);
@@ -40,7 +40,7 @@ namespace DetailTEC.Data
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("trabajadorModificar", oConexion);
+                SqlCommand cmd = new SqlCommand("trabajador_modificar", oConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Cedula", trabajador.cedula);
                 cmd.Parameters.AddWithValue("@Nombre", trabajador.nombre);
@@ -71,7 +71,7 @@ namespace DetailTEC.Data
             List<Trabajador> oListaUsuario = new List<Trabajador>();
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("trabajadorListar", oConexion);
+                SqlCommand cmd = new SqlCommand("trabajador_listar", oConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 try
@@ -90,12 +90,14 @@ namespace DetailTEC.Data
                                 nombre = dr["Nombre"].ToString(),
                                 apellido1 = dr["Apellido1"].ToString(),
                                 apellido2 = dr["Apellido2"].ToString(),
-                                fechaIngreso = Convert.ToDateTime(dr["FechaRegistro"].ToString()),
-                                fechaNacimiento = Convert.ToDateTime(dr["FechaRegistro"].ToString()),
+                                fechaIngreso = Convert.ToDateTime(dr["Fecha_nacimiento"].ToString()),
+                                fechaNacimiento = Convert.ToDateTime(dr["Fecha_ingreso"].ToString()),
                                 edad = Convert.ToInt32(dr["Edad"]),
+                                password = dr["PasswordT"].ToString(),
                                 rol = dr["Rol"].ToString(),
                                 tipoPago = dr["Tipo_pago"].ToString()
                             });
+                            
                         }
 
                     }
@@ -116,7 +118,7 @@ namespace DetailTEC.Data
             Trabajador trabajador = new Trabajador();
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("trabajadorObtener", oConexion);
+                SqlCommand cmd = new SqlCommand("trabajador_obtener", oConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@cedula", cedula);
 
@@ -136,9 +138,10 @@ namespace DetailTEC.Data
                                 nombre = dr["Nombre"].ToString(),
                                 apellido1 = dr["Apellido1"].ToString(),
                                 apellido2 = dr["Apellido2"].ToString(),
-                                fechaIngreso = Convert.ToDateTime(dr["FechaRegistro"].ToString()),
-                                fechaNacimiento = Convert.ToDateTime(dr["FechaRegistro"].ToString()),
+                                fechaIngreso = Convert.ToDateTime(dr["Fecha_nacimiento"].ToString()),
+                                fechaNacimiento = Convert.ToDateTime(dr["Fecha_ingreso"].ToString()),
                                 edad = Convert.ToInt32(dr["Edad"]),
+                                password = dr["PasswordT"].ToString(),
                                 rol = dr["Rol"].ToString(),
                                 tipoPago = dr["Tipo_pago"].ToString()
                             };
@@ -161,7 +164,7 @@ namespace DetailTEC.Data
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("trabajadorEliminar", oConexion);
+                SqlCommand cmd = new SqlCommand("trabajador_eliminar", oConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Cedula", cedula);
 
