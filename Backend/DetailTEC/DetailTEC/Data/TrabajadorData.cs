@@ -161,7 +161,7 @@ namespace DetailTEC.Data
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("trabajadorEliminar", oConexion);
+                SqlCommand cmd = new SqlCommand("trabajador_eliminar", oConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Cedula", cedula);
 
