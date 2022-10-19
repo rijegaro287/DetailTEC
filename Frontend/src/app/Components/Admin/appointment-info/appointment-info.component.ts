@@ -29,7 +29,8 @@ export class AdminAppointmentInfoComponent implements OnInit {
       { key: "nombreSucursal", replacement: "Sucursal" },
       { key: "tipoLavado", replacement: "Servicio solicitado" },
       { key: "fecha", replacement: "Fecha" },
-      { key: "hora", replacement: "Hora" }
+      { key: "hora", replacement: "Hora" },
+      { key: "idEmpleados", replacement: "Empleados asignados" }
     ]
 
     this.appointment = {} as Appointment

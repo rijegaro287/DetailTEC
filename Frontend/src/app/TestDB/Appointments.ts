@@ -13,7 +13,8 @@ for (let index = 1; index < 10; index++) {
         nombreCliente: `Cliente ${ID}`,
         tipoLavado: `Lavado y aspirado`,
         fecha: "2021-01-01",
-        hora: "8:00"
+        hora: "8:00",
+        idEmpleados: [1]
     })
 }
 

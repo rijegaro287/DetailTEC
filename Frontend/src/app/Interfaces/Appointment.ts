@@ -7,6 +7,7 @@ interface Appointment {
     tipoLavado: string
     fecha: string
     hora: string
+    idEmpleados: number[]
 }
 
 export { Appointment }
