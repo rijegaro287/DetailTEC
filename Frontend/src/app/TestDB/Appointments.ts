@@ -14,7 +14,7 @@ for (let index = 1; index < 10; index++) {
         tipoLavado: `Lavado y aspirado`,
         fecha: "2021-01-01",
         hora: "8:00",
-        idEmpleados: [1, 2]
+        idEmpleados: [1]
     })
 }
 
