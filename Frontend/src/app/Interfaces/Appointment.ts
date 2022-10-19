@@ -1,9 +1,9 @@
 interface Appointment {
     id: number
-    placaVehiculo: string
-    nombreSucursal: string
     idCliente: number
+    placaVehiculo: string
     nombreCliente: string
+    nombreSucursal: string
     tipoLavado: string
     fecha: string
     hora: string

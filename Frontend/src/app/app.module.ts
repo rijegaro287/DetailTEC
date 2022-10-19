@@ -45,8 +45,11 @@ import { AddClientFormComponent } from './Components/Forms/add-client-form/add-c
 import { AddBranchFormComponent } from './Components/Forms/add-branch-form/add-branch-form.component';
 import { AddSupplierFormComponent } from './Components/Forms/add-supplier-form/add-supplier-form.component';
 import { AddProductFormComponent } from './Components/Forms/add-product-form/add-product-form.component';
-import { ClientAddAppointmentFormComponent } from './Components/Forms/add-appointment-form/add-appointment-form.component';
+import { ClientAddAppointmentFormComponent } from './Components/Forms/client-add-appointment-form/client-add-appointment-form.component';
 import { AddWashingTypeFormComponent } from './Components/Forms/add-washing-type-form/add-washing-type-form.component';
+import { AdminAppointmentsComponent } from './Components/Admin/appointments/appointments.component';
+import { AdminAddAppointmentFormComponent } from './Components/Forms/admin-add-appointment-form/admin-add-appointment-form.component';
+import { AdminAppointmentInfoComponent } from './Components/Admin/appointment-info/appointment-info.component';
 
 
 @NgModule({
@@ -85,7 +88,10 @@ import { AddWashingTypeFormComponent } from './Components/Forms/add-washing-type
     ClientAddAppointmentFormComponent,
     ClientAppointmentsComponent,
     ClientAppointmentInfoComponent,
-    ClientInfoComponent
+    ClientInfoComponent,
+    AdminAppointmentsComponent,
+    AdminAddAppointmentFormComponent,
+    AdminAppointmentInfoComponent
   ],
   imports: [
     BrowserModule,

@@ -7,7 +7,7 @@ for (let index = 1; index < 8; index++) {
         marca: `Marca ${index}`,
         precio: index * 1275,
         idProveedor: index,
-        nombreProveedor: `Proveedor ${index}`
+        nombreProveedor: `Supplier ${index}`
     })
 }
 export { PRODUCTS }
