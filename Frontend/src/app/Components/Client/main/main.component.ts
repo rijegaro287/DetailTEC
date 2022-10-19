@@ -12,7 +12,7 @@ export class ClientMainComponent implements OnInit {
 
   constructor() {
     this.navbarLinks = [
-      { href: 'data', name: 'Mis datos' },
+      { href: 'info', name: 'Mis datos' },
       { href: 'appointments', name: 'Citas' },
       { href: 'bills', name: 'Facturas' }
     ]

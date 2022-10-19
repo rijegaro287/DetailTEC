@@ -1,12 +1,12 @@
 <div class="container-md">
-    <h1 class="text-center mb-3">Citas pendientes</h1>
+    <h1 class="text-center mb-3">Lista de citas</h1>
 
     <app-message [messageInfo]="messageService.messageInfo"></app-message>
 
     <div class="d-flex justify-content-end mb-3">
-        <app-modal [options]="{size:'md', scrollable:true}" [showModalButtonText]="'Solicitar una cita'"
-            [modalHeader]="'Solicitud de cita'">
-            <app-client-add-appointment-form></app-client-add-appointment-form>
+        <app-modal [options]="{size:'md', scrollable:true}" [showModalButtonText]="'Agendar una cita'"
+            [modalHeader]="'Reservación de cita'">
+            <app-admin-add-appointment-form></app-admin-add-appointment-form>
         </app-modal>
     </div>
 
