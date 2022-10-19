@@ -63,7 +63,7 @@ create table CLIENTE(
 	Usuario varchar(20) not null,
 	Correo varchar(50) not null,
 	PasswordC varchar(20) not null,
-	Puntos int not null,
+	Puntos int not null, --Al crear el usuario se le asignan 0 puntos
 	PRIMARY KEY(Cedula)
 
 )
@@ -90,15 +90,18 @@ create table DIRECCIONES_CLIENTE(
 -- if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'CITA')
 create table CITA(
 
-	ID int not null,
+	ID int not null, -- el id se debería de generar automáticamente, no tener que ingresarlo
 	Placa char(6) not null,
 	Nombre_sucursal varchar(40) not null,
 	Nombre_lavado varchar(40) not null,
 	Cedula_cliente char(9) not null,
+	--Falta fecha
+	Atendido_por char(9) not null, --Esto lo agregué de forma temporal, para probar el report
 	PRIMARY KEY(ID),
 	FOREIGN KEY(Nombre_sucursal) REFERENCES SUCURSAL(Nombre),
 	FOREIGN KEY(Nombre_lavado) REFERENCES LAVADO(Nombre),
 	FOREIGN KEY(Cedula_cliente) REFERENCES CLIENTE(Cedula),
+	Foreign Key(Atendido_por) REFERENCES TRABAJADOR(Cedula)
 
 )
 
@@ -160,6 +163,25 @@ CREATE TABLE PRODUCTOS_POR_SUCURSAL
 	FOREIGN KEY (Nombre_sucursal) REFERENCES SUCURSAL(Nombre)
 ); 
 
+CREATE TABLE FACTURA( --Hice esta tabla solo para poder desplegar el reporte de facturas, le faltan muchas cosas
+	ID int not null,
+	medio_pago int not NULL,
+	total int not null,
+	PRIMARY KEY(ID)
+);
 
+CREATE TABLE TIPO_DE_PAGO( -- esta si está bien hecha juas juas juas
+	ID int not null,
+	Nombre varchar(20) not null,
+	PRIMARY KEY (ID)
+);
+
+-- LLaves foráneas 
+
+
+ALTER TABLE FACTURA 
+ADD CONSTRAINT FK_FACTURA_TIPO_DE_PAGO FOREIGN KEY (medio_pago) REFERENCES TIPO_DE_PAGO(ID);
+ALTER TABLE FACTURA
+ADD CONSTRAINT FK_FACTURA_CITA FOREIGN KEY (ID) REFERENCES CITA(ID);
 
 
