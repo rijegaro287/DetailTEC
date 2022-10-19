@@ -25,6 +25,8 @@ import { BillsComponent } from './Components/Client/bills/bills.component'
 import { BillInfoComponent } from './Components/Client/bill-info/bill-info.component'
 import { ClientAppointmentsComponent } from './Components/Client/appointments/appointments.component'
 import { ClientAppointmentInfoComponent } from './Components/Client/appointment-info/appointment-info.component'
+import { AdminAppointmentsComponent } from './Components/Admin/appointments/appointments.component'
+import { AdminAppointmentInfoComponent } from './Components/Admin/appointment-info/appointment-info.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -38,6 +40,8 @@ const routes: Routes = [
       { path: 'employees/:id', component: AdminEmployeeInfoComponent },
       { path: 'clients', component: AdminClientsComponent },
       { path: 'clients/:id', component: AdminClientInfoComponent },
+      { path: 'appointments', component: AdminAppointmentsComponent },
+      { path: 'appointments/:id', component: AdminAppointmentInfoComponent },
       { path: 'branches', component: AdminBranchesComponent },
       { path: 'branches/:name', component: AdminBranchInfoComponent },
       { path: 'washing_types', component: AdminWashingTypesComponent },

@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core'
 import { FormControl, Validators } from '@angular/forms'
 
-import { Appointment } from 'src/app/Interfaces/Appointment'
 import { Branch } from 'src/app/Interfaces/Branch'
 import { WashingType } from 'src/app/Interfaces/WashingType'
 
@@ -12,13 +11,11 @@ import { FormsService } from 'src/app/Services/forms.service'
 import { MessageService } from 'src/app/Services/message.service'
 
 @Component({
-  selector: 'app-add-appointment-form',
-  templateUrl: './add-appointment-form.component.html',
-  styleUrls: ['./add-appointment-form.component.scss']
+  selector: 'app-client-add-appointment-form',
+  templateUrl: './client-add-appointment-form.component.html',
+  styleUrls: ['./client-add-appointment-form.component.scss']
 })
 export class ClientAddAppointmentFormComponent implements OnInit {
-  @Input() appointmentInfo: Appointment
-
   licensePlate: FormControl
   washingType: FormControl
   branch: FormControl
@@ -29,14 +26,11 @@ export class ClientAddAppointmentFormComponent implements OnInit {
   washingTypes: WashingType[]
 
   constructor(
-    private auxFunctionsService: AuxFunctionsService,
     private branchService: BranchService,
     private washingTypeService: WashingTypeService,
     private messageService: MessageService,
     protected formsService: FormsService
   ) {
-    this.appointmentInfo = {} as Appointment
-
     this.licensePlate = new FormControl('', [Validators.required])
     this.washingType = new FormControl('', [Validators.required])
     this.branch = new FormControl('', [Validators.required])
