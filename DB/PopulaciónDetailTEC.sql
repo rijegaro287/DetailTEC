@@ -62,7 +62,7 @@ values
     ('2', 'Tarjeta'),
     ('3', 'Puntos')
 
-insert into Factura(id, medio_pago, total)
+insert into FACTURA(id, medio_pago, total)
 VALUES
     ('1', '1', '3000'),
     ('2', '2', '4000'),
