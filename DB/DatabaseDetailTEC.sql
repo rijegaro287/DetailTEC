@@ -1,4 +1,4 @@
-create database DetailTEC
+-- create database DetailTEC
 
 go 
 
@@ -6,7 +6,7 @@ use DetailTEC
 
 go
 
-if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'TRABAJADOR')
+-- if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'TRABAJADOR')
 create table TRABAJADOR(
 	Cedula char(9) not null,
 	Nombre varchar(20) not null,
@@ -14,43 +14,46 @@ create table TRABAJADOR(
 	Apellido2 varchar(20),
 	Fecha_nacimiento date,
 	Fecha_ingreso date,
-	Edad tinyint,
+	Edad tinyint, --La edad se calcula en la base de datos, no se ingresa
 	PasswordT varchar(20) not null,
 	Rol varchar(20) not null,
-	Tipo_pago varchar(10) not null,
+	Tipo_pago varchar(10) not null, -- El tipo de pago debería ser otra tabla
+	-- El trabajador debería de tener una sucursal asignada
 	PRIMARY KEY(Cedula)
 )
 
-go
 
-if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'TRABAJADOR')
+-- if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'SUCURSAL')
 create table SUCURSAL(
 
-	Nombre varchar(20) not null,
+	Nombre varchar(40) not null,
 	Provincia varchar(20),
 	Canton varchar(20),
 	Distrito varchar(20),
 	Telefono char(8) not null,
 	Fecha_apertura date,
-	Fecha_gerente date,
-	Cedula_gerente char(9) not null,
+	Fecha_gerente date, --Debería ser otra tabla
+	Cedula_gerente char(9) not null, -- Va con la tabla de arriba
 	PRIMARY KEY(Nombre),
 	FOREIGN KEY(Cedula_gerente) REFERENCES TRABAJADOR(Cedula)
 
 )
 
-
+-- if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'LAVADO')
 CREATE TABLE LAVADO
 (
-	Nombre varchar(20) not null,
+	Nombre varchar(40) not null,
 	Costo int not null,
 	Precio int not null,
 	Duracion int
+	-- FALTAN LOS PRODUCTOS UTILIZADOS
+	-- FALTA EL PERSONAL REQUERIDO
+	-- FALTAN LOS PUNTOS QUE SE OBTIENEN
 	PRIMARY KEY (Nombre) 
 )
 
 
-
+-- if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'CLIENTE')
 create table CLIENTE(
 
 	Cedula char(9) not null,
@@ -66,7 +69,7 @@ create table CLIENTE(
 )
 
 
-
+-- if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'TELEFONOS_CLIENTE')
 create table TELEFONOS_CLIENTE(
 	
 	Cedula_Cli char(9) not null,
@@ -75,6 +78,7 @@ create table TELEFONOS_CLIENTE(
 	
 )
 
+-- if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'DIRECCIONES_CLIENTE')
 create table DIRECCIONES_CLIENTE(
 	
 	Cedula_Cli char(9) not null,
@@ -83,13 +87,13 @@ create table DIRECCIONES_CLIENTE(
 	
 )
 
-
+-- if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'CITA')
 create table CITA(
 
 	ID int not null,
 	Placa char(6) not null,
-	Nombre_sucursal varchar(20) not null,
-	Nombre_lavado varchar(20) not null,
+	Nombre_sucursal varchar(40) not null,
+	Nombre_lavado varchar(40) not null,
 	Cedula_cliente char(9) not null,
 	PRIMARY KEY(ID),
 	FOREIGN KEY(Nombre_sucursal) REFERENCES SUCURSAL(Nombre),
@@ -99,7 +103,7 @@ create table CITA(
 )
 
 
-
+-- if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'TRABAJADORES_POR_CITA')
 create table TRABAJADORES_POR_CITA(
 	
 	Cedula_trabajador char(9) not null,
@@ -109,7 +113,7 @@ create table TRABAJADORES_POR_CITA(
 )
 
 
-
+-- if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'PROVEEDOR')
 CREATE TABLE PROVEEDOR 
 (
 	Cedula_juridica char(9) not null,
@@ -119,6 +123,7 @@ CREATE TABLE PROVEEDOR
 	PRIMARY KEY (Cedula_juridica)
 );
 
+-- if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'CONTACTO_PROVEEDOR')
 CREATE TABLE CONTACTO_PROVEEDOR
 (
 	Ced_prov char(9) not null,
@@ -126,6 +131,7 @@ CREATE TABLE CONTACTO_PROVEEDOR
 	FOREIGN KEY(Ced_prov) REFERENCES PROVEEDOR(Cedula_juridica) 
 );
 
+-- if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'PRODUCTO')
 CREATE TABLE PRODUCTO
 (
 	Nombre varchar(20) not null,
@@ -136,6 +142,7 @@ CREATE TABLE PRODUCTO
 	FOREIGN KEY (Ced_prov) REFERENCES PROVEEDOR(Cedula_juridica)
 ); 
 
+-- if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'PRODUCTOS_POR_CLIENTE')
 CREATE TABLE PRODUCTOS_POR_CLIENTE
 (
 	Cedula_cliente char(9) not null,
@@ -144,11 +151,11 @@ CREATE TABLE PRODUCTOS_POR_CLIENTE
 	FOREIGN KEY (Nombre_producto) REFERENCES PRODUCTO(Nombre)
 ); 
 
-
+-- if not exists (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'dbo' AND TABLE_NAME = 'PRODUCTOS_POR_SUCURSAL')
 CREATE TABLE PRODUCTOS_POR_SUCURSAL 
 (
 	Nombre_producto varchar(20),
-	Nombre_sucursal varchar(20) 
+	Nombre_sucursal varchar(40) 
 	FOREIGN KEY (Nombre_producto) REFERENCES PRODUCTO(Nombre),
 	FOREIGN KEY (Nombre_sucursal) REFERENCES SUCURSAL(Nombre)
 ); 
