@@ -12,7 +12,7 @@ import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries'
   templateUrl: './bills.component.html',
   styleUrls: ['./bills.component.sass']
 })
-export class BillsComponent implements OnInit {
+export class ClientBillsComponent implements OnInit {
   tableColumns: KeyReplacement<Bill>[]
   tableData: Bill[]
   clientID: number
