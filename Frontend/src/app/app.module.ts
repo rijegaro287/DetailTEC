@@ -34,8 +34,8 @@ import { AdminWashingTypeInfoComponent } from './Components/Admin/washing-type-i
 /* Componentes de cliente */
 import { ClientMainComponent } from './Components/Client/main/main.component'
 import { ClientInfoComponent } from './Components/Client/client-info/client-info.component'
-import { BillsComponent } from './Components/Client/bills/bills.component'
-import { BillInfoComponent } from './Components/Client/bill-info/bill-info.component';
+import { ClientBillsComponent } from './Components/Client/bills/bills.component'
+import { ClientBillInfoComponent } from './Components/Client/bill-info/bill-info.component';
 import { ClientAppointmentsComponent } from './Components/Client/appointments/appointments.component';
 import { ClientAppointmentInfoComponent } from './Components/Client/appointment-info/appointment-info.component';
 
@@ -50,6 +50,8 @@ import { AddWashingTypeFormComponent } from './Components/Forms/add-washing-type
 import { AdminAppointmentsComponent } from './Components/Admin/appointments/appointments.component';
 import { AdminAddAppointmentFormComponent } from './Components/Forms/admin-add-appointment-form/admin-add-appointment-form.component';
 import { AdminAppointmentInfoComponent } from './Components/Admin/appointment-info/appointment-info.component';
+import { AdminBillsComponent } from './Components/Admin/bills/bills.component';
+import { AdminBillInfoComponent } from './Components/Admin/bill-info/bill-info.component';
 
 
 @NgModule({
@@ -70,14 +72,14 @@ import { AdminAppointmentInfoComponent } from './Components/Admin/appointment-in
     AdminProductsComponent,
     AdminProductInfoComponent,
     ClientMainComponent,
-    BillsComponent,
+    ClientBillsComponent,
     GenericTableComponent,
     InfoCardComponent,
     ModalComponent,
     AddEmployeeFormComponent,
     AddClientFormComponent,
     MultivaluedInputComponent,
-    BillInfoComponent,
+    ClientBillInfoComponent,
     AddBranchFormComponent,
     AddSupplierFormComponent,
     AddProductFormComponent,
@@ -91,7 +93,9 @@ import { AdminAppointmentInfoComponent } from './Components/Admin/appointment-in
     ClientInfoComponent,
     AdminAppointmentsComponent,
     AdminAddAppointmentFormComponent,
-    AdminAppointmentInfoComponent
+    AdminAppointmentInfoComponent,
+    AdminBillsComponent,
+    AdminBillInfoComponent
   ],
   imports: [
     BrowserModule,

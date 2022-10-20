@@ -17,16 +17,18 @@ import { AdminProductsComponent } from './Components/Admin/products/products.com
 import { AdminProductInfoComponent } from './Components/Admin/product-info/product-info.component'
 import { AdminWashingTypesComponent } from './Components/Admin/washing-types/washing-types.component'
 import { AdminWashingTypeInfoComponent } from './Components/Admin/washing-type-info/washing-type-info.component'
+import { AdminAppointmentsComponent } from './Components/Admin/appointments/appointments.component'
+import { AdminAppointmentInfoComponent } from './Components/Admin/appointment-info/appointment-info.component'
+import { AdminBillInfoComponent } from './Components/Admin/bill-info/bill-info.component'
+import { AdminBillsComponent } from './Components/Admin/bills/bills.component'
 
 /* Client */
 import { ClientMainComponent } from './Components/Client/main/main.component'
 import { ClientInfoComponent } from './Components/Client/client-info/client-info.component'
-import { BillsComponent } from './Components/Client/bills/bills.component'
-import { BillInfoComponent } from './Components/Client/bill-info/bill-info.component'
+import { ClientBillsComponent } from './Components/Client/bills/bills.component'
+import { ClientBillInfoComponent } from './Components/Client/bill-info/bill-info.component'
 import { ClientAppointmentsComponent } from './Components/Client/appointments/appointments.component'
 import { ClientAppointmentInfoComponent } from './Components/Client/appointment-info/appointment-info.component'
-import { AdminAppointmentsComponent } from './Components/Admin/appointments/appointments.component'
-import { AdminAppointmentInfoComponent } from './Components/Admin/appointment-info/appointment-info.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -50,6 +52,8 @@ const routes: Routes = [
       { path: 'suppliers/:id', component: AdminSupplierInfoComponent },
       { path: 'products', component: AdminProductsComponent },
       { path: 'products/:name', component: AdminProductInfoComponent },
+      { path: 'bills', component: AdminBillsComponent },
+      { path: 'bills/:id', component: AdminBillInfoComponent }
     ]
   },
   {
@@ -60,8 +64,8 @@ const routes: Routes = [
       { path: 'info', component: ClientInfoComponent },
       { path: 'appointments', component: ClientAppointmentsComponent },
       { path: 'appointments/:id', component: ClientAppointmentInfoComponent },
-      { path: 'bills', component: BillsComponent },
-      { path: 'bills/:id', component: BillInfoComponent }
+      { path: 'bills', component: ClientBillsComponent },
+      { path: 'bills/:id', component: ClientBillInfoComponent }
     ]
   }
 ]

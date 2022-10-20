@@ -5,7 +5,7 @@ interface Branch {
     distrito: string
     telefono: number
     idGerente: number
-    nombreGerente: string
+    nombreGerente?: string
     fechaApertura: string
     fechaInicioGerente: string
 }
