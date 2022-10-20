@@ -1,5 +1,7 @@
 -- create database DetailTEC
 
+IF OBJECT_ID(N'dbo.PRODUCTOS_COMPRADOS', N'U') IS NOT NULL  
+	DROP TABLE [dbo].[PRODUCTOS_COMPRADOS];  
 IF OBJECT_ID(N'dbo.FACTURA', N'U') IS NOT NULL  
 	DROP TABLE [dbo].[FACTURA];  
 IF OBJECT_ID(N'dbo.TIPO_DE_PAGO', N'U') IS NOT NULL  
@@ -72,12 +74,11 @@ CREATE TABLE GERENTE_SUCURSAL(
 	Fecha_inicio date,
 	Fecha_fin date,
 	PRIMARY KEY(Trabajador_Cedula, Sucursal_Nombre)
-
 )
 
 CREATE TABLE PROVEEDOR 
 (
-	Cedula_juridica char(9) not null,
+	Cedula_juridica char(20) not null,
 	Nombre varchar(20) not null,
 	Direccion varchar(100),
 	Correo_electronico varchar(50) not null,
@@ -86,7 +87,7 @@ CREATE TABLE PROVEEDOR
 
 CREATE TABLE CONTACTO_PROVEEDOR
 (
-	Ced_prov char(9) not null,
+	Ced_prov char(20) not null,
 	Telefono char(8),
 );
 
@@ -95,7 +96,8 @@ CREATE TABLE PRODUCTO
 	Nombre varchar(20) not null,
 	Marca varchar(20) not null, 
 	Costo int not null,
-	Ced_prov char(9) not null,
+	Precio int not null,
+	Ced_prov char(20) not null,
 	PRIMARY KEY (Nombre),
 ); 
 
@@ -105,10 +107,9 @@ CREATE TABLE LAVADO
 	Comision_trabajador int not null,
 	Precio int not null,
 	Duracion_en_minutos int,
-	Productos_necesarios varchar(20),
 	Puntos_otorgados int,
 	Trabajadores_necesarios int,
-	PRIMARY KEY (Nombre) 
+	PRIMARY KEY (Nombre)
 )
 
 CREATE TABLE PRODUCTO_LAVADO(
@@ -126,7 +127,9 @@ create table CLIENTE(
 	Usuario varchar(20) not null,
 	Correo varchar(50) not null,
 	PasswordC varchar(20) not null, -- Hay que hacer que no de pueda ver la contraseña
-	Puntos int not null, 
+	Puntos_actuales int ,
+	Puntos_totales int, 
+	Puntos_usados int,
 	PRIMARY KEY(Cedula)
 )
 
@@ -151,7 +154,8 @@ create table CITA(
 	Nombre_sucursal varchar(40) not null,
 	Nombre_lavado varchar(40) not null,
 	Cedula_cliente char(9) not null,
-	Fecha date not null, -- se genera automaticamente
+	Fecha date not null, 
+	Hora time not null,
 	PRIMARY KEY(ID),
 )
 
@@ -171,31 +175,19 @@ CREATE TABLE FACTURA(
 	ID int not null,
 	medio_pago int not NULL,
 	total int not null, -- se debe calcular solo
-	-- productos comprados	
 	PRIMARY KEY(ID)
 );
 
-
--- CREATE TABLE PRODUCTOS_POR_CLIENTE
--- (
--- 	Cedula_cliente char(9) not null,
--- 	Nombre_producto varchar(20) not null,
--- 	FOREIGN KEY (Cedula_cliente) REFERENCES CLIENTE(Cedula),
--- 	FOREIGN KEY (Nombre_producto) REFERENCES PRODUCTO(Nombre)
--- ); 
-
--- CREATE TABLE PRODUCTOS_POR_SUCURSAL 
--- (
--- 	Nombre_producto varchar(20),
--- 	Nombre_sucursal varchar(40) 
--- 	FOREIGN KEY (Nombre_producto) REFERENCES PRODUCTO(Nombre),
--- 	FOREIGN KEY (Nombre_sucursal) REFERENCES SUCURSAL(Nombre)
--- ); 
+CREATE TABLE PRODUCTOS_COMPRADOS(
+	Nombre_producto varchar(20) not null,
+	ID_Factura INT NOT NULL,
+	Cantidad int not null,
+	PRIMARY KEY (Nombre_producto, ID_Factura)
+);
 
 GO 
 
--- LLaves foráneas 
-
+-- LLaves foráneas
 ALTER TABLE GERENTE_SUCURSAL
 ADD CONSTRAINT Fk_GERENTE_SUCURSAL_SUCURSAL FOREIGN KEY (Sucursal_Nombre) REFERENCES SUCURSAL(Nombre);
 ALTER TABLE GERENTE_SUCURSAL
@@ -239,3 +231,6 @@ ALTER TABLE FACTURA
 ADD CONSTRAINT FK_FACTURA_TIPO_DE_PAGO FOREIGN KEY (medio_pago) REFERENCES TIPO_DE_PAGO(ID);
 ALTER TABLE FACTURA
 ADD CONSTRAINT FK_FACTURA_CITA FOREIGN KEY (ID) REFERENCES CITA(ID);
+
+ALTER TABLE PRODUCTOS_COMPRADOS
+ADD CONSTRAINT FK_PRODUCTOS_COMPRADOS_FACTURA FOREIGN KEY (ID_Factura) REFERENCES FACTURA(ID);
