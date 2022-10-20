@@ -4,22 +4,18 @@ using System.Data;
 
 namespace DetailTEC.Data
 {
-    public class SucursalData
+    public class LavadoData
     {
-        public static bool Registrar(Sucursal sucursal)
+        public static bool Registrar(Lavado lavado)
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("sucursal_registrar", oConexion);
+                SqlCommand cmd = new SqlCommand("lavado_registrar", oConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Nombre", sucursal.nombre);
-                cmd.Parameters.AddWithValue("@Provincia", sucursal.provincia);
-                cmd.Parameters.AddWithValue("@Canton", sucursal.canton);
-                cmd.Parameters.AddWithValue("@Distrito", sucursal.distrito);
-                cmd.Parameters.AddWithValue("@Telefono", sucursal.telefono);
-                cmd.Parameters.AddWithValue("@Fecha_apertura", sucursal.fechaApertura);
-                cmd.Parameters.AddWithValue("@Fecha_gerente", sucursal.fechaGerente);
-                cmd.Parameters.AddWithValue("@Cedula_gerente", sucursal.cedulaGerente);
+                cmd.Parameters.AddWithValue("@Nombre", lavado.nombre);
+                cmd.Parameters.AddWithValue("@Costo", lavado.costo);
+                cmd.Parameters.AddWithValue("@Precio", lavado.precio);
+                cmd.Parameters.AddWithValue("@Duracion", lavado.duracion);
 
                 try
                 {
@@ -35,20 +31,16 @@ namespace DetailTEC.Data
             }
         }
 
-        public static bool Modificar(Sucursal sucursal)
+        public static bool Modificar(Lavado lavado)
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("sucursal_modificar", oConexion);
+                SqlCommand cmd = new SqlCommand("lavado_modificar", oConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Nombre", sucursal.nombre);
-                cmd.Parameters.AddWithValue("@Provincia", sucursal.provincia);
-                cmd.Parameters.AddWithValue("@Canton", sucursal.canton);
-                cmd.Parameters.AddWithValue("@Distrito", sucursal.distrito);
-                cmd.Parameters.AddWithValue("@Telefono", sucursal.telefono);
-                cmd.Parameters.AddWithValue("@Fecha_apertura", sucursal.fechaApertura);
-                cmd.Parameters.AddWithValue("@Fecha_gerente", sucursal.fechaGerente);
-                cmd.Parameters.AddWithValue("@Cedula_gerente", sucursal.cedulaGerente);
+                cmd.Parameters.AddWithValue("@Nombre", lavado.nombre);
+                cmd.Parameters.AddWithValue("@Costo", lavado.costo);
+                cmd.Parameters.AddWithValue("@Precio", lavado.precio);
+                cmd.Parameters.AddWithValue("@Duracion", lavado.duracion);
 
 
                 try
@@ -64,12 +56,12 @@ namespace DetailTEC.Data
             }
         }
 
-        public static List<Sucursal> Listar()
+        public static List<Lavado> Listar()
         {
-            List<Sucursal> oListaUsuario = new List<Sucursal>();
+            List<Lavado> oListaUsuario = new List<Lavado>();
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("sucursal_listar", oConexion);
+                SqlCommand cmd = new SqlCommand("lavado_listar", oConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 try
@@ -82,15 +74,12 @@ namespace DetailTEC.Data
 
                         while (dr.Read())
                         {
-                            oListaUsuario.Add(new Sucursal()
+                            oListaUsuario.Add(new Lavado()
                             {
                                 nombre = dr["Nombre"].ToString(),
-                                provincia = dr["Provincia"].ToString(),
-                                canton = dr["Canton"].ToString(),
-                                distrito = dr["Distrito"].ToString(),
-                                fechaApertura = Convert.ToDateTime(dr["Fecha_apertura"].ToString()),
-                                fechaGerente = Convert.ToDateTime(dr["Fecha_gerente"].ToString()),
-                                cedulaGerente = dr["Cedula_gerente"].ToString()
+                                costo = Convert.ToInt32(dr["Costo"]),
+                                precio = Convert.ToInt32(dr["Precio"]),
+                                duracion = Convert.ToInt32(dr["Duracion"])
                             });
                         }
 
@@ -107,12 +96,12 @@ namespace DetailTEC.Data
             }
         }
 
-        public static Sucursal Obtener(string nombre)
+        public static Lavado Obtener(string nombre)
         {
-            Sucursal sucursal = new Sucursal();
+            Lavado lavado = new Lavado();
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("sucursal_obtener", oConexion);
+                SqlCommand cmd = new SqlCommand("lavado_obtener", oConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Nombre", nombre);
 
@@ -126,15 +115,12 @@ namespace DetailTEC.Data
 
                         while (dr.Read())
                         {
-                            sucursal = new Sucursal()
+                            lavado = new Lavado()
                             {
                                 nombre = dr["Nombre"].ToString(),
-                                provincia = dr["Provincia"].ToString(),
-                                canton = dr["Canton"].ToString(),
-                                distrito = dr["Distrito"].ToString(),
-                                fechaApertura = Convert.ToDateTime(dr["Fecha_apertura"].ToString()),
-                                fechaGerente = Convert.ToDateTime(dr["Fecha_gerente"].ToString()),
-                                cedulaGerente = dr["Cedula_gerente"].ToString()
+                                costo = Convert.ToInt32(dr["Costo"]),
+                                precio = Convert.ToInt32(dr["Precio"]),
+                                duracion = Convert.ToInt32(dr["Duracion"])
                             };
                         }
 
@@ -142,11 +128,11 @@ namespace DetailTEC.Data
 
 
 
-                    return sucursal;
+                    return lavado;
                 }
                 catch (Exception ex)
                 {
-                    return sucursal;
+                    return lavado;
                 }
             }
         }
@@ -155,7 +141,7 @@ namespace DetailTEC.Data
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("sucursal_eliminar", oConexion);
+                SqlCommand cmd = new SqlCommand("lavado_eliminar", oConexion);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Nombre", nombre);
 
