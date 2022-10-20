@@ -1,0 +1,15 @@
+<div class="container-sm">
+    <h1 class="text-center mb-3">Información de lavado</h1>
+
+    <app-message [messageInfo]="messageService.messageInfo"></app-message>
+
+    <app-info-card [infoTitles]="washingTypeInfoTitles" [info]="washingType"></app-info-card>
+
+    <div class="d-flex justify-content-end mt-3">
+        <app-modal [options]="{size:'lg', scrollable:true}" [showModalButtonText]="'Editar lavado'"
+            [modalHeader]="'Edición de lavado'">
+
+            <app-add-washing-type-form [washingTypeInfo]="washingType"></app-add-washing-type-form>
+        </app-modal>
+    </div>
+</div>

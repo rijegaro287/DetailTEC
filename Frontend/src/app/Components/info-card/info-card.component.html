@@ -1,0 +1,16 @@
+<div class="overflow-scroll" style="height: 60vh">
+    <div class="d-flex flex-column my-2 text-center" *ngFor=" let title of infoTitles">
+        <span class="fs-5 fw-bolder">{{title.replacement}}</span>
+
+        <div class="d-flex flex-column" *ngIf="isArray(info[title.key]); else elseBlock">
+            <span class="text-center mb-1 fs-6" *ngFor="let element of toAny(info[title.key])">
+                {{ element }}
+            </span>
+        </div>
+
+        <ng-template #elseBlock>
+            <span class="mb-1 fs-6">{{info[title.key]}}</span>
+        </ng-template>
+        <hr>
+    </div>
+</div>

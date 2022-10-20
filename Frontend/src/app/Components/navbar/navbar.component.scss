@@ -1,0 +1,13 @@
+a {
+    color: #f8f9fa;
+
+    &:focus {
+        color: #f8f9fa;
+    }
+
+    &:hover {
+        color: black;
+        background-color: #f8f9fa;
+    }
+
+}

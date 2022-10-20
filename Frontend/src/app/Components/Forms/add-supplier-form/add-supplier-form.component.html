@@ -1,0 +1,29 @@
+<form [formGroup]="this.formsService.form" (ngSubmit)="onSubmit()">
+    <div class="row mb-3">
+        <div class="col-6">
+            <label class="form-label" for="idInput">Cédula jurídica:</label>
+            <input class="form-control" id="idInput" type="number" formControlName="id">
+        </div>
+
+        <div class="col-6">
+            <label class="form-label" for="nameInput">Nombre:</label>
+            <input class="form-control" id="nameInput" type="text" formControlName="nombre">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-6">
+            <label class="form-label" for="emailInput">Correo electrónico:</label>
+            <input class="form-control" id="emailInput" type="email" formControlName="email">
+        </div>
+
+        <div class="col-6">
+            <label class="form-label" for="addressInput">Dirección:</label>
+            <input class="form-control" id=" addressInput" type="text" formControlName="direccion">
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end">
+        <input type="submit" class="btn btn-success btn-lg" value="{{supplierInfo ? 'Editar' : 'Crear'}}">
+    </div>
+</form>

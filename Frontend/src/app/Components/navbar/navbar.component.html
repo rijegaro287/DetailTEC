@@ -1,0 +1,9 @@
+<nav class="navbar py-0 bg-dark mb-4">
+    <div class="container-sm d-flex justify-content-evenly">
+        <a class="text-center flex-grow-1 nav-link m-0 py-3" *ngFor="let link of links" routerLink="{{link.href}}">
+            {{link.name}}
+        </a>
+    </div>
+</nav>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,17 @@
+<table class="table table-borderless table-hover">
+    <thead>
+        <tr>
+            <th class="bg-light text-center position-sticky top-0" scope="col" *ngFor="let col of tableColumns">
+                {{col.replacement}}
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr scope="row" class="clickable-row text-center" *ngFor="let row of tableData" (click)="onRowClicked(row)">
+            <td *ngFor="let col of tableColumns">
+                {{row[col.key]}}
+            </td>
+        </tr>
+    </tbody>
+</table>
