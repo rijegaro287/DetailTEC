@@ -1,4 +1,7 @@
--- create database DetailTEC
+
+create database DetailTEC
+
+use DetailTEC
 
 IF OBJECT_ID(N'dbo.PRODUCTOS_COMPRADOS', N'U') IS NOT NULL  
 	DROP TABLE [dbo].[PRODUCTOS_COMPRADOS];  
@@ -42,14 +45,16 @@ create table TRABAJADOR(
 	Nombre varchar(20) not null,
 	Apellido1 varchar(20) not null,
 	Apellido2 varchar(20),
-	Fecha_nacimiento date,
+	Fecha_nacimiento date not null,
 	Fecha_ingreso date,
+	Email varchar(50) not null,
 	Edad tinyint, --La edad se calcula en la base de datos, no se ingresa
 	PasswordT varchar(20) not null,
 	Rol varchar(20) not null, -- Creo que rol debería ser una tabla
 	Tipo_pago varchar(10) not null, -- El tipo de pago debería ser otra tabla
 	PRIMARY KEY(Cedula)
 )
+
 
 create table SUCURSAL(
 

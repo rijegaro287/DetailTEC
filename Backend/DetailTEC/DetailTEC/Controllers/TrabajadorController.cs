@@ -15,14 +15,14 @@ namespace DetailTEC.Controllers
 
         [HttpGet]
         [Route("get_all")]
-        public List<Trabajador> Get()
+        public List<TrabajadorForGet> Get()
         {   
             return TrabajadorData.Listar();
         }
 
         [HttpGet]
         [Route("get/{id}")]
-        public Trabajador Get(string cedula)
+        public TrabajadorForGet Get(string cedula)
         {
             return TrabajadorData.Obtener(cedula);
         }
