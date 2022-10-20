@@ -3,7 +3,7 @@ interface Bill {
     placaVehiculo: string
     nombreSucursal: string
     idCliente: number
-    nombreCliente: string
+    nombreCliente?: string
     tipoLavado: string
     fecha: string
     hora: string
