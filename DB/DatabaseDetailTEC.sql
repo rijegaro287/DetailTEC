@@ -65,7 +65,7 @@ create table SUCURSAL(
 CREATE TABLE SUCURSAL_TRABAJADOR(
 	Cedula_trabajador char(9) not null,
 	Nombre_sucursal varchar(40) not null,
-	PRIMARY KEY(Cedula_trabajador,Nombre_sucursal),
+	PRIMARY KEY(Cedula_trabajador,Nombre_sucursal)
 )
 
 CREATE TABLE GERENTE_SUCURSAL(
@@ -136,14 +136,14 @@ create table CLIENTE(
 create table TELEFONOS_CLIENTE(
 	
 	Cedula_Cli char(9) not null,
-	Telefono char(8) not null,
+	Telefono char(8) not null
 	
 )
 
 create table DIRECCIONES_CLIENTE(
 	
 	Cedula_Cli char(9) not null,
-	Direccion varchar(100) not null,
+	Direccion varchar(100) not null
 	
 )
 
@@ -156,13 +156,13 @@ create table CITA(
 	Cedula_cliente char(9) not null,
 	Fecha date not null, 
 	Hora time not null,
-	PRIMARY KEY(ID),
+	PRIMARY KEY(ID)
 )
 
 create table TRABAJADORES_POR_CITA(
 	
 	Cedula_trabajador char(9) not null,
-	ID_cita int not null,
+	ID_cita int not null
 )
 
 CREATE TABLE TIPO_DE_PAGO( 
@@ -181,8 +181,7 @@ CREATE TABLE FACTURA(
 CREATE TABLE PRODUCTOS_COMPRADOS(
 	Nombre_producto varchar(20) not null,
 	ID_Factura INT NOT NULL,
-	Cantidad int not null,
-	PRIMARY KEY (Nombre_producto, ID_Factura)
+	Cantidad int not null
 );
 
 GO 
