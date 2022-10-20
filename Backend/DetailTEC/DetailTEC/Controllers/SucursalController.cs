@@ -11,14 +11,14 @@ namespace DetailTEC.Controllers
     {
         [HttpGet]
         [Route("get_all")]
-        public List<Sucursal> Get()
+        public List<SucursalForGet> Get()
         {
             return SucursalData.Listar();
         }
 
         [HttpGet]
         [Route("get/{id}")]
-        public Sucursal Get(string nombre)
+        public SucursalForGet Get(string nombre)
         {
             return SucursalData.Obtener(nombre);
         }

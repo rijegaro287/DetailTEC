@@ -5,7 +5,7 @@ USE DetailTEC
 
 INSERT INTO TRABAJADOR (
     Cedula, 
-    Nombre, 
+    NombreT, 
     Apellido1, 
     Apellido2, 
 	Email,
@@ -24,11 +24,11 @@ VALUES
     ('305230771', 'Julian', 'Rodriguez', 'Casas', 'emp@gmail.com', '2000-12-12', '2000-12-12', '40', 'juasjuas', 'Lavador', 'Bisemanal' )
 
 
-INSERT INTO SUCURSAL (Nombre, Provincia, Canton, Distrito, Telefono, Fecha_apertura)
+INSERT INTO SUCURSAL (Nombre, Provincia, Canton, Distrito, Telefono, Cedula_Gerente, Fecha_apertura, Fecha_gerente)
 VALUES
-    ('Sucursal del Atlántico', 'Cartago', 'Turrialba', 'Jimenez', '25310808', '2000-12-12'),
-    ('Sucursal del Pacífico', 'Puntarenas', 'Jacó', 'Jacó', '25317076', '2000-12-12'),
-    ('Sucursal Chorotega', 'Guanacaste', 'Nicoya', 'Santa Cruz', '2538133', '2000-12-12')
+    ('Sucursal del Atlántico', 'Cartago', 'Turrialba', 'Jimenez', '25310808', '118460126','2000-12-12', '2000-12-12'),
+    ('Sucursal del Pacífico', 'Puntarenas', 'Jacó', 'Jacó', '25317076', '118460126','2000-12-12', '2000-12-12'),
+    ('Sucursal Chorotega', 'Guanacaste', 'Nicoya', 'Santa Cruz', '2538133','118460126' ,'2000-12-12', '2000-12-12')
 
 INSERT INTO SUCURSAL_TRABAJADOR (Cedula_trabajador, Nombre_sucursal)
 VALUES

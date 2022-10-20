@@ -42,7 +42,7 @@ GO
 
 create table TRABAJADOR(
 	Cedula char(9) not null,
-	Nombre varchar(20) not null,
+	NombreT varchar(20) not null,
 	Apellido1 varchar(20) not null,
 	Apellido2 varchar(20),
 	Fecha_nacimiento date not null,
@@ -63,23 +63,27 @@ create table SUCURSAL(
 	Canton varchar(20),
 	Distrito varchar(20),
 	Telefono char(8) not null,
+	Cedula_Gerente char(9) not null,
 	Fecha_apertura date,
+	Fecha_gerente date,
 	PRIMARY KEY(Nombre)
 )
 
-CREATE TABLE SUCURSAL_TRABAJADOR(
-	Cedula_trabajador char(9) not null,
-	Nombre_sucursal varchar(40) not null,
-	PRIMARY KEY(Cedula_trabajador,Nombre_sucursal)
-)
 
-CREATE TABLE GERENTE_SUCURSAL(
-	Trabajador_Cedula char(9) not null,
-	Sucursal_Nombre varchar(40) not null,
-	Fecha_inicio date,
-	Fecha_fin date,
-	PRIMARY KEY(Trabajador_Cedula, Sucursal_Nombre)
-)
+
+--CREATE TABLE SUCURSAL_TRABAJADOR(
+--	Cedula_trabajador char(9) not null,
+--	Nombre_sucursal varchar(40) not null,
+--	PRIMARY KEY(Cedula_trabajador,Nombre_sucursal)
+--)
+
+--CREATE TABLE GERENTE_SUCURSAL(
+--	Trabajador_Cedula char(9) not null,
+--	Sucursal_Nombre varchar(40) not null,
+--	Fecha_inicio date,
+--	Fecha_fin date,
+--	PRIMARY KEY(Trabajador_Cedula, Sucursal_Nombre)
+--)
 
 CREATE TABLE PROVEEDOR 
 (
@@ -192,15 +196,18 @@ CREATE TABLE PRODUCTOS_COMPRADOS(
 GO 
 
 -- LLaves foráneas
-ALTER TABLE GERENTE_SUCURSAL
-ADD CONSTRAINT Fk_GERENTE_SUCURSAL_SUCURSAL FOREIGN KEY (Sucursal_Nombre) REFERENCES SUCURSAL(Nombre);
-ALTER TABLE GERENTE_SUCURSAL
-ADD CONSTRAINT FK_GERENTE_SUCURSAL_TRABAJADOR FOREIGN KEY (Trabajador_Cedula) REFERENCES TRABAJADOR(Cedula);
+--ALTER TABLE GERENTE_SUCURSAL
+--ADD CONSTRAINT Fk_GERENTE_SUCURSAL_SUCURSAL FOREIGN KEY (Sucursal_Nombre) REFERENCES SUCURSAL(Nombre);
+--ALTER TABLE GERENTE_SUCURSAL
+--ADD CONSTRAINT FK_GERENTE_SUCURSAL_TRABAJADOR FOREIGN KEY (Trabajador_Cedula) REFERENCES TRABAJADOR(Cedula);
 
-ALTER TABLE SUCURSAL_TRABAJADOR
-ADD CONSTRAINT FK_SUCURSAL_TRABAJADOR_SUCURSAL FOREIGN KEY (Nombre_sucursal) REFERENCES SUCURSAL(Nombre);
-ALTER TABLE SUCURSAL_TRABAJADOR
-ADD CONSTRAINT FK_SUCURSAL_TRABAJADOR_TRABAJADOR FOREIGN KEY (Cedula_trabajador) REFERENCES TRABAJADOR(Cedula);
+--ALTER TABLE SUCURSAL_TRABAJADOR
+--ADD CONSTRAINT FK_SUCURSAL_TRABAJADOR_SUCURSAL FOREIGN KEY (Nombre_sucursal) REFERENCES SUCURSAL(Nombre);
+--ALTER TABLE SUCURSAL_TRABAJADOR
+--ADD CONSTRAINT FK_SUCURSAL_TRABAJADOR_TRABAJADOR FOREIGN KEY (Cedula_trabajador) REFERENCES TRABAJADOR(Cedula);
+
+ALTER TABLE SUCURSAL
+ADD CONSTRAINT FK_CEDULA_GERENTE FOREIGN KEY (Cedula_Gerente) REFERENCES TRABAJADOR(Cedula)
 
 ALTER TABLE CONTACTO_PROVEEDOR
 ADD CONSTRAINT FK_CONTACTO_PROVEEDOR_PROVEEDOR FOREIGN KEY (Ced_prov) REFERENCES PROVEEDOR(Cedula_juridica);

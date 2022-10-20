@@ -13,7 +13,7 @@ namespace DetailTEC.Data
                 int edad = DateTime.Today.AddTicks(-trabajador.fechaNacimiento.Ticks).Year - 1;
 
                 SqlCommand cmd = new SqlCommand("insert into " +
-                    "TRABAJADOR(Cedula,Nombre,Apellido1,Apellido2,Fecha_nacimiento,Fecha_ingreso,Edad,PasswordT,Rol,Tipo_pago)" +
+                    "TRABAJADOR(Cedula,NombreT,Apellido1,Apellido2,Fecha_nacimiento,Fecha_ingreso,Edad,PasswordT,Rol,Tipo_pago)" +
                     "values(" + trabajador.id +"," +trabajador.nombre+ "," + trabajador.apellido1+ "," + trabajador.apellido2+ "," +
                     trabajador.email+","+trabajador.fechaNacimiento +"," +trabajador.fechaInicio+","+edad+ "," + trabajador.password+
                     "," + trabajador.puesto+ "," + trabajador.frecuenciaPago+")", oConexion);
@@ -36,11 +36,13 @@ namespace DetailTEC.Data
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
                 int edad = DateTime.Today.AddTicks(-trabajador.fechaNacimiento.Ticks).Year - 1;
-                SqlCommand cmd = new SqlCommand("insert into " +
-                    "TRABAJADOR(Cedula,Nombre,Apellido1,Apellido2,Fecha_nacimiento,Fecha_ingreso,Edad,PasswordT,Rol,Tipo_pago)" +
-                    "values(" + trabajador.id + "," + trabajador.nombre + "," + trabajador.apellido1 + "," + trabajador.apellido2 + "," +
-                    trabajador.email + "," + trabajador.fechaNacimiento + "," + trabajador.fechaInicio + "," + edad + "," + trabajador.password +
-                    "," + trabajador.puesto + "," + trabajador.frecuenciaPago + ")", oConexion);
+                SqlCommand cmd = new SqlCommand("update TRABAJADOR set" +
+                    "Cedula = "+ trabajador.id + ",NombreT =" + trabajador.nombre + ",Apellido1" + trabajador.apellido1 +
+                    ",Apellido2" + trabajador.apellido2 + ",Email" +
+                    trabajador.email + ",Fecha_nacimiento" + trabajador.fechaNacimiento 
+                    + ",Fecha_ingreso" + trabajador.fechaInicio + ",Edad" + edad + ",PasswordT" + trabajador.password +
+                    ",Rol" + trabajador.puesto + ",Tipo_pago" + trabajador.frecuenciaPago+
+                    "where Cedula = "+trabajador.id + ")", oConexion);
 
                 try
                 {
@@ -61,7 +63,7 @@ namespace DetailTEC.Data
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
 
-                SqlCommand cmd = new SqlCommand("select Cedula,Nombre,Apellido1, Apellido2, Email, Fecha_nacimiento, Fecha_ingreso, Edad, Rol, Tipo_pago from TRABAJADOR", oConexion);
+                SqlCommand cmd = new SqlCommand("select Cedula,NombreT,Apellido1, Apellido2, Email, Fecha_nacimiento, Fecha_ingreso, Edad, Rol, Tipo_pago from TRABAJADOR", oConexion);
                 try
                 {
                     oConexion.Open();
@@ -75,7 +77,7 @@ namespace DetailTEC.Data
                             oListaUsuario.Add(new TrabajadorForGet()
                             {
                                 id = dr["Cedula"].ToString(),
-                                nombre = dr["Nombre"].ToString(),
+                                nombre = dr["NombreT"].ToString(),
                                 apellido1 = dr["Apellido1"].ToString(),
                                 apellido2 = dr["Apellido2"].ToString(),
                                 email = dr["Email"].ToString(),
@@ -106,7 +108,7 @@ namespace DetailTEC.Data
             TrabajadorForGet trabajador = new TrabajadorForGet();
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("select Cedula,Nombre,Apellido1, Apellido2, Email, Fecha_nacimiento, Fecha_ingreso, Edad, Rol, " +
+                SqlCommand cmd = new SqlCommand("select Cedula,NombreT,Apellido1, Apellido2, Email, Fecha_nacimiento, Fecha_ingreso, Edad, Rol, " +
                     "Tipo_pago from TRABAJADOR where Cedula = " + cedula, oConexion);
 
                 try
@@ -122,7 +124,7 @@ namespace DetailTEC.Data
                             trabajador = new TrabajadorForGet()
                             {
                                 id = dr["Cedula"].ToString(),
-                                nombre = dr["Nombre"].ToString(),
+                                nombre = dr["NombreT"].ToString(),
                                 apellido1 = dr["Apellido1"].ToString(),
                                 apellido2 = dr["Apellido2"].ToString(),
                                 email = dr["Email"].ToString(),
@@ -152,8 +154,8 @@ namespace DetailTEC.Data
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
                 SqlCommand cmd = new SqlCommand("delete from TRABAJADOR where Cedula = "+cedula, oConexion);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Cedula", cedula);
+                //cmd.CommandType = CommandType.StoredProcedure;
+                //cmd.Parameters.AddWithValue("@Cedula", cedula);
 
                 try
                 {
