@@ -6,7 +6,12 @@ interface Client {
     email: string
     telefonos: number[]
     direcciones: string[]
-    puntos: number
+    puntos?: ClientPoints // Cambio
+}
+
+interface ClientPoints {
+    total: number
+    utilizados: number
 }
 
 export { Client }
