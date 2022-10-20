@@ -36,3 +36,18 @@ Frontend/typings
 
 Frontend/.DS_Store
 Frontend/Thumbs.db
+Backend/DetailTEC/DetailTEC/obj/Debug/net6.0/DetailTEC.assets.cache
+*.cache
+DB/DatabaseDetailTEC.sql
+*.cache
+Backend/DetailTEC/DetailTEC/obj/Debug/net6.0/DetailTEC.GeneratedMSBuildEditorConfig.editorconfig
+Backend/DetailTEC/DetailTEC/obj/Debug/net6.0/DetailTEC.csproj.AssemblyReference.cache
+Backend/DetailTEC/DetailTEC/obj/Debug/net6.0/DetailTEC.assets.cache
+Backend/DetailTEC/DetailTEC/obj/Debug/net6.0/apphost.exe
+Backend/DetailTEC/.vs/DetailTEC/FileContentIndex/b4b7e61d-fd59-4e18-9cc2-80f1dce88efb.vsidx
+Backend/DetailTEC/.vs/DetailTEC/FileContentIndex/a16cfa75-10c0-41ca-bb21-1461ec6c98ac.vsidx
+Backend/DetailTEC/DetailTEC/obj/Debug/net6.0/DetailTEC.GeneratedMSBuildEditorConfig.editorconfig
+Backend/DetailTEC/DetailTEC/obj/Debug/net6.0/DetailTEC.csproj.AssemblyReference.cache
+Backend/DetailTEC/DetailTEC/obj/Debug/net6.0/DetailTEC.GeneratedMSBuildEditorConfig.editorconfig
+*.cache
+Backend/DetailTEC/DetailTEC/obj/Debug/net6.0/apphost.exe
