@@ -38,3 +38,13 @@ C:\Users\INTEL\Documents\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\bin\Debug\
 C:\Users\INTEL\Documents\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
 C:\Users\INTEL\Documents\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\INTEL\Documents\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\adri\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\DetailTEC.csproj.AssemblyReference.cache
+C:\Users\adri\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\DetailTEC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\adri\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\DetailTEC.AssemblyInfoInputs.cache
+C:\Users\adri\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\DetailTEC.AssemblyInfo.cs
+C:\Users\adri\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\DetailTEC.csproj.CoreCompileInputs.cache
+C:\Users\adri\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\DetailTEC.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\adri\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\DetailTEC.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\adri\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\DetailTEC.dll
+C:\Users\adri\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\refint\DetailTEC.dll
+C:\Users\adri\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\DetailTEC.pdb
