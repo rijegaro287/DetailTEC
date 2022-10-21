@@ -7,9 +7,10 @@
         public string? canton { get; set; }
         public string? distrito { get; set; }
         public string telefono { get; set; }
+        public string idGerente { get; set; }
         public DateTime? fechaApertura{ get; set; }
-        public DateTime? fechaGerente { get; set; }
-        public string cedulaGerente { get; set; }
+        public DateTime? fechaInicioGerente { get; set; }
+        
 
     }
 }

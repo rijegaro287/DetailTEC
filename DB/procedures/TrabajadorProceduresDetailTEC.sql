@@ -109,6 +109,8 @@ select * from TRABAJADOR where Cedula = @Cedula
 end
 
 go
+
+
 create procedure trabajador_listar
 as
 begin

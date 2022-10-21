@@ -5,28 +5,30 @@ USE DetailTEC
 
 INSERT INTO TRABAJADOR (
     Cedula, 
-    Nombre, 
+    NombreT, 
     Apellido1, 
     Apellido2, 
+	Email,
     Fecha_nacimiento, 
     Fecha_ingreso, 
     Edad, 
     PasswordT, 
     Rol, 
     Tipo_pago) 
+
 VALUES 
-    ('118460116', 'Adriana', 'Calderon', 'Barboza', '06/18/1935', '02/03/1950', '20', 'contrasena01', 'Pulidor', 'Semanal'),
-    ('118460126', 'Yordi', 'Brenes', 'Roda', '02/25/2000', '10/16/2022', '20', 'contrasena01', 'Lavador', 'Bisemanal'),
-    ('118420116', 'Ricardo', 'Gatgens', 'Rodriguz', '06/18/2002', '10/16/1999', '20', 'contrasena01', 'Pulidor', 'Bisemanal'),
-    ('112410116', 'Anthony', 'Chaves', 'Achoy', '07/08/2000', '10/25/2020', '20', 'contrasena01', 'Pulidor', 'Semanal'),
-    ('305230771', 'Julian', 'Rodriguez', 'Casas', '09/09/1970', '02/03/1990', '40', 'juasjuas', 'Lavador', 'Bisemanal' )
+    ('118460116', 'Adriana', 'Calderon', 'Barboza', 'emp@gmail.com','2000-12-12', '2000-12-12', '20', 'contrasena01', 'Pulidor', 'Semanal'),
+    ('118460126', 'Yordi', 'Brenes', 'emp@gmail.com', 'Roda', '2000-12-12', '2000-12-12', '20', 'contrasena01', 'Lavador', 'Bisemanal'),
+    ('118420116', 'Ricardo', 'Gatgens', 'Rodriguz', 'emp@gmail.com', '2000-12-12', '2000-12-12', '20', 'contrasena01', 'Pulidor', 'Bisemanal'),
+    ('112410116', 'Anthony', 'Chaves', 'Achoy', 'emp@gmail.com', '2000-12-12', '2000-12-12', '20', 'contrasena01', 'Pulidor', 'Semanal'),
+    ('305230771', 'Julian', 'Rodriguez', 'Casas', 'emp@gmail.com', '2000-12-12', '2000-12-12', '40', 'juasjuas', 'Lavador', 'Bisemanal' )
 
 
-INSERT INTO SUCURSAL (Nombre, Provincia, Canton, Distrito, Telefono, Fecha_apertura)
+INSERT INTO SUCURSAL (Nombre, Provincia, Canton, Distrito, Telefono, Cedula_Gerente, Fecha_apertura, Fecha_gerente)
 VALUES
-    ('Sucursal del Atlántico', 'Cartago', 'Turrialba', 'Jimenez', '25310808', '02/03/1950'),
-    ('Sucursal del Pacífico', 'Puntarenas', 'Jacó', 'Jacó', '25317076', '02/03/1990'),
-    ('Sucursal Chorotega', 'Guanacaste', 'Nicoya', 'Santa Cruz', '2538133', '02/03/2020')
+    ('Sucursal del Atlántico', 'Cartago', 'Turrialba', 'Jimenez', '25310808', '118460126','2000-12-12', '2000-12-12'),
+    ('Sucursal del Pacífico', 'Puntarenas', 'Jacó', 'Jacó', '25317076', '118460126','2000-12-12', '2000-12-12'),
+    ('Sucursal Chorotega', 'Guanacaste', 'Nicoya', 'Santa Cruz', '2538133','118460126' ,'2000-12-12', '2000-12-12')
 
 INSERT INTO SUCURSAL_TRABAJADOR (Cedula_trabajador, Nombre_sucursal)
 VALUES
@@ -39,9 +41,9 @@ VALUES
 
 INSERT INTO GERENTE_SUCURSAL (Trabajador_Cedula, Sucursal_Nombre, Fecha_inicio, Fecha_fin)
 VALUES
-    ('118460116', 'Sucursal del Atlántico', '02/03/1950', '02/03/1990'),
-    ('118460126', 'Sucursal del Pacífico', '02/03/1990', '02/03/2020'),
-    ('118420116', 'Sucursal Chorotega', '02/03/2020', '02/03/2020')
+    ('118460116', 'Sucursal del Atlántico', '2000-12-12', '2000-12-12'),
+    ('118460126', 'Sucursal del Pacífico', '2000-12-12', '2000-12-12'),
+    ('118420116', 'Sucursal Chorotega', '2000-12-12', '2000-12-12')
 
 
 INSERT INTO PROVEEDOR (
@@ -147,18 +149,18 @@ insert into cita(
     Fecha,
     Hora)
 VALUES
-    ('1', 'P-1234', 'Sucursal del Atlántico', 'Lavado y aspirado', '25325241', '12/12/2000', '13:00'),
-    ('2', 'P-1235', 'Sucursal del Pacífico', 'Lavado y encerado', '25325241', '12/12/2000', '14:00'),
-    ('3', 'P-1236', 'Sucursal Chorotega', 'Lavado premium y pulido', '53294589', '12/12/2000', '15:00'),
-    ('4', 'P-1237', 'Sucursal del Atlántico', 'Lavado y aspirado', '35346123', '12/12/2000', '16:00'),
-    ('5', 'P-1238', 'Sucursal del Pacífico', 'Lavado y encerado', '35346123', '12/12/2000', '17:00'),
-    ('6', 'P-1239', 'Sucursal del Atlántico', 'Lavado y aspirado', '25325241', '12/13/2000', '08:00'),
-    ('7', 'P-1240', 'Sucursal del Atlántico', 'Lavado y aspirado', '25325241', '12/13/2000', '09:00'),
-    ('8', 'P-1241', 'Sucursal del Atlántico', 'Lavado y encerado', '53294589', '12/13/2000', '10:00'),
-    ('9', 'P-1242', 'Sucursal del Atlántico', 'Lavado y encerado', '35346123', '12/13/2000', '11:00'),
-    ('10', 'P-1243', 'Sucursal del Atlántico', 'Lavado y aspirado', '35346123', '12/13/2000', '13:00'),
-    ('11', 'P-1244', 'Sucursal del Atlántico', 'Lavado premium y pulido', '53294589', '12/13/2000', '14:00'),
-    ('12', 'P-1245', 'Sucursal del Atlántico', 'Lavado premium y pulido', '25325241', '12/13/2000', '15:00')
+    ('1', 'P-1234', 'Sucursal del Atlántico', 'Lavado y aspirado', '25325241', '2000-12-12', '13:00'),
+    ('2', 'P-1235', 'Sucursal del Pacífico', 'Lavado y encerado', '25325241', '2000-12-12', '14:00'),
+    ('3', 'P-1236', 'Sucursal Chorotega', 'Lavado premium y pulido', '53294589', '2000-12-12', '15:00'),
+    ('4', 'P-1237', 'Sucursal del Atlántico', 'Lavado y aspirado', '35346123', '2000-12-12', '16:00'),
+    ('5', 'P-1238', 'Sucursal del Pacífico', 'Lavado y encerado', '35346123', '2000-12-12', '17:00'),
+    ('6', 'P-1239', 'Sucursal del Atlántico', 'Lavado y aspirado', '25325241', '2000-12-12', '08:00'),
+    ('7', 'P-1240', 'Sucursal del Atlántico', 'Lavado y aspirado', '25325241', '2000-12-12', '09:00'),
+    ('8', 'P-1241', 'Sucursal del Atlántico', 'Lavado y encerado', '53294589', '2000-12-12', '10:00'),
+    ('9', 'P-1242', 'Sucursal del Atlántico', 'Lavado y encerado', '35346123', '2000-12-12', '11:00'),
+    ('10', 'P-1243', 'Sucursal del Atlántico', 'Lavado y aspirado', '35346123', '2000-12-12', '13:00'),
+    ('11', 'P-1244', 'Sucursal del Atlántico', 'Lavado premium y pulido', '53294589', '2000-12-12', '14:00'),
+    ('12', 'P-1245', 'Sucursal del Atlántico', 'Lavado premium y pulido', '25325241', '2000-12-12', '15:00')
 
 INSERT INTO TRABAJADORES_POR_CITA(
     ID_Cita,

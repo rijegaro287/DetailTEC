@@ -10,18 +10,13 @@ namespace DetailTEC.Data
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("trabajadorRegistrar", oConexion);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Cedula", trabajador.cedula);
-                cmd.Parameters.AddWithValue("@Nombre", trabajador.nombre);
-                cmd.Parameters.AddWithValue("@Apellido1", trabajador.apellido1);
-                cmd.Parameters.AddWithValue("@Apellido2", trabajador.apellido2);
-                cmd.Parameters.AddWithValue("@Fecha_nacimiento", trabajador.fechaNacimiento);
-                cmd.Parameters.AddWithValue("@Fecha_ingreso", trabajador.fechaIngreso);
-                cmd.Parameters.AddWithValue("@Edad", trabajador.edad);
-                cmd.Parameters.AddWithValue("@PasswordT", trabajador.password);
-                cmd.Parameters.AddWithValue("@Rol", trabajador.rol);
-                cmd.Parameters.AddWithValue("@Tipo_pago", trabajador.tipoPago);
+                int edad = DateTime.Today.AddTicks(-trabajador.fechaNacimiento.Ticks).Year - 1;
+
+                SqlCommand cmd = new SqlCommand("insert into " +
+                    "TRABAJADOR(Cedula,NombreT,Apellido1,Apellido2,Fecha_nacimiento,Fecha_ingreso,Edad,PasswordT,Rol,Tipo_pago)" +
+                    "values(" + trabajador.id +"," +trabajador.nombre+ "," + trabajador.apellido1+ "," + trabajador.apellido2+ "," +
+                    trabajador.email+","+trabajador.fechaNacimiento +"," +trabajador.fechaInicio+","+edad+ "," + trabajador.password+
+                    "," + trabajador.puesto+ "," + trabajador.frecuenciaPago+")", oConexion);
 
                 try
                 {
@@ -40,18 +35,14 @@ namespace DetailTEC.Data
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("trabajadorModificar", oConexion);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Cedula", trabajador.cedula);
-                cmd.Parameters.AddWithValue("@Nombre", trabajador.nombre);
-                cmd.Parameters.AddWithValue("@Apellido1", trabajador.apellido1);
-                cmd.Parameters.AddWithValue("@Apellido2", trabajador.apellido2);
-                cmd.Parameters.AddWithValue("@Fecha_nacimiento", trabajador.fechaNacimiento);
-                cmd.Parameters.AddWithValue("@Fecha_ingreso", trabajador.fechaIngreso);
-                cmd.Parameters.AddWithValue("@Edad", trabajador.edad);
-                cmd.Parameters.AddWithValue("@PasswordT", trabajador.password);
-                cmd.Parameters.AddWithValue("@Rol", trabajador.rol);
-                cmd.Parameters.AddWithValue("@Tipo_pago", trabajador.tipoPago);
+                int edad = DateTime.Today.AddTicks(-trabajador.fechaNacimiento.Ticks).Year - 1;
+                SqlCommand cmd = new SqlCommand("update TRABAJADOR set" +
+                    "Cedula = "+ trabajador.id + ",NombreT =" + trabajador.nombre + ",Apellido1" + trabajador.apellido1 +
+                    ",Apellido2" + trabajador.apellido2 + ",Email" +
+                    trabajador.email + ",Fecha_nacimiento" + trabajador.fechaNacimiento 
+                    + ",Fecha_ingreso" + trabajador.fechaInicio + ",Edad" + edad + ",PasswordT" + trabajador.password +
+                    ",Rol" + trabajador.puesto + ",Tipo_pago" + trabajador.frecuenciaPago+
+                    "where Cedula = "+trabajador.id + ")", oConexion);
 
                 try
                 {
@@ -66,14 +57,13 @@ namespace DetailTEC.Data
             }
         }
 
-        public static List<Trabajador> Listar()
+        public static List<TrabajadorForGet> Listar()
         {
-            List<Trabajador> oListaUsuario = new List<Trabajador>();
+            List<TrabajadorForGet> oListaUsuario = new List<TrabajadorForGet>();
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("trabajadorListar", oConexion);
-                cmd.CommandType = CommandType.StoredProcedure;
 
+                SqlCommand cmd = new SqlCommand("select Cedula,NombreT,Apellido1, Apellido2, Email, Fecha_nacimiento, Fecha_ingreso, Edad, Rol, Tipo_pago from TRABAJADOR", oConexion);
                 try
                 {
                     oConexion.Open();
@@ -84,18 +74,20 @@ namespace DetailTEC.Data
 
                         while (dr.Read())
                         {
-                            oListaUsuario.Add(new Trabajador()
+                            oListaUsuario.Add(new TrabajadorForGet()
                             {
-                                cedula = dr["Cedula"].ToString(),
-                                nombre = dr["Nombre"].ToString(),
+                                id = dr["Cedula"].ToString(),
+                                nombre = dr["NombreT"].ToString(),
                                 apellido1 = dr["Apellido1"].ToString(),
                                 apellido2 = dr["Apellido2"].ToString(),
-                                fechaIngreso = Convert.ToDateTime(dr["FechaRegistro"].ToString()),
-                                fechaNacimiento = Convert.ToDateTime(dr["FechaRegistro"].ToString()),
+                                email = dr["Email"].ToString(),
+                                fechaInicio = Convert.ToDateTime(dr["Fecha_nacimiento"].ToString()),
+                                fechaNacimiento = Convert.ToDateTime(dr["Fecha_ingreso"].ToString()),
                                 edad = Convert.ToInt32(dr["Edad"]),
-                                rol = dr["Rol"].ToString(),
-                                tipoPago = dr["Tipo_pago"].ToString()
+                                puesto = dr["Rol"].ToString(),
+                                frecuenciaPago = dr["Tipo_pago"].ToString()
                             });
+                            
                         }
 
                     }
@@ -111,14 +103,13 @@ namespace DetailTEC.Data
             }
         }
 
-        public static Trabajador Obtener(string cedula)
+        public static TrabajadorForGet Obtener(string cedula)
         {
-            Trabajador trabajador = new Trabajador();
+            TrabajadorForGet trabajador = new TrabajadorForGet();
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("trabajadorObtener", oConexion);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@cedula", cedula);
+                SqlCommand cmd = new SqlCommand("select Cedula,NombreT,Apellido1, Apellido2, Email, Fecha_nacimiento, Fecha_ingreso, Edad, Rol, " +
+                    "Tipo_pago from TRABAJADOR where Cedula = " + cedula, oConexion);
 
                 try
                 {
@@ -130,17 +121,18 @@ namespace DetailTEC.Data
 
                         while (dr.Read())
                         {
-                            trabajador = new Trabajador()
+                            trabajador = new TrabajadorForGet()
                             {
-                                cedula = dr["Cedula"].ToString(),
-                                nombre = dr["Nombre"].ToString(),
+                                id = dr["Cedula"].ToString(),
+                                nombre = dr["NombreT"].ToString(),
                                 apellido1 = dr["Apellido1"].ToString(),
                                 apellido2 = dr["Apellido2"].ToString(),
-                                fechaIngreso = Convert.ToDateTime(dr["FechaRegistro"].ToString()),
-                                fechaNacimiento = Convert.ToDateTime(dr["FechaRegistro"].ToString()),
+                                email = dr["Email"].ToString(),
+                                fechaInicio = Convert.ToDateTime(dr["Fecha_nacimiento"].ToString()),
+                                fechaNacimiento = Convert.ToDateTime(dr["Fecha_ingreso"].ToString()),
                                 edad = Convert.ToInt32(dr["Edad"]),
-                                rol = dr["Rol"].ToString(),
-                                tipoPago = dr["Tipo_pago"].ToString()
+                                puesto = dr["Rol"].ToString(),
+                                frecuenciaPago = dr["Tipo_pago"].ToString()
                             };
                         }
 
@@ -161,9 +153,9 @@ namespace DetailTEC.Data
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("trabajadorEliminar", oConexion);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Cedula", cedula);
+                SqlCommand cmd = new SqlCommand("delete from TRABAJADOR where Cedula = "+cedula, oConexion);
+                //cmd.CommandType = CommandType.StoredProcedure;
+                //cmd.Parameters.AddWithValue("@Cedula", cedula);
 
                 try
                 {
