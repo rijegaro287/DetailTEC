@@ -12,11 +12,12 @@ public class ReportsData
         ";
     
     private static string PLANTILLA_QUERY =
-        @"SELECT T.Cedula, T.NombreT, T.Apellido1, T.Apellido2, L.Nombre, COUNT(L.Nombre) as CantidadDeLavados, SUM(L.Comision_trabajador) MontoGanadoPorLavados
+        @"SELECT T.Cedula, T.NombreT, T.Apellido1, T.Tipo_pago, T.Apellido2, L.Nombre, COUNT(L.Nombre) as CantidadDeLavados, SUM(L.Comision_trabajador) MontoGanadoPorLavados
         FROM (((Cita AS C JOIN LAVADO AS L ON C.Nombre_lavado=L.Nombre)
         JOIN TRABAJADORES_POR_CITA AS TpC ON Tpc.ID_Cita=C.ID)
         JOIN TRABAJADOR AS T ON Tpc.Cedula_Trabajador=T.Cedula)
-        GROUP BY T.Cedula, T.NombreT, T.Apellido1, T.Apellido2, L.Nombre";
+        GROUP BY T.Cedula, T.NombreT, T.Apellido1, T.Apellido2, L.Nombre, T.Tipo_pago
+        Order by T.Cedula";
 
     
     // ----------------- Plantilla -----------------
@@ -35,7 +36,7 @@ public class ReportsData
             SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // ExecuteReader se usa para SELECT. 
             dt.Load(dr);
             oConexion.desconectar();
-        }catch (Exception ex){}
+        }catch (Exception){}
         return procesarDatosReportePlantilla(dt);
     }
 
@@ -45,9 +46,11 @@ public class ReportsData
         Plantilla[] plantilla = new Plantilla[dt.Rows.Count];
         for (int i = 0; i < dt.Rows.Count; i++){
             plantilla[i] = new Plantilla();
-            plantilla[i].NombreTrabajador = dt.Rows[i]["NombreT"].ToString();
+            plantilla[i].cedula = int.Parse(dt.Rows[i]["Cedula"].ToString());
+            plantilla[i].nombreTrabajador = dt.Rows[i]["NombreT"].ToString();
             plantilla[i].apellido1Trabajador = dt.Rows[i]["Apellido1"].ToString();
             plantilla[i].apellido2Trabajador = dt.Rows[i]["Apellido2"].ToString();
+            plantilla[i].tipoDePago =dt.Rows[i]["Tipo_pago"].ToString();
             plantilla[i].nombreDeLavado = dt.Rows[i]["Nombre"].ToString();
             plantilla[i].cantidadLavados = int.Parse(dt.Rows[i]["CantidadDeLavados"].ToString());
             plantilla[i].montoGanadoPorLavados = int.Parse(dt.Rows[i]["MontoGanadoPorLavados"].ToString());
@@ -84,7 +87,7 @@ public class ReportsData
             SqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection); // ExecuteReader se usa para SELECT. 
             dt.Load(dr);
             oConexion.desconectar();
-        }catch (Exception ex){}
+        }catch (Exception){}
         return procesarDatosReporteLavados(dt);
     }
 

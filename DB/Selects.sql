@@ -9,11 +9,12 @@ select C.Nombre, C.Apellido1, C.Apellido2, C.Puntos_usados
 from Cliente as C
 order by Puntos_usados DESC
 
-SELECT T.Cedula, T.NombreT, T.Apellido1, T.Apellido2, L.Nombre, COUNT(L.Nombre) as CantidadDeLavados, SUM(L.Comision_trabajador) MontoGanadoPorLavados
+SELECT T.Cedula, T.NombreT, T.Apellido1, T.Tipo_pago, T.Apellido2, L.Nombre, COUNT(L.Nombre) as CantidadDeLavados, SUM(L.Comision_trabajador) MontoGanadoPorLavados
 FROM (((Cita AS C JOIN LAVADO AS L ON C.Nombre_lavado=L.Nombre)
 JOIN TRABAJADORES_POR_CITA AS TpC ON Tpc.ID_Cita=C.ID)
 JOIN TRABAJADOR AS T ON Tpc.Cedula_Trabajador=T.Cedula)
-GROUP BY T.Cedula, T.NombreT, T.Apellido1, T.Apellido2, L.Nombre
+GROUP BY T.Cedula, T.NombreT, T.Apellido1, T.Apellido2, L.Nombre, T.Tipo_pago
+Order by T.Cedula
 
 SELECT Ci.id, Cl.Cedula AS CedulaCliente, TpC.Cedula_trabajador as CedulaTrabajador, F.total, TP.id as IdTipoDePago
 from ((((CITA as Ci join CLIENTE as Cl on Ci.Cedula_cliente = Cl.Cedula)

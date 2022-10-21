@@ -1,5 +1,6 @@
 using DetailTEC.Data;
 using DetailTEC.Models;
+using DetailTEC.Helpers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,23 +11,35 @@ namespace DetailTEC.Controllers;
 public class RepoerteController : Controller{
     [HttpGet]
     [Route("reporte/puntos")]
-    public PuntosGastados[] GetReportePuntos()
-    {   
-        return ReportsData.reportePuntosGastadosPorClientes();
+    public async Task GetReportePuntos(){   
+
+        HandlerPDF.generarPDFPuntos();
+        string filePath = "Reports/ReportePuntos.pdf";
+        Response.Headers.Add("Content-Disposition", "attachment; filename=ReportePuntos.pdf");
+        Response.Headers.Add("Content-Type", "application/pdf");
+        await Response.SendFileAsync(filePath);
     }
 
     [HttpGet]
     [Route("reporte/lavados/{id}")]
-    public LavadoPorCliente[] GetReporteLavados(int id)
+    public async Task GetReporteLavados(int id)
     {   
-        return ReportsData.reporteLavadoPorCliente(id);
+        HandlerPDF.generarPDFLavados(id);
+        string filePath = "Reports/ReporteLavados.pdf";
+        Response.Headers.Add("Content-Disposition", "attachment; filename=ReporteLavados.pdf");
+        Response.Headers.Add("Content-Type", "application/pdf");
+        await Response.SendFileAsync(filePath);
     }
 
     [HttpGet]
-    [Route("reporte/plantilla/")]
-    public Plantilla[] GetReportePlantilla()
-    {   
-        return ReportsData.reportePlantilla();
+    [Route("reporte/plantilla")]
+    public async Task GetReportePlantilla(){   
+        HandlerPDF.getPDFPlantilla();
+        string filePath = "Reports/ReportePlantilla.pdf";
+        Response.Headers.Add("Content-Disposition", "attachment; filename=ReportePlantilla.pdf");
+        Response.Headers.Add("Content-Type", "application/pdf");
+        await Response.SendFileAsync(filePath);
+
     }
 }
 
