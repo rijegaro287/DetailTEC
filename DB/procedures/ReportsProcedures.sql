@@ -52,11 +52,15 @@ GO
 
 create PROCEDURE pointsReport AS
 BEGIN
-    select Cl.Nombre, Cl.Apellido1, Cl.Apellido2, SUM(F.total) as PuntosGastados
-    from (((CLIENTE as CL join CITA as CI on CL.Cedula = CI.Cedula_cliente)
-    join Factura as F on CI.Id=F.Id)
-    join TIPO_DE_PAGO as TP on F.medio_pago=TP.Id)
-    Where TP.id = '3'
-    GROUP By Cl.Nombre, Cl.Apellido1, Cl.Apellido2
+    select C.Nombre, C.Apellido1, C.Apellido2, C.Puntos_usados
+    from Cliente as C
+    GROUP By C.Nombre, C.Apellido1, C.Apellido2
     order by PuntosGastados DESC
 END
+
+GO
+SELECT T.Nombre, T.Apellido1, T.Apellido2, L.Nombre, COUNT(L.Nombre) as CantidadDeLavados, SUM(L.Comision_trabajador) MontoGanadoPorLavados
+FROM (((Cita AS C JOIN LAVADO AS L ON C.Nombre_lavado=L.Nombre)
+JOIN TRABAJADORES_POR_CITA AS TpC ON Tpc.ID_Cita=C.ID)
+JOIN TRABAJADOR AS T ON Tpc.Cedula_Trabajador=T.Cedula)
+GROUP BY T.Nombre, T.Apellido1, T.Apellido2, L.Nombre
