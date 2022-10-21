@@ -60,7 +60,7 @@ namespace DetailTEC.Data
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
 
-                SqlCommand cmd = new SqlCommand("select Cedula,NombreT,Apellido1, Apellido2, Email, Fecha_nacimiento, Fecha_ingreso, Edad, Rol, Tipo_pago from TRABAJADOR", oConexion);
+                SqlCommand cmd = new SqlCommand("select Nombre, Marca, Costo, Precio, idProveedor, nombreProveedor from PRODUCTO", oConexion);
                 try
                 {
                     oConexion.Open();
