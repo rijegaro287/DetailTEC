@@ -48,3 +48,13 @@ C:\Users\adri\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\o
 C:\Users\adri\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\DetailTEC.dll
 C:\Users\adri\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\refint\DetailTEC.dll
 C:\Users\adri\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\DetailTEC.pdb
+C:\Users\yraul\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\DetailTEC.csproj.AssemblyReference.cache
+C:\Users\yraul\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\DetailTEC.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\yraul\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\DetailTEC.AssemblyInfoInputs.cache
+C:\Users\yraul\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\DetailTEC.AssemblyInfo.cs
+C:\Users\yraul\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\DetailTEC.csproj.CoreCompileInputs.cache
+C:\Users\yraul\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\DetailTEC.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\yraul\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\DetailTEC.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\yraul\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\DetailTEC.dll
+C:\Users\yraul\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\ref\DetailTEC.dll
+C:\Users\yraul\OneDrive\Documentos\GitHub\DetailTEC\Backend\DetailTEC\DetailTEC\obj\Debug\net6.0\DetailTEC.pdb
