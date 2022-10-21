@@ -30,20 +30,20 @@ VALUES
     ('Sucursal del Pacífico', 'Puntarenas', 'Jacó', 'Jacó', '25317076', '118460126','2000-12-12', '2000-12-12'),
     ('Sucursal Chorotega', 'Guanacaste', 'Nicoya', 'Santa Cruz', '2538133','118460126' ,'2000-12-12', '2000-12-12')
 
-INSERT INTO SUCURSAL_TRABAJADOR (Cedula_trabajador, Nombre_sucursal)
-VALUES
-    ('118460116', 'Sucursal del Atlántico'),
-    ('118460126', 'Sucursal del Pacífico'),
-    ('118420116', 'Sucursal Chorotega'),
-    ('112410116', 'Sucursal del Atlántico'),
-    ('305230771', 'Sucursal del Pacífico')
+-- INSERT INTO SUCURSAL_TRABAJADOR (Cedula_trabajador, Nombre_sucursal)
+-- VALUES
+--     ('118460116', 'Sucursal del Atlántico'),
+--     ('118460126', 'Sucursal del Pacífico'),
+--     ('118420116', 'Sucursal Chorotega'),
+--     ('112410116', 'Sucursal del Atlántico'),
+--     ('305230771', 'Sucursal del Pacífico')
 
 
-INSERT INTO GERENTE_SUCURSAL (Trabajador_Cedula, Sucursal_Nombre, Fecha_inicio, Fecha_fin)
-VALUES
-    ('118460116', 'Sucursal del Atlántico', '2000-12-12', '2000-12-12'),
-    ('118460126', 'Sucursal del Pacífico', '2000-12-12', '2000-12-12'),
-    ('118420116', 'Sucursal Chorotega', '2000-12-12', '2000-12-12')
+-- INSERT INTO GERENTE_SUCURSAL (Trabajador_Cedula, Sucursal_Nombre, Fecha_inicio, Fecha_fin)
+-- VALUES
+--     ('118460116', 'Sucursal del Atlántico', '2000-12-12', '2000-12-12'),
+--     ('118460126', 'Sucursal del Pacífico', '2000-12-12', '2000-12-12'),
+--     ('118420116', 'Sucursal Chorotega', '2000-12-12', '2000-12-12')
 
 
 INSERT INTO PROVEEDOR (

@@ -1,5 +1,5 @@
 
-create database DetailTEC
+-- create database DetailTEC
 
 use DetailTEC
 
