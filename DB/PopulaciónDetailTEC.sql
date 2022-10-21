@@ -18,7 +18,7 @@ INSERT INTO TRABAJADOR (
 
 VALUES 
     ('118460116', 'Adriana', 'Calderon', 'Barboza', 'emp@gmail.com','2000-12-12', '2000-12-12', '20', 'contrasena01', 'Pulidor', 'Semanal'),
-    ('118460126', 'Yordi', 'Brenes', 'emp@gmail.com', 'Roda', '2000-12-12', '2000-12-12', '20', 'contrasena01', 'Lavador', 'Bisemanal'),
+    ('118460126', 'Yordi', 'Brenes', 'Roda', 'emp@gmail.com', '2000-12-12', '2000-12-12', '20', 'contrasena01', 'Lavador', 'Bisemanal'),
     ('118420116', 'Ricardo', 'Gatgens', 'Rodriguz', 'emp@gmail.com', '2000-12-12', '2000-12-12', '20', 'contrasena01', 'Pulidor', 'Bisemanal'),
     ('112410116', 'Anthony', 'Chaves', 'Achoy', 'emp@gmail.com', '2000-12-12', '2000-12-12', '20', 'contrasena01', 'Pulidor', 'Semanal'),
     ('305230771', 'Julian', 'Rodriguez', 'Casas', 'emp@gmail.com', '2000-12-12', '2000-12-12', '40', 'juasjuas', 'Lavador', 'Bisemanal' )
