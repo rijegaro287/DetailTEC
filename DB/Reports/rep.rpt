@@ -1,6 +1,0 @@
-﻿Msg 2714, Level 16, State 3, Procedure sucursal_registrar, Line 3 [Batch Start Line 33]
-Ya hay un objeto con el nombre 'sucursal_registrar' en la base de datos.
-Msg 2714, Level 16, State 3, Procedure sucursal_modificar, Line 2 [Batch Start Line 67]
-Ya hay un objeto con el nombre 'sucursal_modificar' en la base de datos.
-
-Completion time: 2022-10-19T06:08:21.0095656-06:00
