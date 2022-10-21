@@ -41,6 +41,5 @@ Frontend/Thumbs.db
 *.vsidx
 *.lock
 *.cache
-*.cs
 Backend/DetailTEC/DetailTEC/obj/Release/net6.0/DetailTEC.GeneratedMSBuildEditorConfig.editorconfig
 *.dll
