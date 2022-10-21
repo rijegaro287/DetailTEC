@@ -8,12 +8,13 @@ for (let index = 1; index < 10; index++) {
     APPOINTMENTS.push({
         id: index,
         placaVehiculo: "ABC-123",
-        nombreSucursal: `Sucursal ${index}`,
+        nombreSucursal: `Sede ${index}`,
         idCliente: ID,
         nombreCliente: `Cliente ${ID}`,
-        tipoLavado: `Lavado ${index}`,
+        tipoLavado: `Lavado y aspirado`,
         fecha: "2021-01-01",
-        hora: "12:00"
+        hora: "8:00",
+        idEmpleados: [1]
     })
 }
 

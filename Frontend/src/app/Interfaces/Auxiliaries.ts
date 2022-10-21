@@ -22,6 +22,7 @@ interface DateInput {
 interface TimeInput {
     hour: number
     minute: number
+    second: number
 }
 
 interface SelectOption {

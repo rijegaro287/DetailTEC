@@ -13,7 +13,7 @@ import { MessageService } from 'src/app/Services/message.service'
   templateUrl: './bill-info.component.html',
   styleUrls: ['./bill-info.component.scss']
 })
-export class BillInfoComponent implements OnInit {
+export class ClientBillInfoComponent implements OnInit {
   billInfoTitles: KeyReplacement<Bill>[]
   bill: Bill
 

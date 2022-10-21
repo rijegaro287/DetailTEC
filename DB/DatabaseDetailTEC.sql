@@ -1,4 +1,7 @@
+
 -- create database DetailTEC
+
+use DetailTEC
 
 IF OBJECT_ID(N'dbo.PRODUCTOS_COMPRADOS', N'U') IS NOT NULL  
 	DROP TABLE [dbo].[PRODUCTOS_COMPRADOS];  
@@ -39,17 +42,19 @@ GO
 
 create table TRABAJADOR(
 	Cedula char(9) not null,
-	Nombre varchar(20) not null,
+	NombreT varchar(20) not null,
 	Apellido1 varchar(20) not null,
 	Apellido2 varchar(20),
-	Fecha_nacimiento date,
+	Fecha_nacimiento date not null,
 	Fecha_ingreso date,
+	Email varchar(50) not null,
 	Edad tinyint, --La edad se calcula en la base de datos, no se ingresa
 	PasswordT varchar(20) not null,
 	Rol varchar(20) not null, -- Creo que rol debería ser una tabla
 	Tipo_pago varchar(10) not null, -- El tipo de pago debería ser otra tabla
 	PRIMARY KEY(Cedula)
 )
+
 
 create table SUCURSAL(
 
@@ -58,23 +63,27 @@ create table SUCURSAL(
 	Canton varchar(20),
 	Distrito varchar(20),
 	Telefono char(8) not null,
+	Cedula_Gerente char(9) not null,
 	Fecha_apertura date,
+	Fecha_gerente date,
 	PRIMARY KEY(Nombre)
 )
 
-CREATE TABLE SUCURSAL_TRABAJADOR(
-	Cedula_trabajador char(9) not null,
-	Nombre_sucursal varchar(40) not null,
-	PRIMARY KEY(Cedula_trabajador,Nombre_sucursal),
-)
 
-CREATE TABLE GERENTE_SUCURSAL(
-	Trabajador_Cedula char(9) not null,
-	Sucursal_Nombre varchar(40) not null,
-	Fecha_inicio date,
-	Fecha_fin date,
-	PRIMARY KEY(Trabajador_Cedula, Sucursal_Nombre)
-)
+
+--CREATE TABLE SUCURSAL_TRABAJADOR(
+--	Cedula_trabajador char(9) not null,
+--	Nombre_sucursal varchar(40) not null,
+--	PRIMARY KEY(Cedula_trabajador,Nombre_sucursal)
+--)
+
+--CREATE TABLE GERENTE_SUCURSAL(
+--	Trabajador_Cedula char(9) not null,
+--	Sucursal_Nombre varchar(40) not null,
+--	Fecha_inicio date,
+--	Fecha_fin date,
+--	PRIMARY KEY(Trabajador_Cedula, Sucursal_Nombre)
+--)
 
 CREATE TABLE PROVEEDOR 
 (
@@ -136,14 +145,14 @@ create table CLIENTE(
 create table TELEFONOS_CLIENTE(
 	
 	Cedula_Cli char(9) not null,
-	Telefono char(8) not null,
+	Telefono char(8) not null
 	
 )
 
 create table DIRECCIONES_CLIENTE(
 	
 	Cedula_Cli char(9) not null,
-	Direccion varchar(100) not null,
+	Direccion varchar(100) not null
 	
 )
 
@@ -156,13 +165,13 @@ create table CITA(
 	Cedula_cliente char(9) not null,
 	Fecha date not null, 
 	Hora time not null,
-	PRIMARY KEY(ID),
+	PRIMARY KEY(ID)
 )
 
 create table TRABAJADORES_POR_CITA(
 	
 	Cedula_trabajador char(9) not null,
-	ID_cita int not null,
+	ID_cita int not null
 )
 
 CREATE TABLE TIPO_DE_PAGO( 
@@ -181,22 +190,24 @@ CREATE TABLE FACTURA(
 CREATE TABLE PRODUCTOS_COMPRADOS(
 	Nombre_producto varchar(20) not null,
 	ID_Factura INT NOT NULL,
-	Cantidad int not null,
-	PRIMARY KEY (Nombre_producto, ID_Factura)
+	Cantidad int not null
 );
 
 GO 
 
 -- LLaves foráneas
-ALTER TABLE GERENTE_SUCURSAL
-ADD CONSTRAINT Fk_GERENTE_SUCURSAL_SUCURSAL FOREIGN KEY (Sucursal_Nombre) REFERENCES SUCURSAL(Nombre);
-ALTER TABLE GERENTE_SUCURSAL
-ADD CONSTRAINT FK_GERENTE_SUCURSAL_TRABAJADOR FOREIGN KEY (Trabajador_Cedula) REFERENCES TRABAJADOR(Cedula);
+--ALTER TABLE GERENTE_SUCURSAL
+--ADD CONSTRAINT Fk_GERENTE_SUCURSAL_SUCURSAL FOREIGN KEY (Sucursal_Nombre) REFERENCES SUCURSAL(Nombre);
+--ALTER TABLE GERENTE_SUCURSAL
+--ADD CONSTRAINT FK_GERENTE_SUCURSAL_TRABAJADOR FOREIGN KEY (Trabajador_Cedula) REFERENCES TRABAJADOR(Cedula);
 
-ALTER TABLE SUCURSAL_TRABAJADOR
-ADD CONSTRAINT FK_SUCURSAL_TRABAJADOR_SUCURSAL FOREIGN KEY (Nombre_sucursal) REFERENCES SUCURSAL(Nombre);
-ALTER TABLE SUCURSAL_TRABAJADOR
-ADD CONSTRAINT FK_SUCURSAL_TRABAJADOR_TRABAJADOR FOREIGN KEY (Cedula_trabajador) REFERENCES TRABAJADOR(Cedula);
+--ALTER TABLE SUCURSAL_TRABAJADOR
+--ADD CONSTRAINT FK_SUCURSAL_TRABAJADOR_SUCURSAL FOREIGN KEY (Nombre_sucursal) REFERENCES SUCURSAL(Nombre);
+--ALTER TABLE SUCURSAL_TRABAJADOR
+--ADD CONSTRAINT FK_SUCURSAL_TRABAJADOR_TRABAJADOR FOREIGN KEY (Cedula_trabajador) REFERENCES TRABAJADOR(Cedula);
+
+ALTER TABLE SUCURSAL
+ADD CONSTRAINT FK_CEDULA_GERENTE FOREIGN KEY (Cedula_Gerente) REFERENCES TRABAJADOR(Cedula)
 
 ALTER TABLE CONTACTO_PROVEEDOR
 ADD CONSTRAINT FK_CONTACTO_PROVEEDOR_PROVEEDOR FOREIGN KEY (Ced_prov) REFERENCES PROVEEDOR(Cedula_juridica);

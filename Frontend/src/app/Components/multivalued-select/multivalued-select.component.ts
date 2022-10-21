@@ -16,6 +16,7 @@ export class MultivaluedSelectComponent implements OnInit {
   @Input() options: SelectOption[]
   @Input() optionsState: SelectOption[]
   @Input() onChangeCallback: () => void
+  @Input() maxOptions?: number
 
   formArray: FormArray
 
@@ -30,6 +31,8 @@ export class MultivaluedSelectComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.formArray.valueChanges.subscribe(() => this.onChange())
+
     this.options.forEach(option => {
       option.disabled = false
       return option
@@ -41,7 +44,15 @@ export class MultivaluedSelectComponent implements OnInit {
     this.onChange()
   }
 
-  addElement = () => { this.formArray.push(new FormControl('')) }
+  addElement = () => {
+    {
+      if (this.maxOptions) {
+        if (this.formArray.length < this.maxOptions) {
+          this.formArray.push(new FormControl(''))
+        }
+      }
+    }
+  }
 
   deleteElement = (index: number) => {
     if (this.formArray.length > 1) {
