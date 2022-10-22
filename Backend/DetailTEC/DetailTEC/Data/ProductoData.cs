@@ -1,6 +1,7 @@
-﻿using System.Data;
-using System.Data.SqlClient;
+﻿
 using DetailTEC.Models;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace DetailTEC.Data
 {
@@ -36,9 +37,9 @@ namespace DetailTEC.Data
             {
 
                 SqlCommand cmd = new SqlCommand("update PRODUCTO set" +
-                    "Nombre = " + producto.nombre + ",Marca =" + producto.marca + ",Costo" + producto.costo +
-                    ",precio" + producto.precio + ",IdProveedor" +
-                    producto.idProveedor + ",NombreProveedor" + producto.nombreProveedor
+                    "Nombre = " + producto.nombre + ",Marca =" + producto.marca + ",Costo=" + producto.costo +
+                    ",Precio=" + producto.precio + ",IdProveedor=" +
+                    producto.idProveedor + ",NombreProveedor=" + producto.nombreProveedor
                     + ")", oConexion);
 
                 try
@@ -93,6 +94,72 @@ namespace DetailTEC.Data
                 catch (Exception ex)
                 {
                     return oListaUsuario;
+                }
+            }
+        }
+
+        public static Producto Obtener(string id)
+        {
+            Producto producto = new Producto();
+            using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
+            {
+                //SqlCommand cmd = new SqlCommand("producto_obtener", oConexion);
+                //cmd.CommandType = CommandType.StoredProcedure;
+                //cmd.Parameters.AddWithValue("@Nombre", nombre);
+                SqlCommand cmd = new SqlCommand("select Nombre, Marca, Costo, Precio, idProveedor, nombreProveedor from PRODUCTO" +
+                    " WHERE ID =" + id);
+
+                try
+                {
+                    oConexion.Open();
+                    cmd.ExecuteNonQuery();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+
+                        while (dr.Read())
+                        {
+                            producto = new Producto()
+                            {
+                                nombre = dr["Nombre"].ToString(),
+                                marca = dr["Marca"].ToString(),
+                                costo = Convert.ToInt32(dr["Costo"].ToString()),
+                                precio = Convert.ToInt32(dr["Precio"].ToString()),
+                                idProveedor = dr["idProveedor"].ToString(),
+                                nombreProveedor = dr["nombreProveedor"].ToString(),
+                            };
+                        }
+
+                    }
+
+
+
+                    return producto;
+                }
+                catch (Exception ex)
+                {
+                    return producto;
+                }
+            }
+        }
+
+        public static bool Eliminar(string nombre)
+        {
+            using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
+            {
+                SqlCommand cmd = new SqlCommand("producto_eliminar", oConexion);
+                //cmd.CommandType = CommandType.StoredProcedure;
+                //cmd.Parameters.AddWithValue("@Nombre", nombre);
+
+                try
+                {
+                    oConexion.Open();
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
                 }
             }
         }

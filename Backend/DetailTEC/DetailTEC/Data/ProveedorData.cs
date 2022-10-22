@@ -20,17 +20,17 @@ namespace DetailTEC.Data
                 {
                     oConexion.Open();
                     cmd1.ExecuteNonQuery();
-                    
+
                     SqlCommand cmd2 = null;
-                    for (int i = 0; i < (proveedor.telefonos.Count-1); i++)
+                    for (int i = 0; i < (proveedor.telefonos.Count - 1); i++)
                     {
                         cmd2 = new SqlCommand("insert into CONTACTO_PROVEEDOR(Ced_prov, Telefono) values(" +
                             proveedor.id + "," + proveedor.telefonos[i] + ")", oConexion);
                         cmd2.ExecuteNonQuery();
                     }
-                    
-                    
-                    
+
+
+
                     return true;
                 }
                 catch (Exception ex)
@@ -47,14 +47,14 @@ namespace DetailTEC.Data
                 SqlCommand cmd1;
                 cmd1 = new SqlCommand("update PROVEEDOR set " +
                     "Cedula_juridica = " + proveedor.id + ",Nombre =" + proveedor.nombre + ",Direccion=" + proveedor.direccion +
-                    ",Correo_electronico=" + proveedor.email+ ")", oConexion);
+                    ",Correo_electronico=" + proveedor.email + ")", oConexion);
 
                 SqlCommand cmd2 = null;
                 for (int i = 0; i < proveedor.telefonos.Count; i++)
-                    {
-                        cmd2 = new SqlCommand("update CONTACTO_PROVEEDOR set " +
-                        "Ced_prov = " + proveedor.id + ",Telefono =" + proveedor.telefonos[i]+")", oConexion);
-                    }
+                {
+                    cmd2 = new SqlCommand("update CONTACTO_PROVEEDOR set " +
+                    "Ced_prov = " + proveedor.id + ",Telefono =" + proveedor.telefonos[i] + ")", oConexion);
+                }
 
                 try
                 {
@@ -86,7 +86,7 @@ namespace DetailTEC.Data
                     string idRef = "";
                     int i = 0;
 
-                    List<string> telefonosList= new List<string>();
+                    List<string> telefonosList = new List<string>();
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
 
@@ -121,7 +121,7 @@ namespace DetailTEC.Data
 
                             }
 
-                            
+
 
                         }
                         oListaUsuario[i].telefonos = telefonosList;
@@ -162,17 +162,17 @@ namespace DetailTEC.Data
                         {
                             //if (firstRead)
                             //{
-                                proveedor = new Proveedor()
-                                {
+                            proveedor = new Proveedor()
+                            {
 
-                                    id = dr["Cedula_juridica"].ToString(),
-                                    nombre = dr["Nombre"].ToString(),
-                                    direccion = dr["Direccion"].ToString(),
-                                    email = dr["Correo_electronico"].ToString()
+                                id = dr["Cedula_juridica"].ToString(),
+                                nombre = dr["Nombre"].ToString(),
+                                direccion = dr["Direccion"].ToString(),
+                                email = dr["Correo_electronico"].ToString()
 
-                                };
-                                telefonosList.Add(dr["Telefono"].ToString());
-                                firstRead = false;
+                            };
+                            telefonosList.Add(dr["Telefono"].ToString());
+                            firstRead = false;
                             //}
                             //else
                             //{

@@ -23,32 +23,14 @@ VALUES
     ('112410116', 'Anthony', 'Chaves', 'Achoy', 'emp@gmail.com', '2000-12-12', '2000-12-12', '20', 'contrasena01', 'Pulidor', 'Semanal'),
     ('305230771', 'Julian', 'Rodriguez', 'Casas', 'emp@gmail.com', '2000-12-12', '2000-12-12', '40', 'juasjuas', 'Lavador', 'Bisemanal' )
 
+insert into TRABAJADOR(Cedula,NombreT,Apellido1,Apellido2,Email,Fecha_nacimiento,Fecha_ingreso,Edad,PasswordT,Rol,Tipo_pago)
+values('255654856', 'Joel', 'Sequeira', 'Hernandez', 'jsh@gmail.com', '22/10/2022 0:00:00', '22/11/2002 0:00:00', '0', 'string1234', 'lavador', 'semanal') 
 
-INSERT INTO SUCURSAL (Nombre, Provincia, Canton, Distrito, Telefono, Cedula_Gerente, Fecha_apertura, Fecha_gerente)
+INSERT INTO SUCURSAL (ID, Nombre, Provincia, Canton, Distrito, Telefono, Cedula_Gerente, Fecha_apertura, Fecha_gerente)
 VALUES
-    ('Sucursal del Atlántico', 'Cartago', 'Turrialba', 'Jimenez', '25310808', '118460126','2000-12-12', '2000-12-12'),
-    ('Sucursal del Pacífico', 'Puntarenas', 'Jacó', 'Jacó', '25317076', '118460126','2000-12-12', '2000-12-12'),
-    ('Sucursal Chorotega', 'Guanacaste', 'Nicoya', 'Santa Cruz', '2538133','118460126' ,'2000-12-12', '2000-12-12')
-
-
-	INSERT INTO SUCURSAL (Nombre, Provincia, Canton, Distrito, Telefono, Cedula_Gerente, Fecha_apertura, Fecha_gerente)
-VALUES
-    ('Sucursal3', 'Cartago', 'Turrialba', 'Jimenez', '25310808', '118460126','2000-12-12', '2000-12-12')
-
-INSERT INTO SUCURSAL_TRABAJADOR (Cedula_trabajador, Nombre_sucursal)
-VALUES
-    ('118460116', 'Sucursal del Atlántico'),
-    ('118460126', 'Sucursal del Pacífico'),
-    ('118420116', 'Sucursal Chorotega'),
-    ('112410116', 'Sucursal del Atlántico'),
-    ('305230771', 'Sucursal del Pacífico')
-
-
-INSERT INTO GERENTE_SUCURSAL (Trabajador_Cedula, Sucursal_Nombre, Fecha_inicio, Fecha_fin)
-VALUES
-    ('118460116', 'Sucursal del Atlántico', '2000-12-12', '2000-12-12'),
-    ('118460126', 'Sucursal del Pacífico', '2000-12-12', '2000-12-12'),
-    ('118420116', 'Sucursal Chorotega', '2000-12-12', '2000-12-12')
+    ('01','Sucursal del Atlántico', 'Cartago', 'Turrialba', 'Jimenez', '25310808', '118460126','2000-12-12', '2000-12-12'),
+    ('02','Sucursal del Pacífico', 'Puntarenas', 'Jacó', 'Jacó', '25317076', '118460126','2000-12-12', '2000-12-12'),
+    ('03','Sucursal Chorotega', 'Guanacaste', 'Nicoya', 'Santa Cruz', '2538133','118460126' ,'2000-12-12', '2000-12-12')
 
 
 INSERT INTO PROVEEDOR (
@@ -57,30 +39,31 @@ INSERT INTO PROVEEDOR (
     Direccion, 
     Correo_electronico)
 VALUES
-    ('3-101-101010', 'Lavado de Autos', 'San José, San José, San José', 'lavadoAutos@gmail.com'),
-    ('3-101-101011', 'Limpiadores SA', 'Cartago, Cartago, Cartago', 'limpiautos@hotmail.com')
+    ('3101101010', 'Lavado de Autos', 'San José, San José, San José', 'lavadoAutos@gmail.com'),
+    ('3101101011', 'Limpiadores SA', 'Cartago, Cartago, Cartago', 'limpiautos@hotmail.com')
 
 
 INSERT INTO CONTACTO_PROVEEDOR(Ced_prov, Telefono)
 VALUES
-    ('3-101-101010', '22222222'),
-    ('3-101-101011', '33333333'),
-    ('3-101-101011', '44444444')
+    ('3101101010', '22222222'),
+    ('3101101011', '33333333'),
+    ('3101101011', '44444444')
 
 
 
-INSERT INTO PRODUCTO(Nombre, Marca, Costo, Precio, Ced_prov)
+INSERT INTO PRODUCTO(ID,Nombre, Marca, Costo, Precio, Ced_prov)
 VALUES
-    ('Cera Genérica', 'Duracel', '1500', '2000', '3-101-101010'),
-    ('Nice', 'Handyman', '1000', '2000', '3-101-101010'),
-    ('Esponja', 'Shopwise', '300', '500', '3-101-101010'),
-    ('Abrillantador', 'PureGold', '3000', '7000', '3-101-101010'),
-    ('Jabon', 'WashiShine', '1000', '1500', '3-101-101011')
+    ('01','Cera Genérica', 'Duracel', '1500', '2000', '3101101010'),
+    ('02','Nice', 'Handyman', '1000', '2000', '3101101010'),
+    ('03','Esponja', 'Shopwise', '300', '500', '3101101010'),
+    ('04','Abrillantador', 'PureGold', '3000', '7000', '3101101010'),
+    ('05','Jabon', 'WashiShine', '1000', '1500', '3101101011')
 
 
 
 
 INSERT INTO LAVADO (
+	ID,
     Nombre, 
     Comision_trabajador, 
     Precio, 
@@ -89,25 +72,17 @@ INSERT INTO LAVADO (
     Trabajadores_necesarios)
 
 VALUES
-    ('Lavado y aspirado', '2000', '3000', '30', '1000', '2'),
-    ('Lavado y encerado', '3000', '4000', '45', '5000', '2'),
-    ('Lavado premium y pulido', '5000', '6000', '60', '2000', '2')
+    ('01','Lavado y aspirado', '2000', '3000', '30', '1000', '2'),
+    ('02','Lavado y encerado', '3000', '4000', '45', '5000', '2'),
+    ('03','Lavado premium y pulido', '5000', '6000', '60', '2000', '2')
 
 
-INSERT INTO PRODUCTO_LAVADO (Nombre_producto, Nombre_lavado)
+INSERT INTO PRODUCTO_LAVADO (ID_Lavado, ID_Producto)
 VALUES
-    ('Nice', 'Lavado y aspirado'),
-    ('Esponja', 'Lavado y aspirado'),
-    ('Jabon', 'Lavado y aspirado'),
-    ('Cera Genérica', 'Lavado y encerado'),
-    ('Nice', 'Lavado y encerado'),
-    ('Esponja', 'Lavado y encerado'),
-    ('Jabon', 'Lavado y encerado'),
-    ('Cera Genérica', 'Lavado premium y pulido'),
-    ('Nice', 'Lavado premium y pulido'),
-    ('Esponja', 'Lavado premium y pulido'),
-    ('Abrillantador', 'Lavado premium y pulido'),
-    ('Jabon', 'Lavado premium y pulido')
+    ('01','01'),
+    ('01','02'),
+	('02','03'),
+	('01','03')
 
 insert into Cliente(
     Cedula,
@@ -148,27 +123,28 @@ VALUES
     ('35346123', 'Guanacaste, Nicoya, Nicoya'),
     ('35346123', 'Heredia, Heredia, Heredia')
 
+
 insert into cita(
     ID, 
     Placa, 
-    Nombre_sucursal, 
-    Nombre_lavado, 
+    ID_Sucursal, 
+    ID_Lavado, 
     Cedula_cliente, 
     Fecha,
     Hora)
 VALUES
-    ('1', 'P-1234', 'Sucursal del Atlántico', 'Lavado y aspirado', '25325241', '2000-12-12', '13:00'),
-    ('2', 'P-1235', 'Sucursal del Pacífico', 'Lavado y encerado', '25325241', '2000-12-12', '14:00'),
-    ('3', 'P-1236', 'Sucursal Chorotega', 'Lavado premium y pulido', '53294589', '2000-12-12', '15:00'),
-    ('4', 'P-1237', 'Sucursal del Atlántico', 'Lavado y aspirado', '35346123', '2000-12-12', '16:00'),
-    ('5', 'P-1238', 'Sucursal del Pacífico', 'Lavado y encerado', '35346123', '2000-12-12', '17:00'),
-    ('6', 'P-1239', 'Sucursal del Atlántico', 'Lavado y aspirado', '25325241', '2000-12-12', '08:00'),
-    ('7', 'P-1240', 'Sucursal del Atlántico', 'Lavado y aspirado', '25325241', '2000-12-12', '09:00'),
-    ('8', 'P-1241', 'Sucursal del Atlántico', 'Lavado y encerado', '53294589', '2000-12-12', '10:00'),
-    ('9', 'P-1242', 'Sucursal del Atlántico', 'Lavado y encerado', '35346123', '2000-12-12', '11:00'),
-    ('10', 'P-1243', 'Sucursal del Atlántico', 'Lavado y aspirado', '35346123', '2000-12-12', '13:00'),
-    ('11', 'P-1244', 'Sucursal del Atlántico', 'Lavado premium y pulido', '53294589', '2000-12-12', '14:00'),
-    ('12', 'P-1245', 'Sucursal del Atlántico', 'Lavado premium y pulido', '25325241', '2000-12-12', '15:00')
+    ('1', 'P-1234', '01', '01', '25325241', '2000-12-12', '13:00'),
+    ('2', 'P-1235', '01', '01', '25325241', '2000-12-12', '14:00'),
+    ('3', 'P-1236', '01', '02', '53294589', '2000-12-12', '15:00'),
+    ('4', 'P-1237', '01', '03', '35346123', '2000-12-12', '16:00'),
+    ('5', 'P-1238', '02', '02', '35346123', '2000-12-12', '17:00'),
+    ('6', 'P-1239', '01', '03', '25325241', '2000-12-12', '08:00'),
+    ('7', 'P-1240', '02', '02', '25325241', '2000-12-12', '09:00'),
+    ('8', 'P-1241', '01', '01', '53294589', '2000-12-12', '10:00'),
+    ('9', 'P-1242', '02', '02', '35346123', '2000-12-12', '11:00'),
+    ('10', 'P-1243', '01', '02', '35346123', '2000-12-12', '13:00'),
+    ('11', 'P-1244', '02', '03', '53294589', '2000-12-12', '14:00'),
+    ('12', 'P-1245', '02', '02', '25325241', '2000-12-12', '15:00')
 
 INSERT INTO TRABAJADORES_POR_CITA(
     ID_Cita,
@@ -227,15 +203,15 @@ VALUES
 
 INSERT INTO PRODUCTOS_COMPRADOS(
     ID_Factura,
-    Nombre_producto,
+    ID_Producto,
     Cantidad)
 VALUES
-    ('1', 'Esponja', '2'),
-    ('1', 'Jabon', '2'),
-    ('2', 'Abrillantador', '1'),
-    ('3', 'Jabon', '1'),
-    ('3', 'Abrillantador', '3'),
-    ('4', 'Esponja', '1'),
-    ('5', 'Jabon', '1'),
-    ('6', 'Abrillantador', '5')
+    ('1', '01', '2'),
+    ('1', '02', '2'),
+    ('2', '01', '1'),
+    ('3', '02', '1'),
+    ('3', '03', '3'),
+    ('4', '02', '1'),
+    ('5', '01', '1'),
+    ('6', '02', '5')
    

@@ -11,11 +11,19 @@ namespace DetailTEC.Data
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
                 SqlCommand cmd = new SqlCommand("insert into " +
-                    "SUCURSAL(Nombre,Provincia, Canton, Distrito, Telefono," +
+                    "SUCURSAL(ID, Nombre,Provincia, Canton, Distrito, Telefono," +
                     "Fecha_apertura, Fecha_gerente, Cedula_gerente) " +
-                    "values(" + sucursal.nombre+ "," + sucursal.provincia +"," + sucursal.canton +","+ sucursal.distrito +","+
-                    sucursal.telefono+"," + sucursal.idGerente+"," + sucursal.fechaApertura+"," + sucursal.fechaInicioGerente +")", oConexion);
-       
+                    "values(@param1, @param2, @param3, @param4, @param5, @param6, @param7, @param8, @param9)", oConexion);
+                cmd.Parameters.Add("@param1", SqlDbType.Int).Value = sucursal.id;
+                cmd.Parameters.Add("@param2", SqlDbType.VarChar, 40).Value = sucursal.nombre;
+                cmd.Parameters.Add("@param3", SqlDbType.VarChar, 20).Value = sucursal.provincia;
+                cmd.Parameters.Add("@param4", SqlDbType.VarChar, 20).Value = sucursal.canton;
+                cmd.Parameters.Add("@param5", SqlDbType.VarChar, 20).Value = sucursal.distrito;
+                cmd.Parameters.Add("@param6", SqlDbType.Char, 8).Value = sucursal.telefono;
+                cmd.Parameters.Add("@param7", SqlDbType.Char, 9).Value = sucursal.idGerente;
+                cmd.Parameters.Add("@param8", SqlDbType.Date).Value = sucursal.fechaApertura;
+                cmd.Parameters.Add("@param9", SqlDbType.Date).Value = sucursal.fechaInicioGerente;
+                cmd.CommandType = CommandType.Text;
                 try
                 {
                     oConexion.Open();
@@ -39,19 +47,7 @@ namespace DetailTEC.Data
                     ",Distrito = "+sucursal.distrito+
                     ", Telefono =" + sucursal.telefono +",Cedula_Gerente="+ sucursal.idGerente
                     +", Fecha_apertura =" + sucursal.fechaApertura +
-                    ", Fecha_gerente =" + sucursal.fechaInicioGerente+"where Nombre = "+sucursal.nombre +")", oConexion);
-                /*
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Nombre", sucursal.nombre);
-                cmd.Parameters.AddWithValue("@Provincia", sucursal.provincia);
-                cmd.Parameters.AddWithValue("@Canton", sucursal.canton);
-                cmd.Parameters.AddWithValue("@Distrito", sucursal.distrito);
-                cmd.Parameters.AddWithValue("@Telefono", sucursal.telefono);
-                cmd.Parameters.AddWithValue("@Fecha_apertura", sucursal.fechaApertura);
-                cmd.Parameters.AddWithValue("@Fecha_gerente", sucursal.fechaGerente);
-                cmd.Parameters.AddWithValue("@Cedula_gerente", sucursal.cedulaGerente);
-
-                */
+                    ", Fecha_gerente =" + sucursal.fechaInicioGerente+"where Nombre = "+sucursal.nombre, oConexion);
 
                 try
                 {
