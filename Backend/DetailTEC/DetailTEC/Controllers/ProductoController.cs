@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 
 
 namespace DetailTEC.Controllers
-{
 
     public class ProductoController : Controller
     {
@@ -16,10 +15,17 @@ namespace DetailTEC.Controllers
         {
             return ProductoData.Listar();
         }
+
         /*
         [HttpGet]
         [Route("get/{id}")]
         public ProductoForGet Get(string nombre)
+
+
+        [HttpGet]
+        [Route("get/{id}")]
+        public Producto Get(string nombre)
+
         {
             return ProductoData.Obtener(nombre);
         }

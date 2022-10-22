@@ -98,16 +98,24 @@ namespace DetailTEC.Data
             }
         }
 
+
         public static Producto Obtener(string id)
+
         {
             Producto producto = new Producto();
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
+
                 //SqlCommand cmd = new SqlCommand("producto_obtener", oConexion);
                 //cmd.CommandType = CommandType.StoredProcedure;
                 //cmd.Parameters.AddWithValue("@Nombre", nombre);
                 SqlCommand cmd = new SqlCommand("select Nombre, Marca, Costo, Precio, idProveedor, nombreProveedor from PRODUCTO" +
                     " WHERE ID =" + id);
+
+                SqlCommand cmd = new SqlCommand("producto_obtener", oConexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Nombre", nombre);
+
 
                 try
                 {
@@ -148,8 +156,13 @@ namespace DetailTEC.Data
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
                 SqlCommand cmd = new SqlCommand("producto_eliminar", oConexion);
+
                 //cmd.CommandType = CommandType.StoredProcedure;
                 //cmd.Parameters.AddWithValue("@Nombre", nombre);
+
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Nombre", nombre);
+
 
                 try
                 {

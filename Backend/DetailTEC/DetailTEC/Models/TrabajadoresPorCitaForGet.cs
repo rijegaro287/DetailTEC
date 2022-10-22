@@ -1,6 +1,6 @@
 ﻿namespace DetailTEC.Models
 {
-    public class TrabajadoresCita
+    public class TrabajadoresPorCitaForGet
     {
         public string cedulaTrabajador { get; set; }
         public int idCita { get; set; }
