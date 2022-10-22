@@ -1,21 +1,20 @@
 ﻿using DetailTEC.Models;
 using System.Data.SqlClient;
 using System.Data;
+using DetailTEC.Data;
 
 namespace DetailTEC.Data
 {
     public class LavadoData
     {
+
         public static bool Registrar(Lavado lavado)
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("lavado_registrar", oConexion);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Nombre", lavado.nombre);
-                cmd.Parameters.AddWithValue("@Costo", lavado.costo);
-                cmd.Parameters.AddWithValue("@Precio", lavado.precio);
-                cmd.Parameters.AddWithValue("@Duracion", lavado.duracion);
+                SqlCommand cmd = new SqlCommand("insert into " +
+                       "LAVADO(Nombre,Costo, Precio, Duracion)" +
+                       " values(" + lavado.nombre + "," + lavado.costo + "," + lavado.precio + "," + lavado.duracion + ")", oConexion);
 
                 try
                 {
@@ -25,7 +24,6 @@ namespace DetailTEC.Data
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex.Message);
                     return false;
                 }
             }
@@ -35,12 +33,9 @@ namespace DetailTEC.Data
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("lavado_modificar", oConexion);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Nombre", lavado.nombre);
-                cmd.Parameters.AddWithValue("@Costo", lavado.costo);
-                cmd.Parameters.AddWithValue("@Precio", lavado.precio);
-                cmd.Parameters.AddWithValue("@Duracion", lavado.duracion);
+                SqlCommand cmd = new SqlCommand("update LAVADO set " +
+                     "Nombre = " + lavado.nombre + ",Costo =" + lavado.costo + ",Precio =" + lavado.precio +
+                     ",Duracion =" + lavado.duracion + ")", oConexion);
 
 
                 try
@@ -56,14 +51,13 @@ namespace DetailTEC.Data
             }
         }
 
-        public static List<Lavado> Listar()
+        public static List<LavadoForGet> Listar()
         {
             List<Lavado> oListaUsuario = new List<Lavado>();
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("lavado_listar", oConexion);
-                cmd.CommandType = CommandType.StoredProcedure;
 
+                SqlCommand cmd = new SqlCommand("select Nombre, Costo, Precio, Duracion from LAVADO", oConexion);
                 try
                 {
                     oConexion.Open();
@@ -74,17 +68,17 @@ namespace DetailTEC.Data
 
                         while (dr.Read())
                         {
-                            oListaUsuario.Add(new Lavado()
+                            oListaUsuario.Add(new LavadoForGet()
                             {
                                 nombre = dr["Nombre"].ToString(),
                                 costo = Convert.ToInt32(dr["Costo"]),
                                 precio = Convert.ToInt32(dr["Precio"]),
                                 duracion = Convert.ToInt32(dr["Duracion"])
                             });
+
                         }
 
                     }
-
 
 
                     return oListaUsuario;
@@ -96,14 +90,13 @@ namespace DetailTEC.Data
             }
         }
 
-        public static Lavado Obtener(string nombre)
+        public static LavadoForGet Obtener(string nombre)
         {
-            Lavado lavado = new Lavado();
+            LavadoForGet lavado = new LavadoForGet();
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("lavado_obtener", oConexion);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Nombre", nombre);
+                SqlCommand cmd = new SqlCommand("select Nombre, Costo, Precio, Duracion from LAVADO " +
+                    "where Nombre = " + nombre, oConexion);
 
                 try
                 {
@@ -141,9 +134,7 @@ namespace DetailTEC.Data
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("lavado_eliminar", oConexion);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Nombre", nombre);
+                SqlCommand cmd = new SqlCommand("delete from LAVADO where Nombre = " + nombre, oConexion);
 
                 try
                 {
@@ -159,3 +150,5 @@ namespace DetailTEC.Data
         }
     }
 }
+
+

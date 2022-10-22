@@ -10,16 +10,12 @@ namespace DetailTEC.Data
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("cliente_registrar", oConexion);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Cedula", cliente.cedula);
-                cmd.Parameters.AddWithValue("@Nombre", cliente.nombre);
-                cmd.Parameters.AddWithValue("@Apellido1", cliente.apellido1);
-                cmd.Parameters.AddWithValue("@Apellido2", cliente.apellido2);
-                cmd.Parameters.AddWithValue("@Usuario", cliente.usuario);
-                cmd.Parameters.AddWithValue("@Correo", cliente.correo);
-                cmd.Parameters.AddWithValue("@PasswordC", cliente.password);
-                cmd.Parameters.AddWithValue("@Puntos", cliente.puntos);
+                SqlCommand cmd = new SqlCommand("insert into " +
+                  "CLIENTE(Cedula,Nombre,Apellido1,Apellido2,usuario,Correo,PasswordC,Puntos)" +
+                  " values(" + cliente.cedula + "," + cliente.nombre + "," + cliente.apellido1 + "," + cliente.apellido2 + "," +
+                  cliente.usuario + "," + cliente.correo + "," + cliente.password + "," + cliente.puntos + ","  + ")", oConexion);
+
+
                 try
                 {
                     oConexion.Open();
@@ -37,16 +33,11 @@ namespace DetailTEC.Data
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("cliente_modificar", oConexion);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Cedula", cliente.cedula);
-                cmd.Parameters.AddWithValue("@Nombre", cliente.nombre);
-                cmd.Parameters.AddWithValue("@Apellido1", cliente.apellido1);
-                cmd.Parameters.AddWithValue("@Apellido2", cliente.apellido2);
-                cmd.Parameters.AddWithValue("@Usuario", cliente.usuario);
-                cmd.Parameters.AddWithValue("@Correo", cliente.correo);
-                cmd.Parameters.AddWithValue("@PasswordC", cliente.password);
-                cmd.Parameters.AddWithValue("@Puntos", cliente.puntos);
+
+                SqlCommand cmd = new SqlCommand("update TRABAJADOR set " +
+                    "Cedula = " + cliente.cedula +",Nombre =" + cliente.nombre + ",Apellido1 =" + cliente.apellido1 + ",Apellido2 =" + cliente.apellido2 + ",Usuario =" +
+                cliente.usuario + ",Correo =" + cliente.correo + ",PasswordC =" + cliente.password + ",Puntos =" + cliente.puntos + ")", oConexion);
+
 
                 try
                 {
@@ -61,13 +52,12 @@ namespace DetailTEC.Data
             }
         }
 
-        public static List<Cliente> Listar()
+        public static List<ClienteForGet> Listar()
         {
-            List<Cliente> oListaUsuario = new List<Cliente>();
+            List<ClienteForGet> oListaUsuario = new List<ClienteForGet>();
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("cliente_listar", oConexion);
-                cmd.CommandType = CommandType.StoredProcedure;
+                SqlCommand cmd = new SqlCommand("select Cedula,Nombre,Apellido1,Apellido2,usuario,Correo,PasswordC,Puntos from CLIENTE", oConexion);
 
                 try
                 {
@@ -106,14 +96,14 @@ namespace DetailTEC.Data
             }
         }
 
-        public static Cliente Obtener(string cedula)
+        public static ClienteForGet Obtener(string cedula)
         {
-            Cliente cliente = new Cliente();
+            ClienteForGet cliente = new ClienteForGet();
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("cliente_obtener", oConexion);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Cedula", cedula);
+                SqlCommand cmd = new SqlCommand("select Cedula,Nombre,Apellido1,Apellido2,usuario,Correo,PasswordC,Puntos, " +
+                    "from CLIENTE where Cedula = " + cedula, oConexion);
+
 
                 try
                 {
@@ -155,9 +145,8 @@ namespace DetailTEC.Data
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("cliente_eliminar", oConexion);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Cedula", cedula);
+                SqlCommand cmd = new SqlCommand("delete from CLIENTE where Cedula = " + cedula, oConexion);
+
 
                 try
                 {

@@ -96,5 +96,69 @@ namespace DetailTEC.Data
                 }
             }
         }
+
+        public static Producto Obtener(string nombre)
+        {
+            Producto producto = new Producto();
+            using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
+            {
+                SqlCommand cmd = new SqlCommand("producto_obtener", oConexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Nombre", nombre);
+
+                try
+                {
+                    oConexion.Open();
+                    cmd.ExecuteNonQuery();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+
+                        while (dr.Read())
+                        {
+                            producto = new Producto()
+                            {
+                                nombre = dr["Nombre"].ToString(),
+                                marca = dr["Marca"].ToString(),
+                                costo = Convert.ToInt32(dr["Costo"].ToString()),
+                                precio = Convert.ToInt32(dr["Precio"].ToString()),
+                                idProveedor = dr["idProveedor"].ToString(),
+                                nombreProveedor = dr["nombreProveedor"].ToString(),
+                            };
+                        }
+
+                    }
+
+
+
+                    return producto;
+                }
+                catch (Exception ex)
+                {
+                    return producto;
+                }
+            }
+        }
+
+        public static bool Eliminar(string nombre)
+        {
+            using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
+            {
+                SqlCommand cmd = new SqlCommand("producto_eliminar", oConexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Nombre", nombre);
+
+                try
+                {
+                    oConexion.Open();
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+        }
     }
 }

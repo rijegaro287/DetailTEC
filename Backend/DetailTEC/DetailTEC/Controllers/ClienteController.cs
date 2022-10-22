@@ -11,14 +11,14 @@ namespace DetailTEC.Controllers
     {
         [HttpGet]
         [Route("get_all")]
-        public List<Cliente> Get()
+        public List<ClienteForGet> Get()
         {
             return ClienteData.Listar();
         }
 
         [HttpGet]
         [Route("get/{id}")]
-        public Cliente Get(string cedula)
+        public ClienteForGet Get(string cedula)
         {
             return ClienteData.Obtener(cedula);
         }
