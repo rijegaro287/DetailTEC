@@ -12,7 +12,7 @@ namespace DetailTEC.Data
             {
                 SqlCommand cmd = new SqlCommand("insert into " +
                     "SUCURSAL(Nombre,Provincia, Canton, Distrito, Telefono," +
-                    "Fecha_apertura, Fecha_gerente, Cedula_gerente)" +
+                    "Fecha_apertura, Fecha_gerente, Cedula_gerente) " +
                     "values(" + sucursal.nombre+ "," + sucursal.provincia +"," + sucursal.canton +","+ sucursal.distrito +","+
                     sucursal.telefono+"," + sucursal.idGerente+"," + sucursal.fechaApertura+"," + sucursal.fechaInicioGerente +")", oConexion);
        
@@ -34,7 +34,7 @@ namespace DetailTEC.Data
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("update SUCURSAL set "+"Nombre ="+sucursal.nombre
+                SqlCommand cmd = new SqlCommand("update SUCURSAL set Nombre ="+sucursal.nombre
                     + ",Provincia =" + sucursal.provincia + ", Canton =" + sucursal.canton +
                     ",Distrito = "+sucursal.distrito+
                     ", Telefono =" + sucursal.telefono +",Cedula_Gerente="+ sucursal.idGerente
@@ -128,7 +128,7 @@ namespace DetailTEC.Data
                 //cmd.Parameters.AddWithValue("@Nombre", nombre);
                 SqlCommand cmd = new SqlCommand("select S.Nombre, S.Provincia, S.Canton, S.Distrito, S.Telefono, " +
                     "S.Cedula_Gerente, T.NombreT, T.Apellido1 "+
-                    "S.Fecha_apertura, S.Fecha_gerente from SUCURSAL as S, TRABJADOR AS T Where T.Cedula = S.Cedula_Gerente" + nombre +"AND S.Nombre ="+nombre, oConexion);
+                    "S.Fecha_apertura, S.Fecha_gerente from SUCURSAL as S, TRABJADOR AS T Where T.Cedula = S.Cedula_Gerente AND S.Nombre ="+nombre, oConexion);
 
                 try
                 {

@@ -14,7 +14,7 @@ namespace DetailTEC.Data
 
                 SqlCommand cmd = new SqlCommand("insert into " +
                     "TRABAJADOR(Cedula,NombreT,Apellido1,Apellido2,Fecha_nacimiento,Fecha_ingreso,Edad,PasswordT,Rol,Tipo_pago)" +
-                    "values(" + trabajador.id +"," +trabajador.nombre+ "," + trabajador.apellido1+ "," + trabajador.apellido2+ "," +
+                    " values(" + trabajador.id +"," +trabajador.nombre+ "," + trabajador.apellido1+ "," + trabajador.apellido2+ "," +
                     trabajador.email+","+trabajador.fechaNacimiento +"," +trabajador.fechaInicio+","+edad+ "," + trabajador.password+
                     "," + trabajador.puesto+ "," + trabajador.frecuenciaPago+")", oConexion);
 
@@ -36,12 +36,12 @@ namespace DetailTEC.Data
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
                 int edad = DateTime.Today.AddTicks(-trabajador.fechaNacimiento.Ticks).Year - 1;
-                SqlCommand cmd = new SqlCommand("update TRABAJADOR set" +
-                    "Cedula = "+ trabajador.id + ",NombreT =" + trabajador.nombre + ",Apellido1" + trabajador.apellido1 +
-                    ",Apellido2" + trabajador.apellido2 + ",Email" +
-                    trabajador.email + ",Fecha_nacimiento" + trabajador.fechaNacimiento 
-                    + ",Fecha_ingreso" + trabajador.fechaInicio + ",Edad" + edad + ",PasswordT" + trabajador.password +
-                    ",Rol" + trabajador.puesto + ",Tipo_pago" + trabajador.frecuenciaPago+
+                SqlCommand cmd = new SqlCommand("update TRABAJADOR set " +
+                    "Cedula = "+ trabajador.id + ",NombreT =" + trabajador.nombre + ",Apellido1=" + trabajador.apellido1 +
+                    ",Apellido2=" + trabajador.apellido2 + ",Email=" +
+                    trabajador.email + ",Fecha_nacimiento=" + trabajador.fechaNacimiento 
+                    + ",Fecha_ingreso=" + trabajador.fechaInicio + ",Edad=" + edad + ",PasswordT=" + trabajador.password +
+                    ",Rol=" + trabajador.puesto + ",Tipo_pago=" + trabajador.frecuenciaPago+
                     "where Cedula = "+trabajador.id + ")", oConexion);
 
                 try

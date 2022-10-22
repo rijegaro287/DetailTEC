@@ -30,6 +30,11 @@ VALUES
     ('Sucursal del Pacífico', 'Puntarenas', 'Jacó', 'Jacó', '25317076', '118460126','2000-12-12', '2000-12-12'),
     ('Sucursal Chorotega', 'Guanacaste', 'Nicoya', 'Santa Cruz', '2538133','118460126' ,'2000-12-12', '2000-12-12')
 
+
+	INSERT INTO SUCURSAL (Nombre, Provincia, Canton, Distrito, Telefono, Cedula_Gerente, Fecha_apertura, Fecha_gerente)
+VALUES
+    ('Sucursal3', 'Cartago', 'Turrialba', 'Jimenez', '25310808', '118460126','2000-12-12', '2000-12-12')
+
 INSERT INTO SUCURSAL_TRABAJADOR (Cedula_trabajador, Nombre_sucursal)
 VALUES
     ('118460116', 'Sucursal del Atlántico'),
@@ -63,6 +68,7 @@ VALUES
     ('3-101-101011', '44444444')
 
 
+
 INSERT INTO PRODUCTO(Nombre, Marca, Costo, Precio, Ced_prov)
 VALUES
     ('Cera Genérica', 'Duracel', '1500', '2000', '3-101-101010'),
@@ -70,6 +76,8 @@ VALUES
     ('Esponja', 'Shopwise', '300', '500', '3-101-101010'),
     ('Abrillantador', 'PureGold', '3000', '7000', '3-101-101010'),
     ('Jabon', 'WashiShine', '1000', '1500', '3-101-101011')
+
+
 
 
 INSERT INTO LAVADO (
@@ -230,5 +238,4 @@ VALUES
     ('4', 'Esponja', '1'),
     ('5', 'Jabon', '1'),
     ('6', 'Abrillantador', '5')
-    
-
+   

@@ -87,7 +87,7 @@ create table SUCURSAL(
 
 CREATE TABLE PROVEEDOR 
 (
-	Cedula_juridica char(20) not null,
+	Cedula_juridica varchar(20) not null,
 	Nombre varchar(20) not null,
 	Direccion varchar(100),
 	Correo_electronico varchar(50) not null,
@@ -96,7 +96,7 @@ CREATE TABLE PROVEEDOR
 
 CREATE TABLE CONTACTO_PROVEEDOR
 (
-	Ced_prov char(20) not null,
+	Ced_prov varchar(20) not null,
 	Telefono char(8),
 );
 
@@ -106,7 +106,7 @@ CREATE TABLE PRODUCTO
 	Marca varchar(20) not null, 
 	Costo int not null,
 	Precio int not null,
-	Ced_prov char(20) not null,
+	Ced_prov varchar(20) not null,
 	PRIMARY KEY (Nombre),
 ); 
 
