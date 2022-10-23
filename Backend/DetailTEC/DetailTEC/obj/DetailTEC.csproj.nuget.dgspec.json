@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\yraul\\OneDrive\\Documentos\\GitHub\\DetailTEC\\Backend\\DetailTEC\\DetailTEC\\DetailTEC.csproj": {}
+    "c:\\Users\\yraul\\OneDrive\\Documentos\\GitHub\\DetailTEC\\Backend\\DetailTEC\\DetailTEC\\DetailTEC.csproj": {}
   },
   "projects": {
-    "C:\\Users\\yraul\\OneDrive\\Documentos\\GitHub\\DetailTEC\\Backend\\DetailTEC\\DetailTEC\\DetailTEC.csproj": {
+    "c:\\Users\\yraul\\OneDrive\\Documentos\\GitHub\\DetailTEC\\Backend\\DetailTEC\\DetailTEC\\DetailTEC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\yraul\\OneDrive\\Documentos\\GitHub\\DetailTEC\\Backend\\DetailTEC\\DetailTEC\\DetailTEC.csproj",
+        "projectUniqueName": "c:\\Users\\yraul\\OneDrive\\Documentos\\GitHub\\DetailTEC\\Backend\\DetailTEC\\DetailTEC\\DetailTEC.csproj",
         "projectName": "DetailTEC",
-        "projectPath": "C:\\Users\\yraul\\OneDrive\\Documentos\\GitHub\\DetailTEC\\Backend\\DetailTEC\\DetailTEC\\DetailTEC.csproj",
+        "projectPath": "c:\\Users\\yraul\\OneDrive\\Documentos\\GitHub\\DetailTEC\\Backend\\DetailTEC\\DetailTEC\\DetailTEC.csproj",
         "packagesPath": "C:\\Users\\yraul\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\yraul\\OneDrive\\Documentos\\GitHub\\DetailTEC\\Backend\\DetailTEC\\DetailTEC\\obj\\",
+        "outputPath": "c:\\Users\\yraul\\OneDrive\\Documentos\\GitHub\\DetailTEC\\Backend\\DetailTEC\\DetailTEC\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\yraul\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -49,6 +49,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
+            },
+            "System.Data.OleDb": {
+              "target": "Package",
+              "version": "[7.0.0-rc.2.22472.3, )"
             },
             "System.Data.SqlClient": {
               "target": "Package",
