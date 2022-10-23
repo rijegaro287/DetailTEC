@@ -40,6 +40,7 @@ IF OBJECT_ID(N'dbo.TRABAJADOR', N'U') IS NOT NULL
 
 GO
 
+
 create table TRABAJADOR(
 	Cedula char(9) not null,
 	NombreT varchar(20) not null,

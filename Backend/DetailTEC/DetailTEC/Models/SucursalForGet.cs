@@ -2,6 +2,7 @@
 {
     public class SucursalForGet
     {
+        public int id { get; set; }
         public string nombre { get; set; }
         public string? provincia { get; set; }
         public string? canton { get; set; }

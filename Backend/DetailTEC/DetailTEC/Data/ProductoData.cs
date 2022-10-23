@@ -112,9 +112,9 @@ namespace DetailTEC.Data
                 SqlCommand cmd = new SqlCommand("select Nombre, Marca, Costo, Precio, idProveedor, nombreProveedor from PRODUCTO" +
                     " WHERE ID =" + id);
 
-                SqlCommand cmd = new SqlCommand("producto_obtener", oConexion);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Nombre", nombre);
+                //SqlCommand cmd = new SqlCommand("producto_obtener", oConexion);
+                //cmd.CommandType = CommandType.StoredProcedure;
+                //cmd.Parameters.AddWithValue("@Nombre", id);
 
 
                 try

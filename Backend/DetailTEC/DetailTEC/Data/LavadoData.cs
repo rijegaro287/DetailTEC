@@ -53,7 +53,7 @@ namespace DetailTEC.Data
 
         public static List<LavadoForGet> Listar()
         {
-            List<Lavado> oListaUsuario = new List<Lavado>();
+            List<LavadoForGet> oListaUsuario = new List<LavadoForGet>();
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
 
@@ -108,7 +108,7 @@ namespace DetailTEC.Data
 
                         while (dr.Read())
                         {
-                            lavado = new Lavado()
+                            lavado = new LavadoForGet()
                             {
                                 nombre = dr["Nombre"].ToString(),
                                 costo = Convert.ToInt32(dr["Costo"]),

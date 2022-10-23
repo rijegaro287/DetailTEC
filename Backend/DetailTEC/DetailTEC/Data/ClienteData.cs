@@ -69,7 +69,7 @@ namespace DetailTEC.Data
 
                         while (dr.Read())
                         {
-                            oListaUsuario.Add(new Cliente()
+                            oListaUsuario.Add(new ClienteForGet()
                             {
                                 cedula = dr["Cedula"].ToString(),
                                 nombre = dr["Nombre"].ToString(),
@@ -115,7 +115,7 @@ namespace DetailTEC.Data
 
                         while (dr.Read())
                         {
-                            cliente = new Cliente()
+                            cliente = new ClienteForGet()
                             {
                                 cedula = dr["Cedula"].ToString(),
                                 nombre = dr["Nombre"].ToString(),

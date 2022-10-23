@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 
 
-namespace DetailTEC.Controllers
+namespace DetailTEC.Controllers {  
 
     public class ProductoController : Controller
     {

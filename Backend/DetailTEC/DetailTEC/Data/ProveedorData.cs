@@ -11,9 +11,12 @@ namespace DetailTEC.Data
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
                 SqlCommand cmd1 = new SqlCommand("insert into PROVEEDOR(Cedula_juridica, Nombre, Direccion, Correo_electronico)" +
-                    " values(" +
-                        proveedor.id + "," + proveedor.nombre + "," +
-                         proveedor.direccion + "," + proveedor.email + ")", oConexion);
+                    " values(@param1, @param2, @param3, @param4)", oConexion);
+                cmd1.Parameters.Add("@param1", SqlDbType.Char, 10).Value = proveedor.id;
+                cmd1.Parameters.Add("@param2", SqlDbType.VarChar, 20).Value = proveedor.nombre;
+                cmd1.Parameters.Add("@param3", SqlDbType.VarChar, 100).Value = proveedor.direccion;
+                cmd1.Parameters.Add("@param4", SqlDbType.VarChar, 50).Value = proveedor.email;
+                cmd1.CommandType = CommandType.Text;
 
 
                 try
@@ -22,19 +25,24 @@ namespace DetailTEC.Data
                     cmd1.ExecuteNonQuery();
 
                     SqlCommand cmd2 = null;
-                    for (int i = 0; i < (proveedor.telefonos.Count - 1); i++)
+                    if (proveedor.telefonos != null)
                     {
-                        cmd2 = new SqlCommand("insert into CONTACTO_PROVEEDOR(Ced_prov, Telefono) values(" +
-                            proveedor.id + "," + proveedor.telefonos[i] + ")", oConexion);
-                        cmd2.ExecuteNonQuery();
+                        for (int i = 0; i < (proveedor.telefonos.Count); i++)
+                        {
+                            cmd2 = new SqlCommand("insert into CONTACTO_PROVEEDOR(Ced_prov, Telefono) values(@param1, @param2)", oConexion);
+                            cmd2.Parameters.Add("@param2", SqlDbType.Char, 8).Value = proveedor.telefonos[i];
+                            cmd2.Parameters.Add("@param1", SqlDbType.Char, 10).Value = proveedor.id;
+                            cmd2.CommandType = CommandType.Text;
+                            cmd2.ExecuteNonQuery();
+                        }
                     }
-
 
 
                     return true;
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex);
                     return false;
                 }
             }
@@ -46,21 +54,31 @@ namespace DetailTEC.Data
             {
                 SqlCommand cmd1;
                 cmd1 = new SqlCommand("update PROVEEDOR set " +
-                    "Cedula_juridica = " + proveedor.id + ",Nombre =" + proveedor.nombre + ",Direccion=" + proveedor.direccion +
-                    ",Correo_electronico=" + proveedor.email + ")", oConexion);
-
-                SqlCommand cmd2 = null;
-                for (int i = 0; i < proveedor.telefonos.Count; i++)
-                {
-                    cmd2 = new SqlCommand("update CONTACTO_PROVEEDOR set " +
-                    "Ced_prov = " + proveedor.id + ",Telefono =" + proveedor.telefonos[i] + ")", oConexion);
-                }
+                    "Cedula_juridica = @param1,Nombre =@param2,Direccion=@param3," +
+                    "Correo_electronico=@param4)", oConexion);
+                cmd1.Parameters.Add("@param1", SqlDbType.Char, 9).Value = proveedor.id;
+                cmd1.Parameters.Add("@param2", SqlDbType.VarChar, 20).Value = proveedor.nombre;
+                cmd1.Parameters.Add("@param3", SqlDbType.VarChar, 100).Value = proveedor.direccion;
+                cmd1.Parameters.Add("@param4", SqlDbType.VarChar, 50).Value = proveedor.email;
+                cmd1.CommandType = CommandType.Text;
 
                 try
                 {
                     oConexion.Open();
                     cmd1.ExecuteNonQuery();
-                    cmd2.ExecuteNonQuery();
+                    SqlCommand cmd2 = null;
+                    if (proveedor.telefonos != null)
+                    {
+                        for (int i = 0; i < (proveedor.telefonos.Count - 1); i++)
+                        {
+                            cmd2 = new SqlCommand("update CONTACTO_PROVEEDOR set Cedula_juridica=@param1, Telefono=@param2)", oConexion);
+                            cmd1.Parameters.Add("@param2", SqlDbType.Char, 8).Value = proveedor.telefonos[i];
+                            cmd1.Parameters.Add("@param1", SqlDbType.Char, 8).Value = proveedor.id;
+                            cmd2.CommandType = CommandType.Text;
+                            cmd2.ExecuteNonQuery();
+                        }
+                    }
+                   
                     return true;
                 }
                 catch (Exception ex)
@@ -124,13 +142,15 @@ namespace DetailTEC.Data
 
 
                         }
-                        oListaUsuario[i].telefonos = telefonosList;
+
+                        
 
                     }
 
 
-
+                    Console.WriteLine(oListaUsuario);
                     return oListaUsuario;
+                    
                 }
                 catch (Exception ex)
                 {
@@ -160,8 +180,8 @@ namespace DetailTEC.Data
 
                         while (dr.Read())
                         {
-                            //if (firstRead)
-                            //{
+                            if (firstRead)
+                            {
                             proveedor = new Proveedor()
                             {
 
@@ -171,19 +191,20 @@ namespace DetailTEC.Data
                                 email = dr["Correo_electronico"].ToString()
 
                             };
+
                             telefonosList.Add(dr["Telefono"].ToString());
                             firstRead = false;
-                            //}
-                            //else
-                            //{
-                            //    telefonosList.Add(dr["Telefono"].ToString());
+                            }
+                            else
+                            {
+                                telefonosList.Add(dr["Telefono"].ToString());
 
-                            //}
+                            }
                         }
 
                     }
 
-                    //proveedor.telefonos = telefonosList;
+                    proveedor.telefonos = telefonosList;
 
                     return proveedor;
                 }
@@ -199,14 +220,16 @@ namespace DetailTEC.Data
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("delete from PROVEEDOR where Cedula = " + cedula, oConexion);
+                SqlCommand cmd1 = new SqlCommand("delete from CONTACTO_PROVEEDOR where Ced_prov = " + cedula, oConexion);
+                SqlCommand cmd2= new SqlCommand("delete from PROVEEDOR where Cedula_juridica = " + cedula, oConexion);
                 //cmd.CommandType = CommandType.StoredProcedure;
                 //cmd.Parameters.AddWithValue("@Cedula", cedula);
 
                 try
                 {
                     oConexion.Open();
-                    cmd.ExecuteNonQuery();
+                    cmd1.ExecuteNonQuery();
+                    cmd2.ExecuteNonQuery();
                     return true;
                 }
                 catch (Exception ex)
