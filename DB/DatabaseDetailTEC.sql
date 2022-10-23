@@ -119,6 +119,7 @@ CREATE TABLE LAVADO
 	Nombre varchar(40) not null,
 	Comision_trabajador int not null,
 	Precio int not null,
+	Costo int not null,
 	Duracion_en_minutos int,
 	Puntos_otorgados int,
 	Trabajadores_necesarios int,
@@ -131,18 +132,19 @@ CREATE TABLE PRODUCTO_LAVADO(
 	PRIMARY KEY(ID_Producto, ID_Lavado)
 )
 
+
+
 create table CLIENTE(
 
 	Cedula char(9) not null,
 	Nombre varchar(20) not null,
 	Apellido1 varchar(20) not null,
 	Apellido2 varchar(20),
-	Usuario varchar(20) not null,
 	Correo varchar(50) not null,
 	PasswordC varchar(20) not null, -- Hay que hacer que no de pueda ver la contraseña
 	Puntos_actuales int ,
 	Puntos_totales int, 
-	Puntos_usados int,
+	Puntos_usados int,	
 	PRIMARY KEY(Cedula)
 )
 
@@ -251,3 +253,9 @@ ALTER TABLE PRODUCTOS_COMPRADOS
 ADD CONSTRAINT FK_PRODUCTOS_COMPRADOS_FACTURA FOREIGN KEY (ID_Factura) REFERENCES FACTURA(ID);
 ALTER TABLE PRODUCTOS_COMPRADOS
 ADD CONSTRAINT FK_PRODUCTOS_COMPRADOS_PRODUCTO FOREIGN KEY (ID_Producto) REFERENCES PRODUCTO(ID);
+
+
+select C.Cedula, C.Nombre, C.Apellido1, C.Apellido2,
+                    C.Correo, C.Puntos_actuales, C.Puntos_totales, C.Puntos_usados,
+                    T.Telefono, D.Direccion from CLIENTE as C, TELEFONOS_CLIENTE as T, DIRECCIONES_CLIENTE as D
+                    where C.Cedula = T.Cedula_Cli AND C.Cedula = D.Cedula_Cli

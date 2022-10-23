@@ -66,15 +66,16 @@ INSERT INTO LAVADO (
 	ID,
     Nombre, 
     Comision_trabajador, 
-    Precio, 
+    Precio,
+	Costo,
     Duracion_en_minutos, 
     Puntos_otorgados, 
     Trabajadores_necesarios)
 
 VALUES
-    ('01','Lavado y aspirado', '2000', '3000', '30', '1000', '2'),
-    ('02','Lavado y encerado', '3000', '4000', '45', '5000', '2'),
-    ('03','Lavado premium y pulido', '5000', '6000', '60', '2000', '2')
+    ('01','Lavado y aspirado', '2000', '3000', '500', '30', '1000', '2'),
+    ('02','Lavado y encerado', '3000', '4000', '500', '45', '5000', '2'),
+    ('03','Lavado premium y pulido', '5000', '6000', '500', '60', '2000', '2')
 
 
 INSERT INTO PRODUCTO_LAVADO (ID_Lavado, ID_Producto)
@@ -89,7 +90,6 @@ insert into Cliente(
     Nombre, 
     Apellido1, 
     Apellido2, 
-    Usuario, 
     Correo, 
     PasswordC, 
     Puntos_actuales,
@@ -97,10 +97,10 @@ insert into Cliente(
     Puntos_usados)
 
 VALUES
-    ('25325241', 'Catalina', 'Salas', 'Ciudad','catax', 'catax@gmail.com','ABC123','0', '1500', '1500'),
-    ('53294589', 'Jose Pablo', 'Marin', 'Mora','joseju', 'joseju@hotmail.com', 'ABC123','100', '1000', '900'),
-    ('69283473', 'Juan Ignacion', 'Naranjo', 'Tulipa','juanis', 'juanis@gmail.com', 'ABC123', '234', '234', '0'),
-    ('35346123', 'Maria Jose', 'Mora', 'Mora','maria_la_del_pueblo', 'maria_la_del_pueblo@hotmail.com', 'ABC123', '0', '0','0')
+    ('253252410', 'Catalina', 'Salas', 'Ciudad', 'catax@gmail.com','ABC123','0', '1500', '1500'),
+    ('532945890', 'Jose Pablo', 'Marin', 'Mora', 'joseju@hotmail.com', 'ABC123','100', '1000', '900'),
+    ('692834730', 'Juan Ignacion', 'Naranjo', 'Mora','juanis@gmail.com', 'ABC123', '234', '234', '0'),
+    ('353461230', 'Maria Jose', 'Mora', 'Mora', 'maria_la_del_pueblo@hotmail.com', 'ABC123', '0', '0','0')
 
 
 insert into telefonos_cliente(
@@ -214,6 +214,3 @@ VALUES
     ('4', '02', '1'),
     ('5', '01', '1'),
     ('6', '02', '5')
- 
-
- SELECT * FROM PROVEEDOR

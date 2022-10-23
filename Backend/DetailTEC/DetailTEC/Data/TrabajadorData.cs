@@ -179,14 +179,14 @@ namespace DetailTEC.Data
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("delete from TRABAJADOR where Cedula = "+cedula, oConexion);
-                //cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Parameters.AddWithValue("@Cedula", cedula);
+                SqlCommand cmd1 = new SqlCommand("delete from TRABAJADOR where Cedula = " + cedula, oConexion);
+                SqlCommand cmd2 = new SqlCommand("delete from TRABAJADORES_POR_CITA where Cedula_trabajador = " + cedula, oConexion);
 
                 try
                 {
                     oConexion.Open();
-                    cmd.ExecuteNonQuery();
+                    cmd1.ExecuteNonQuery();
+                    cmd2.ExecuteNonQuery();
                     return true;
                 }
                 catch (Exception ex)

@@ -61,7 +61,8 @@ namespace DetailTEC.Data
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
 
-                SqlCommand cmd = new SqlCommand("select Nombre, Marca, Costo, Precio, idProveedor, nombreProveedor from PRODUCTO", oConexion);
+                SqlCommand cmd = new SqlCommand("select P.Id, P.NombreP, P.Marca, P.Costo, P.Precio, P.Ced_prov, R.Nombre from PRODUCTO as P and Proovedor as R" +
+                    " where P.Ced_prov = R.Cedula_juridica", oConexion);
                 try
                 {
                     oConexion.Open();
@@ -74,12 +75,14 @@ namespace DetailTEC.Data
                         {
                             oListaUsuario.Add(new ProductoForGet()
                             {
-                                nombre = dr["Nombre"].ToString(),
+                                Id = Convert.ToInt32(dr["Id"].ToString()),
+                                nombre = dr["NombreP"].ToString(),
                                 marca = dr["Marca"].ToString(),
                                 costo = Convert.ToInt32(dr["Costo"].ToString()),
                                 precio = Convert.ToInt32(dr["Precio"].ToString()),
-                                idProveedor = dr["idProveedor"].ToString(),
-                                nombreProveedor = dr["nombreProveedor"].ToString(),
+                                idProveedor = dr["Ced_prov"].ToString(),
+                                nombreProveedor = dr["Nombre"].ToString()
+
 
                             });
 

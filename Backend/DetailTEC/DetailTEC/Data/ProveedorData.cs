@@ -30,8 +30,8 @@ namespace DetailTEC.Data
                         for (int i = 0; i < (proveedor.telefonos.Count); i++)
                         {
                             cmd2 = new SqlCommand("insert into CONTACTO_PROVEEDOR(Ced_prov, Telefono) values(@param1, @param2)", oConexion);
-                            cmd2.Parameters.Add("@param2", SqlDbType.Char, 8).Value = proveedor.telefonos[i];
                             cmd2.Parameters.Add("@param1", SqlDbType.Char, 10).Value = proveedor.id;
+                            cmd2.Parameters.Add("@param2", SqlDbType.Char, 8).Value = proveedor.telefonos[i];
                             cmd2.CommandType = CommandType.Text;
                             cmd2.ExecuteNonQuery();
                         }

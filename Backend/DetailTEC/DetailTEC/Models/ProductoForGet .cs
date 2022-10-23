@@ -2,6 +2,7 @@
 {
     public class ProductoForGet
     {
+        public int Id { get; set; }
         public string nombre { get; set; }
         public string marca { get; set; }
         public int costo { get; set; }
