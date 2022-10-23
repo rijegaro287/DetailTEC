@@ -99,13 +99,13 @@ CREATE TABLE PROVEEDOR
 CREATE TABLE CONTACTO_PROVEEDOR
 (
 	Ced_prov char(10) not null,
-	Telefono char(8),
+	Telefono char(8)
 );
 
 CREATE TABLE PRODUCTO
 (
 	ID int not null,
-	Nombre varchar(20) not null,
+	NombreP varchar(20) not null,
 	Marca varchar(20) not null, 
 	Costo int not null,
 	Precio int not null,

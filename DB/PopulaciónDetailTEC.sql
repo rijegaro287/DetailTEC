@@ -51,7 +51,7 @@ VALUES
 
 
 
-INSERT INTO PRODUCTO(ID,Nombre, Marca, Costo, Precio, Ced_prov)
+INSERT INTO PRODUCTO(ID,NombreP, Marca, Costo, Precio, Ced_prov)
 VALUES
     ('01','Cera Genérica', 'Duracel', '1500', '2000', '3101101010'),
     ('02','Nice', 'Handyman', '1000', '2000', '3101101010'),
@@ -214,4 +214,6 @@ VALUES
     ('4', '02', '1'),
     ('5', '01', '1'),
     ('6', '02', '5')
-   
+ 
+
+ SELECT * FROM PROVEEDOR

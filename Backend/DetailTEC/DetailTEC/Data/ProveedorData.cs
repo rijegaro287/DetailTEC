@@ -55,12 +55,15 @@ namespace DetailTEC.Data
                 SqlCommand cmd1;
                 cmd1 = new SqlCommand("update PROVEEDOR set " +
                     "Cedula_juridica = @param1,Nombre =@param2,Direccion=@param3," +
-                    "Correo_electronico=@param4)", oConexion);
-                cmd1.Parameters.Add("@param1", SqlDbType.Char, 9).Value = proveedor.id;
+                    "Correo_electronico=@param4 where Cedula_juridica = @param5", oConexion);
+                cmd1.Parameters.Add("@param1", SqlDbType.Char, 10).Value = proveedor.id;
                 cmd1.Parameters.Add("@param2", SqlDbType.VarChar, 20).Value = proveedor.nombre;
                 cmd1.Parameters.Add("@param3", SqlDbType.VarChar, 100).Value = proveedor.direccion;
                 cmd1.Parameters.Add("@param4", SqlDbType.VarChar, 50).Value = proveedor.email;
+                cmd1.Parameters.Add("@param5", SqlDbType.Char, 10).Value = proveedor.id;
                 cmd1.CommandType = CommandType.Text;
+
+
 
                 try
                 {
@@ -69,11 +72,13 @@ namespace DetailTEC.Data
                     SqlCommand cmd2 = null;
                     if (proveedor.telefonos != null)
                     {
-                        for (int i = 0; i < (proveedor.telefonos.Count - 1); i++)
+                        for (int i = 0; i < (proveedor.telefonos.Count); i++)
                         {
-                            cmd2 = new SqlCommand("update CONTACTO_PROVEEDOR set Cedula_juridica=@param1, Telefono=@param2)", oConexion);
-                            cmd1.Parameters.Add("@param2", SqlDbType.Char, 8).Value = proveedor.telefonos[i];
-                            cmd1.Parameters.Add("@param1", SqlDbType.Char, 8).Value = proveedor.id;
+                            cmd2 = new SqlCommand("update CONTACTO_PROVEEDOR set Ced_prov=@param1, Telefono=@param2 where " +
+                                " Ced_prov = @param3", oConexion);
+                            cmd2.Parameters.Add("@param1", SqlDbType.Char, 10).Value = proveedor.id;
+                            cmd2.Parameters.Add("@param2", SqlDbType.Char, 8).Value = proveedor.telefonos[i];
+                            cmd2.Parameters.Add("@param3", SqlDbType.Char, 10).Value = proveedor.id;
                             cmd2.CommandType = CommandType.Text;
                             cmd2.ExecuteNonQuery();
                         }
@@ -83,6 +88,7 @@ namespace DetailTEC.Data
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.Message);
                     return false;
                 }
             }
@@ -146,9 +152,7 @@ namespace DetailTEC.Data
                         
 
                     }
-
-
-                    Console.WriteLine(oListaUsuario);
+                    oListaUsuario[i].telefonos = telefonosList;
                     return oListaUsuario;
                     
                 }
@@ -220,16 +224,20 @@ namespace DetailTEC.Data
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd1 = new SqlCommand("delete from CONTACTO_PROVEEDOR where Ced_prov = " + cedula, oConexion);
-                SqlCommand cmd2= new SqlCommand("delete from PROVEEDOR where Cedula_juridica = " + cedula, oConexion);
-                //cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Parameters.AddWithValue("@Cedula", cedula);
+                
+                
 
                 try
                 {
                     oConexion.Open();
+                    SqlCommand cmd1 = new SqlCommand("delete from CONTACTO_PROVEEDOR where Ced_prov = " + cedula, oConexion);
                     cmd1.ExecuteNonQuery();
+                    SqlCommand cmd2 = new SqlCommand("delete from PRODUCTO_LAVADO where ID_Producto = (Select ID From PRODUCTO WHERE Ced_prov = " + cedula+")", oConexion);
                     cmd2.ExecuteNonQuery();
+                    SqlCommand cmd3 = new SqlCommand("delete from PRODUCTO where Ced_prov = " + cedula, oConexion);
+                    cmd3.ExecuteNonQuery();
+                    SqlCommand cmd4 = new SqlCommand("delete from PROVEEDOR where Cedula_juridica = " + cedula, oConexion);
+                    cmd4.ExecuteNonQuery();
                     return true;
                 }
                 catch (Exception ex)
