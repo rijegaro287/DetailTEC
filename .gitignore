@@ -1,6 +1,8 @@
 especificacion.pdf
 Backend\DetailTEC\DetailTEC\Data\Conexion.cs
 
+.vscode
+
 Frontend/.vscode
 Frontend/node_modules
 
@@ -43,4 +45,3 @@ Frontend/Thumbs.db
 Backend/DetailTEC/DetailTEC/bin
 Backend/DetailTEC/DetailTEC/obj
 Backend/DetailTEC/DetailTEC/Reports/*.pdf
-Backend/DetailTEC/DetailTEC/Data/Conexion.cs

@@ -2,6 +2,7 @@
 {
   public class Conexion
   {
-    public static string rutaConexion = "Data Source=DESKTOP-CODCVF6\\SQLEXPRESS;Initial Catalog=DetailTEC;Integrated Security=True";
+    //No borren, comentenlo
+    public static string rutaConexion = "server=localhost;database=DetailTEC;user id=sa;password=201924Abc.;Integrated Security=False";
   }
 }
