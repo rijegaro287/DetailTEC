@@ -31,6 +31,7 @@ namespace DetailTEC.Controllers
         [Route("add")]
         public bool Post([FromBody] Trabajador trabajador)
         {
+
             return TrabajadorData.Registrar(trabajador);
         }
         [HttpPatch]

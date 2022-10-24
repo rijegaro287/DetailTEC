@@ -44,3 +44,8 @@ Frontend/Thumbs.db
 *.cache
 Backend/DetailTEC/DetailTEC/obj/Release/net6.0/DetailTEC.GeneratedMSBuildEditorConfig.editorconfig
 *.dll
+*.cache
+*.json
+*.props
+*.editorconfig
+Backend/DetailTEC/DetailTEC/obj/Debug/net6.0/DetailTEC.AssemblyInfo.cs
