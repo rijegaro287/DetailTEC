@@ -40,7 +40,7 @@ Frontend/typings
 Frontend/.DS_Store
 Frontend/Thumbs.db
 
-# Backend/DetailTEC/DetailTEC/Data/Conexion.cs
 Backend/DetailTEC/DetailTEC/bin
 Backend/DetailTEC/DetailTEC/obj
 Backend/DetailTEC/DetailTEC/Reports/*.pdf
+Backend/DetailTEC/DetailTEC/Data/Conexion.cs
