@@ -7,7 +7,8 @@ for (let index = 1; index < 8; index++) {
             id: index,
             nombre: `Supplier ${index}`,
             email: `supplier${index}@email.com`,
-            direccion: `Address ${index}`
+            direccion: `Address ${index}`,
+            telefonos: [index, index + 1, index + 2]
         }
     )
 }
