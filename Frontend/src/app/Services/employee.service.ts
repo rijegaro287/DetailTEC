@@ -23,20 +23,6 @@ export class EmployeeService {
   getAllEmployees = (): Observable<EmployeesResponse> =>
     this.httpClient.get<EmployeesResponse>(`${this.url}/get_all`)
 
-  // getAllEmployees = (): Observable<EmployeesResponse> => {
-  //   const okResponse: EmployeesResponse = {
-  //     status: 'ok',
-  //     employees: EMPLOYEES
-  //   }
-
-  //   const errorResponse: ServerResponse = {
-  //     status: 'error',
-  //     message: 'No se pudieron obtener los empleados'
-  //   }
-
-  //   return of(okResponse)
-  // }
-
   getEmployee = (id: number): Observable<EmployeeResponse> => {
     const employee: Employee = EMPLOYEES.find(employee => employee.id === id)!
 
