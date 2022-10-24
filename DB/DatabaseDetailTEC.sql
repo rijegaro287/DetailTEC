@@ -40,13 +40,14 @@ IF OBJECT_ID(N'dbo.TRABAJADOR', N'U') IS NOT NULL
 
 GO
 
+
 create table TRABAJADOR(
 	Cedula char(9) not null,
 	NombreT varchar(20) not null,
 	Apellido1 varchar(20) not null,
 	Apellido2 varchar(20),
 	Fecha_nacimiento date not null,
-	Fecha_ingreso date,
+	Fecha_ingreso date not null,
 	Email varchar(50) not null,
 	Edad tinyint, --La edad se calcula en la base de datos, no se ingresa
 	PasswordT varchar(20) not null,
@@ -57,7 +58,8 @@ create table TRABAJADOR(
 
 
 create table SUCURSAL(
-
+	
+	ID int not null,
 	Nombre varchar(40) not null,
 	Provincia varchar(20),
 	Canton varchar(20),
@@ -66,7 +68,7 @@ create table SUCURSAL(
 	Cedula_Gerente char(9) not null,
 	Fecha_apertura date,
 	Fecha_gerente date,
-	PRIMARY KEY(Nombre)
+	PRIMARY KEY(ID)
 )
 
 
@@ -87,7 +89,7 @@ create table SUCURSAL(
 
 CREATE TABLE PROVEEDOR 
 (
-	Cedula_juridica char(20) not null,
+	Cedula_juridica char(10) not null,
 	Nombre varchar(20) not null,
 	Direccion varchar(100),
 	Correo_electronico varchar(50) not null,
@@ -96,36 +98,41 @@ CREATE TABLE PROVEEDOR
 
 CREATE TABLE CONTACTO_PROVEEDOR
 (
-	Ced_prov char(20) not null,
-	Telefono char(8),
+	Ced_prov char(10) not null,
+	Telefono char(8)
 );
 
 CREATE TABLE PRODUCTO
 (
-	Nombre varchar(20) not null,
+	ID int not null,
+	NombreP varchar(20) not null,
 	Marca varchar(20) not null, 
 	Costo int not null,
 	Precio int not null,
-	Ced_prov char(20) not null,
-	PRIMARY KEY (Nombre),
+	Ced_prov char(10) not null,
+	PRIMARY KEY (ID),
 ); 
 
 CREATE TABLE LAVADO
 (
+	ID int not null,
 	Nombre varchar(40) not null,
 	Comision_trabajador int not null,
 	Precio int not null,
+	Costo int not null,
 	Duracion_en_minutos int,
 	Puntos_otorgados int,
 	Trabajadores_necesarios int,
-	PRIMARY KEY (Nombre)
+	PRIMARY KEY (ID)
 )
 
 CREATE TABLE PRODUCTO_LAVADO(
-	Nombre_producto varchar(20) not null,
-	Nombre_lavado varchar(40) not null,
-	PRIMARY KEY (Nombre_producto, Nombre_lavado)
+	ID_Producto int not null,
+	ID_Lavado int not null,
+	PRIMARY KEY(ID_Producto, ID_Lavado)
 )
+
+
 
 create table CLIENTE(
 
@@ -133,12 +140,11 @@ create table CLIENTE(
 	Nombre varchar(20) not null,
 	Apellido1 varchar(20) not null,
 	Apellido2 varchar(20),
-	Usuario varchar(20) not null,
 	Correo varchar(50) not null,
 	PasswordC varchar(20) not null, -- Hay que hacer que no de pueda ver la contraseña
 	Puntos_actuales int ,
 	Puntos_totales int, 
-	Puntos_usados int,
+	Puntos_usados int,	
 	PRIMARY KEY(Cedula)
 )
 
@@ -160,8 +166,8 @@ create table CITA(
 
 	ID int not null, -- el id se debería de generar automáticamente
 	Placa char(6) not null,
-	Nombre_sucursal varchar(40) not null,
-	Nombre_lavado varchar(40) not null,
+	ID_Sucursal int not null,
+	ID_Lavado int not null,
 	Cedula_cliente char(9) not null,
 	Fecha date not null, 
 	Hora time not null,
@@ -188,7 +194,7 @@ CREATE TABLE FACTURA(
 );
 
 CREATE TABLE PRODUCTOS_COMPRADOS(
-	Nombre_producto varchar(20) not null,
+	ID_Producto int not null,
 	ID_Factura INT NOT NULL,
 	Cantidad int not null
 );
@@ -216,9 +222,9 @@ ALTER TABLE PRODUCTO
 ADD CONSTRAINT FK_PRODUCTO_PROVEEDOR FOREIGN KEY (Ced_prov) REFERENCES PROVEEDOR(Cedula_juridica);
 
 ALTER TABLE PRODUCTO_LAVADO
-ADD CONSTRAINT FK_PRODUCTO_LAVADO_LAVADO FOREIGN KEY (Nombre_lavado) REFERENCES LAVADO(Nombre);
+ADD CONSTRAINT FK_PRODUCTO_LAVADO_LAVADO FOREIGN KEY (ID_Lavado) REFERENCES LAVADO(ID);
 ALTER TABLE PRODUCTO_LAVADO
-ADD CONSTRAINT FK_PRODUCTO_LAVADO_PRODUCTO FOREIGN KEY (Nombre_producto) REFERENCES PRODUCTO(Nombre);
+ADD CONSTRAINT FK_PRODUCTO_LAVADO_PRODUCTO FOREIGN KEY (ID_Producto) REFERENCES PRODUCTO(ID);
 
 ALTER TABLE TELEFONOS_CLIENTE
 ADD CONSTRAINT FK_TELEFONOS_CLIENTE_CLIENTE FOREIGN KEY (Cedula_Cli) REFERENCES CLIENTE(Cedula);
@@ -227,9 +233,9 @@ ALTER TABLE DIRECCIONES_CLIENTE
 ADD CONSTRAINT FK_DIRECCIONES_CLIENTE_CLIENTE FOREIGN KEY (Cedula_Cli) REFERENCES CLIENTE(Cedula);
 
 ALTER TABLE CITA
-ADD CONSTRAINT FK_CITA_SUCURSAL FOREIGN KEY (Nombre_sucursal) REFERENCES SUCURSAL(Nombre);
+ADD CONSTRAINT FK_CITA_SUCURSAL FOREIGN KEY (ID_Sucursal) REFERENCES SUCURSAL(ID);
 ALTER TABLE CITA
-ADD CONSTRAINT FK_CITA_LAVADO FOREIGN KEY (Nombre_lavado) REFERENCES LAVADO(Nombre);
+ADD CONSTRAINT FK_CITA_LAVADO FOREIGN KEY (ID_Lavado) REFERENCES LAVADO(ID);
 ALTER TABLE CITA
 ADD CONSTRAINT FK_CITA_CLIENTE FOREIGN KEY (Cedula_cliente) REFERENCES CLIENTE(Cedula);
 
@@ -245,3 +251,11 @@ ADD CONSTRAINT FK_FACTURA_CITA FOREIGN KEY (ID) REFERENCES CITA(ID);
 
 ALTER TABLE PRODUCTOS_COMPRADOS
 ADD CONSTRAINT FK_PRODUCTOS_COMPRADOS_FACTURA FOREIGN KEY (ID_Factura) REFERENCES FACTURA(ID);
+ALTER TABLE PRODUCTOS_COMPRADOS
+ADD CONSTRAINT FK_PRODUCTOS_COMPRADOS_PRODUCTO FOREIGN KEY (ID_Producto) REFERENCES PRODUCTO(ID);
+
+
+select C.Cedula, C.Nombre, C.Apellido1, C.Apellido2,
+                    C.Correo, C.Puntos_actuales, C.Puntos_totales, C.Puntos_usados,
+                    T.Telefono, D.Direccion from CLIENTE as C, TELEFONOS_CLIENTE as T, DIRECCIONES_CLIENTE as D
+                    where C.Cedula = T.Cedula_Cli AND C.Cedula = D.Cedula_Cli

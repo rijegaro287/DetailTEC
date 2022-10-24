@@ -36,6 +36,8 @@ export class AdminEmployeesComponent implements OnInit {
 
     this.employeeService.getAllEmployees()
       .subscribe(response => {
+        console.log(response);
+
         if (response.status === 'error') {
           this.messageService.setMessageInfo(response.message!, 'error')
         }

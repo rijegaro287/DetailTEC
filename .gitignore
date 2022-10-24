@@ -1,6 +1,8 @@
 especificacion.pdf
 Backend\DetailTEC\DetailTEC\Data\Conexion.cs
 
+.vscode
+
 Frontend/.vscode
 Frontend/node_modules
 
@@ -39,8 +41,7 @@ Frontend/typings
 
 Frontend/.DS_Store
 Frontend/Thumbs.db
-*.vsidx
-*.lock
-*.cache
-Backend/DetailTEC/DetailTEC/obj/Release/net6.0/DetailTEC.GeneratedMSBuildEditorConfig.editorconfig
-*.dll
+
+Backend/DetailTEC/DetailTEC/bin
+Backend/DetailTEC/DetailTEC/obj
+Backend/DetailTEC/DetailTEC/Reports/*.pdf

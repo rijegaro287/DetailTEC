@@ -9,7 +9,10 @@ const CLIENTS: Client[] = [
         "email": "user1@email.com",
         "telefonos": [1, 2, 3, 4, 5, 6],
         "direcciones": ["141 Lambton Avenue", "French Quarter", "New Orleans"],
-        "puntos": 100
+        "puntos": {
+            "total": 500,
+            "utilizados": 100
+        }
     },
     {
         "id": 2,
@@ -19,7 +22,10 @@ const CLIENTS: Client[] = [
         "email": "user2@email.com",
         "telefonos": [1, 2, 3, 4, 5, 6],
         "direcciones": ["141 Lambton Avenue", "French Quarter", "New Orleans"],
-        "puntos": 200
+        "puntos": {
+            "total": 500,
+            "utilizados": 100
+        }
     },
     {
         "id": 3,
@@ -29,7 +35,10 @@ const CLIENTS: Client[] = [
         "email": "user3@email.com",
         "telefonos": [1, 2, 3, 4, 5, 6],
         "direcciones": ["141 Lambton Avenue", "French Quarter", "New Orleans"],
-        "puntos": 300
+        "puntos": {
+            "total": 500,
+            "utilizados": 100
+        }
     },
     {
         "id": 4,
@@ -39,7 +48,10 @@ const CLIENTS: Client[] = [
         "email": "user4@email.com",
         "telefonos": [1, 2, 3, 4, 5, 6],
         "direcciones": ["141 Lambton Avenue", "French Quarter", "New Orleans"],
-        "puntos": 400
+        "puntos": {
+            "total": 500,
+            "utilizados": 100
+        }
     },
     {
         "id": 5,
@@ -49,7 +61,10 @@ const CLIENTS: Client[] = [
         "email": "user5@email.com",
         "telefonos": [1, 2, 3, 4, 5, 6],
         "direcciones": ["141 Lambton Avenue", "French Quarter", "New Orleans"],
-        "puntos": 500
+        "puntos": {
+            "total": 500,
+            "utilizados": 100
+        }
     },
     {
         "id": 6,
@@ -59,7 +74,10 @@ const CLIENTS: Client[] = [
         "email": "user6@email.com",
         "telefonos": [1, 2, 3, 4, 5, 6],
         "direcciones": ["141 Lambton Avenue", "French Quarter", "New Orleans"],
-        "puntos": 600
+        "puntos": {
+            "total": 500,
+            "utilizados": 100
+        }
     }
 ]
 

@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
 import { Observable, of } from 'rxjs'
+
+import { apiURL } from '../app.component'
 
 import {
   ServerResponse,
@@ -14,21 +17,11 @@ import { EMPLOYEES } from '../TestDB/Employees'
   providedIn: 'root'
 })
 export class EmployeeService {
-  constructor() { }
+  url: string = `${apiURL}/trabajador`
+  constructor(private httpClient: HttpClient) { }
 
-  getAllEmployees = (): Observable<EmployeesResponse> => {
-    const okResponse: EmployeesResponse = {
-      status: 'ok',
-      employees: EMPLOYEES
-    }
-
-    const errorResponse: ServerResponse = {
-      status: 'error',
-      message: 'No se pudieron obtener los empleados'
-    }
-
-    return of(okResponse)
-  }
+  getAllEmployees = (): Observable<EmployeesResponse> =>
+    this.httpClient.get<EmployeesResponse>(`${this.url}/get_all`)
 
   getEmployee = (id: number): Observable<EmployeeResponse> => {
     const employee: Employee = EMPLOYEES.find(employee => employee.id === id)!

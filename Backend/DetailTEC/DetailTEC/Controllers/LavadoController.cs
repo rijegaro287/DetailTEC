@@ -11,14 +11,14 @@ namespace DetailTEC.Controllers
     {
         [HttpGet]
         [Route("get_all")]
-        public List<Lavado> Get()
+        public List<LavadoForGet> Get()
         {
             return LavadoData.Listar();
         }
 
         [HttpGet]
         [Route("get/{id}")]
-        public Lavado Get(string nombre)
+        public LavadoForGet Get(string nombre)
         {
             return LavadoData.Obtener(nombre);
         }
