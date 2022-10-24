@@ -39,13 +39,7 @@ Frontend/typings
 
 Frontend/.DS_Store
 Frontend/Thumbs.db
-*.vsidx
-*.lock
-*.cache
-Backend/DetailTEC/DetailTEC/obj/Release/net6.0/DetailTEC.GeneratedMSBuildEditorConfig.editorconfig
-*.dll
-*.cache
-*.json
-*.props
-*.editorconfig
-Backend/DetailTEC/DetailTEC/obj/Debug/net6.0/DetailTEC.AssemblyInfo.cs
+
+# Backend/DetailTEC/DetailTEC/bin
+# Backend/DetailTEC/DetailTEC/obj
+# Backend/DetailTEC/DetailTEC/Reports/*.pdf
