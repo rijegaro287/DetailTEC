@@ -141,7 +141,7 @@ create table CLIENTE(
 	Apellido1 varchar(20) not null,
 	Apellido2 varchar(20),
 	Correo varchar(50) not null,
-	PasswordC varchar(20) not null, -- Hay que hacer que no de pueda ver la contraseña
+	PasswordC varchar(20) , -- Hay que hacer que no de pueda ver la contraseña
 	Puntos_actuales int ,
 	Puntos_totales int, 
 	Puntos_usados int,	

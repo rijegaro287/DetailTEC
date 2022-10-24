@@ -16,9 +16,14 @@ JOIN TRABAJADOR AS T ON Tpc.Cedula_Trabajador=T.Cedula)
 GROUP BY T.Cedula, T.NombreT, T.Apellido1, T.Apellido2, L.Nombre, T.Tipo_pago
 Order by T.Cedula
 
-SELECT Ci.id, Cl.Cedula AS CedulaCliente, TpC.Cedula_trabajador as CedulaTrabajador, F.total, TP.id as IdTipoDePago
-from ((((CITA as Ci join CLIENTE as Cl on Ci.Cedula_cliente = Cl.Cedula)
-JOIN FACTURA AS F on Ci.Id = F.Id)
-JOIN TRABAJADORES_POR_CITA as TpC on Ci.ID = TpC.ID_cita)
-JOIN TIPO_DE_PAGO as TP on F.medio_pago = TP.Id)
-WHERE Ci.id = 1
+-- Select de factuaracion
+select F.ID, F.medio_pago, F.total, Cl.Cedula as Cedula_cliente, TpC.Cedula_trabajador, Ci.Nombre_lavado, Ci.Fecha, Ci.Hora
+from (((Cita as Ci join Factura as F on Ci.ID = F.ID)
+Join TRABAJADORES_POR_CITA TpC ON Ci.ID = TpC.ID_cita)
+join Cliente as Cl on Cl.Cedula = Ci.Cedula_cliente)
+where F.ID = 1
+
+-- VER TABLAS
+
+Select * FROM CITA
+SELECT * FROM CLIENTE

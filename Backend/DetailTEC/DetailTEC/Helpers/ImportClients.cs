@@ -1,24 +1,19 @@
-//Office y linux no son compas
-
-// using System;
-// using System.Collections.Generic;
+// using Microsoft.Office.Interop.Excel;
+// using _Excel = Microsoft.Office.Interop.Excel;
 // using System.Data;
 // using System.Data.OleDb; // <-- Add this
 // using System.Data.SqlClient;
+
 // using DetailTEC.Data;
-// using System.Linq;
-// using System.Text;
-// using System.Threading.Tasks;
-// using System.Text;
-// using GemBox.Spreadsheet;
-// using Excel = Microsoft.Office.Interop.Excel; 
+
+
 
 // namespace DetailTEC.Helpers;
 
 // // Clase que importa clientes a la base de datos
 // // desde un archivo xls
 // public class ImportClients{
-//     private static string path = "ImportClients/Clientes.xls";
+//     private static string path = "ImportClients/Clientes.xlsx";
 
 //     // public static void insertClients(){
 //     //     try{
@@ -33,7 +28,6 @@
 //     //         oda.Fill(ds);
 //     //         DataTable dt = ds.Tables[0];
 
-
 //     //         dt.AcceptChanges();
 
 //     //         ConexionAux con = new ConexionAux();
@@ -43,14 +37,22 @@
 
 //     //         objbulk.DestinationTableName = "Cliente";
 //     //         //mapear las columnas
+//     //         objbulk.ColumnMappings.Add("Cedula", "Identificación");
 //     //         objbulk.ColumnMappings.Add("Nombre", "Nombre");
+//     //         objbulk.ColumnMappings.Add("Apellido1", "Apellido1");
+//     //         objbulk.ColumnMappings.Add("Apellido2", "Apellido2");
+//     //         objbulk.ColumnMappings.Add("Usuario", "Usuario");
+//     //         objbulk.ColumnMappings.Add("Correo", "Correo");
+            
 
 //     //     }catch(Exception ex){
-//     //         Console.WriteLine(ex.Message);
+//     //         // Console.WriteLine(ex.Message);
+//     //         System.Diagnostics.Debug.WriteLine(ex.Message);
 //     //     }
 //     // }
 
-//     public static void insertClients(){
-//         var workbool = ExcelFile.Load(path);
+//     public static void aplicarFormato(){
+
 //     }
 // }
+

@@ -8,6 +8,7 @@ public class HandlerPDF{
     private static string TITULO_REPORTE_PLANTILLA = "Reporte de plantilla";
     private static string TITULO_REPORTE_PUNTOS = "Reporte de puntos gastados";
     private static string TITULO_REPORTE_LAVADOS = "Reporte de lavados de cliente";
+    private static string TITULO_FACTURA = "Factura #";
 
 
     private static void generarPDF(string text, string filename)
@@ -17,6 +18,15 @@ public class HandlerPDF{
         using var PDF = Renderer.RenderHtmlAsPdf(text);
 
         PDF.SaveAs($"Reports/{filename}");
+    }
+
+    // Genera un PDF de la factura
+    // Entrada:
+    //     int idCita: id de la cita a la que se le generará la factura.
+    public static void getPDFFacturacion(int idCita){
+        Facturacion facturacion = FacturacionData.generarFacturacion(idCita);
+        string facturacionHTML = montarCuerpoFacturacion(facturacion);
+        generarPDF(facturacionHTML, "Factura.pdf");
     }
 
     //Crea un PDF con la plantilla de la empresa
@@ -37,6 +47,58 @@ public class HandlerPDF{
         LavadoPorCliente[] lavados = ReportsData.reporteLavadoPorCliente(id);
         string reporteHTML = montarCuerpoReporteLavados(lavados);
         generarPDF(reporteHTML, "ReporteLavados.pdf");
+    }
+    // Crea un string con el cuerpo del PDF de la factura.
+    // El string es un HTML.
+    // Entrada:
+    //     Facturacion facturacion: objeto con los datos de la factura.
+    private static string montarCuerpoFacturacion(Facturacion facturacion){
+        var facturaHTML = @"
+            <html>
+                <head>
+                    <style>
+                        table, th, td {
+                            border: 1px solid black;
+                            border-collapse: collapse;
+                        }
+                        th, td {
+                            padding: 5px;
+                            text-align: left;
+                        }
+                    </style>
+                </head>
+                    <h1><center>" + TITULO_FACTURA + facturacion.id + @"</center></h1>
+        ";
+
+        var encabezado= @"
+            <p>Fecha de emision: {date}</p>
+            <p><b>Cliente: " + facturacion.nombreCliente+" "+facturacion.apellido1Cliente+" "+ facturacion.apellido2Cliente + @"</b></p>
+            <p>Servicio ofrecido: " + facturacion.nombreDeLavado + @"</p>
+            <p>Fecha de atencion: " + facturacion.fecha+ @"</p>
+            <p>A las: " + facturacion.hora + @"</p>
+            <p>Tipo de pago: " + facturacion.idTipoDePago + @"</p>
+            <p>Precio final: " + facturacion.total + @"</p>
+            <p>Atendido por :</p>
+            ";
+
+        facturaHTML += encabezado;
+
+        foreach  (TrabajadorForGet trabajador in facturacion.trabajadores){ 
+            var datosTrabajadores = 
+                string.Join("\n",
+                    @"<ul>
+                        <li>
+                            <div>" +
+                                "<p>Nombre de empleado: "+trabajador.nombre+" "+trabajador.apellido1+" "+trabajador.apellido2+@"</p>" +
+                            "</div>" +
+                        "</li>" +
+                    "</ul>")
+                + @"
+            
+            ";
+            facturaHTML += datosTrabajadores;
+        }
+        return facturaHTML;
     }
 
     //Crea un string con el cuerpo del PDF del reporte 
