@@ -25,7 +25,7 @@ public class FacturacionData
         string idCliente = factura.cedulaCliente.ToString();
         int[] idTrabajadores = factura.cedulaTrabajadores;
         int idTipoPago = factura.idTipoDePago;
-        Cliente cliente = ClienteData.Obtener(idCliente);
+        ClienteForGet cliente = ClienteData.Obtener(idCliente);
 
 
         //Llenar factura
