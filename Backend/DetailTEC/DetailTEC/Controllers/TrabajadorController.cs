@@ -1,9 +1,6 @@
-﻿
-
-using DetailTEC.Data;
+﻿using DetailTEC.Data;
 using DetailTEC.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Cors;
 
 namespace DetailTEC.Controllers
 {
@@ -11,12 +8,28 @@ namespace DetailTEC.Controllers
   [Route("trabajador")]
   public class TrabajadorController : ControllerBase
   {
-
     [HttpGet]
     [Route("get_all")]
-    public List<TrabajadorForGet> Get()
+    public Object Get()
     {
-      return TrabajadorData.Listar();
+      try
+      {
+        List<TrabajadorForGet> trabajadores = TrabajadorData.Listar();
+        return new
+        {
+          status = "ok",
+          message = "", // Pueden no ponerlo si no hay mensaje, es más para los errores
+          employees = trabajadores
+        };
+      }
+      catch (System.Exception err)
+      {
+        return new
+        {
+          status = "error",
+          message = err.Message // xd
+        };
+      }
     }
 
     [HttpGet]

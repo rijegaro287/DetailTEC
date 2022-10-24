@@ -8,7 +8,7 @@ import { WashingType } from './WashingType'
 import { Appointment } from './Appointment'
 
 interface ServerResponse {
-    status?: 'ok' | 'error'
+    status: 'ok' | 'error'
     message?: string
 }
 
