@@ -55,7 +55,7 @@ namespace DetailTEC.Data
             }
         }
 
-        public static bool Modificar(Lavado lavado)
+        public static bool Modificar(Lavado lavado, string id)
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
@@ -72,7 +72,7 @@ namespace DetailTEC.Data
                 cmd1.Parameters.Add("@param6", SqlDbType.Int).Value = lavado.duracionMinutos;
                 cmd1.Parameters.Add("@param7", SqlDbType.Int).Value = lavado.puntuacion;
                 cmd1.Parameters.Add("@param8", SqlDbType.Int).Value = lavado.cantidadEmpleados;
-                cmd1.Parameters.Add("@param9", SqlDbType.Int).Value = lavado.id;
+                cmd1.Parameters.Add("@param9", SqlDbType.Int).Value = Convert.ToInt32(id);
                 cmd1.CommandType = CommandType.Text;
 
 
@@ -90,7 +90,7 @@ namespace DetailTEC.Data
                                 " ID_Lavado = @param3", oConexion);
                             cmd2.Parameters.Add("@param1", SqlDbType.Int).Value = lavado.idProductos[i];
                             cmd2.Parameters.Add("@param2", SqlDbType.Int).Value = lavado.id;
-                            cmd2.Parameters.Add("@param3", SqlDbType.Int).Value = lavado.id;
+                            cmd2.Parameters.Add("@param3", SqlDbType.Int).Value = Convert.ToInt32(id);
                             cmd2.CommandType = CommandType.Text;
                             cmd2.ExecuteNonQuery();
                         }

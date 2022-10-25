@@ -13,38 +13,119 @@ namespace DetailTEC.Controllers {
     {
         [HttpGet]
         [Route("get_all")]
-        public List<ProductoForGet> Get()
+        public Object Get()
         {
-            return ProductoData.Listar();
+            try
+            {
+                List<ProductoForGet> productos = ProductoData.Listar();
+                return new
+                {
+                    status = "ok",
+                    products = productos
+                };
+            }
+            catch (System.Exception err)
+            {
+                return new
+                {
+                    status = "error",
+                    message = err.Message
+                };
+            }
         }
 
 
         [HttpGet]
         [Route("get/{id}")]
-        public ProductoForGet Get(string nombre)
+        public Object Get(string ID)
 
         {
-            return ProductoData.Obtener(nombre);
+            try
+            {
+                ProductoForGet producto = ProductoData.Obtener(ID);
+                return new
+                {
+                    status = "ok",
+                    product = producto
+                };
+            }
+            catch (System.Exception err)
+            {
+                return new
+                {
+                    status = "error",
+                    message = err.Message
+                };
+            }
         }
 
         [HttpPost]
         [Route("add")]
-        public bool Post([FromBody] Producto producto)
+        public Object Post([FromBody] Producto producto)
         {
-            return ProductoData.Registrar(producto);
+            bool ok = ProductoData.Registrar(producto);
+            if (ok)
+            {
+                return new
+                {
+                    status = "ok",
+                    message = "Producto registrado correctamente"
+                };
+            }
+            else
+            {
+                return new
+                {
+                    status = "error",
+                    message = "No se pudo registrar el producto"
+                };
+            }
         }
+
         [HttpPatch]
         [Route("update/{id}")]
-        public bool Put([FromBody] Producto producto)
+        public Object Put([FromBody] Producto producto, string id)
         {
-            return ProductoData.Modificar(producto);
+            bool ok = ProductoData.Modificar(producto, id);
+            if (ok)
+            {
+                return new
+                {
+                    status = "ok",
+                    message = "Producto modificado correctamente"
+                };
+            }
+            else
+            {
+                return new
+                {
+                    status = "error",
+                    message = "No se pudo modificar el producto"
+                };
+            }
         }
 
         [HttpDelete]
         [Route("delete/{id}")]
-        public bool Delete(string nombre)
+        public Object Delete(string id)
         {
-            return ProductoData.Eliminar(nombre);
+            bool ok = ProductoData.Eliminar(id);
+            if (ok)
+            {
+                return new
+                {
+                    status = "ok",
+                    message = "Producto eliminado correctamente"
+                };
+            }
+            else
+            {
+                return new
+                {
+                    status = "error",
+                    message = "No se pudo eliminar el producto"
+                };
+            }
 
         }
     }

@@ -48,7 +48,7 @@ namespace DetailTEC.Data
             }
         }
 
-        public static bool Modificar(Proveedor proveedor)
+        public static bool Modificar(Proveedor proveedor, string id)
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
@@ -60,7 +60,7 @@ namespace DetailTEC.Data
                 cmd1.Parameters.Add("@param2", SqlDbType.VarChar, 20).Value = proveedor.nombre;
                 cmd1.Parameters.Add("@param3", SqlDbType.VarChar, 100).Value = proveedor.direccion;
                 cmd1.Parameters.Add("@param4", SqlDbType.VarChar, 50).Value = proveedor.email;
-                cmd1.Parameters.Add("@param5", SqlDbType.Char, 10).Value = proveedor.id;
+                cmd1.Parameters.Add("@param5", SqlDbType.Char, 10).Value = Convert.ToInt32(id);
                 cmd1.CommandType = CommandType.Text;
 
 
@@ -78,7 +78,7 @@ namespace DetailTEC.Data
                                 " Ced_prov = @param3", oConexion);
                             cmd2.Parameters.Add("@param1", SqlDbType.Char, 10).Value = proveedor.id;
                             cmd2.Parameters.Add("@param2", SqlDbType.Char, 8).Value = proveedor.telefonos[i];
-                            cmd2.Parameters.Add("@param3", SqlDbType.Char, 10).Value = proveedor.id;
+                            cmd2.Parameters.Add("@param3", SqlDbType.Char, 10).Value = Convert.ToInt32(id);
                             cmd2.CommandType = CommandType.Text;
                             cmd2.ExecuteNonQuery();
                         }

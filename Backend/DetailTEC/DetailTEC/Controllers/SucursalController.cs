@@ -11,36 +11,116 @@ namespace DetailTEC.Controllers
     {
         [HttpGet]
         [Route("get_all")]
-        public List<SucursalForGet> Get()
+        public Object Get()
         {
-            return SucursalData.Listar();
+            try
+            {
+                List<SucursalForGet> sucursales = SucursalData.Listar();
+                return new
+                {
+                    status = "ok",
+                    branches = sucursales
+                };
+            }
+            catch (System.Exception err)
+            {
+                return new
+                {
+                    status = "error",
+                    message = err.Message
+                };
+            }
         }
 
         [HttpGet]
         [Route("get/{id}")]
-        public SucursalForGet Get(string nombre)
+        public Object Get(string id)
         {
-            return SucursalData.Obtener(nombre);
+            try
+            {
+                SucursalForGet sucursal = SucursalData.Obtener(id);
+                return new
+                {
+                    status = "ok",
+                    branch = sucursal
+                };
+            }
+            catch (System.Exception err)
+            {
+                return new
+                {
+                    status = "error",
+                    message = err.Message
+                };
+            }
         }
 
         [HttpPost]
         [Route("add")]
-        public bool Post([FromBody] Sucursal sucursal)
+        public Object Post([FromBody] Sucursal sucursal)
         {
-            return SucursalData.Registrar(sucursal);
+            bool ok = SucursalData.Registrar(sucursal);
+            if (ok)
+            {
+                return new
+                {
+                    status = "ok",
+                    message = "Sucursal registrada correctamente"
+                };
+            }
+            else
+            {
+                return new
+                {
+                    status = "error",
+                    message = "No se pudo registrar la sucursal"
+                };
+            }
         }
         [HttpPatch]
         [Route("update/{id}")]
-        public bool Put([FromBody] Sucursal sucursal)
+        public Object Put([FromBody] Sucursal sucursal, string id)
         {
-            return SucursalData.Modificar(sucursal);
+            bool ok = SucursalData.Modificar(sucursal, id);
+            if (ok)
+            {
+                return new
+                {
+                    status = "ok",
+                    message = "Sucursal modificada correctamente"
+                };
+            }
+            else
+            {
+                return new
+                {
+                    status = "error",
+                    message = "No se pudo modificar la sucursal"
+                };
+            }
         }
 
         [HttpDelete]
         [Route("delete/{id}")]
-        public bool Delete(string nombre)
+        public Object Delete(string id)
         {
-            return SucursalData.Eliminar(nombre);
+            bool ok = SucursalData.Eliminar(id);
+            if (ok)
+            {
+                return new
+                {
+                    status = "ok",
+                    message = "Sucursal eliminada correctamente"
+                };
+            }
+            else
+            {
+                return new
+                {
+                    status = "error",
+                    message = "No se pudo eliminar la sucursal"
+                };
+            }
 
         }
     }

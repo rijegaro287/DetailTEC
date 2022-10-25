@@ -38,7 +38,7 @@ namespace DetailTEC.Data
             }
         }
 
-        public static bool Modificar(Producto producto)
+        public static bool Modificar(Producto producto, string id)
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
@@ -51,7 +51,7 @@ namespace DetailTEC.Data
                 cmd.Parameters.Add("@param4", SqlDbType.Int).Value = producto.costo;
                 cmd.Parameters.Add("@param5", SqlDbType.Int).Value = producto.precio;
                 cmd.Parameters.Add("@param6", SqlDbType.Char, 10).Value = producto.idProveedor;
-                cmd.Parameters.Add("@param7", SqlDbType.Int).Value = producto.id;
+                cmd.Parameters.Add("@param7", SqlDbType.Int).Value = Convert.ToInt32(id);
                 cmd.CommandType = CommandType.Text;
 
                 try

@@ -11,36 +11,116 @@ namespace DetailTEC.Controllers
     {
         [HttpGet]
         [Route("get_all")]
-        public List<LavadoForGet> Get()
+        public Object Get()
         {
-            return LavadoData.Listar();
+            try
+            {
+                List<LavadoForGet> lavados = LavadoData.Listar();
+                return new
+                {
+                    status = "ok",
+                    washingTypes = lavados
+                };
+            }
+            catch (System.Exception err)
+            {
+                return new
+                {
+                    status = "error",
+                    message = err.Message
+                };
+            }
         }
 
         [HttpGet]
         [Route("get/{id}")]
-        public LavadoForGet Get(string nombre)
+        public Object Get(string id)
         {
-            return LavadoData.Obtener(nombre);
+            try
+            {
+                LavadoForGet cita = LavadoData.Obtener(id);
+                return new
+                {
+                    status = "ok",
+                    washingType = cita
+                };
+            }
+            catch (System.Exception err)
+            {
+                return new
+                {
+                    status = "error",
+                    message = err.Message
+                };
+            }
         }
 
         [HttpPost]
         [Route("add")]
-        public bool Post([FromBody] Lavado lavado)
+        public Object Post([FromBody] Lavado lavado)
         {
-            return LavadoData.Registrar(lavado);
+            bool ok = LavadoData.Registrar(lavado);
+            if (ok)
+            {
+                return new
+                {
+                    status = "ok",
+                    message = "Lavado registrado correctamente"
+                };
+            }
+            else
+            {
+                return new
+                {
+                    status = "error",
+                    message = "No se pudo registrar el lavado"
+                };
+            }
         }
         [HttpPatch]
         [Route("update/{id}")]
-        public bool Put([FromBody] Lavado lavado)
+        public Object Put([FromBody] Lavado lavado, string id)
         {
-            return LavadoData.Modificar(lavado);
+            bool ok = LavadoData.Modificar(lavado, id);
+            if (ok)
+            {
+                return new
+                {
+                    status = "ok",
+                    message = "Lavado modificado correctamente"
+                };
+            }
+            else
+            {
+                return new
+                {
+                    status = "error",
+                    message = "No se pudo modificar el lavado"
+                };
+            }
         }
 
         [HttpDelete]
         [Route("delete/{id}")]
-        public bool Delete(string nombre)
+        public Object Delete(string id)
         {
-            return LavadoData.Eliminar(nombre);
+            bool ok = LavadoData.Eliminar(id);
+            if (ok)
+            {
+                return new
+                {
+                    status = "ok",
+                    message = "Lavado eliminado correctamente"
+                };
+            }
+            else
+            {
+                return new
+                {
+                    status = "error",
+                    message = "No se pudo eliminar el lavado"
+                };
+            }
 
         }
     }

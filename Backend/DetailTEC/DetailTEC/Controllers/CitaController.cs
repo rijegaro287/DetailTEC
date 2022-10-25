@@ -14,36 +14,116 @@ namespace DetailTEC.Controllers
     {
         [HttpGet]
         [Route("get_all")]
-        public List<CitaForGet> Get()
+        public Object Get()
         {
-            return CitaData.Listar();
+            try
+            {
+                List<CitaForGet> citas = CitaData.Listar();
+                return new
+                {
+                    status = "ok",
+                    appointments = citas
+                };
+            }
+            catch (System.Exception err)
+            {
+                return new
+                {
+                    status = "error",
+                    message = err.Message
+                };
+            }
         }
 
         [HttpGet]
         [Route("get/{id}")]
-        public CitaForGet Get(string cedula)
+        public Object Get(string id)
         {
-            return CitaData.Obtener(cedula);
+            try
+            {
+                CitaForGet cita = CitaData.Obtener(id);
+                return new
+                {
+                    status = "ok",
+                    appointment = cita
+                };
+            }
+            catch (System.Exception err)
+            {
+                return new
+                {
+                    status = "error",
+                    message = err.Message
+                };
+            }
         }
 
         [HttpPost]
         [Route("add")]
-        public bool Post([FromBody] Cita cita)
+        public Object Post([FromBody] Cita cita)
         {
-            return CitaData.Registrar(cita);
+            bool ok = CitaData.Registrar(cita);
+            if (ok)
+            {
+                return new
+                {
+                    status = "ok",
+                    message = "Cita registrada correctamente"
+                };
+            }
+            else
+            {
+                return new
+                {
+                    status = "error",
+                    message = "No se pudo registrar la cita"
+                };
+            }
         }
         [HttpPatch]
         [Route("update/{id}")]
-        public bool Put([FromBody] Cita cita)
+        public Object Put([FromBody] Cita cita, string id)
         {
-            return CitaData.Modificar(cita);
+            bool ok = CitaData.Modificar(cita, id);
+            if (ok)
+            {
+                return new
+                {
+                    status = "ok",
+                    message = "Cita modificada correctamente"
+                };
+            }
+            else
+            {
+                return new
+                {
+                    status = "error",
+                    message = "No se pudo modificar la cita"
+                };
+            }
         }
 
         [HttpDelete]
         [Route("delete/{id}")]
-        public bool Delete(string id)
+        public Object Delete(string id)
         {
-            return CitaData.Eliminar(id);
+            bool ok = CitaData.Eliminar(id);
+            if (ok)
+            {
+                return new
+                {
+                    status = "ok",
+                    message = "Cita eliminada correctamente"
+                };
+            }
+            else
+            {
+                return new
+                {
+                    status = "error",
+                    message = "No se pudo eliminar la cita"
+                };
+            }
 
         }
     }

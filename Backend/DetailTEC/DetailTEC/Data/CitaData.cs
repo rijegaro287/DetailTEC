@@ -79,7 +79,7 @@ namespace DetailTEC.Data
             }
         }
 
-        public static bool Modificar(Cita cita)
+        public static bool Modificar(Cita cita, string id)
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
@@ -96,7 +96,7 @@ namespace DetailTEC.Data
                 cmd1.Parameters.Add("@param5", SqlDbType.Char, 9).Value = cita.cedulaCliente;
                 cmd1.Parameters.Add("@param6", SqlDbType.Date).Value = cita.fecha.Date;
                 cmd1.Parameters.Add("@param7", SqlDbType.Time).Value = cita.hora;
-                cmd1.Parameters.Add("@param8", SqlDbType.Int).Value = cita.id;
+                cmd1.Parameters.Add("@param8", SqlDbType.Int).Value = Convert.ToInt32(id);
                 cmd1.CommandType = CommandType.Text;
 
                 try
@@ -111,7 +111,7 @@ namespace DetailTEC.Data
                             cmd2 = new SqlCommand("update TRABAJADORES_POR_CITA set Cedula_trabajador=@param1, ID_cita=@param2 where " +
                                 " Cedula_trabajador = @param3", oConexion);
                             cmd2.Parameters.Add("@param1", SqlDbType.Char, 9).Value = cita.idEmpleados[i];
-                            cmd2.Parameters.Add("@param2", SqlDbType.Int).Value = cita.id;
+                            cmd2.Parameters.Add("@param2", SqlDbType.Int).Value = Convert.ToInt32(id);
                             cmd2.Parameters.Add("@param3", SqlDbType.Int).Value = cita.idEmpleados[i];
                             cmd2.CommandType = CommandType.Text;
                             cmd2.ExecuteNonQuery();
