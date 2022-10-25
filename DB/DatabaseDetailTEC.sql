@@ -171,6 +171,7 @@ create table CITA(
 	Cedula_cliente char(9) not null,
 	Fecha date not null, 
 	Hora time not null,
+	Medio_pago varchar(20) not null,
 	PRIMARY KEY(ID)
 )
 
@@ -180,11 +181,15 @@ create table TRABAJADORES_POR_CITA(
 	ID_cita int not null
 )
 
+
+
 CREATE TABLE TIPO_DE_PAGO( 
 	ID int not null,
 	Nombre varchar(20) not null,
 	PRIMARY KEY (ID)
 );
+
+
 
 CREATE TABLE FACTURA( 
 	ID int not null,
@@ -198,6 +203,9 @@ CREATE TABLE PRODUCTOS_COMPRADOS(
 	ID_Factura INT NOT NULL,
 	Cantidad int not null
 );
+
+
+
 
 GO 
 
@@ -259,3 +267,5 @@ select C.Cedula, C.Nombre, C.Apellido1, C.Apellido2,
                     C.Correo, C.Puntos_actuales, C.Puntos_totales, C.Puntos_usados,
                     T.Telefono, D.Direccion from CLIENTE as C, TELEFONOS_CLIENTE as T, DIRECCIONES_CLIENTE as D
                     where C.Cedula = T.Cedula_Cli AND C.Cedula = D.Cedula_Cli
+
+Select SUM(P.Precio) AS Sumatoria from PRODUCTO as P, PRODUCTO_LAVADO AS L where L.ID_Lavado = '1' AND L.ID_Producto = P.ID
