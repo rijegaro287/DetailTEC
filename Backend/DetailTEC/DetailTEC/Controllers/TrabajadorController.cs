@@ -58,7 +58,6 @@ namespace DetailTEC.Controllers
     [Route("add")]
     public Object Post([FromBody] Trabajador trabajador)
     {
-      Console.WriteLine(trabajador);
       bool ok = TrabajadorData.Registrar(trabajador);
       if (ok)
       {
@@ -79,18 +78,52 @@ namespace DetailTEC.Controllers
     }
 
     [HttpPatch]
-    [Route("update/{id}")]
-    public bool Put([FromBody] Trabajador trabajador)
+    [Route("update/{cedula}")]
+    // Si hay passwordVieja y password, se cambia la contraseña
+    // Si passwordVieja y password estan vacias, no se cambia la contraseña
+    // Hay que validar que la password vieja sea correcta, si no, mandar status="error" y un mensaje para mostrarlo en el front
+    public Object Put([FromBody] Trabajador trabajador, string cedula)
     {
-      return TrabajadorData.Modificar(trabajador);
+      bool ok = TrabajadorData.Modificar(trabajador, cedula);
+      if (ok)
+      {
+        return new
+        {
+          status = "ok",
+          message = "Trabajador modificado correctamente"
+        };
+      }
+      else
+      {
+        return new
+        {
+          status = "error",
+          message = "No se pudo modificar el trabajador"
+        };
+      }
     }
 
     [HttpDelete]
     [Route("delete/{cedula}")]
-    public bool Delete(string cedula)
+    public Object Delete(string cedula)
     {
-      return TrabajadorData.Eliminar(cedula);
-
+      bool ok = TrabajadorData.Eliminar(cedula);
+      if (ok)
+      {
+        return new
+        {
+          status = "ok",
+          message = "Trabajador eliminado correctamente"
+        };
+      }
+      else
+      {
+        return new
+        {
+          status = "error",
+          message = "No se pudo eliminar el trabajador"
+        };
+      }
     }
   }
 }

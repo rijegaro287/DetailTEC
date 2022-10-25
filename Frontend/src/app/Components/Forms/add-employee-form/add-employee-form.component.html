@@ -6,7 +6,7 @@
         </div>
 
         <div class="col-4">
-            <label class="form-label" for="lastNameInput1">Primer pellido:</label>
+            <label class="form-label" for="lastNameInput1">Primer apellido:</label>
             <input class="form-control" id="lastNameInput1" type="text" formControlName="apellido1">
         </div>
 
@@ -72,7 +72,19 @@
         </div>
     </div>
 
+    <div class="row mb-3">
+        <div class="col-6">
+            <label class="form-label" for="passwordInput">Contraseña:</label>
+            <input class="form-control" id=" passwordInput" type="password" formControlName="password">
+        </div>
+
+        <div class="col-6">
+            <label class="form-label" for="passwordConfirmInput">Confirme la contraseña:</label>
+            <input class="form-control" id="passwordConfirmInput" type="password" formControlName="passwordConfirm">
+        </div>
+    </div>
+
     <div class="d-flex justify-content-end">
-        <input type="submit" class="btn btn-success btn-lg" value="{{employeeInfo ? 'Editar' : 'Crear'}}">
+        <input type="submit" class="btn btn-success btn-lg" value="Crear">
     </div>
 </form>

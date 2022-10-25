@@ -1,19 +1,20 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core'
-import { FormControl, Validators } from '@angular/forms'
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
-import { Employee } from 'src/app/Interfaces/Employee'
-import { EmployeeService } from 'src/app/Services/employee.service'
-import { ServerResponse } from 'src/app/Interfaces/ServerResponses'
+import { Employee } from 'src/app/Interfaces/Employee';
+import { ServerResponse } from 'src/app/Interfaces/ServerResponses';
 
-import { FormsService } from 'src/app/Services/forms.service'
-import { MessageService } from 'src/app/Services/message.service'
+import { AuxFunctionsService } from 'src/app/Services/aux-functions.service';
+import { EmployeeService } from 'src/app/Services/employee.service';
+import { FormsService } from 'src/app/Services/forms.service';
+import { MessageService } from 'src/app/Services/message.service';
 
 @Component({
-  selector: 'app-add-employee-form',
-  templateUrl: './add-employee-form.component.html',
-  styleUrls: ['./add-employee-form.component.scss']
+  selector: 'app-edit-employee-form',
+  templateUrl: './edit-employee-form.component.html',
+  styleUrls: ['./edit-employee-form.component.scss']
 })
-export class AddEmployeeFormComponent implements OnInit {
+export class EditEmployeeFormComponent implements OnInit, OnChanges {
   nombre: FormControl
   apellido1: FormControl
   apellido2: FormControl
@@ -23,10 +24,14 @@ export class AddEmployeeFormComponent implements OnInit {
   puesto: FormControl
   fechaInicio: FormControl
   frecuenciaPago: FormControl
+  passwordVieja: FormControl
   password: FormControl
   passwordConfirm: FormControl
 
+  @Input() employeeInfo?: Employee
+
   constructor(
+    private auxFunctionsService: AuxFunctionsService,
     private messageService: MessageService,
     private employeeService: EmployeeService,
     protected formsService: FormsService
@@ -40,10 +45,10 @@ export class AddEmployeeFormComponent implements OnInit {
     this.puesto = new FormControl('', [Validators.required])
     this.fechaInicio = new FormControl('', [Validators.required])
     this.frecuenciaPago = new FormControl('', [Validators.required])
+    this.passwordVieja = new FormControl('', [Validators.required])
     this.password = new FormControl('', [Validators.required])
     this.passwordConfirm = new FormControl('', [Validators.required])
   }
-
   ngOnInit(): void {
     this.formsService.resetForm()
 
@@ -56,8 +61,24 @@ export class AddEmployeeFormComponent implements OnInit {
     this.formsService.form.addControl('puesto', this.puesto)
     this.formsService.form.addControl('fechaInicio', this.fechaInicio)
     this.formsService.form.addControl('frecuenciaPago', this.frecuenciaPago)
+    this.formsService.form.addControl('passwordVieja', this.passwordVieja)
     this.formsService.form.addControl('password', this.password)
     this.formsService.form.addControl('passwordConfirm', this.passwordConfirm)
+  }
+
+  ngOnChanges(): void {
+    if (this.employeeInfo && Object.keys(this.employeeInfo).length) {
+
+      const { edad, ...employeeInfo } = this.employeeInfo as any
+
+      employeeInfo.fechaInicio = this.auxFunctionsService
+        .stringToDate(this.employeeInfo.fechaInicio)
+
+      employeeInfo.fechaNacimiento = this.auxFunctionsService
+        .stringToDate(this.employeeInfo.fechaNacimiento)
+
+      this.formsService.patchFormValue(employeeInfo)
+    }
   }
 
   onSubmit = () => {
@@ -71,21 +92,28 @@ export class AddEmployeeFormComponent implements OnInit {
       delete newEmployeeInfo.passwordConfirm
     }
 
-    this.createEmployee(newEmployeeInfo)
+    this.updateEmployee(newEmployeeInfo)
       .then((response) => {
         if (response.status === 'error') {
           this.messageService.setMessageInfo(response.message!, 'error')
         }
         else {
-          window.location.reload();
+          if (newEmployeeInfo.id !== this.employeeInfo?.id) {
+            window.location.href = `/admin/employees/${newEmployeeInfo.id}`
+          }
+          else {
+            window.location.reload();
+          }
         }
       })
   }
 
-  createEmployee = (newEmployeeInfo: Employee): Promise<ServerResponse> => {
+  updateEmployee = (newEmployeeInfo: Employee): Promise<ServerResponse> => {
     return new Promise((resolve, reject) => {
-      this.employeeService.createEmployee(newEmployeeInfo)
-        .subscribe((response: ServerResponse) => resolve(response))
+      if (this.employeeInfo && Object.keys(this.employeeInfo).length) {
+        this.employeeService.updateEmployee(this.employeeInfo.id, newEmployeeInfo)
+          .subscribe((response: ServerResponse) => resolve(response))
+      }
     })
   }
 }
