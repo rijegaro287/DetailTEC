@@ -22,7 +22,8 @@ export class AdminEmployeesComponent implements OnInit {
   ) {
     this.tableColumns = [
       { key: "nombre", replacement: "Nombre" },
-      { key: "apellido", replacement: "Apellido" },
+      { key: "apellido1", replacement: "Primer apellido" },
+      { key: "apellido2", replacement: "Segundo apellido" },
       { key: "id", replacement: "Cédula" },
       { key: "email", replacement: "Correo" },
       { key: "puesto", replacement: "Puesto" },
@@ -36,8 +37,6 @@ export class AdminEmployeesComponent implements OnInit {
 
     this.employeeService.getAllEmployees()
       .subscribe(response => {
-        console.log(response);
-
         if (response.status === 'error') {
           this.messageService.setMessageInfo(response.message!, 'error')
         }

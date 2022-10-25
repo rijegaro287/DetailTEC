@@ -18,7 +18,6 @@ namespace DetailTEC.Controllers
         return new
         {
           status = "ok",
-          message = "", // Pueden no ponerlo si no hay mensaje, es más para los errores
           employees = trabajadores
         };
       }
@@ -27,25 +26,58 @@ namespace DetailTEC.Controllers
         return new
         {
           status = "error",
-          message = err.Message // xd
+          message = err.Message
         };
       }
     }
 
     [HttpGet]
-    [Route("get/{id}")]
-    public TrabajadorForGet Get(string cedula)
+    [Route("get/{cedula}")]
+    public Object Get(string cedula)
     {
-      return TrabajadorData.Obtener(cedula);
+      try
+      {
+        TrabajadorForGet trabajador = TrabajadorData.Obtener(cedula);
+        return new
+        {
+          status = "ok",
+          employee = trabajador
+        };
+      }
+      catch (System.Exception err)
+      {
+        return new
+        {
+          status = "error",
+          message = err.Message
+        };
+      }
     }
 
     [HttpPost]
     [Route("add")]
-    public bool Post([FromBody] Trabajador trabajador)
+    public Object Post([FromBody] Trabajador trabajador)
     {
-
-      return TrabajadorData.Registrar(trabajador);
+      Console.WriteLine(trabajador);
+      bool ok = TrabajadorData.Registrar(trabajador);
+      if (ok)
+      {
+        return new
+        {
+          status = "ok",
+          message = "Trabajador registrado correctamente"
+        };
+      }
+      else
+      {
+        return new
+        {
+          status = "error",
+          message = "No se pudo registrar el trabajador"
+        };
+      }
     }
+
     [HttpPatch]
     [Route("update/{id}")]
     public bool Put([FromBody] Trabajador trabajador)
@@ -54,7 +86,7 @@ namespace DetailTEC.Controllers
     }
 
     [HttpDelete]
-    [Route("delete/{id}")]
+    [Route("delete/{cedula}")]
     public bool Delete(string cedula)
     {
       return TrabajadorData.Eliminar(cedula);

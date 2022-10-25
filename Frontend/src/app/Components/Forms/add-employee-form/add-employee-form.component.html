@@ -1,13 +1,18 @@
 <form [formGroup]="this.formsService.form" (ngSubmit)="onSubmit()">
     <div class="row mb-3">
-        <div class="col-6">
+        <div class="col-4">
             <label class="form-label" for="nameInput">Nombre:</label>
             <input class="form-control" id="nameInput" type="text" formControlName="nombre">
         </div>
 
-        <div class="col-6">
-            <label class="form-label" for="lastNameInput">Apellido:</label>
-            <input class="form-control" id="lastNameInput" type="text" formControlName="apellido">
+        <div class="col-4">
+            <label class="form-label" for="lastNameInput1">Primer pellido:</label>
+            <input class="form-control" id="lastNameInput1" type="text" formControlName="apellido1">
+        </div>
+
+        <div class="col-4">
+            <label class="form-label" for="lastNameInput2">Segundo apellido:</label>
+            <input class="form-control" id="lastNameInput2" type="text" formControlName="apellido2">
         </div>
     </div>
 
@@ -36,8 +41,7 @@
             <label class="form-label" for="paymentFrequencyInput">Frecuencia de pago:</label>
             <select class="form-select" id="paymentFrequencyInput" formControlName="frecuenciaPago">
                 <option value="Semanal">Semanal</option>
-                <option value="Quincenal">Quincenal</option>
-                <option value="Mensual">Mensual</option>
+                <option value="Bisemanal">Bisemanal</option>
             </select>
         </div>
     </div>

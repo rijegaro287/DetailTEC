@@ -66,7 +66,7 @@ export class AdminAddAppointmentFormComponent implements OnInit {
       .map((employee): SelectOption => {
         return {
           value: employee.id.toString(),
-          text: `${employee.nombre} ${employee.apellido} #${employee.id}#`
+          text: `${employee.nombre} ${employee.apellido1} ${employee.apellido2} #${employee.id}#`
         }
       })
 
