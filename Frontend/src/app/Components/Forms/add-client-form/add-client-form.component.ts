@@ -59,6 +59,7 @@ export class AddClientFormComponent implements OnInit, OnChanges {
 
       clientInfo.id = Number(clientInfo.id)
 
+
       this.formsService.patchFormValue(clientInfo)
 
       const telFormArray: FormArray = this.formsService
