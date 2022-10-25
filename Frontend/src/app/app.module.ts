@@ -52,7 +52,6 @@ import { AdminAddAppointmentFormComponent } from './Components/Forms/admin-add-a
 import { AdminAppointmentInfoComponent } from './Components/Admin/appointment-info/appointment-info.component';
 import { AdminBillsComponent } from './Components/Admin/bills/bills.component';
 import { AdminBillInfoComponent } from './Components/Admin/bill-info/bill-info.component';
-import { EditEmployeeFormComponent } from './Components/Forms/edit-employee-form/edit-employee-form.component';
 
 
 @NgModule({
@@ -96,8 +95,7 @@ import { EditEmployeeFormComponent } from './Components/Forms/edit-employee-form
     AdminAddAppointmentFormComponent,
     AdminAppointmentInfoComponent,
     AdminBillsComponent,
-    AdminBillInfoComponent,
-    EditEmployeeFormComponent
+    AdminBillInfoComponent
   ],
   imports: [
     BrowserModule,

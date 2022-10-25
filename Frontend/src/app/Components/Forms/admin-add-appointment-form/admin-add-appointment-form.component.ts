@@ -119,18 +119,18 @@ export class AdminAddAppointmentFormComponent implements OnInit {
   getClients = (): Client[] => {
     let clients: Client[] = []
 
-    // this.clientService.getAllClients()
-    //   .subscribe(response => {
-    //     if (response.status == "error") {
-    //       this.messageService.setMessageInfo(response.message!, "error")
-    //     }
-    //     else if (response.clients) {
-    //       clients = response.clients
-    //     }
-    //     else {
-    //       console.log(response)
-    //     }
-    //   })
+    this.clientService.getAllClients()
+      .subscribe(response => {
+        if (response.status == "error") {
+          this.messageService.setMessageInfo(response.message!, "error")
+        }
+        else if (response.clients) {
+          clients = response.clients
+        }
+        else {
+          console.log(response)
+        }
+      })
 
     return clients
   }

@@ -25,12 +25,11 @@ export class ClientInfoComponent implements OnInit {
       { key: "id", replacement: "Cédula" },
       { key: "usuario", replacement: "Usuario" },
       { key: "nombre", replacement: "Nombre" },
-      { key: "apellido1", replacement: "Primer apellido" },
-      { key: "apellido1", replacement: "Segundo apellido" },
+      { key: "apellido", replacement: "Apellido" },
       { key: "email", replacement: "Correo" },
       { key: "telefonos", replacement: "Telefonos" },
       { key: "direcciones", "replacement": "Direcciones" },
-      { key: "actuales", replacement: "Puntos disponibles" }
+      { key: "puntos", replacement: "Puntos" }
     ]
 
     this.client = {} as Client
@@ -38,17 +37,17 @@ export class ClientInfoComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.loginService.getLoggedClientID()
-    // this.clientService.getClient(id)
-    //   .subscribe(response => {
-    //     if (response.status === 'error') {
-    //       this.messageService.setMessageInfo(response.message!, 'error')
-    //     }
-    //     else if (response.client) {
-    //       this.client = response.client
-    //     }
-    //     else {
-    //       console.log(response)
-    //     }
-    //   })
+    this.clientService.getClient(id)
+      .subscribe(response => {
+        if (response.status === 'error') {
+          this.messageService.setMessageInfo(response.message!, 'error')
+        }
+        else if (response.client) {
+          this.client = response.client
+        }
+        else {
+          console.log(response)
+        }
+      })
   }
 }

@@ -6,14 +6,14 @@ import { EmployeeService } from 'src/app/Services/employee.service'
 import { ServerResponse } from 'src/app/Interfaces/ServerResponses'
 
 import { FormsService } from 'src/app/Services/forms.service'
-import { MessageService } from 'src/app/Services/message.service'
+import { AuxFunctionsService } from 'src/app/Services/aux-functions.service'
 
 @Component({
   selector: 'app-add-employee-form',
   templateUrl: './add-employee-form.component.html',
   styleUrls: ['./add-employee-form.component.scss']
 })
-export class AddEmployeeFormComponent implements OnInit {
+export class AddEmployeeFormComponent implements OnInit, OnChanges {
   nombre: FormControl
   apellido1: FormControl
   apellido2: FormControl
@@ -23,11 +23,11 @@ export class AddEmployeeFormComponent implements OnInit {
   puesto: FormControl
   fechaInicio: FormControl
   frecuenciaPago: FormControl
-  password: FormControl
-  passwordConfirm: FormControl
+
+  @Input() employeeInfo?: Employee
 
   constructor(
-    private messageService: MessageService,
+    private auxFunctionsService: AuxFunctionsService,
     private employeeService: EmployeeService,
     protected formsService: FormsService
   ) {
@@ -40,8 +40,6 @@ export class AddEmployeeFormComponent implements OnInit {
     this.puesto = new FormControl('', [Validators.required])
     this.fechaInicio = new FormControl('', [Validators.required])
     this.frecuenciaPago = new FormControl('', [Validators.required])
-    this.password = new FormControl('', [Validators.required])
-    this.passwordConfirm = new FormControl('', [Validators.required])
   }
 
   ngOnInit(): void {
@@ -56,36 +54,35 @@ export class AddEmployeeFormComponent implements OnInit {
     this.formsService.form.addControl('puesto', this.puesto)
     this.formsService.form.addControl('fechaInicio', this.fechaInicio)
     this.formsService.form.addControl('frecuenciaPago', this.frecuenciaPago)
-    this.formsService.form.addControl('password', this.password)
-    this.formsService.form.addControl('passwordConfirm', this.passwordConfirm)
   }
 
-  onSubmit = () => {
-    const newEmployeeInfo = this.formsService.getFormValue()
+  ngOnChanges(): void {
+    if (this.employeeInfo && Object.keys(this.employeeInfo).length) {
+      const { edad, ...employeeInfo } = this.employeeInfo as any
 
-    if (newEmployeeInfo.password !== newEmployeeInfo.passwordConfirm) {
-      this.messageService.setMessageInfo('Las contraseñas no coinciden', 'error')
-      return
-    } else {
-      this.messageService.resetMessageInfo()
-      delete newEmployeeInfo.passwordConfirm
+      employeeInfo.fechaInicio = this.auxFunctionsService
+        .stringToDate(this.employeeInfo.fechaInicio)
+
+      employeeInfo.fechaNacimiento = this.auxFunctionsService
+        .stringToDate(this.employeeInfo.fechaNacimiento)
+
+      this.formsService.patchFormValue(employeeInfo)
+    }
+  }
+
+  onSubmit = async () => {
+    const newEmployeeInfo = this.formsService.getFormValue()
+    let serverResponse: ServerResponse = {} as ServerResponse
+
+    if (this.employeeInfo && Object.keys(this.employeeInfo).length) {
+      await this.employeeService.createEmployee(newEmployeeInfo)
+        .subscribe((response: ServerResponse) => { response = response })
+    }
+    else {
+      await this.employeeService.createEmployee(newEmployeeInfo)
+        .subscribe((response: ServerResponse) => { response = response })
     }
 
-    this.createEmployee(newEmployeeInfo)
-      .then((response) => {
-        if (response.status === 'error') {
-          this.messageService.setMessageInfo(response.message!, 'error')
-        }
-        else {
-          window.location.reload();
-        }
-      })
-  }
-
-  createEmployee = (newEmployeeInfo: Employee): Promise<ServerResponse> => {
-    return new Promise((resolve, reject) => {
-      this.employeeService.createEmployee(newEmployeeInfo)
-        .subscribe((response: ServerResponse) => resolve(response))
-    })
+    console.log(serverResponse);
   }
 }

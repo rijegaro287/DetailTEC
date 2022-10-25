@@ -5,7 +5,7 @@
                     class="text-secondary">{{selectedClientID}}</span></label>
             <select class="form-select" id="clientInput" formControlName="idCliente" (change)="setClientIDLabel()">
                 <option *ngFor="let client of clients" value="{{client.id}}">
-                    {{client.nombre}} {{client.apellido1}} {{client.apellido2}}
+                    {{client.nombre}} {{client.apellido}}
                 </option>
             </select>
         </div>

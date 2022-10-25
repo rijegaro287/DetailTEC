@@ -16,6 +16,7 @@ export class AdminEmployeeInfoComponent implements OnInit {
   employeeInfoTitles: KeyReplacement<Employee>[]
   employee: Employee
 
+
   constructor(
     private route: ActivatedRoute,
     private employeeService: EmployeeService,
@@ -46,25 +47,9 @@ export class AdminEmployeeInfoComponent implements OnInit {
         }
         else if (response.employee) {
           this.employee = response.employee
-          this.employee.fechaNacimiento = this.employee.fechaNacimiento.split('T')[0]
-          this.employee.fechaInicio = this.employee.fechaInicio.split('T')[0]
         }
         else {
           console.log(response)
-        }
-      })
-  }
-
-  goBack = (): void => window.history.back()
-
-  deleteEmployee = (): void => {
-    this.employeeService.deleteEmployee(this.employee.id)
-      .subscribe(response => {
-        if (response.status === 'error') {
-          this.messageService.setMessageInfo(response.message!, 'error')
-        }
-        else {
-          window.location.href = '/admin/employees'
         }
       })
   }

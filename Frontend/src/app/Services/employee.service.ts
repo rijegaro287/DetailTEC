@@ -32,30 +32,17 @@ export class EmployeeService {
     this.httpClient.get<EmployeeResponse>(`${this.url}/get/${id}`)
 
   createEmployee = (employee: any): Observable<ServerResponse> => {
+    console.log(employee);
+
     employee.id = employee.id.toString()
-    employee.fechaNacimiento = this.auxFunctionsService
-      .dateToString(employee.fechaNacimiento)
-    employee.fechaInicio = this.auxFunctionsService
-      .dateToString(employee.fechaInicio)
+    employee.edad = 1;
+    employee.password = '1234';
+    employee.fechaNacimiento = this.auxFunctionsService.dateToString(employee.fechaNacimiento)
+    employee.fechaInicio = this.auxFunctionsService.dateToString(employee.fechaInicio)
 
-    employee.password = employee.password.toString();
+    console.log(employee);
 
-    return this.httpClient.post<ServerResponse>(`${this.url}/add`, employee)
-  }
 
-  updateEmployee = (employeeID: number, employee: any): Observable<ServerResponse> => {
-    employee.id = employee.id.toString()
-    employee.fechaNacimiento = this.auxFunctionsService
-      .dateToString(employee.fechaNacimiento)
-    employee.fechaInicio = this.auxFunctionsService
-      .dateToString(employee.fechaInicio)
-
-    employee.password = employee.password.toString();
-
-    return this.httpClient.patch<ServerResponse>(`${this.url}/update/${employeeID}`, employee)
-  }
-
-  deleteEmployee = (id: number): Observable<ServerResponse> => {
-    return this.httpClient.delete<ServerResponse>(`${this.url}/delete/${id}`)
+    return this.httpClient.post<ServerResponse>(`${this.url}/add`, { trabajador: employee })
   }
 } 

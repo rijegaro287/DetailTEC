@@ -1,127 +1,47 @@
 ﻿using DetailTEC.Data;
 using DetailTEC.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DetailTEC.Controllers
 {
-  [ApiController]
-  [Route("cliente")]
-  public class ClienteController : Controller
-  {
-    [HttpGet]
-    [Route("get_all")]
-    public Object Get()
+    [ApiController]
+    [Route("cliente")]
+    public class ClienteController : Controller
     {
-      try
-      {
-        List<ClienteForGet> clientes = ClienteData.Listar();
-        return new
+        [HttpGet]
+        [Route("get_all")]
+        public List<ClienteForGet> Get()
         {
-          status = "ok",
-          clients = clientes
-        };
-      }
-      catch (System.Exception err)
-      {
-        return new
-        {
-          status = "error",
-          message = err.Message
-        };
-      }
-    }
+            return ClienteData.Listar();
+        }
 
-    [HttpGet]
-    [Route("get/{cedula}")]
-    public Object Get(string cedula)
-    {
-      try
-      {
-        ClienteForGet cliente = ClienteData.Obtener(cedula);
-        return new
+        [HttpGet]
+        [Route("get/{id}")]
+        public ClienteForGet Get(string cedula)
         {
-          status = "ok",
-          client = cliente
-        };
-      }
-      catch (System.Exception err)
-      {
-        return new
-        {
-          status = "error",
-          message = err.Message
-        };
-      }
-    }
+            return ClienteData.Obtener(cedula);
+        }
 
-    [HttpPost]
-    [Route("add")]
-    // Se tiene que generar la contraseña registrar el cliente
-    public Object Post([FromBody] Cliente cliente)
-    {
-      bool ok = ClienteData.Registrar(cliente);
-      if (ok)
-      {
-        return new
+        [HttpPost]
+        [Route("add")]
+        public bool Post([FromBody] Cliente cliente)
         {
-          status = "ok",
-          message = "Cliente registrado correctamente"
-        };
-      }
-      else
-      {
-        return new
+            return ClienteData.Registrar(cliente);
+        }
+        [HttpPatch]
+        [Route("update/{id}")]
+        public bool Put([FromBody] Cliente cliente)
         {
-          status = "error",
-          message = "No se pudo registrar el cliente"
-        };
-      }
-    }
+            return ClienteData.Modificar(cliente);
+        }
 
-    [HttpPatch]
-    [Route("update/{cedula}")]
-    public Object Put([FromBody] Cliente cliente, string cedula)
-    {
-      bool ok = ClienteData.Modificar(cliente, cedula);
-      if (ok)
-      {
-        return new
+        [HttpDelete]
+        [Route("delete/{id}")]
+        public bool Delete(string cedula)
         {
-          status = "ok",
-          message = "Cliente modificado correctamente"
-        };
-      }
-      else
-      {
-        return new
-        {
-          status = "error",
-          message = "No se pudo modificar el cliente"
-        };
-      }
-    }
+            return ClienteData.Eliminar(cedula);
 
-    [HttpDelete]
-    [Route("delete/{cedula}")]
-    public Object Delete(string cedula)
-    {
-      bool ok = ClienteData.Eliminar(cedula);
-      if (ok)
-      {
-        return new
-        {
-          status = "ok",
-          message = "Cliente eliminado correctamente"
-        };
-      }
-      else
-      {
-        return new
-        {
-          status = "error",
-          message = "No se pudo eliminar el cliente"
-        };
-      }
+        }
     }
-  }
 }

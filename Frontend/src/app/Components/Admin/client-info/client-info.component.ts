@@ -25,14 +25,11 @@ export class AdminClientInfoComponent implements OnInit {
       { key: "id", replacement: "Cédula" },
       { key: "usuario", replacement: "Usuario" },
       { key: "nombre", replacement: "Nombre" },
-      { key: "apellido1", replacement: "Primer apellido" },
-      { key: "apellido2", replacement: "Segundo apellido" },
+      { key: "apellido", replacement: "Apellido" },
       { key: "email", replacement: "Correo" },
       { key: "telefonos", replacement: "Telefonos" },
       { key: "direcciones", "replacement": "Direcciones" },
-      { key: "total", replacement: "Puntos totales" },
-      { key: "utilizados", replacement: "Puntos redimidos" },
-      { key: "actuales", replacement: "Puntos disponibles" }
+      { key: "puntos", replacement: "Puntos" }
     ]
 
     this.client = {} as Client
@@ -50,20 +47,6 @@ export class AdminClientInfoComponent implements OnInit {
         }
         else {
           console.log(response)
-        }
-      })
-  }
-
-  goBack = (): void => window.history.back()
-
-  deleteClient = (): void => {
-    this.clientService.deleteClient(this.client.id)
-      .subscribe(response => {
-        if (response.status === 'error') {
-          this.messageService.setMessageInfo(response.message!, 'error')
-        }
-        else {
-          window.location.href = '/admin/clients'
         }
       })
   }

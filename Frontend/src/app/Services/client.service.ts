@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable, of } from 'rxjs'
-import { apiURL } from '../app.component'
 
 import { Client } from '../Interfaces/Client'
 import {
@@ -10,37 +8,41 @@ import {
   ClientResponse
 } from '../Interfaces/ServerResponses'
 
+import { CLIENTS } from '../TestDB/Clients'
+
 @Injectable({
   providedIn: 'root'
 })
 export class ClientService {
-  url: string = `${apiURL}/cliente`
+  constructor() { }
 
-  constructor(
-    private httpClient: HttpClient
-  ) { }
+  getAllClients = (): Observable<ClientsResponse> => {
+    const okResponse: ClientsResponse = {
+      status: 'ok',
+      clients: CLIENTS
+    }
 
-  getAllClients = (): Observable<ClientsResponse> =>
-    this.httpClient.get<ClientsResponse>(`${this.url}/get_all`)
+    const errorResponse: ServerResponse = {
+      status: 'error',
+      message: 'No se pudieron obtener los clientes'
+    }
 
-  getClient = (id: number): Observable<ClientResponse> =>
-    this.httpClient.get<ClientResponse>(`${this.url}/get/${id}`)
-
-  createClient = (client: any): Observable<ServerResponse> => {
-    client.id = client.id.toString()
-    client.telefonos.forEach((telefono: string) => telefono.toString())
-
-    return this.httpClient.post<ServerResponse>(`${this.url}/add`, client)
+    return of(okResponse)
   }
 
-  updateClient = (clientID: number, client: any): Observable<ServerResponse> => {
-    client.id = client.id.toString()
-    client.telefonos.forEach((telefono: string) => telefono.toString())
+  getClient = (id: number): Observable<ClientResponse> => {
+    const client: Client = CLIENTS.find(client => client.id === id)!
 
-    return this.httpClient.patch<ServerResponse>(`${this.url}/update/${clientID}`, client)
-  }
+    const okResponse: ClientResponse = {
+      status: 'ok',
+      client: client
+    }
 
-  deleteClient = (id: number): Observable<ServerResponse> => {
-    return this.httpClient.delete<ServerResponse>(`${this.url}/delete/${id}`)
+    const errorResponse: ServerResponse = {
+      status: 'error',
+      message: 'No se pudo obtener el cliente'
+    }
+
+    return of(okResponse)
   }
 }
