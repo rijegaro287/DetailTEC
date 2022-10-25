@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewChild } from '@angular/core'
 import { ActivatedRoute } from '@angular/router'
 
 import { Employee } from 'src/app/Interfaces/Employee'
@@ -16,6 +16,7 @@ export class AdminEmployeeInfoComponent implements OnInit {
   employeeInfoTitles: KeyReplacement<Employee>[]
   employee: Employee
 
+
   constructor(
     private route: ActivatedRoute,
     private employeeService: EmployeeService,
@@ -24,7 +25,8 @@ export class AdminEmployeeInfoComponent implements OnInit {
     this.employeeInfoTitles = [
       { key: "id", replacement: "Cédula" },
       { key: "nombre", replacement: "Nombre" },
-      { key: "apellido", replacement: "Apellido" },
+      { key: "apellido1", replacement: "Primer apellido" },
+      { key: "apellido2", replacement: "Segundo apellido" },
       { key: "email", replacement: "Correo" },
       { key: "fechaNacimiento", replacement: "Fecha de nacimiento" },
       { key: "edad", replacement: "Edad" },

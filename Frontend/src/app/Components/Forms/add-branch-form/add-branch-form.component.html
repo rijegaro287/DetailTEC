@@ -9,7 +9,7 @@
             <label class="form-label" for="managerInput">Gerente:</label>
             <select class="form-select" id="managerInput" formControlName="idGerente">
                 <option *ngFor="let employee of employees" value="{{employee.id}}">{{employee.nombre}}
-                    {{employee.apellido}}</option>
+                    {{employee.apellido1}} {{employee.apellido2}}</option>
             </select>
         </div>
     </div>

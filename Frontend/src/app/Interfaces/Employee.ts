@@ -1,7 +1,8 @@
 interface Employee {
     id: number
     nombre: string
-    apellido: string
+    apellido1: string
+    apellido2: string
     email: string
     edad: number
     fechaNacimiento: string
