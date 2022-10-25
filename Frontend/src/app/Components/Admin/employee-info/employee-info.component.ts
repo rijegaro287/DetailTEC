@@ -64,7 +64,6 @@ export class AdminEmployeeInfoComponent implements OnInit {
           this.messageService.setMessageInfo(response.message!, 'error')
         }
         else {
-          // this.messageService.setMessageInfo(response.message!, 'success')
           window.location.href = '/admin/employees'
         }
       })

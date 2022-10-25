@@ -22,10 +22,11 @@ export class AdminClientsComponent implements OnInit {
     this.tableColumns = [
       { key: "usuario", replacement: "Usuario" },
       { key: "nombre", replacement: "Nombre" },
-      { key: "apellido", replacement: "Apellido" },
+      { key: "apellido1", replacement: "Primer apellido" },
+      { key: "apellido2", replacement: "Segundo apellido" },
       { key: "id", replacement: "Cédula" },
       { key: "email", replacement: "Correo" },
-      { key: "puntos", replacement: "Puntos" },
+      { key: "actuales", replacement: "Puntos disponibles" },
     ]
 
     this.tableData = []
