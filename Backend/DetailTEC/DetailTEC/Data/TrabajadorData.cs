@@ -124,6 +124,7 @@ namespace DetailTEC.Data
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex.ToString());
                     return oListaUsuario;
                 }
             }

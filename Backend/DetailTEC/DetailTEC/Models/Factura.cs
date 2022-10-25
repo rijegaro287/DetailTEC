@@ -9,7 +9,6 @@ namespace DetailTEC.Models
         public string placaVehiculo { get; set; }
         public string nombreSucursal { get; set; }
         public string idCliente { get; set; }
-        public string nombreCliente { get; set; }
         public int tipoLavado { get; set; }
         public DateTime? fecha { get; set; }
         public DateTime? hora { get; set; }

@@ -6,6 +6,7 @@ namespace DetailTEC.Data
 {
     public class FacturaData
     {
-       
+        
+
     }
 }
