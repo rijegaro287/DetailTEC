@@ -1,18 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input, OnChanges, OnInit } from '@angular/core'
 import { FormArray, FormControl, Validators } from '@angular/forms'
 
 import { FormsService } from 'src/app/Services/forms.service'
+import { ClientService } from 'src/app/Services/client.service'
 
 import { Client } from 'src/app/Interfaces/Client'
+import { ServerResponse } from 'src/app/Interfaces/ServerResponses'
+import { MessageService } from 'src/app/Services/message.service'
 
 @Component({
   selector: 'app-add-client-form',
   templateUrl: './add-client-form.component.html',
   styleUrls: ['./add-client-form.component.scss']
 })
-export class AddClientFormComponent implements OnInit {
+export class AddClientFormComponent implements OnInit, OnChanges {
   nombre: FormControl
-  apellido: FormControl
+  apellido1: FormControl
+  apellido2: FormControl
   usuario: FormControl
   id: FormControl
   email: FormControl
@@ -22,10 +26,13 @@ export class AddClientFormComponent implements OnInit {
   @Input() clientInfo?: Client
 
   constructor(
+    private clientService: ClientService,
+    private messageService: MessageService,
     protected formsService: FormsService
   ) {
     this.nombre = new FormControl('', [Validators.required])
-    this.apellido = new FormControl('', [Validators.required])
+    this.apellido1 = new FormControl('', [Validators.required])
+    this.apellido2 = new FormControl('', [Validators.required])
     this.usuario = new FormControl('', [Validators.required])
     this.id = new FormControl('', [Validators.required])
     this.email = new FormControl('', [Validators.required, Validators.email])
@@ -37,15 +44,18 @@ export class AddClientFormComponent implements OnInit {
     this.formsService.resetForm()
 
     this.formsService.form.addControl('nombre', this.nombre)
-    this.formsService.form.addControl('apellido', this.apellido)
+    this.formsService.form.addControl('apellido1', this.apellido1)
+    this.formsService.form.addControl('apellido2', this.apellido2)
     this.formsService.form.addControl('usuario', this.usuario)
     this.formsService.form.addControl('id', this.id)
     this.formsService.form.addControl('email', this.email)
     this.formsService.form.addControl('telefonos', this.telefonos)
     this.formsService.form.addControl('direcciones', this.direcciones)
+  }
 
-    if (this.clientInfo) {
-      const { puntos, ...clientInfo } = this.clientInfo
+  ngOnChanges(): void {
+    if (this.clientInfo && Object.keys(this.clientInfo).length) {
+      const { total, utilizados, actuales, ...clientInfo } = this.clientInfo
 
       this.formsService.patchFormValue(clientInfo)
 
@@ -69,11 +79,51 @@ export class AddClientFormComponent implements OnInit {
   }
 
   onSubmit = () => {
-    if (this.clientInfo) {
-      // Modify employee info
-    } else {
-      // Add new employee
+    if (this.clientInfo && Object.keys(this.clientInfo).length) {
+      this.updateClient()
+        .then((response: ServerResponse) => {
+          if (response.status === 'error') {
+            this.messageService.setMessageInfo(response.message!, 'error')
+          }
+          else {
+            if (this.clientInfo!.id !== this.formsService.form.value.id) {
+              window.location.href =
+                `/admin/clients/${this.formsService.form.value.id}`
+            }
+            else {
+              window.location.reload()
+            }
+          }
+        })
     }
-    this.formsService.printFormValue()
+    else {
+      this.createClient()
+        .then((response: ServerResponse) => {
+          if (response.status === 'error') {
+            this.messageService.setMessageInfo(response.message!, 'error')
+          }
+          else {
+            window.location.reload()
+          }
+        })
+    }
+  }
+
+  createClient = (): Promise<ServerResponse> => {
+    const newClientInfo: Client = this.formsService.getFormValue()
+
+    return new Promise((resolve, reject) => {
+      this.clientService.createClient(newClientInfo)
+        .subscribe((response: ServerResponse) => resolve(response))
+    })
+  }
+
+  updateClient = (): Promise<ServerResponse> => {
+    const newClientInfo: Client = this.formsService.getFormValue()
+
+    return new Promise((resolve, reject) => {
+      this.clientService.updateClient(this.clientInfo!.id, newClientInfo)
+        .subscribe((response: ServerResponse) => resolve(response))
+    })
   }
 }

@@ -10,8 +10,6 @@ export class AuxFunctionsService {
   constructor() { }
 
   stringToDate = (dateString: string): DateInput => {
-    console.log(dateString);
-
     const dateStringArray = dateString.split('-')
     const dateObject: DateInput = {
       year: Number(dateStringArray[0]),

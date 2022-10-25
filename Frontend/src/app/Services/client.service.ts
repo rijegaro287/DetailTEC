@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable, of } from 'rxjs'
+import { apiURL } from '../app.component'
 
 import { Client } from '../Interfaces/Client'
 import {
@@ -8,41 +10,37 @@ import {
   ClientResponse
 } from '../Interfaces/ServerResponses'
 
-import { CLIENTS } from '../TestDB/Clients'
-
 @Injectable({
   providedIn: 'root'
 })
 export class ClientService {
-  constructor() { }
+  url: string = `${apiURL}/cliente`
 
-  getAllClients = (): Observable<ClientsResponse> => {
-    const okResponse: ClientsResponse = {
-      status: 'ok',
-      clients: CLIENTS
-    }
+  constructor(
+    private httpClient: HttpClient
+  ) { }
 
-    const errorResponse: ServerResponse = {
-      status: 'error',
-      message: 'No se pudieron obtener los clientes'
-    }
+  getAllClients = (): Observable<ClientsResponse> =>
+    this.httpClient.get<ClientsResponse>(`${this.url}/get_all`)
 
-    return of(okResponse)
+  getClient = (id: number): Observable<ClientResponse> =>
+    this.httpClient.get<ClientResponse>(`${this.url}/get/${id}`)
+
+  createClient = (client: any): Observable<ServerResponse> => {
+    client.id = client.id.toString()
+    client.telefonos.forEach((telefono: string) => telefono.toString())
+
+    return this.httpClient.post<ServerResponse>(`${this.url}/add`, client)
   }
 
-  getClient = (id: number): Observable<ClientResponse> => {
-    const client: Client = CLIENTS.find(client => client.id === id)!
+  updateClient = (clientID: number, client: any): Observable<ServerResponse> => {
+    client.id = client.id.toString()
+    client.telefonos.forEach((telefono: string) => telefono.toString())
 
-    const okResponse: ClientResponse = {
-      status: 'ok',
-      client: client
-    }
+    return this.httpClient.patch<ServerResponse>(`${this.url}/update/${clientID}`, client)
+  }
 
-    const errorResponse: ServerResponse = {
-      status: 'error',
-      message: 'No se pudo obtener el cliente'
-    }
-
-    return of(okResponse)
+  deleteClient = (id: number): Observable<ServerResponse> => {
+    return this.httpClient.delete<ServerResponse>(`${this.url}/delete/${id}`)
   }
 }

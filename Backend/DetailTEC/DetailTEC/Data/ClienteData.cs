@@ -12,19 +12,24 @@ namespace DetailTEC.Data
       {
         SqlCommand cmd = new SqlCommand("insert into " +
           "CLIENTE(Cedula,Nombre,Apellido1,Apellido2,Correo,PasswordC,Puntos_actuales," +
-        "Puntos_totales, Puntos_usados)" +
+        "Puntos_totales, Puntos_usados, Usuario)" +
           " values(@param1, @param2, @param3, @param4, @param5, @param6, " +
-          "@param7, @param8, @param9)", oConexion);
+          "@param7, @param8, @param9, @param10)", oConexion);
 
         cmd.Parameters.Add("@param1", SqlDbType.Char, 9).Value = cliente.id;
         cmd.Parameters.Add("@param2", SqlDbType.VarChar, 20).Value = cliente.nombre;
         cmd.Parameters.Add("@param3", SqlDbType.VarChar, 20).Value = cliente.apellido1;
         cmd.Parameters.Add("@param4", SqlDbType.VarChar, 20).Value = cliente.apellido2;
         cmd.Parameters.Add("@param5", SqlDbType.VarChar, 50).Value = cliente.email;
-        cmd.Parameters.Add("@param6", SqlDbType.VarChar, 20).Value = cliente.password;
-        cmd.Parameters.Add("@param7", SqlDbType.Int).Value = cliente.actuales;
-        cmd.Parameters.Add("@param8", SqlDbType.Int).Value = cliente.actuales;
-        cmd.Parameters.Add("@param9", SqlDbType.Int).Value = cliente.utilizados;
+
+        // Estos son los que puse opcionales
+        cmd.Parameters.Add("@param6", SqlDbType.VarChar, 20).Value = "";
+        cmd.Parameters.Add("@param7", SqlDbType.Int).Value = 0;
+        cmd.Parameters.Add("@param8", SqlDbType.Int).Value = 0;
+        cmd.Parameters.Add("@param9", SqlDbType.Int).Value = 0;
+
+        // Este es el que agregué
+        cmd.Parameters.Add("@param10", SqlDbType.VarChar, 20).Value = cliente.usuario;
         cmd.CommandType = CommandType.Text;
 
         try
@@ -37,24 +42,30 @@ namespace DetailTEC.Data
           {
             for (int i = 0; i < (cliente.telefonos.Count); i++)
             {
-              cmd1 = new SqlCommand("insert into TELEFONOS_CLIENTE(Cedula_Cli, Telefono) values(@param1, @param2)", oConexion);
-              cmd1.Parameters.Add("@param1", SqlDbType.Char, 9).Value = cliente.id;
-              cmd1.Parameters.Add("@param2", SqlDbType.Char, 8).Value = cliente.telefonos[i];
-              cmd1.CommandType = CommandType.Text;
-              cmd1.ExecuteNonQuery();
+              if (cliente.telefonos[i] != "") // Para evitar errores
+              {
+                cmd1 = new SqlCommand("insert into TELEFONOS_CLIENTE(Cedula_Cli, Telefono) values(@param1, @param2)", oConexion);
+                cmd1.Parameters.Add("@param1", SqlDbType.Char, 9).Value = cliente.id;
+                cmd1.Parameters.Add("@param2", SqlDbType.Char, 8).Value = cliente.telefonos[i];
+                cmd1.CommandType = CommandType.Text;
+                cmd1.ExecuteNonQuery();
+              }
             }
           }
 
           SqlCommand cmd2 = null;
-          if (cliente.telefonos != null)
+          if (cliente.direcciones != null)
           {
-            for (int i = 0; i < (cliente.telefonos.Count); i++)
+            for (int i = 0; i < (cliente.direcciones.Count); i++)
             {
-              cmd2 = new SqlCommand("insert into DIRECCIONES_CLIENTE(Cedula_Cli, Direccion) values(@param1, @param2)", oConexion);
-              cmd2.Parameters.Add("@param1", SqlDbType.Char, 9).Value = cliente.id;
-              cmd2.Parameters.Add("@param2", SqlDbType.VarChar, 50).Value = cliente.direcciones[i];
-              cmd2.CommandType = CommandType.Text;
-              cmd2.ExecuteNonQuery();
+              if (cliente.direcciones[i] != "") // Para evitar errores
+              {
+                cmd2 = new SqlCommand("insert into DIRECCIONES_CLIENTE(Cedula_Cli, Direccion) values(@param1, @param2)", oConexion);
+                cmd2.Parameters.Add("@param1", SqlDbType.Char, 9).Value = cliente.id;
+                cmd2.Parameters.Add("@param2", SqlDbType.VarChar, 50).Value = cliente.direcciones[i];
+                cmd2.CommandType = CommandType.Text;
+                cmd2.ExecuteNonQuery();
+              }
             }
           }
           return true;
@@ -67,7 +78,7 @@ namespace DetailTEC.Data
       }
     }
 
-    public static bool Modificar(Cliente cliente)
+    public static bool Modificar(Cliente cliente, string cedula)
     {
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
       {
@@ -80,11 +91,13 @@ namespace DetailTEC.Data
         cmd.Parameters.Add("@param3", SqlDbType.VarChar, 20).Value = cliente.apellido1;
         cmd.Parameters.Add("@param4", SqlDbType.VarChar, 20).Value = cliente.apellido2;
         cmd.Parameters.Add("@param5", SqlDbType.VarChar, 50).Value = cliente.email;
-        cmd.Parameters.Add("@param6", SqlDbType.VarChar, 20).Value = cliente.password;
-        cmd.Parameters.Add("@param7", SqlDbType.Int).Value = cliente.actuales;
-        cmd.Parameters.Add("@param8", SqlDbType.Int).Value = cliente.actuales;
-        cmd.Parameters.Add("@param9", SqlDbType.Int).Value = cliente.utilizados;
-        cmd.Parameters.Add("@param10", SqlDbType.Char, 9).Value = cliente.id;
+
+        // Estos son los que puse opcionales
+        cmd.Parameters.Add("@param6", SqlDbType.VarChar, 20).Value = "";
+        cmd.Parameters.Add("@param7", SqlDbType.Int).Value = 0;
+        cmd.Parameters.Add("@param8", SqlDbType.Int).Value = 0;
+        cmd.Parameters.Add("@param9", SqlDbType.Int).Value = 0;
+        cmd.Parameters.Add("@param10", SqlDbType.Char, 9).Value = cedula;
         cmd.CommandType = CommandType.Text;
 
         try
@@ -138,7 +151,7 @@ namespace DetailTEC.Data
       List<ClienteForGet> oListaUsuario = new List<ClienteForGet>();
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
       {
-        SqlCommand cmd = new SqlCommand("select C.Cedula, C.Nombre, C.Apellido1, C.Apellido2," +
+        SqlCommand cmd = new SqlCommand("select C.Usuario, C.Cedula, C.Nombre, C.Apellido1, C.Apellido2," +
             "C.Correo, C.Puntos_actuales, C.Puntos_totales, C.Puntos_usados," +
             "T.Telefono, D.Direccion from CLIENTE as C, TELEFONOS_CLIENTE as T, DIRECCIONES_CLIENTE as D" +
             " where C.Cedula = T.Cedula_Cli AND C.Cedula = D.Cedula_Cli", oConexion);
@@ -175,6 +188,7 @@ namespace DetailTEC.Data
                 {
 
                   id = dr["Cedula"].ToString(),
+                  usuario = dr["Usuario"].ToString(),
                   nombre = dr["Nombre"].ToString(),
                   apellido1 = dr["Apellido1"].ToString(),
                   apellido2 = dr["Apellido2"].ToString(),
@@ -226,7 +240,7 @@ namespace DetailTEC.Data
       ClienteForGet cliente = new ClienteForGet();
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
       {
-        SqlCommand cmd = new SqlCommand("select C.Cedula, C.Nombre, C.Apellido1, C.Apellido2," +
+        SqlCommand cmd = new SqlCommand("select C.Usuario, C.Cedula, C.Nombre, C.Apellido1, C.Apellido2," +
             "C.Correo, C.Puntos_actuales, C.Puntos_totales, C.Puntos_usados," +
             "T.Telefono, D.Direccion from CLIENTE as C, TELEFONOS_CLIENTE as T, DIRECCIONES_CLIENTE as D" +
             " where C.Cedula = " + cedula + " AND C.Cedula = T.Cedula_Cli AND C.Cedula = D.Cedula_Cli", oConexion);
@@ -252,6 +266,7 @@ namespace DetailTEC.Data
                 {
 
                   id = dr["Cedula"].ToString(),
+                  usuario = dr["Usuario"].ToString(),
                   nombre = dr["Nombre"].ToString(),
                   apellido1 = dr["Apellido1"].ToString(),
                   apellido2 = dr["Apellido2"].ToString(),
