@@ -57,6 +57,8 @@ export class AddClientFormComponent implements OnInit, OnChanges {
     if (this.clientInfo && Object.keys(this.clientInfo).length) {
       const { total, utilizados, actuales, ...clientInfo } = this.clientInfo
 
+      clientInfo.id = Number(clientInfo.id)
+
       this.formsService.patchFormValue(clientInfo)
 
       const telFormArray: FormArray = this.formsService
