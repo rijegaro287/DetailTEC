@@ -85,7 +85,7 @@ namespace DetailTEC.Data
 
         SqlCommand cmd = new SqlCommand("update CLIENTE set Cedula=@param1,Nombre=@param2,Apellido1=@param3," +
             "Apellido2=@param4,Correo=@param5,PasswordC=@param6," +
-            "Puntos_actuales=@param7,Puntos_totales=@param8, Puntos_usados=@param9 where Cedula = @param10", oConexion);
+            "Puntos_actuales=@param7,Puntos_totales=@param8, Puntos_usados=@param9, Usuario=@param11 where Cedula = @param10", oConexion);
         cmd.Parameters.Add("@param1", SqlDbType.Char, 9).Value = cliente.id;
         cmd.Parameters.Add("@param2", SqlDbType.VarChar, 20).Value = cliente.nombre;
         cmd.Parameters.Add("@param3", SqlDbType.VarChar, 20).Value = cliente.apellido1;
@@ -94,6 +94,7 @@ namespace DetailTEC.Data
 
         // Estos son los que puse opcionales
         cmd.Parameters.Add("@param6", SqlDbType.VarChar, 20).Value = "";
+        cmd.Parameters.Add("@param11", SqlDbType.VarChar, 20).Value = cliente.usuario;
         cmd.Parameters.Add("@param7", SqlDbType.Int).Value = 0;
         cmd.Parameters.Add("@param8", SqlDbType.Int).Value = 0;
         cmd.Parameters.Add("@param9", SqlDbType.Int).Value = 0;
@@ -296,9 +297,6 @@ namespace DetailTEC.Data
               }
 
             }
-
-
-
           }
           cliente.telefonos = telefonoList;
           cliente.direcciones = direccionList;
