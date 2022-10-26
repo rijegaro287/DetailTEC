@@ -6,6 +6,7 @@ import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries'
 
 import { EmployeeService } from 'src/app/Services/employee.service'
 import { MessageService } from 'src/app/Services/message.service'
+import { AuxFunctionsService } from 'src/app/Services/aux-functions.service'
 
 @Component({
   selector: 'app-employee-info',
@@ -19,6 +20,7 @@ export class AdminEmployeeInfoComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private employeeService: EmployeeService,
+    protected auxFunctionsService: AuxFunctionsService,
     protected messageService: MessageService
   ) {
     this.employeeInfoTitles = [
@@ -54,8 +56,6 @@ export class AdminEmployeeInfoComponent implements OnInit {
         }
       })
   }
-
-  goBack = (): void => window.history.back()
 
   deleteEmployee = (): void => {
     this.employeeService.deleteEmployee(this.employee.id)

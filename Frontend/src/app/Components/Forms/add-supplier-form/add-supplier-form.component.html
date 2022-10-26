@@ -12,9 +12,15 @@
     </div>
 
     <div class="row mb-3">
-        <div class="col-6">
+        <div class="col-12">
             <label class="form-label" for="emailInput">Correo electrónico:</label>
             <input class="form-control" id="emailInput" type="email" formControlName="email">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-6">
+            <app-multivalued-input label="Teléfonos" inputName="telefonos" inputType="number"></app-multivalued-input>
         </div>
 
         <div class="col-6">

@@ -57,18 +57,18 @@ export class ClientAddAppointmentFormComponent implements OnInit {
   getBranches = (): Branch[] => {
     let branches: Branch[] = []
 
-    this.branchService.getAllBranches()
-      .subscribe(response => {
-        if (response.status == "error") {
-          this.messageService.setMessageInfo(response.message!, "error")
-        }
-        else if (response.branches) {
-          branches = response.branches
-        }
-        else {
-          console.log(response)
-        }
-      })
+    // this.branchService.getAllBranches()
+    //   .subscribe(response => {
+    //     if (response.status == "error") {
+    //       this.messageService.setMessageInfo(response.message!, "error")
+    //     }
+    //     else if (response.branches) {
+    //       branches = response.branches
+    //     }
+    //     else {
+    //       console.log(response)
+    //     }
+    //   })
 
     return branches
   }

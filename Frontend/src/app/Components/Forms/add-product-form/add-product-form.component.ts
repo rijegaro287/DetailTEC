@@ -64,18 +64,18 @@ export class AddProductFormComponent implements OnInit {
   getSuppliers = (): Supplier[] => {
     let suppliers: Supplier[] = []
 
-    this.supplierService.getAllSuppliers()
-      .subscribe(response => {
-        if (response.status === 'error') {
-          this.messageService.setMessageInfo(response.message!, 'error')
-        }
-        else if (response.suppliers) {
-          suppliers = response.suppliers
-        }
-        else {
-          console.log(response)
-        }
-      })
+    // this.supplierService.getAllSuppliers()
+    //   .subscribe(response => {
+    //     if (response.status === 'error') {
+    //       this.messageService.setMessageInfo(response.message!, 'error')
+    //     }
+    //     else if (response.suppliers) {
+    //       suppliers = response.suppliers
+    //     }
+    //     else {
+    //       console.log(response)
+    //     }
+    //   })
 
     return suppliers
   }

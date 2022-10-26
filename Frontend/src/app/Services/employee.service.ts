@@ -4,8 +4,6 @@ import { Observable } from 'rxjs'
 
 import { apiURL } from '../app.component'
 
-import { Employee } from '../Interfaces/Employee'
-
 import {
   EmployeesResponse,
   EmployeeResponse,
@@ -40,16 +38,15 @@ export class EmployeeService {
 
     employee.password = employee.password.toString();
 
-    console.log(employee);
-
-
     return this.httpClient.post<ServerResponse>(`${this.url}/add`, employee)
   }
 
   updateEmployee = (employeeID: number, employee: any): Observable<ServerResponse> => {
     employee.id = employee.id.toString()
+
     employee.fechaNacimiento = this.auxFunctionsService
       .dateToString(employee.fechaNacimiento)
+
     employee.fechaInicio = this.auxFunctionsService
       .dateToString(employee.fechaInicio)
 
@@ -58,7 +55,6 @@ export class EmployeeService {
     return this.httpClient.patch<ServerResponse>(`${this.url}/update/${employeeID}`, employee)
   }
 
-  deleteEmployee = (id: number): Observable<ServerResponse> => {
-    return this.httpClient.delete<ServerResponse>(`${this.url}/delete/${id}`)
-  }
+  deleteEmployee = (id: number): Observable<ServerResponse> =>
+    this.httpClient.delete<ServerResponse>(`${this.url}/delete/${id}`)
 } 

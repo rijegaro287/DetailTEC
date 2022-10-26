@@ -7,6 +7,7 @@ import { ServerResponse } from 'src/app/Interfaces/ServerResponses'
 
 import { FormsService } from 'src/app/Services/forms.service'
 import { MessageService } from 'src/app/Services/message.service'
+import { AuxFunctionsService } from 'src/app/Services/aux-functions.service'
 
 @Component({
   selector: 'app-add-employee-form',
@@ -28,6 +29,7 @@ export class AddEmployeeFormComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
+    private auxFunctionsService: AuxFunctionsService,
     private employeeService: EmployeeService,
     protected formsService: FormsService
   ) {
@@ -73,12 +75,7 @@ export class AddEmployeeFormComponent implements OnInit {
 
     await this.createEmployee(newEmployeeInfo)
       .then((response) => {
-        if (response.status === 'error') {
-          this.messageService.setMessageInfo(response.message!, 'error')
-        }
-        else {
-          window.location.reload();
-        }
+        this.auxFunctionsService.handleResponse(response)
       })
   }
 
