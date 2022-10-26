@@ -50,7 +50,13 @@ namespace DetailTEC.Data
 
     public static bool Modificar(Trabajador trabajador, string cedula)
     {
-      using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
+            string passwordSet = GetPassword(trabajador, cedula);
+            if (trabajador.password != "" && GetPassword(trabajador, cedula) == trabajador.passwordVieja)
+            {
+                passwordSet = trabajador.password;
+            }
+
+            using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
       {
         int edad = DateTime.Today.AddTicks(-trabajador.fechaNacimiento.Ticks).Year - 1;
         SqlCommand cmd = new SqlCommand("update TRABAJADOR set " +
@@ -64,9 +70,10 @@ namespace DetailTEC.Data
         cmd.Parameters.Add("@param6", SqlDbType.Date).Value = trabajador.fechaNacimiento;
         cmd.Parameters.Add("@param7", SqlDbType.Date).Value = trabajador.fechaInicio;
         cmd.Parameters.Add("@param8", SqlDbType.TinyInt).Value = edad;
-        cmd.Parameters.Add("@param9", SqlDbType.VarChar, 20).Value = trabajador.password;
+        cmd.Parameters.Add("@param9", SqlDbType.VarChar, 20).Value = passwordSet;
         cmd.Parameters.Add("@param10", SqlDbType.VarChar, 20).Value = trabajador.puesto;
         cmd.Parameters.Add("@param11", SqlDbType.VarChar, 10).Value = trabajador.frecuenciaPago;
+
         cmd.Parameters.Add("@param12", SqlDbType.Char, 9).Value = cedula;
         cmd.CommandType = CommandType.Text;
         try
@@ -196,5 +203,36 @@ namespace DetailTEC.Data
         }
       }
     }
-  }
+        private static string GetPassword(Trabajador trabajador, string id)
+        {
+            string passwordGet = "";
+            using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
+            {
+
+                SqlCommand cmd = new SqlCommand("select PasswordT from TRABAJADOR where Cedula=" + id, oConexion);
+                try
+                {
+                    oConexion.Open();
+                    cmd.ExecuteNonQuery();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+
+                        while (dr.Read())
+                        {
+
+                            passwordGet = dr["PasswordT"].ToString();
+                        }
+
+                    }
+
+                    return passwordGet;
+                }
+                catch (Exception ex)
+                {
+                    return passwordGet;
+                }
+            }
+        }
+    }
 }

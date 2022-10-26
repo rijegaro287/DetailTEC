@@ -83,11 +83,49 @@ namespace DetailTEC.Data
         public static bool Modificar(Cliente cliente, string cedula)
         {
 
+            int pAct = 0;
+            int pTot = 0;
+            int pUsed = 0;
             string passwordSet = GetPassword(cliente, cedula);
             if (cliente.password != "" && GetPassword(cliente, cedula) == cliente.passwordVieja)
             {
                 passwordSet = cliente.password;
             }
+
+            using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
+            {
+
+
+                SqlCommand cmd = new SqlCommand("select Puntos_actuales, Puntos_totales, Puntos_usados from CLIENTE where Cedula=" + cliente.id, oConexion);
+                
+                try
+                {
+                    oConexion.Open();
+                    cmd.ExecuteNonQuery();
+
+                    using (SqlDataReader dr = cmd.ExecuteReader())
+                    {
+
+                        while (dr.Read())
+                        {
+
+                            pAct = Convert.ToInt16(dr["Puntos_actuales"]);
+                            pTot = Convert.ToInt16(dr["Puntos_totales"]);
+                            pUsed = Convert.ToInt16(dr["Puntos_usados"]);
+
+                        }
+
+                    }
+
+                    
+                }
+                catch (Exception ex)
+                {
+                    
+                }
+            }
+
+
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
                 SqlCommand cmd = new SqlCommand("update CLIENTE set Cedula=@param1,Nombre=@param2,Apellido1=@param3," +
@@ -101,9 +139,11 @@ namespace DetailTEC.Data
 
                 // Estos son los que puse opcionales
                 cmd.Parameters.Add("@param6", SqlDbType.VarChar, 20).Value = passwordSet;
-                cmd.Parameters.Add("@param7", SqlDbType.Int).Value = 0;
-                cmd.Parameters.Add("@param8", SqlDbType.Int).Value = 0;
-                cmd.Parameters.Add("@param9", SqlDbType.Int).Value = 0;
+                cmd.Parameters.Add("@param7", SqlDbType.Int).Value = pAct;
+                cmd.Parameters.Add("@param8", SqlDbType.Int).Value = pTot;
+                cmd.Parameters.Add("@param9", SqlDbType.Int).Value = pUsed;
+                
+                
                 cmd.Parameters.Add("@param10", SqlDbType.Char, 9).Value = cedula;
                 cmd.CommandType = CommandType.Text;
 
