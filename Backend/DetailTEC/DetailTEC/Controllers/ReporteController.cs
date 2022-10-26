@@ -5,12 +5,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DetailTEC.Controllers;
-
+// Controller de los PDFs de los reportes
 [ApiController]
 [Route("cliente")]
 public class RepoerteController : Controller{
     [HttpGet]
     [Route("reporte/puntos")]
+    // Envia el PDF del reporte de puntos
+    // gastados por los clientes
     public async Task GetReportePuntos(){   
 
         HandlerPDF.generarPDFPuntos();
@@ -22,6 +24,9 @@ public class RepoerteController : Controller{
 
     [HttpGet]
     [Route("reporte/lavados/{id}")]
+    // Envia el PDF del reporte de lavados que 
+    // se realizaron a un cliente
+    // Entrada: id del cliente
     public async Task GetReporteLavados(int id)
     {   
         HandlerPDF.generarPDFLavados(id);
@@ -33,6 +38,8 @@ public class RepoerteController : Controller{
 
     [HttpGet]
     [Route("reporte/plantilla")]
+    // Envia el PDF de la plantilla con sus salarios
+    // y datos
     public async Task GetReportePlantilla(){   
         HandlerPDF.getPDFPlantilla();
         string filePath = "Reports/ReportePlantilla.pdf";

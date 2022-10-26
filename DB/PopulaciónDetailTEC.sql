@@ -23,8 +23,8 @@ VALUES
     ('112410116', 'Anthony', 'Chaves', 'Achoy', 'emp4@gmail.com', '2000-12-12', '2000-12-12', '20', 'contrasena04', 'Pulidor', 'Semanal'),
     ('305230771', 'Julian', 'Rodriguez', 'Casas', 'emp5@gmail.com', '2000-12-12', '2000-12-12', '40', 'juasjuas', 'Lavador', 'Bisemanal' )
 
-insert into TRABAJADOR(Cedula,NombreT,Apellido1,Apellido2,Email,Fecha_nacimiento,Fecha_ingreso,Edad,PasswordT,Rol,Tipo_pago)
-values('255654856', 'Joel', 'Sequeira', 'Hernandez', 'jsh@gmail.com', '22/10/2022 0:00:00', '22/11/2002 0:00:00', '0', 'string1234', 'lavador', 'semanal') 
+-- insert into TRABAJADOR(Cedula,NombreT,Apellido1,Apellido2,Email,Fecha_nacimiento,Fecha_ingreso,Edad,PasswordT,Rol,Tipo_pago)
+-- values('255654856', 'Joel', 'Sequeira', 'Hernandez', 'jsh@gmail.com', '22/10/2022 0:00:00', '22/11/2002 0:00:00', '0', 'string1234', 'lavador', 'semanal') 
 
 INSERT INTO SUCURSAL (ID, Nombre, Provincia, Canton, Distrito, Telefono, Cedula_Gerente, Fecha_apertura, Fecha_gerente)
 VALUES
@@ -96,10 +96,10 @@ insert into Cliente(
     Puntos_usados)
 
 VALUES
-    ('253252410', 'Catalina', 'Salas', 'Ciudad', 'catax@gmail.com','ABC123','0', '1500', '1500'),
-    ('532945890', 'Jose Pablo', 'Marin', 'Mora', 'joseju@hotmail.com', 'ABC123','100', '1000', '900'),
-    ('692834730', 'Juan Ignacion', 'Naranjo', 'Mora','juanis@gmail.com', 'ABC123', '234', '234', '0'),
-    ('353461230', 'Maria Jose', 'Mora', 'Mora', 'maria_la_del_pueblo@hotmail.com', 'ABC123', '0', '0','0')
+    ('25325241', 'Catalina', 'Salas', 'Ciudad', 'catax@gmail.com','ABC123','0', '1500', '1500'),
+    ('53294589', 'Jose Pablo', 'Marin', 'Mora', 'joseju@hotmail.com', 'ABC123','100', '1000', '900'),
+    ('69283473', 'Juan Ignacion', 'Naranjo', 'Mora','juanis@gmail.com', 'ABC123', '234', '234', '0'),
+    ('35346123', 'Maria Jose', 'Mora', 'Mora', 'maria_la_del_pueblo@hotmail.com', 'ABC123', '0', '0','0')
 
 
 insert into telefonos_cliente(
