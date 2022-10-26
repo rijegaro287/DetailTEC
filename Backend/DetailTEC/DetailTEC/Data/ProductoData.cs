@@ -14,9 +14,16 @@ namespace DetailTEC.Data
 
 
                 SqlCommand cmd = new SqlCommand("insert into " +
-                    "PRODUCTO(Nombre,Marca,Costo,Precio,idProveedor,nombreProveedor)" +
-                    "values(" + producto.nombre + "," + producto.marca + "," + producto.costo + "," + producto.precio + "," +
-                    producto.idProveedor + "," + producto.nombreProveedor + ")", oConexion);
+                    "PRODUCTO(ID, NombreP,Marca,Costo,Precio,Ced_prov)" +
+                    "values(@param1, @param2, @param3, @param4, @param5, @param6)", oConexion);
+
+                cmd.Parameters.Add("@param1", SqlDbType.Int).Value = producto.id;
+                cmd.Parameters.Add("@param2", SqlDbType.VarChar, 20).Value = producto.nombre;
+                cmd.Parameters.Add("@param3", SqlDbType.VarChar, 20).Value = producto.marca;
+                cmd.Parameters.Add("@param4", SqlDbType.Int).Value = producto.costo;
+                cmd.Parameters.Add("@param5", SqlDbType.Int).Value = producto.precio;
+                cmd.Parameters.Add("@param6", SqlDbType.Char, 10).Value = producto.idProveedor;
+                cmd.CommandType = CommandType.Text;
 
                 try
                 {
@@ -31,16 +38,21 @@ namespace DetailTEC.Data
             }
         }
 
-        public static bool Modificar(Producto producto)
+        public static bool Modificar(Producto producto, string id)
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
 
-                SqlCommand cmd = new SqlCommand("update PRODUCTO set" +
-                    "Nombre = " + producto.nombre + ",Marca =" + producto.marca + ",Costo=" + producto.costo +
-                    ",Precio=" + producto.precio + ",IdProveedor=" +
-                    producto.idProveedor + ",NombreProveedor=" + producto.nombreProveedor
-                    + ")", oConexion);
+                SqlCommand cmd = new SqlCommand("update PRODUCTO set ID=@param1, NombreP=@param2, Marca=@param3, " +
+                    " Costo=@param4, Precio=@param5, Ced_prov=@param6 where ID=@param7", oConexion);
+                cmd.Parameters.Add("@param1", SqlDbType.Int).Value = producto.id;
+                cmd.Parameters.Add("@param2", SqlDbType.VarChar, 20).Value = producto.nombre;
+                cmd.Parameters.Add("@param3", SqlDbType.VarChar, 20).Value = producto.marca;
+                cmd.Parameters.Add("@param4", SqlDbType.Int).Value = producto.costo;
+                cmd.Parameters.Add("@param5", SqlDbType.Int).Value = producto.precio;
+                cmd.Parameters.Add("@param6", SqlDbType.Char, 10).Value = producto.idProveedor;
+                cmd.Parameters.Add("@param7", SqlDbType.Int).Value = Convert.ToInt32(id);
+                cmd.CommandType = CommandType.Text;
 
                 try
                 {
@@ -61,7 +73,7 @@ namespace DetailTEC.Data
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
 
-                SqlCommand cmd = new SqlCommand("select P.Id, P.NombreP, P.Marca, P.Costo, P.Precio, P.Ced_prov, R.Nombre from PRODUCTO as P and Proovedor as R" +
+                SqlCommand cmd = new SqlCommand("select P.ID, P.NombreP, P.Marca, P.Costo, P.Precio, P.Ced_prov, R.Nombre from PRODUCTO as P, PROVEEDOR as R" +
                     " where P.Ced_prov = R.Cedula_juridica", oConexion);
                 try
                 {
@@ -75,7 +87,7 @@ namespace DetailTEC.Data
                         {
                             oListaUsuario.Add(new ProductoForGet()
                             {
-                                Id = Convert.ToInt32(dr["Id"].ToString()),
+                                id = Convert.ToInt32(dr["ID"].ToString()),
                                 nombre = dr["NombreP"].ToString(),
                                 marca = dr["Marca"].ToString(),
                                 costo = Convert.ToInt32(dr["Costo"].ToString()),
@@ -96,30 +108,22 @@ namespace DetailTEC.Data
                 }
                 catch (Exception ex)
                 {
+                    Console.WriteLine(ex);
                     return oListaUsuario;
                 }
             }
         }
 
 
-        public static Producto Obtener(string id)
+        public static ProductoForGet Obtener(string id)
 
         {
-            Producto producto = new Producto();
+            ProductoForGet producto = new ProductoForGet();
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
 
-                //SqlCommand cmd = new SqlCommand("producto_obtener", oConexion);
-                //cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Parameters.AddWithValue("@Nombre", nombre);
-                SqlCommand cmd = new SqlCommand("select Nombre, Marca, Costo, Precio, idProveedor, nombreProveedor from PRODUCTO" +
-                    " WHERE ID =" + id);
-
-                //SqlCommand cmd = new SqlCommand("producto_obtener", oConexion);
-                //cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Parameters.AddWithValue("@Nombre", id);
-
-
+                SqlCommand cmd = new SqlCommand("select P.ID, P.NombreP, P.Marca, P.Costo, P.Precio, P.Ced_prov, R.Nombre from PRODUCTO as P, PROVEEDOR as R" +
+                    " where P.ID = "+id+" AND P.Ced_prov = R.Cedula_juridica", oConexion);
                 try
                 {
                     oConexion.Open();
@@ -130,15 +134,19 @@ namespace DetailTEC.Data
 
                         while (dr.Read())
                         {
-                            producto = new Producto()
+                            producto = new ProductoForGet()
                             {
-                                nombre = dr["Nombre"].ToString(),
+                                id = Convert.ToInt32(dr["ID"].ToString()),
+                                nombre = dr["NombreP"].ToString(),
                                 marca = dr["Marca"].ToString(),
                                 costo = Convert.ToInt32(dr["Costo"].ToString()),
                                 precio = Convert.ToInt32(dr["Precio"].ToString()),
-                                idProveedor = dr["idProveedor"].ToString(),
-                                nombreProveedor = dr["nombreProveedor"].ToString(),
+                                idProveedor = dr["Ced_prov"].ToString(),
+                                nombreProveedor = dr["Nombre"].ToString()
+
+
                             };
+
                         }
 
                     }
@@ -154,23 +162,19 @@ namespace DetailTEC.Data
             }
         }
 
-        public static bool Eliminar(string nombre)
+        public static bool Eliminar(string id)
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("producto_eliminar", oConexion);
-
-                //cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Parameters.AddWithValue("@Nombre", nombre);
-
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Nombre", nombre);
-
-
                 try
                 {
                     oConexion.Open();
-                    cmd.ExecuteNonQuery();
+                    SqlCommand cmd1 = new SqlCommand("delete from PRODUCTO_LAVADO where ID_Producto = " + id, oConexion);
+                    cmd1.ExecuteNonQuery();
+                    SqlCommand cmd2 = new SqlCommand("delete from PRODUCTOS_COMPRADOS where ID_Producto = " + id, oConexion);
+                    cmd2.ExecuteNonQuery();
+                    SqlCommand cmd3 = new SqlCommand("delete from PRODUCTO where ID = " + id, oConexion);
+                    cmd3.ExecuteNonQuery();
                     return true;
                 }
                 catch (Exception ex)

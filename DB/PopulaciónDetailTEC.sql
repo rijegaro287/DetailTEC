@@ -17,11 +17,11 @@ INSERT INTO TRABAJADOR (
     Tipo_pago) 
 
 VALUES 
-    ('118460116', 'Adriana', 'Calderon', 'Barboza', 'emp@gmail.com','2000-12-12', '2000-12-12', '20', 'contrasena01', 'Pulidor', 'Semanal'),
-    ('118460126', 'Yordi', 'Brenes', 'Roda', 'emp@gmail.com', '2000-12-12', '2000-12-12', '20', 'contrasena01', 'Lavador', 'Bisemanal'),
-    ('118420116', 'Ricardo', 'Gatgens', 'Rodriguz', 'emp@gmail.com', '2000-12-12', '2000-12-12', '20', 'contrasena01', 'Pulidor', 'Bisemanal'),
-    ('112410116', 'Anthony', 'Chaves', 'Achoy', 'emp@gmail.com', '2000-12-12', '2000-12-12', '20', 'contrasena01', 'Pulidor', 'Semanal'),
-    ('305230771', 'Julian', 'Rodriguez', 'Casas', 'emp@gmail.com', '2000-12-12', '2000-12-12', '40', 'juasjuas', 'Lavador', 'Bisemanal' )
+    ('118460116', 'Adriana', 'Calderon', 'Barboza', 'emp1@gmail.com','2000-12-12', '2000-12-12', '20', 'contrasena01', 'Pulidor', 'Semanal'),
+    ('118460126', 'Yordi', 'Brenes', 'Roda', 'emp2@gmail.com', '2000-12-12', '2000-12-12', '20', 'contrasena02', 'Lavador', 'Bisemanal'),
+    ('118420116', 'Ricardo', 'Gatgens', 'Rodriguz', 'emp3@gmail.com', '2000-12-12', '2000-12-12', '20', 'contrasena03', 'Pulidor', 'Bisemanal'),
+    ('112410116', 'Anthony', 'Chaves', 'Achoy', 'emp4@gmail.com', '2000-12-12', '2000-12-12', '20', 'contrasena04', 'Pulidor', 'Semanal'),
+    ('305230771', 'Julian', 'Rodriguez', 'Casas', 'emp5@gmail.com', '2000-12-12', '2000-12-12', '40', 'juasjuas', 'Lavador', 'Bisemanal' )
 
 insert into TRABAJADOR(Cedula,NombreT,Apellido1,Apellido2,Email,Fecha_nacimiento,Fecha_ingreso,Edad,PasswordT,Rol,Tipo_pago)
 values('255654856', 'Joel', 'Sequeira', 'Hernandez', 'jsh@gmail.com', '22/10/2022 0:00:00', '22/11/2002 0:00:00', '0', 'string1234', 'lavador', 'semanal') 
@@ -81,9 +81,8 @@ VALUES
 INSERT INTO PRODUCTO_LAVADO (ID_Lavado, ID_Producto)
 VALUES
     ('01','01'),
-    ('01','02'),
-	('02','03'),
-	('01','03')
+    ('02','02'),
+	('03','01')
 
 insert into Cliente(
     Cedula,
@@ -107,21 +106,21 @@ insert into telefonos_cliente(
     Cedula_Cli,
     Telefono)
 VALUES
-    ('25325241', '22222222'),
-    ('53294589', '33333333'),
-    ('69283473', '44444444'),
-    ('35346123', '55555555'),
-    ('35346123', '66666666')
+    ('253252410', '22222222'),
+    ('532945890', '33333333'),
+    ('692834730', '44444444'),
+    ('353461230', '55555555'),
+    ('353461230', '66666666')
 
 insert into direcciones_cliente(
     Cedula_Cli, 
     Direccion)
 VALUES
-    ('25325241', 'San José, San José, San José'),
-    ('53294589', 'Cartago, Cartago, Cartago'),
-    ('69283473', 'Puntarenas, Puntarenas, Puntarenas'),
-    ('35346123', 'Guanacaste, Nicoya, Nicoya'),
-    ('35346123', 'Heredia, Heredia, Heredia')
+    ('253252410', 'San José, San José, San José'),
+    ('532945890', 'Cartago, Cartago, Cartago'),
+    ('692834730', 'Puntarenas, Puntarenas, Puntarenas'),
+    ('353461230', 'Guanacaste, Nicoya, Nicoya'),
+    ('353461230', 'Heredia, Heredia, Heredia')
 
 
 insert into cita(
@@ -131,20 +130,21 @@ insert into cita(
     ID_Lavado, 
     Cedula_cliente, 
     Fecha,
-    Hora)
+    Hora,
+	Medio_pago)
 VALUES
-    ('1', 'P-1234', '01', '01', '25325241', '2000-12-12', '13:00'),
-    ('2', 'P-1235', '01', '01', '25325241', '2000-12-12', '14:00'),
-    ('3', 'P-1236', '01', '02', '53294589', '2000-12-12', '15:00'),
-    ('4', 'P-1237', '01', '03', '35346123', '2000-12-12', '16:00'),
-    ('5', 'P-1238', '02', '02', '35346123', '2000-12-12', '17:00'),
-    ('6', 'P-1239', '01', '03', '25325241', '2000-12-12', '08:00'),
-    ('7', 'P-1240', '02', '02', '25325241', '2000-12-12', '09:00'),
-    ('8', 'P-1241', '01', '01', '53294589', '2000-12-12', '10:00'),
-    ('9', 'P-1242', '02', '02', '35346123', '2000-12-12', '11:00'),
-    ('10', 'P-1243', '01', '02', '35346123', '2000-12-12', '13:00'),
-    ('11', 'P-1244', '02', '03', '53294589', '2000-12-12', '14:00'),
-    ('12', 'P-1245', '02', '02', '25325241', '2000-12-12', '15:00')
+    ('1', 'P-1234', '01', '01', '253252410', '2000-12-12', '13:00', 'Efectivo'),
+    ('2', 'P-1235', '01', '01', '253252410', '2000-12-12', '14:00', 'Tarjeta'),
+    ('3', 'P-1236', '01', '02', '532945890', '2000-12-12', '15:00', 'Tarjeta'),
+    ('4', 'P-1237', '01', '03', '353461230', '2000-12-12', '16:00', 'Tarjeta'),
+    ('5', 'P-1238', '02', '02', '353461230', '2000-12-12', '17:00', 'Tarjeta'),
+    ('6', 'P-1239', '01', '03', '253252410', '2000-12-12', '08:00', 'Tarjeta'),
+    ('7', 'P-1240', '02', '02', '253252410', '2000-12-12', '09:00', 'Puntos'),
+    ('8', 'P-1241', '01', '01', '532945890', '2000-12-12', '10:00', 'Tarjeta'),
+    ('9', 'P-1242', '02', '02', '353461230', '2000-12-12', '11:00', 'Tarjeta'),
+    ('10', 'P-1243', '01', '02', '353461230', '2000-12-12', '13:00', 'Tarjeta'),
+    ('11', 'P-1244', '02', '03', '532945890', '2000-12-12', '14:00', 'Tarjeta'),
+    ('12', 'P-1245', '02', '02', '253252410', '2000-12-12', '15:00', 'Tarjeta')
 
 INSERT INTO TRABAJADORES_POR_CITA(
     ID_Cita,

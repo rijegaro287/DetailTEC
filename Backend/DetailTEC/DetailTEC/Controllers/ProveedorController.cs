@@ -2,6 +2,7 @@
 using DetailTEC.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.Math;
 
 namespace DetailTEC.Controllers
 {
@@ -11,36 +12,117 @@ namespace DetailTEC.Controllers
     {
         [HttpGet]
         [Route("get_all")]
-        public List<Proveedor> Get()
+        public Object Get()
         {
-            return ProveedorData.Listar();
+            try
+            {
+                List<Proveedor> proveedores = ProveedorData.Listar();
+                return new
+                {
+                    status = "ok",
+                    suppliers = proveedores
+                };
+            }
+            catch (System.Exception err)
+            {
+                return new
+                {
+                    status = "error",
+                    message = err.Message
+                };
+            }
         }
 
         [HttpGet]
         [Route("get/{id}")]
-        public Proveedor Get(string nombre)
+        public Object Get(string id)
         {
-            return ProveedorData.Obtener(nombre);
+            try
+            {
+                Proveedor proveedor = ProveedorData.Obtener(id);
+                return new
+                {
+                    status = "ok",
+                    supplier = proveedor
+                };
+            }
+            catch (System.Exception err)
+            {
+                return new
+                {
+                    status = "error",
+                    message = err.Message
+                };
+            }
         }
 
         [HttpPost]
         [Route("add")]
-        public bool Post([FromBody] Proveedor proveedor)
+        public Object Post([FromBody] Proveedor proveedor)
         {
-            return ProveedorData.Registrar(proveedor);
+            bool ok = ProveedorData.Registrar(proveedor);
+            if (ok)
+            {
+                return new
+                {
+                    status = "ok",
+                    message = "Proveedor registrado correctamente"
+                };
+            }
+            else
+            {
+                return new
+                {
+                    status = "error",
+                    message = "No se pudo registrar el proveedor"
+                };
+            }
         }
+
         [HttpPatch]
         [Route("update/{id}")]
-        public bool Put([FromBody] Proveedor proveedor)
+        public Object Put([FromBody] Proveedor proveedor, string id)
         {
-            return ProveedorData.Modificar(proveedor);
+            bool ok = ProveedorData.Modificar(proveedor, id);
+            if (ok)
+            {
+                return new
+                {
+                    status = "ok",
+                    message = "Proveedor modificado correctamente"
+                };
+            }
+            else
+            {
+                return new
+                {
+                    status = "error",
+                    message = "No se pudo modificar el proveedor"
+                };
+            }
         }
 
         [HttpDelete]
         [Route("delete/{id}")]
-        public bool Delete(string nombre)
+        public Object Delete(string id)
         {
-            return ProveedorData.Eliminar(nombre);
+            bool ok = ProveedorData.Eliminar(id);
+            if (ok)
+            {
+                return new
+                {
+                    status = "ok",
+                    message = "Proveedor eliminado correctamente"
+                };
+            }
+            else
+            {
+                return new
+                {
+                    status = "error",
+                    message = "No se pudo eliminar el proveedor"
+                };
+            }
 
         }
     }

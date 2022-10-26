@@ -120,14 +120,15 @@ namespace DetailTEC.Data
 
 
 
-          return oListaUsuario;
+                    return oListaUsuario;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                    return oListaUsuario;
+                }
+            }
         }
-        catch (Exception ex)
-        {
-          return oListaUsuario;
-        }
-      }
-    }
 
     public static TrabajadorForGet Obtener(string cedula)
     {

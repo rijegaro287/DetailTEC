@@ -240,7 +240,7 @@ namespace DetailTEC.Data
     {
       ClienteForGet cliente = new ClienteForGet();
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
-      {
+      { 
         SqlCommand cmd = new SqlCommand("select C.Usuario, C.Cedula, C.Nombre, C.Apellido1, C.Apellido2," +
             "C.Correo, C.Puntos_actuales, C.Puntos_totales, C.Puntos_usados," +
             "T.Telefono, D.Direccion from CLIENTE as C, TELEFONOS_CLIENTE as T, DIRECCIONES_CLIENTE as D" +
@@ -315,36 +315,55 @@ namespace DetailTEC.Data
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
       {
 
+                
+                SqlCommand cmd1 = new SqlCommand("delete from TELEFONOS_CLIENTE where Cedula_Cli = " + cedula, oConexion);
+                SqlCommand cmd2 = new SqlCommand("delete from DIRECCIONES_CLIENTE where Cedula_Cli = " + cedula, oConexion);
+                SqlCommand cmd3 = new SqlCommand("SELECT ID FROM CITA WHERE Cedula_cliente = " + cedula, oConexion);
+                
+                SqlCommand cmd8 = new SqlCommand("delete from CLIENTE where Cedula = " + cedula, oConexion);
+                SqlCommand cmd7 = new SqlCommand("delete from CITA where Cedula_Cliente = " + cedula, oConexion);
+                try
+                {
 
-        SqlCommand cmd1 = new SqlCommand("delete from TELEFONOS_CLIENTE where Cedula_Cli = " + cedula, oConexion);
-        SqlCommand cmd2 = new SqlCommand("delete from DIRECCIONES_CLIENTE where Cedula_Cli = " + cedula, oConexion);
-        //SqlCommand cmd3 = new SqlCommand("delete from TRABAJADORES_POR_CITA where ID_Cita = " +
-        //    "(SELECT ID FROM CITA WHERE Cedula_cliente = "+cedula+")", oConexion);
-        //SqlCommand cmd4 = new SqlCommand("delete from FACTURA where ID = " +
-        //    "(SELECT ID FROM CITA WHERE Cedula_cliente = " + cedula+")", oConexion);
-        //SqlCommand cmd5 = new SqlCommand("delete from PRODUCTOS_COMPRADOS where ID_Factura = " +
-        //    "(SELECT ID FROM CITA WHERE Cedula_cliente = " + cedula+")", oConexion);
-        //SqlCommand cmd6 = new SqlCommand("delete from CITA where Cedula_Cliente = " + cedula, oConexion); 
-        SqlCommand cmd7 = new SqlCommand("delete from CLIENTE where Cedula = " + cedula, oConexion);
+                    oConexion.Open();
+                    cmd1.ExecuteNonQuery();
+                    cmd2.ExecuteNonQuery();
+                    cmd3.ExecuteNonQuery();
+                    List<int> ID_citas = new List<int>();
+                    using (SqlDataReader dr = cmd3.ExecuteReader())
+                    {
 
-        try
-        {
-          oConexion.Open();
-          cmd1.ExecuteNonQuery();
-          cmd2.ExecuteNonQuery();
-          //cmd3.ExecuteNonQuery();
-          //cmd4.ExecuteNonQuery();
-          //cmd5.ExecuteNonQuery();
-          // cmd6.ExecuteNonQuery();
-          // cmd7.ExecuteNonQuery();
-          return true;
+                        while (dr.Read())
+                        {
+                            ID_citas.Add(Convert.ToInt32(dr["ID"]));
+
+                        }
+                    }
+                        for (int i = 0; i < ID_citas.Count; i++)
+                        {
+                            SqlCommand cmd4 = new SqlCommand("delete from TRABAJADORES_POR_CITA where ID_Cita = "
+                                + ID_citas[i].ToString() , oConexion);
+                            SqlCommand cmd5 = new SqlCommand("delete from PRODUCTOS_COMPRADOS where ID_Factura = " +
+                                 ID_citas[i].ToString() , oConexion);
+                            SqlCommand cmd6 = new SqlCommand("delete from FACTURA where ID = " +
+                                ID_citas[i].ToString(), oConexion);
+
+                        cmd4.ExecuteNonQuery();
+                            cmd5.ExecuteNonQuery();
+                            cmd6.ExecuteNonQuery();
+                            
+                        }
+                        cmd7.ExecuteNonQuery();
+                        cmd8.ExecuteNonQuery();
+                        
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                    return false;
+                }
+            }
         }
-        catch (Exception ex)
-        {
-          Console.WriteLine(ex);
-          return false;
-        }
-      }
     }
-  }
 }
