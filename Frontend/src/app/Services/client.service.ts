@@ -35,7 +35,10 @@ export class ClientService {
 
   updateClient = (clientID: number, client: any): Observable<ServerResponse> => {
     client.id = client.id.toString()
-    client.telefonos.forEach((telefono: string) => telefono.toString())
+
+    client.telefonos.forEach(
+      (telefono: string) => telefono.toString()
+    )
 
     return this.httpClient.patch<ServerResponse>(`${this.url}/update/${clientID}`, client)
   }

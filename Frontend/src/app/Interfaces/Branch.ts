@@ -1,4 +1,5 @@
 interface Branch {
+    id: number
     nombre: string
     provincia: string
     canton: string
@@ -6,6 +7,7 @@ interface Branch {
     telefono: number
     idGerente: number
     nombreGerente?: string
+    apellidoGerente?: string
     fechaApertura: string
     fechaInicioGerente: string
 }

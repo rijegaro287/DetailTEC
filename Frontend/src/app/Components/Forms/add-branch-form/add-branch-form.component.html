@@ -1,8 +1,20 @@
 <form [formGroup]="this.formsService.form" (ngSubmit)="onSubmit()">
     <div class="row mb-3">
         <div class="col-6">
+            <label class="form-label" for="idInput">ID:</label>
+            <input class="form-control" id="idInput" type="text" formControlName="id">
+        </div>
+
+        <div class="col-6">
             <label class="form-label" for="nameInput">Nombre:</label>
             <input class="form-control" id="nameInput" type="text" formControlName="nombre">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-6">
+            <label class="form-label" for="telInput">Teléfono:</label>
+            <input class="form-control" id="telInput" type="number" formControlName="telefono">
         </div>
 
         <div class="col-6">
@@ -16,8 +28,8 @@
 
     <div class="row mb-3">
         <div class="col-4">
-            <label class="form-label" for="lastNameInput">Provincia:</label>
-            <input class="form-control" id="lastNameInput" type="text" formControlName="provincia">
+            <label class="form-label" for="provinceInput">Provincia:</label>
+            <input class="form-control" id="provinceInput" type="text" formControlName="provincia">
         </div>
 
         <div class="col-4">
@@ -33,8 +45,15 @@
 
     <div class="row mb-3">
         <div class="col-6">
-            <label class="form-label" for="telInput">Teléfono:</label>
-            <input class="form-control" id="telInput" type="number" formControlName="telefono">
+            <label class="form-label" for="startingDateInput">Fecha de inicio del gerente:</label>
+            <div class="input-group">
+                <input [minDate]="{year: 1922, month: 1, day: 1}" [maxDate]="{year: 2022, month: 12, day: 31}"
+                    ngbDatepicker id="startingDateInput" class="form-control" placeholder="yyyy-mm-dd"
+                    #d1="ngbDatepicker" formControlName="fechaInicioGerente">
+                <button class="btn btn-outline-secondary" (click)="d1.toggle()" type="button">
+                    <i class="bi bi-calendar-date-fill"></i>
+                </button>
+            </div>
         </div>
 
         <div class="col-6">
@@ -42,8 +61,8 @@
             <div class="input-group">
                 <input [minDate]="{year: 1922, month: 1, day: 1}" [maxDate]="{year: 2022, month: 12, day: 31}"
                     ngbDatepicker id="openingDateInput" class="form-control" placeholder="yyyy-mm-dd"
-                    #d1="ngbDatepicker" formControlName="fechaApertura">
-                <button class="btn btn-outline-secondary" (click)="d1.toggle()" type="button">
+                    #d2="ngbDatepicker" formControlName="fechaApertura">
+                <button class="btn btn-outline-secondary" (click)="d2.toggle()" type="button">
                     <i class="bi bi-calendar-date-fill"></i>
                 </button>
             </div>

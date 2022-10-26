@@ -4,13 +4,13 @@
     <app-message [messageInfo]="messageService.messageInfo"></app-message>
 
     <div class="d-flex justify-content-end mb-3">
-        <app-modal [options]="{size:'md', scrollable:true}" [showModalButtonText]="'Crear sucursal'"
+        <app-modal [options]="{size:'lg', scrollable:true}" [showModalButtonText]="'Crear sucursal'"
             [modalHeader]="'Creación de sucursal'">
             <app-add-branch-form></app-add-branch-form>
         </app-modal>
     </div>
 
     <div class="overflow-scroll" style="height: 60vh;">
-        <app-generic-table [tableColumns]="tableColumns" [tableData]="tableData" rowIDKey="nombre"></app-generic-table>
+        <app-generic-table [tableColumns]="tableColumns" [tableData]="tableData" rowIDKey="id"></app-generic-table>
     </div>
 </div>

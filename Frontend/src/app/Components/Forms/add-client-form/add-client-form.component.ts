@@ -7,6 +7,7 @@ import { ClientService } from 'src/app/Services/client.service'
 import { Client } from 'src/app/Interfaces/Client'
 import { ServerResponse } from 'src/app/Interfaces/ServerResponses'
 import { MessageService } from 'src/app/Services/message.service'
+import { AuxFunctionsService } from 'src/app/Services/aux-functions.service'
 
 @Component({
   selector: 'app-add-client-form',
@@ -26,6 +27,7 @@ export class AddClientFormComponent implements OnInit, OnChanges {
 
   constructor(
     private clientService: ClientService,
+    private auxFunctionsService: AuxFunctionsService,
     private messageService: MessageService,
     protected formsService: FormsService
   ) {
@@ -98,12 +100,7 @@ export class AddClientFormComponent implements OnInit, OnChanges {
     else {
       await this.createClient()
         .then((response: ServerResponse) => {
-          if (response.status === 'error') {
-            this.messageService.setMessageInfo(response.message!, 'error')
-          }
-          else {
-            window.location.reload()
-          }
+          this.auxFunctionsService.handleResponse(response)
         })
     }
   }

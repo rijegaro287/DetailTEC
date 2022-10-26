@@ -45,13 +45,13 @@ const routes: Routes = [
       { path: 'appointments', component: AdminAppointmentsComponent },
       { path: 'appointments/:id', component: AdminAppointmentInfoComponent },
       { path: 'branches', component: AdminBranchesComponent },
-      { path: 'branches/:name', component: AdminBranchInfoComponent },
+      { path: 'branches/:id', component: AdminBranchInfoComponent },
       { path: 'washing_types', component: AdminWashingTypesComponent },
-      { path: 'washing_types/:name', component: AdminWashingTypeInfoComponent },
+      { path: 'washing_types/:id', component: AdminWashingTypeInfoComponent },
       { path: 'suppliers', component: AdminSuppliersComponent },
       { path: 'suppliers/:id', component: AdminSupplierInfoComponent },
       { path: 'products', component: AdminProductsComponent },
-      { path: 'products/:name', component: AdminProductInfoComponent },
+      { path: 'products/:id', component: AdminProductInfoComponent },
       { path: 'bills', component: AdminBillsComponent },
       { path: 'bills/:id', component: AdminBillInfoComponent }
     ]

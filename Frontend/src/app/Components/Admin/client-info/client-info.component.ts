@@ -6,6 +6,7 @@ import { MessageService } from 'src/app/Services/message.service'
 
 import { Client } from 'src/app/Interfaces/Client'
 import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries'
+import { AuxFunctionsService } from 'src/app/Services/aux-functions.service'
 
 @Component({
   selector: 'app-client-info',
@@ -19,6 +20,7 @@ export class AdminClientInfoComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private clientService: ClientService,
+    protected auxFunctionsService: AuxFunctionsService,
     protected messageService: MessageService
   ) {
     this.clientInfoTitles = [
@@ -52,8 +54,6 @@ export class AdminClientInfoComponent implements OnInit {
         }
       })
   }
-
-  goBack = (): void => window.history.back()
 
   deleteClient = (): void => {
     this.clientService.deleteClient(this.client.id)
