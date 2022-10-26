@@ -55,6 +55,10 @@ namespace DetailTEC.Data
             {
                 passwordSet = trabajador.password;
             }
+            else if (trabajador.password != "" && GetPassword(trabajador, cedula) != trabajador.passwordVieja)
+            {
+                return false;
+            }
 
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
       {

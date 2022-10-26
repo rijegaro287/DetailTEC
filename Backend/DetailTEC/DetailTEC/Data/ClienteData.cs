@@ -90,6 +90,10 @@ namespace DetailTEC.Data
             if (cliente.password != "" && GetPassword(cliente, cedula) == cliente.passwordVieja)
             {
                 passwordSet = cliente.password;
+
+            }else if (cliente.password != "" && GetPassword(cliente, cedula) != cliente.passwordVieja)
+            {
+                return false;
             }
 
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
