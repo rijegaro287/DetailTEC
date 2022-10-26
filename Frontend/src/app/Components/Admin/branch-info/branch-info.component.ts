@@ -6,6 +6,7 @@ import { Branch } from 'src/app/Interfaces/Branch'
 
 import { BranchService } from 'src/app/Services/branch.service'
 import { MessageService } from 'src/app/Services/message.service'
+import { AuxFunctionsService } from 'src/app/Services/aux-functions.service'
 
 @Component({
   selector: 'app-branch-info',
@@ -20,6 +21,7 @@ export class AdminBranchInfoComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private branchService: BranchService,
+    protected auxFunctionsService: AuxFunctionsService,
     protected messageService: MessageService
   ) {
     this.branchInfoTitles = [
@@ -30,24 +32,45 @@ export class AdminBranchInfoComponent implements OnInit {
       { key: "telefono", replacement: "Teléfono" },
       { key: "nombreGerente", replacement: "Gerente" },
       { key: "fechaInicioGerente", replacement: "Fecha de inicio del gerente" },
-      { key: "fechaApertura", replacement: "Fecha de apertura" },
+      { key: "fechaApertura", replacement: "Fecha de apertura" }
     ]
 
     this.branch = {} as Branch
   }
 
   ngOnInit(): void {
-    const nombre = this.route.snapshot.paramMap.get('name')!
-    this.branchService.getBranch(nombre)
+    const id = Number(this.route.snapshot.paramMap.get('id')!)
+    this.branchService.getBranch(id)
       .subscribe(response => {
         if (response.status === 'error') {
           this.messageService.setMessageInfo(response.message!, 'error')
         }
         else if (response.branch) {
           this.branch = response.branch
+
+          this.branch.nombreGerente =
+            `${this.branch.nombreGerente} ${this.branch.apellidoGerente}`
+
+          this.branch.fechaApertura =
+            this.branch.fechaApertura.split('T')[0]
+
+          this.branch.fechaInicioGerente =
+            this.branch.fechaInicioGerente.split('T')[0]
         }
         else {
           console.log(response)
+        }
+      })
+  }
+
+  deleteBranch = (): void => {
+    this.branchService.deleteBranch(this.branch.id)
+      .subscribe(response => {
+        if (response.status === 'error') {
+          this.messageService.setMessageInfo(response.message!, 'error')
+        }
+        else {
+          window.location.href = '/admin/branches'
         }
       })
   }
