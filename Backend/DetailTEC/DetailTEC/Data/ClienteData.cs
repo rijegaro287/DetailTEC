@@ -12,9 +12,9 @@ namespace DetailTEC.Data
       {
         SqlCommand cmd = new SqlCommand("insert into " +
           "CLIENTE(Cedula,Nombre,Apellido1,Apellido2,Correo,PasswordC,Puntos_actuales," +
-        "Puntos_totales, Puntos_usados, Usuario)" +
+        "Puntos_totales, Puntos_usados)" +
           " values(@param1, @param2, @param3, @param4, @param5, @param6, " +
-          "@param7, @param8, @param9, @param10)", oConexion);
+          "@param7, @param8, @param9)", oConexion);
 
         cmd.Parameters.Add("@param1", SqlDbType.Char, 9).Value = cliente.id;
         cmd.Parameters.Add("@param2", SqlDbType.VarChar, 20).Value = cliente.nombre;
@@ -27,9 +27,6 @@ namespace DetailTEC.Data
         cmd.Parameters.Add("@param7", SqlDbType.Int).Value = 0;
         cmd.Parameters.Add("@param8", SqlDbType.Int).Value = 0;
         cmd.Parameters.Add("@param9", SqlDbType.Int).Value = 0;
-
-        // Este es el que agregué
-        cmd.Parameters.Add("@param10", SqlDbType.VarChar, 20).Value = cliente.usuario;
         cmd.CommandType = CommandType.Text;
 
         try
@@ -82,10 +79,9 @@ namespace DetailTEC.Data
     {
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
       {
-
         SqlCommand cmd = new SqlCommand("update CLIENTE set Cedula=@param1,Nombre=@param2,Apellido1=@param3," +
             "Apellido2=@param4,Correo=@param5,PasswordC=@param6," +
-            "Puntos_actuales=@param7,Puntos_totales=@param8, Puntos_usados=@param9, Usuario=@param11 where Cedula = @param10", oConexion);
+            "Puntos_actuales=@param7,Puntos_totales=@param8, Puntos_usados=@param9 where Cedula = @param10", oConexion);
         cmd.Parameters.Add("@param1", SqlDbType.Char, 9).Value = cliente.id;
         cmd.Parameters.Add("@param2", SqlDbType.VarChar, 20).Value = cliente.nombre;
         cmd.Parameters.Add("@param3", SqlDbType.VarChar, 20).Value = cliente.apellido1;
@@ -94,7 +90,6 @@ namespace DetailTEC.Data
 
         // Estos son los que puse opcionales
         cmd.Parameters.Add("@param6", SqlDbType.VarChar, 20).Value = "";
-        cmd.Parameters.Add("@param11", SqlDbType.VarChar, 20).Value = cliente.usuario;
         cmd.Parameters.Add("@param7", SqlDbType.Int).Value = 0;
         cmd.Parameters.Add("@param8", SqlDbType.Int).Value = 0;
         cmd.Parameters.Add("@param9", SqlDbType.Int).Value = 0;
@@ -152,7 +147,7 @@ namespace DetailTEC.Data
       List<ClienteForGet> oListaUsuario = new List<ClienteForGet>();
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
       {
-        SqlCommand cmd = new SqlCommand("select C.Usuario, C.Cedula, C.Nombre, C.Apellido1, C.Apellido2," +
+        SqlCommand cmd = new SqlCommand("select C.Cedula, C.Nombre, C.Apellido1, C.Apellido2," +
             "C.Correo, C.Puntos_actuales, C.Puntos_totales, C.Puntos_usados," +
             "T.Telefono, D.Direccion from CLIENTE as C, TELEFONOS_CLIENTE as T, DIRECCIONES_CLIENTE as D" +
             " where C.Cedula = T.Cedula_Cli AND C.Cedula = D.Cedula_Cli", oConexion);
@@ -189,7 +184,6 @@ namespace DetailTEC.Data
                 {
 
                   id = dr["Cedula"].ToString(),
-                  usuario = dr["Usuario"].ToString(),
                   nombre = dr["Nombre"].ToString(),
                   apellido1 = dr["Apellido1"].ToString(),
                   apellido2 = dr["Apellido2"].ToString(),
@@ -240,8 +234,8 @@ namespace DetailTEC.Data
     {
       ClienteForGet cliente = new ClienteForGet();
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
-      { 
-        SqlCommand cmd = new SqlCommand("select C.Usuario, C.Cedula, C.Nombre, C.Apellido1, C.Apellido2," +
+      {
+        SqlCommand cmd = new SqlCommand("select C.Cedula, C.Nombre, C.Apellido1, C.Apellido2," +
             "C.Correo, C.Puntos_actuales, C.Puntos_totales, C.Puntos_usados," +
             "T.Telefono, D.Direccion from CLIENTE as C, TELEFONOS_CLIENTE as T, DIRECCIONES_CLIENTE as D" +
             " where C.Cedula = " + cedula + " AND C.Cedula = T.Cedula_Cli AND C.Cedula = D.Cedula_Cli", oConexion);
@@ -267,7 +261,6 @@ namespace DetailTEC.Data
                 {
 
                   id = dr["Cedula"].ToString(),
-                  usuario = dr["Usuario"].ToString(),
                   nombre = dr["Nombre"].ToString(),
                   apellido1 = dr["Apellido1"].ToString(),
                   apellido2 = dr["Apellido2"].ToString(),
@@ -315,55 +308,55 @@ namespace DetailTEC.Data
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
       {
 
-                
-                SqlCommand cmd1 = new SqlCommand("delete from TELEFONOS_CLIENTE where Cedula_Cli = " + cedula, oConexion);
-                SqlCommand cmd2 = new SqlCommand("delete from DIRECCIONES_CLIENTE where Cedula_Cli = " + cedula, oConexion);
-                SqlCommand cmd3 = new SqlCommand("SELECT ID FROM CITA WHERE Cedula_cliente = " + cedula, oConexion);
-                
-                SqlCommand cmd8 = new SqlCommand("delete from CLIENTE where Cedula = " + cedula, oConexion);
-                SqlCommand cmd7 = new SqlCommand("delete from CITA where Cedula_Cliente = " + cedula, oConexion);
-                try
-                {
 
-                    oConexion.Open();
-                    cmd1.ExecuteNonQuery();
-                    cmd2.ExecuteNonQuery();
-                    cmd3.ExecuteNonQuery();
-                    List<int> ID_citas = new List<int>();
-                    using (SqlDataReader dr = cmd3.ExecuteReader())
-                    {
+        SqlCommand cmd1 = new SqlCommand("delete from TELEFONOS_CLIENTE where Cedula_Cli = " + cedula, oConexion);
+        SqlCommand cmd2 = new SqlCommand("delete from DIRECCIONES_CLIENTE where Cedula_Cli = " + cedula, oConexion);
+        SqlCommand cmd3 = new SqlCommand("SELECT ID FROM CITA WHERE Cedula_cliente = " + cedula, oConexion);
 
-                        while (dr.Read())
-                        {
-                            ID_citas.Add(Convert.ToInt32(dr["ID"]));
+        SqlCommand cmd8 = new SqlCommand("delete from CLIENTE where Cedula = " + cedula, oConexion);
+        SqlCommand cmd7 = new SqlCommand("delete from CITA where Cedula_Cliente = " + cedula, oConexion);
+        try
+        {
 
-                        }
-                    }
-                        for (int i = 0; i < ID_citas.Count; i++)
-                        {
-                            SqlCommand cmd4 = new SqlCommand("delete from TRABAJADORES_POR_CITA where ID_Cita = "
-                                + ID_citas[i].ToString() , oConexion);
-                            SqlCommand cmd5 = new SqlCommand("delete from PRODUCTOS_COMPRADOS where ID_Factura = " +
-                                 ID_citas[i].ToString() , oConexion);
-                            SqlCommand cmd6 = new SqlCommand("delete from FACTURA where ID = " +
-                                ID_citas[i].ToString(), oConexion);
+          oConexion.Open();
+          cmd1.ExecuteNonQuery();
+          cmd2.ExecuteNonQuery();
+          cmd3.ExecuteNonQuery();
+          List<int> ID_citas = new List<int>();
+          using (SqlDataReader dr = cmd3.ExecuteReader())
+          {
 
-                        cmd4.ExecuteNonQuery();
-                            cmd5.ExecuteNonQuery();
-                            cmd6.ExecuteNonQuery();
-                            
-                        }
-                        cmd7.ExecuteNonQuery();
-                        cmd8.ExecuteNonQuery();
-                        
-                    return true;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex);
-                    return false;
-                }
+            while (dr.Read())
+            {
+              ID_citas.Add(Convert.ToInt32(dr["ID"]));
+
             }
+          }
+          for (int i = 0; i < ID_citas.Count; i++)
+          {
+            SqlCommand cmd4 = new SqlCommand("delete from TRABAJADORES_POR_CITA where ID_Cita = "
+                + ID_citas[i].ToString(), oConexion);
+            SqlCommand cmd5 = new SqlCommand("delete from PRODUCTOS_COMPRADOS where ID_Factura = " +
+                 ID_citas[i].ToString(), oConexion);
+            SqlCommand cmd6 = new SqlCommand("delete from FACTURA where ID = " +
+                ID_citas[i].ToString(), oConexion);
+
+            cmd4.ExecuteNonQuery();
+            cmd5.ExecuteNonQuery();
+            cmd6.ExecuteNonQuery();
+
+          }
+          cmd7.ExecuteNonQuery();
+          cmd8.ExecuteNonQuery();
+
+          return true;
         }
+        catch (Exception ex)
+        {
+          Console.WriteLine(ex);
+          return false;
+        }
+      }
     }
+  }
 }

@@ -60,7 +60,7 @@ export class AddEmployeeFormComponent implements OnInit {
     this.formsService.form.addControl('passwordConfirm', this.passwordConfirm)
   }
 
-  onSubmit = () => {
+  onSubmit = async () => {
     const newEmployeeInfo = this.formsService.getFormValue()
 
     if (newEmployeeInfo.password !== newEmployeeInfo.passwordConfirm) {
@@ -71,7 +71,7 @@ export class AddEmployeeFormComponent implements OnInit {
       delete newEmployeeInfo.passwordConfirm
     }
 
-    this.createEmployee(newEmployeeInfo)
+    await this.createEmployee(newEmployeeInfo)
       .then((response) => {
         if (response.status === 'error') {
           this.messageService.setMessageInfo(response.message!, 'error')

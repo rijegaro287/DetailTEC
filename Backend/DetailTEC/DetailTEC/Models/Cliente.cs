@@ -3,7 +3,6 @@
   public class Cliente
   {
     public string id { get; set; }
-    public string usuario { get; set; } // Agregué este
     public string nombre { get; set; }
     public string apellido1 { get; set; }
     public string? apellido2 { get; set; }
