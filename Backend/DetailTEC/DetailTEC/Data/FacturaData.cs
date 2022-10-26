@@ -13,6 +13,7 @@ public class FacturaData{
         where F.ID =";
 
     // Extrae la factura de la base de datos.
+    // Entrada: id de la cita
     public static Factura Obtener(int idCita){
         DataTable dt = new DataTable();
         try{
@@ -27,6 +28,7 @@ public class FacturaData{
     }
 
     // Asigna los datos de la consulta a un objeto Factura.
+    // Entrada: tabla con los datos de la factura
     private static Factura procesarFactura(DataTable dt){
         if(dt.Rows.Count == 0){
             return null;

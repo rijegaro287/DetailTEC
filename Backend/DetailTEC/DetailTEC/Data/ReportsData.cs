@@ -3,6 +3,7 @@ using System.Data.SqlClient;
 using DetailTEC.Models;
 namespace DetailTEC.Data;
 
+// Clase que extrae los datos de los reportes
 public class ReportsData
 {
     private static string PUNTOS_GASTADOS_POR_CLIENTE_QUERY =
