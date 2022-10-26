@@ -19,7 +19,7 @@ namespace DetailTEC.Data
                 cmd1.Parameters.Add("@param4", SqlDbType.Int).Value =cita.tipoLavado;
                 cmd1.Parameters.Add("@param5", SqlDbType.Char, 9).Value = cita.cedulaCliente;
                 cmd1.Parameters.Add("@param6", SqlDbType.Date).Value = cita.fecha.Date;
-                cmd1.Parameters.Add("@param7", SqlDbType.Time).Value = cita.hora;
+                cmd1.Parameters.Add("@param7", SqlDbType.Time).Value = TimeSpan.Parse(cita.hora);
                 cmd1.Parameters.Add("@param8", SqlDbType.VarChar).Value = cita.medioPago;
                 cmd1.CommandType = CommandType.Text;
 
@@ -61,7 +61,7 @@ namespace DetailTEC.Data
                             SqlCommand cmd4 = new SqlCommand("insert into PRODUCTOS_COMPRADOS(ID_Producto, ID_Factura, Cantidad) values(@param1, @param2, @param3)", oConexion);
                             cmd4.Parameters.Add("@param1", SqlDbType.Int).Value = productos[i];
                             cmd4.Parameters.Add("@param2", SqlDbType.Int).Value = cita.id;
-                            cmd4.Parameters.Add("@param2", SqlDbType.Int).Value = 1;
+                            cmd4.Parameters.Add("@param3", SqlDbType.Int).Value = 1;
                             cmd4.CommandType = CommandType.Text;
                             cmd4.ExecuteNonQuery();
                         }
@@ -95,7 +95,7 @@ namespace DetailTEC.Data
                 cmd1.Parameters.Add("@param4", SqlDbType.Int).Value = cita.tipoLavado;
                 cmd1.Parameters.Add("@param5", SqlDbType.Char, 9).Value = cita.cedulaCliente;
                 cmd1.Parameters.Add("@param6", SqlDbType.Date).Value = cita.fecha.Date;
-                cmd1.Parameters.Add("@param7", SqlDbType.Time).Value = cita.hora;
+                cmd1.Parameters.Add("@param7", SqlDbType.Time).Value = TimeSpan.Parse(cita.hora);
                 cmd1.Parameters.Add("@param8", SqlDbType.Int).Value = Convert.ToInt32(id);
                 cmd1.CommandType = CommandType.Text;
 

@@ -8,7 +8,7 @@
         public int IDSucursal { get; set; }
         public int tipoLavado { get; set; }
         public DateTime fecha { get; set; }
-        public DateTime hora { get; set; }
+        public string hora { get; set; }
         public string medioPago { get; set; }
         public List<string> idEmpleados { get; set; }
     }
