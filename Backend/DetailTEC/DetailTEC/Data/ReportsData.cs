@@ -14,7 +14,7 @@ public class ReportsData
     
     private static string PLANTILLA_QUERY =
         @"SELECT T.Cedula, T.NombreT, T.Apellido1, T.Tipo_pago, T.Apellido2, L.Nombre, COUNT(L.Nombre) as CantidadDeLavados, SUM(L.Comision_trabajador) MontoGanadoPorLavados
-        FROM (((Cita AS C JOIN LAVADO AS L ON C.Nombre_lavado=L.Nombre)
+        FROM (((Cita AS C JOIN LAVADO AS L ON C.ID_Lavado=L.ID)
         JOIN TRABAJADORES_POR_CITA AS TpC ON Tpc.ID_Cita=C.ID)
         JOIN TRABAJADOR AS T ON Tpc.Cedula_Trabajador=T.Cedula)
         GROUP BY T.Cedula, T.NombreT, T.Apellido1, T.Apellido2, L.Nombre, T.Tipo_pago
@@ -76,9 +76,9 @@ public class ReportsData
     public static  LavadoPorCliente[] reporteLavadoPorCliente(int id){
         DataTable dt = new DataTable();
         string LAVADO_POR_CLIENTE_QUERY = 
-            @"SELECT Cl.Nombre, Cl.Apellido1, Cl.Apellido2, L.Nombre, COUNT(L.Nombre) as CantidadDeLavados
-            FROM ((Cliente Cl JOIN CITA AS Ci on Cl.Cedula = Ci.Cedula_cliente)
-            JOIN LAVADO as L on Ci.Nombre_lavado = L.Nombre)
+            @"select Cl.Nombre, Cl.Apellido1, Cl.Apellido2, L.Nombre, COUNT(L.Nombre) as CantidadDeLavados
+            from ((Cliente Cl join Cita as Ci on Cl.Cedula = Ci.Cedula_cliente)
+            Join Lavado as L on Ci.ID_Lavado = L.ID)
             WHERE Cl.Cedula = " + id + @"
             GROUP BY Cl.Nombre, Cl.Apellido1, Cl.Apellido2, L.Nombre
             ORDER By CantidadDeLavados DESC";
