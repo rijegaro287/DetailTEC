@@ -6,13 +6,15 @@ namespace DetailTEC.Data;
 
 public class FacturaData{
     private static string FACTURA_QUERY =
-        @"select F.ID, F.medio_pago, F.total, Cl.Cedula as Cedula_cliente, TpC.Cedula_trabajador, Ci.Nombre_lavado, Ci.Fecha, Ci.Hora
-        from (((Cita as Ci join Factura as F on Ci.ID = F.ID)
+        @"select F.ID, F.medio_pago, F.total, Cl.Cedula as Cedula_cliente, TpC.Cedula_trabajador, L.Nombre as Nombre_lavado, Ci.Fecha, Ci.Hora
+        from ((((Cita as Ci join Factura as F on Ci.ID = F.ID)
         Join TRABAJADORES_POR_CITA TpC ON Ci.ID = TpC.ID_cita)
         join Cliente as Cl on Cl.Cedula = Ci.Cedula_cliente)
-        where F.ID =";
+        join Lavado AS L on Ci.ID_Lavado = L.ID)
+        where F.ID = ";
 
     // Extrae la factura de la base de datos.
+    // Entrada: id de la cita
     public static Factura Obtener(int idCita){
         DataTable dt = new DataTable();
         try{
@@ -27,6 +29,7 @@ public class FacturaData{
     }
 
     // Asigna los datos de la consulta a un objeto Factura.
+    // Entrada: tabla con los datos de la factura
     private static Factura procesarFactura(DataTable dt){
         if(dt.Rows.Count == 0){
             return null;

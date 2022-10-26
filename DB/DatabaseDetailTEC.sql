@@ -40,7 +40,6 @@ IF OBJECT_ID(N'dbo.TRABAJADOR', N'U') IS NOT NULL
 
 GO
 
-
 create table TRABAJADOR(
 	Cedula char(9) not null,
 	NombreT varchar(20) not null,
@@ -258,14 +257,6 @@ ALTER TABLE FACTURA
 ADD CONSTRAINT FK_FACTURA_CITA FOREIGN KEY (ID) REFERENCES CITA(ID);
 
 ALTER TABLE PRODUCTOS_COMPRADOS
-ADD CONSTRAINT FK_PRODUCTOS_COMPRADOS_FACTURA FOREIGN KEY (ID) REFERENCES CITA(ID);
+ADD CONSTRAINT FK_PRODUCTOS_COMPRADOS_FACTURA FOREIGN KEY (ID_Factura) REFERENCES CITA(ID);
 ALTER TABLE PRODUCTOS_COMPRADOS
 ADD CONSTRAINT FK_PRODUCTOS_COMPRADOS_PRODUCTO FOREIGN KEY (ID_Producto) REFERENCES PRODUCTO(ID);
-
-
-select C.Cedula, C.Nombre, C.Apellido1, C.Apellido2,
-                    C.Correo, C.Puntos_actuales, C.Puntos_totales, C.Puntos_usados,
-                    T.Telefono, D.Direccion from CLIENTE as C, TELEFONOS_CLIENTE as T, DIRECCIONES_CLIENTE as D
-                    where C.Cedula = T.Cedula_Cli AND C.Cedula = D.Cedula_Cli
-
-Select SUM(P.Precio) AS Sumatoria from PRODUCTO as P, PRODUCTO_LAVADO AS L where L.ID_Lavado = '1' AND L.ID_Producto = P.ID
