@@ -19,7 +19,7 @@ GROUP BY T.Cedula, T.NombreT, T.Apellido1, T.Apellido2, L.Nombre, T.Tipo_pago
 Order by T.Cedula
 
 -- Select de factuaracion
-select F.ID, F.medio_pago, F.total, Cl.Cedula as Cedula_cliente, TpC.Cedula_trabajador, L.Nombre, Ci.Fecha, Ci.Hora
+select F.ID, F.medio_pago, F.total, Cl.Cedula as Cedula_cliente, TpC.Cedula_trabajador, L.Nombre as Nombre_lavado, Ci.Fecha, Ci.Hora
 from ((((Cita as Ci join Factura as F on Ci.ID = F.ID)
 Join TRABAJADORES_POR_CITA TpC ON Ci.ID = TpC.ID_cita)
 join Cliente as Cl on Cl.Cedula = Ci.Cedula_cliente)
