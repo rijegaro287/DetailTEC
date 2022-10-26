@@ -240,7 +240,7 @@ namespace DetailTEC.Data
     {
       ClienteForGet cliente = new ClienteForGet();
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
-      {
+      { 
         SqlCommand cmd = new SqlCommand("select C.Usuario, C.Cedula, C.Nombre, C.Apellido1, C.Apellido2," +
             "C.Correo, C.Puntos_actuales, C.Puntos_totales, C.Puntos_usados," +
             "T.Telefono, D.Direccion from CLIENTE as C, TELEFONOS_CLIENTE as T, DIRECCIONES_CLIENTE as D" +

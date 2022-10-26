@@ -17,11 +17,11 @@ INSERT INTO TRABAJADOR (
     Tipo_pago) 
 
 VALUES 
-    ('118460116', 'Adriana', 'Calderon', 'Barboza', 'emp@gmail.com','2000-12-12', '2000-12-12', '20', 'contrasena01', 'Pulidor', 'Semanal'),
-    ('118460126', 'Yordi', 'Brenes', 'Roda', 'emp@gmail.com', '2000-12-12', '2000-12-12', '20', 'contrasena01', 'Lavador', 'Bisemanal'),
-    ('118420116', 'Ricardo', 'Gatgens', 'Rodriguz', 'emp@gmail.com', '2000-12-12', '2000-12-12', '20', 'contrasena01', 'Pulidor', 'Bisemanal'),
-    ('112410116', 'Anthony', 'Chaves', 'Achoy', 'emp@gmail.com', '2000-12-12', '2000-12-12', '20', 'contrasena01', 'Pulidor', 'Semanal'),
-    ('305230771', 'Julian', 'Rodriguez', 'Casas', 'emp@gmail.com', '2000-12-12', '2000-12-12', '40', 'juasjuas', 'Lavador', 'Bisemanal' )
+    ('118460116', 'Adriana', 'Calderon', 'Barboza', 'emp1@gmail.com','2000-12-12', '2000-12-12', '20', 'contrasena01', 'Pulidor', 'Semanal'),
+    ('118460126', 'Yordi', 'Brenes', 'Roda', 'emp2@gmail.com', '2000-12-12', '2000-12-12', '20', 'contrasena02', 'Lavador', 'Bisemanal'),
+    ('118420116', 'Ricardo', 'Gatgens', 'Rodriguz', 'emp3@gmail.com', '2000-12-12', '2000-12-12', '20', 'contrasena03', 'Pulidor', 'Bisemanal'),
+    ('112410116', 'Anthony', 'Chaves', 'Achoy', 'emp4@gmail.com', '2000-12-12', '2000-12-12', '20', 'contrasena04', 'Pulidor', 'Semanal'),
+    ('305230771', 'Julian', 'Rodriguez', 'Casas', 'emp5@gmail.com', '2000-12-12', '2000-12-12', '40', 'juasjuas', 'Lavador', 'Bisemanal' )
 
 insert into TRABAJADOR(Cedula,NombreT,Apellido1,Apellido2,Email,Fecha_nacimiento,Fecha_ingreso,Edad,PasswordT,Rol,Tipo_pago)
 values('255654856', 'Joel', 'Sequeira', 'Hernandez', 'jsh@gmail.com', '22/10/2022 0:00:00', '22/11/2002 0:00:00', '0', 'string1234', 'lavador', 'semanal') 
