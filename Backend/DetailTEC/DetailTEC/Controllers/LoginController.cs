@@ -81,7 +81,8 @@ namespace DetailTEC.Controllers
                 return new
                 {
                     status = "ok",
-                    message = id
+                    ClientID = id,
+                    message = "Usuario aceptado"
                 };
             }
             else
@@ -89,6 +90,7 @@ namespace DetailTEC.Controllers
                 return new
                 {
                     status = "error",
+                    ClientID = id,
                     message = "Contraseña o Usuario incorrecto"
                 };
             }

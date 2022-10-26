@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core'
 
 import { DateInput, TimeInput } from '../Interfaces/Auxiliaries'
+import { ServerResponse } from '../Interfaces/ServerResponses'
+import { MessageService } from './message.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuxFunctionsService {
 
-  constructor() { }
+  constructor(
+    private messageService: MessageService
+  ) { }
 
   stringToDate = (dateString: string): DateInput => {
     const dateStringArray = dateString.split('-')
@@ -44,4 +48,15 @@ export class AuxFunctionsService {
 
     return timeString
   }
+
+  handleResponse = (response: ServerResponse): any => {
+    if (response.status === 'error') {
+      this.messageService.setMessageInfo(response.message!, 'error')
+    }
+    else {
+      window.location.reload();
+    }
+  }
+
+  goBack = (): void => window.history.back()
 }
