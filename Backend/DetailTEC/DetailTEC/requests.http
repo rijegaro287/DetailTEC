@@ -9,6 +9,8 @@ https://localhost:7064/cliente/facturacion/3
 ###
 https://localhost:7064/cliente/importar_clientes
 ###
+https://localhost:7064/cliente/get/25325241
+###
 https://localhost:7064/cliente/get_all
 ###
 https://localhost:7064/trabajador/get_all

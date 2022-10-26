@@ -39,6 +39,8 @@ Frontend/typings
 Frontend/.DS_Store
 Frontend/Thumbs.db
 
+Backend/DetailTEC/.vs
+Backend/DetailTEC/DetailTEC/.vs
 Backend/DetailTEC/DetailTEC/bin
 Backend/DetailTEC/DetailTEC/obj
 Backend/DetailTEC/DetailTEC/Reports/*.pdf

@@ -40,6 +40,9 @@ export class EmployeeService {
 
     employee.password = employee.password.toString();
 
+    console.log(employee);
+
+
     return this.httpClient.post<ServerResponse>(`${this.url}/add`, employee)
   }
 

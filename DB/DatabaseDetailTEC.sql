@@ -4,9 +4,9 @@
 use DetailTEC
 
 IF OBJECT_ID(N'dbo.PRODUCTOS_COMPRADOS', N'U') IS NOT NULL  
-	DROP TABLE [dbo].[PRODUCTOS_COMPRADOS];  
+	DROP TABLE [dbo].[PRODUCTOS_COMPRADOS];
 IF OBJECT_ID(N'dbo.FACTURA', N'U') IS NOT NULL  
-	DROP TABLE [dbo].[FACTURA];  
+	DROP TABLE [dbo].[FACTURA];
 IF OBJECT_ID(N'dbo.TIPO_DE_PAGO', N'U') IS NOT NULL  
 	DROP TABLE [dbo].[TIPO_DE_PAGO];
 IF OBJECT_ID(N'dbo.TRABAJADORES_POR_CITA', N'U') IS NOT NULL  
@@ -41,7 +41,8 @@ IF OBJECT_ID(N'dbo.TRABAJADOR', N'U') IS NOT NULL
 GO
 
 
-create table TRABAJADOR(
+create table TRABAJADOR
+(
 	Cedula char(9) not null,
 	NombreT varchar(20) not null,
 	Apellido1 varchar(20) not null,
@@ -49,16 +50,20 @@ create table TRABAJADOR(
 	Fecha_nacimiento date not null,
 	Fecha_ingreso date not null,
 	Email varchar(50) not null,
-	Edad tinyint, --La edad se calcula en la base de datos, no se ingresa
+	Edad tinyint,
+	--La edad se calcula en la base de datos, no se ingresa
 	PasswordT varchar(20) not null,
-	Rol varchar(20) not null, -- Creo que rol debería ser una tabla
-	Tipo_pago varchar(10) not null, -- El tipo de pago debería ser otra tabla
+	Rol varchar(20) not null,
+	-- Creo que rol debería ser una tabla
+	Tipo_pago varchar(10) not null,
+	-- El tipo de pago debería ser otra tabla
 	PRIMARY KEY(Cedula)
 )
 
 
-create table SUCURSAL(
-	
+create table SUCURSAL
+(
+
 	ID int not null,
 	Nombre varchar(40) not null,
 	Provincia varchar(20),
@@ -87,7 +92,7 @@ create table SUCURSAL(
 --	PRIMARY KEY(Trabajador_Cedula, Sucursal_Nombre)
 --)
 
-CREATE TABLE PROVEEDOR 
+CREATE TABLE PROVEEDOR
 (
 	Cedula_juridica char(10) not null,
 	Nombre varchar(20) not null,
@@ -106,12 +111,12 @@ CREATE TABLE PRODUCTO
 (
 	ID int not null,
 	NombreP varchar(20) not null,
-	Marca varchar(20) not null, 
+	Marca varchar(20) not null,
 	Costo int not null,
 	Precio int not null,
 	Ced_prov char(10) not null,
 	PRIMARY KEY (ID),
-); 
+);
 
 CREATE TABLE LAVADO
 (
@@ -126,7 +131,8 @@ CREATE TABLE LAVADO
 	PRIMARY KEY (ID)
 )
 
-CREATE TABLE PRODUCTO_LAVADO(
+CREATE TABLE PRODUCTO_LAVADO
+(
 	ID_Producto int not null,
 	ID_Lavado int not null,
 	PRIMARY KEY(ID_Producto, ID_Lavado)
@@ -134,56 +140,64 @@ CREATE TABLE PRODUCTO_LAVADO(
 
 
 
-create table CLIENTE(
+create table CLIENTE
+(
 
 	Cedula char(9) not null,
 	Nombre varchar(20) not null,
 	Apellido1 varchar(20) not null,
 	Apellido2 varchar(20),
 	Correo varchar(50) not null,
-	PasswordC varchar(20) , -- Hay que hacer que no de pueda ver la contraseña
+	PasswordC varchar(20) ,
+	-- Hay que hacer que no de pueda ver la contraseña
 	Puntos_actuales int ,
-	Puntos_totales int, 
-	Puntos_usados int,	
+	Puntos_totales int,
+	Puntos_usados int,
 	PRIMARY KEY(Cedula)
 )
 
-create table TELEFONOS_CLIENTE(
-	
+create table TELEFONOS_CLIENTE
+(
+
 	Cedula_Cli char(9) not null,
 	Telefono char(8) not null
-	
+
 )
 
-create table DIRECCIONES_CLIENTE(
-	
+create table DIRECCIONES_CLIENTE
+(
+
 	Cedula_Cli char(9) not null,
 	Direccion varchar(100) not null
-	
+
 )
 
-create table CITA(
+create table CITA
+(
 
-	ID int not null, -- el id se debería de generar automáticamente
+	ID int not null,
+	-- el id se debería de generar automáticamente
 	Placa char(6) not null,
 	ID_Sucursal int not null,
 	ID_Lavado int not null,
 	Cedula_cliente char(9) not null,
-	Fecha date not null, 
+	Fecha date not null,
 	Hora time not null,
 	Medio_pago varchar(20) not null,
 	PRIMARY KEY(ID)
 )
 
-create table TRABAJADORES_POR_CITA(
-	
+create table TRABAJADORES_POR_CITA
+(
+
 	Cedula_trabajador char(9) not null,
 	ID_cita int not null
 )
 
 
 
-CREATE TABLE TIPO_DE_PAGO( 
+CREATE TABLE TIPO_DE_PAGO
+(
 	ID int not null,
 	Nombre varchar(20) not null,
 	PRIMARY KEY (ID)
@@ -191,14 +205,17 @@ CREATE TABLE TIPO_DE_PAGO(
 
 
 
-CREATE TABLE FACTURA( 
+CREATE TABLE FACTURA
+(
 	ID int not null,
 	medio_pago int not NULL,
-	total int not null, -- se debe calcular solo
+	total int not null,
+	-- se debe calcular solo
 	PRIMARY KEY(ID)
 );
 
-CREATE TABLE PRODUCTOS_COMPRADOS(
+CREATE TABLE PRODUCTOS_COMPRADOS
+(
 	ID_Producto int not null,
 	ID_Factura INT NOT NULL,
 	Cantidad int not null
@@ -207,7 +224,7 @@ CREATE TABLE PRODUCTOS_COMPRADOS(
 
 
 
-GO 
+GO
 
 -- LLaves foráneas
 --ALTER TABLE GERENTE_SUCURSAL
@@ -258,14 +275,17 @@ ALTER TABLE FACTURA
 ADD CONSTRAINT FK_FACTURA_CITA FOREIGN KEY (ID) REFERENCES CITA(ID);
 
 ALTER TABLE PRODUCTOS_COMPRADOS
-ADD CONSTRAINT FK_PRODUCTOS_COMPRADOS_FACTURA FOREIGN KEY (ID) REFERENCES CITA(ID);
+ADD CONSTRAINT FK_PRODUCTOS_COMPRADOS_FACTURA FOREIGN KEY (ID_Factura) REFERENCES CITA(ID);
 ALTER TABLE PRODUCTOS_COMPRADOS
 ADD CONSTRAINT FK_PRODUCTOS_COMPRADOS_PRODUCTO FOREIGN KEY (ID_Producto) REFERENCES PRODUCTO(ID);
 
 
 select C.Cedula, C.Nombre, C.Apellido1, C.Apellido2,
-                    C.Correo, C.Puntos_actuales, C.Puntos_totales, C.Puntos_usados,
-                    T.Telefono, D.Direccion from CLIENTE as C, TELEFONOS_CLIENTE as T, DIRECCIONES_CLIENTE as D
-                    where C.Cedula = T.Cedula_Cli AND C.Cedula = D.Cedula_Cli
+	C.Correo, C.Puntos_actuales, C.Puntos_totales, C.Puntos_usados,
+	T.Telefono, D.Direccion
+from CLIENTE as C, TELEFONOS_CLIENTE as T, DIRECCIONES_CLIENTE as D
+where C.Cedula = T.Cedula_Cli AND C.Cedula = D.Cedula_Cli
 
-Select SUM(P.Precio) AS Sumatoria from PRODUCTO as P, PRODUCTO_LAVADO AS L where L.ID_Lavado = '1' AND L.ID_Producto = P.ID
+Select SUM(P.Precio) AS Sumatoria
+from PRODUCTO as P, PRODUCTO_LAVADO AS L
+where L.ID_Lavado = '1' AND L.ID_Producto = P.ID

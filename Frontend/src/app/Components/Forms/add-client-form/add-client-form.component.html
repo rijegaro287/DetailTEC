@@ -1,55 +1,45 @@
-<div>
-    <form [formGroup]="this.formsService.form" (ngSubmit)="onSubmit()">
-        <div class="row mb-2">
-            <div class="col-4">
-                <label class="form-label" for="nameInput">Nombre:</label>
-                <input class="form-control" id="nameInput" type="text" formControlName="nombre">
-            </div>
-
-            <div class="col-4">
-                <label class="form-label" for="lastNameInput1">Primer apellido:</label>
-                <input class="form-control" id="lastNameInput1" type="text" formControlName="apellido1">
-            </div>
-
-            <div class="col-4">
-                <label class="form-label" for="lastNameInput2">Segundo apellido:</label>
-                <input class="form-control" id="lastNameInput2" type="text" formControlName="apellido2">
-            </div>
+<form [formGroup]="this.formsService.form" (ngSubmit)="onSubmit()">
+    <div class="row mb-2">
+        <div class="col-4">
+            <label class="form-label" for="nameInput">Nombre:</label>
+            <input class="form-control" id="nameInput" type="text" formControlName="nombre">
         </div>
 
-        <div class="row mb-2">
-            <div class="col-6">
-                <label class="form-label" for="userInput">Usuario:</label>
-                <input class="form-control" id="userInput" type="text" formControlName="usuario">
-            </div>
-
-            <div class="col-6">
-                <label class="form-label" for="idInput">Cédula:</label>
-                <input class="form-control" id=" idInput" type="number" formControlName="id">
-            </div>
+        <div class="col-4">
+            <label class="form-label" for="lastNameInput1">Primer apellido:</label>
+            <input class="form-control" id="lastNameInput1" type="text" formControlName="apellido1">
         </div>
 
-        <div class="row mb-2">
-            <div class="col-12">
-                <label class="form-label" for="emailInput">Correo electrónico:</label>
-                <input class="form-control" id="emailInput" type="email" formControlName="email">
-            </div>
+        <div class="col-4">
+            <label class="form-label" for="lastNameInput2">Segundo apellido:</label>
+            <input class="form-control" id="lastNameInput2" type="text" formControlName="apellido2">
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-6">
+            <label class="form-label" for="emailInput">Correo electrónico:</label>
+            <input class="form-control" id="emailInput" type="email" formControlName="email">
+        </div>
+        <div class="col-6">
+            <label class="form-label" for="idInput">Cédula:</label>
+            <input class="form-control" id=" idInput" type="number" formControlName="id">
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col-6">
+            <app-multivalued-input label="Telefonos" inputName="telefonos" inputType="number">
+            </app-multivalued-input>
         </div>
 
-        <div class="row mb-2">
-            <div class="col-6">
-                <app-multivalued-input label="Telefonos" inputName="telefonos" inputType="number">
-                </app-multivalued-input>
-            </div>
-
-            <div class="col-6">
-                <app-multivalued-input label="Direcciones" inputName="direcciones" inputType="text">
-                </app-multivalued-input>
-            </div>
+        <div class="col-6">
+            <app-multivalued-input label="Direcciones" inputName="direcciones" inputType="text">
+            </app-multivalued-input>
         </div>
+    </div>
 
-        <div class="d-flex justify-content-end">
-            <input type="submit" class="btn btn-success btn-lg" value="{{clientInfo ? 'Editar' : 'Crear'}}">
-        </div>
-    </form>
-</div>
+    <div class="d-flex justify-content-end">
+        <input type="submit" class="btn btn-success btn-lg" value="{{clientInfo ? 'Editar' : 'Crear'}}">
+    </div>
+</form>

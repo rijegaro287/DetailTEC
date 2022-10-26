@@ -23,7 +23,6 @@ export class AdminClientInfoComponent implements OnInit {
   ) {
     this.clientInfoTitles = [
       { key: "id", replacement: "Cédula" },
-      { key: "usuario", replacement: "Usuario" },
       { key: "nombre", replacement: "Nombre" },
       { key: "apellido1", replacement: "Primer apellido" },
       { key: "apellido2", replacement: "Segundo apellido" },

@@ -81,7 +81,7 @@ export class EditEmployeeFormComponent implements OnInit, OnChanges {
     }
   }
 
-  onSubmit = () => {
+  onSubmit = async () => {
     const newEmployeeInfo = this.formsService.getFormValue()
 
     if (newEmployeeInfo.password !== newEmployeeInfo.passwordConfirm) {
@@ -92,7 +92,7 @@ export class EditEmployeeFormComponent implements OnInit, OnChanges {
       delete newEmployeeInfo.passwordConfirm
     }
 
-    this.updateEmployee(newEmployeeInfo)
+    await this.updateEmployee(newEmployeeInfo)
       .then((response) => {
         if (response.status === 'error') {
           this.messageService.setMessageInfo(response.message!, 'error')

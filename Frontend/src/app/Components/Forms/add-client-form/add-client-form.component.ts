@@ -17,7 +17,6 @@ export class AddClientFormComponent implements OnInit, OnChanges {
   nombre: FormControl
   apellido1: FormControl
   apellido2: FormControl
-  usuario: FormControl
   id: FormControl
   email: FormControl
   telefonos: FormArray
@@ -33,7 +32,6 @@ export class AddClientFormComponent implements OnInit, OnChanges {
     this.nombre = new FormControl('', [Validators.required])
     this.apellido1 = new FormControl('', [Validators.required])
     this.apellido2 = new FormControl('', [Validators.required])
-    this.usuario = new FormControl('', [Validators.required])
     this.id = new FormControl('', [Validators.required])
     this.email = new FormControl('', [Validators.required, Validators.email])
     this.telefonos = new FormArray([new FormControl('')], [Validators.required])
@@ -46,7 +44,6 @@ export class AddClientFormComponent implements OnInit, OnChanges {
     this.formsService.form.addControl('nombre', this.nombre)
     this.formsService.form.addControl('apellido1', this.apellido1)
     this.formsService.form.addControl('apellido2', this.apellido2)
-    this.formsService.form.addControl('usuario', this.usuario)
     this.formsService.form.addControl('id', this.id)
     this.formsService.form.addControl('email', this.email)
     this.formsService.form.addControl('telefonos', this.telefonos)
@@ -80,9 +77,9 @@ export class AddClientFormComponent implements OnInit, OnChanges {
     }
   }
 
-  onSubmit = () => {
+  onSubmit = async () => {
     if (this.clientInfo && Object.keys(this.clientInfo).length) {
-      this.updateClient()
+      await this.updateClient()
         .then((response: ServerResponse) => {
           if (response.status === 'error') {
             this.messageService.setMessageInfo(response.message!, 'error')
@@ -99,7 +96,7 @@ export class AddClientFormComponent implements OnInit, OnChanges {
         })
     }
     else {
-      this.createClient()
+      await this.createClient()
         .then((response: ServerResponse) => {
           if (response.status === 'error') {
             this.messageService.setMessageInfo(response.message!, 'error')

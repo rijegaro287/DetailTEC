@@ -20,7 +20,6 @@ export class AdminClientsComponent implements OnInit {
     protected messageService: MessageService
   ) {
     this.tableColumns = [
-      { key: "usuario", replacement: "Usuario" },
       { key: "nombre", replacement: "Nombre" },
       { key: "apellido1", replacement: "Primer apellido" },
       { key: "apellido2", replacement: "Segundo apellido" },
