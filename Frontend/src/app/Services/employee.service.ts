@@ -55,7 +55,6 @@ export class EmployeeService {
     return this.httpClient.patch<ServerResponse>(`${this.url}/update/${employeeID}`, employee)
   }
 
-  deleteEmployee = (id: number): Observable<ServerResponse> => {
-    return this.httpClient.delete<ServerResponse>(`${this.url}/delete/${id}`)
-  }
+  deleteEmployee = (id: number): Observable<ServerResponse> =>
+    this.httpClient.delete<ServerResponse>(`${this.url}/delete/${id}`)
 } 

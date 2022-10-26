@@ -1,48 +1,48 @@
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable, of } from 'rxjs'
+import { Observable } from 'rxjs'
+
+import { apiURL } from '../app.component'
 
 import {
   ServerResponse,
   SuppliersResponse,
   SupplierResponse
 } from '../Interfaces/ServerResponses'
-import { Supplier } from '../Interfaces/Supplier'
-
-import { SUPPLIERS } from '../TestDB/Suppliers'
 
 @Injectable({
   providedIn: 'root'
 })
 export class SupplierService {
-  constructor() { }
+  url: string = `${apiURL}/proveedor`
 
-  getAllSuppliers = (): Observable<SuppliersResponse> => {
-    const okResponse: SuppliersResponse = {
-      status: 'ok',
-      suppliers: SUPPLIERS
-    }
+  constructor(
+    private httpClient: HttpClient
+  ) { }
 
-    const errorResponse: ServerResponse = {
-      status: 'error',
-      message: 'No se pudieron obtener los proveedores'
-    }
+  getAllSuppliers = (): Observable<SuppliersResponse> =>
+    this.httpClient.get<SuppliersResponse>(`${this.url}/get_all`)
 
-    return of(okResponse)
+  getSupplier = (id: number): Observable<SupplierResponse> =>
+    this.httpClient.get<SupplierResponse>(`${this.url}/get/${id}`)
+
+  createSupplier = (supplier: any): Observable<ServerResponse> => {
+    supplier.id = supplier.id.toString()
+
+    supplier.telefonos.forEach((telefono: string) => telefono.toString());
+
+    return this.httpClient.post<ServerResponse>(`${this.url}/add`, supplier)
   }
 
-  getSupplier = (id: number): Observable<SupplierResponse> => {
-    const supplier: Supplier = SUPPLIERS.find(supplier => supplier.id === id)!
+  updateSupplier = (supplierID: number, supplier: any): Observable<ServerResponse> => {
+    supplier.id = supplier.id.toString()
 
-    const okResponse: SupplierResponse = {
-      status: 'ok',
-      supplier: supplier
-    }
+    supplier.telefonos.forEach((telefono: string) => telefono.toString());
 
-    const errorResponse: ServerResponse = {
-      status: 'error',
-      message: 'No se pudo obtener el proveedor'
-    }
-
-    return of(okResponse)
+    return this.httpClient.patch<ServerResponse>(
+      `${this.url}/update/${supplierID}`, supplier)
   }
+
+  deleteSupplier = (id: number): Observable<ServerResponse> =>
+    this.httpClient.delete<ServerResponse>(`${this.url}/delete/${id}`)
 }

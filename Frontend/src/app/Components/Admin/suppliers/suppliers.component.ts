@@ -20,6 +20,7 @@ export class AdminSuppliersComponent implements OnInit {
     protected messageService: MessageService
   ) {
     this.tableColumns = [
+      { key: "id", replacement: "Cédula jurídica" },
       { key: "nombre", replacement: "Nombre" },
       { key: "email", replacement: "Correo" },
       { key: "direccion", replacement: "Dirección" }
