@@ -18,3 +18,5 @@ https://localhost:7064/trabajador/get_all
 https://localhost:7064/sucursal/get_all
 ###
 https://localhost:7064/sucursal/get/1
+###
+https://localhost:7064/proveedor/get/1234567811
