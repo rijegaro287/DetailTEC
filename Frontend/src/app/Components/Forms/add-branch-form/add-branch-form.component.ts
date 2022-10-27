@@ -78,6 +78,7 @@ export class AddBranchFormComponent implements OnInit, OnChanges {
         .stringToDate(this.branchInfo.fechaInicioGerente)
 
       this.formsService.patchFormValue(branchInfo)
+
       this.formsService.form.controls['idGerente']
         .setValue(this.branchInfo.idGerente)
     }
@@ -100,7 +101,8 @@ export class AddBranchFormComponent implements OnInit, OnChanges {
             }
           }
         })
-    } else {
+    }
+    else {
       await this.createBranch()
         .then((response) => {
           this.auxFunctionsService.handleResponse(response)

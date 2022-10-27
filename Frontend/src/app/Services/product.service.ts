@@ -1,48 +1,46 @@
 import { Injectable } from '@angular/core'
-import { Observable, of } from 'rxjs'
+import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs'
 
-import { Product } from '../Interfaces/Product'
 import {
   ServerResponse,
   ProductsResponse,
   ProductResponse
 } from '../Interfaces/ServerResponses'
 
-import { PRODUCTS } from '../TestDB/Products'
+import { AuxFunctionsService } from './aux-functions.service'
+
+import { apiURL } from '../app.component'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  constructor() { }
+  url = `${apiURL}/producto`
 
-  getAllProducts = (): Observable<ProductsResponse> => {
-    const okResponse: ProductsResponse = {
-      status: 'ok',
-      products: PRODUCTS
-    }
+  constructor(
+    private httpClient: HttpClient,
+    private auxFunctionsService: AuxFunctionsService
+  ) { }
 
-    const errorResponse: ServerResponse = {
-      status: 'error',
-      message: 'No se pudieron obtener los productos'
-    }
+  getAllProducts = (): Observable<ProductsResponse> =>
+    this.httpClient.get<ProductsResponse>(`${this.url}/get_all`)
 
-    return of(okResponse)
+  getProduct = (id: number): Observable<ProductResponse> =>
+    this.httpClient.get<ProductResponse>(`${this.url}/get/${id}`)
+
+  createProduct = (product: any): Observable<ServerResponse> => {
+    product.id = product.id.toString()
+
+    return this.httpClient.post<ServerResponse>(`${this.url}/add`, product)
   }
 
-  getProduct = (name: string): Observable<ProductResponse> => {
-    const product: Product = PRODUCTS.find(product => product.nombre === name)!
+  updateProduct = (productID: number, product: any): Observable<ServerResponse> => {
+    product.id = product.id.toString()
 
-    const okResponse: ProductResponse = {
-      status: 'ok',
-      product: product
-    }
-
-    const errorResponse: ServerResponse = {
-      status: 'error',
-      message: 'No se pudo obtener el producto'
-    }
-
-    return of(okResponse)
+    return this.httpClient.patch<ServerResponse>(`${this.url}/update/${productID}`, product)
   }
+
+  deleteProduct = (id: number): Observable<ServerResponse> =>
+    this.httpClient.delete<ServerResponse>(`${this.url}/delete/${id}`)
 }

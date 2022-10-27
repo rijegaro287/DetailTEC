@@ -9,7 +9,7 @@ class AppComponent {
   title = 'DetailTEC'
 }
 
-const apiURL = 'https://localhost:7064'
+const apiURL = 'http://localhost:5064'
 
 export default AppComponent
 export { AppComponent, apiURL }

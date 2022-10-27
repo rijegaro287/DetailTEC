@@ -23,6 +23,7 @@ export class AdminProductsComponent implements OnInit {
       { key: "nombre", replacement: "Nombre" },
       { key: "marca", replacement: "Marca" },
       { key: "nombreProveedor", replacement: "Proveedor" },
+      { key: "costo", replacement: "Costo" },
       { key: "precio", replacement: "Precio" }
     ]
 
