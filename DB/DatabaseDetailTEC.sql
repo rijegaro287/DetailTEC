@@ -280,12 +280,12 @@ ALTER TABLE PRODUCTOS_COMPRADOS
 ADD CONSTRAINT FK_PRODUCTOS_COMPRADOS_PRODUCTO FOREIGN KEY (ID_Producto) REFERENCES PRODUCTO(ID);
 
 
-select C.Cedula, C.Nombre, C.Apellido1, C.Apellido2,
-	C.Correo, C.Puntos_actuales, C.Puntos_totales, C.Puntos_usados,
-	T.Telefono, D.Direccion
-from CLIENTE as C, TELEFONOS_CLIENTE as T, DIRECCIONES_CLIENTE as D
-where C.Cedula = T.Cedula_Cli AND C.Cedula = D.Cedula_Cli
+--select C.Cedula, C.Nombre, C.Apellido1, C.Apellido2,
+--	C.Correo, C.Puntos_actuales, C.Puntos_totales, C.Puntos_usados,
+--	T.Telefono, D.Direccion
+--from CLIENTE as C, TELEFONOS_CLIENTE as T, DIRECCIONES_CLIENTE as D
+--where C.Cedula = T.Cedula_Cli AND C.Cedula = D.Cedula_Cli
 
-Select SUM(P.Precio) AS Sumatoria
-from PRODUCTO as P, PRODUCTO_LAVADO AS L
-where L.ID_Lavado = '1' AND L.ID_Producto = P.ID
+--Select SUM(P.Precio) AS Sumatoria
+--from PRODUCTO as P, PRODUCTO_LAVADO AS L
+--where L.ID_Lavado = '1' AND L.ID_Producto = P.ID

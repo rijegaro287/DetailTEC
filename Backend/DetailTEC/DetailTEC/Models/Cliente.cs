@@ -12,6 +12,8 @@
 
     // Estos opcionales para cuando se registre el cliente
     public string? password { get; set; }
+
+    public string? passwordVieja { get; set; }
     public int? total { get; set; }
     public int? utilizados { get; set; }
     public int? actuales { get; set; }
