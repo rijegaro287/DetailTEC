@@ -214,3 +214,6 @@ VALUES
     ('4', '02', '1'),
     ('5', '01', '1'),
     ('6', '02', '5')
+
+
+	Select PasswordT from TRABAJADOR
