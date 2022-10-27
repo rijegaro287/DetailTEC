@@ -93,18 +93,18 @@ export class AddWashingTypeFormComponent implements OnInit {
   getProducts = (): Product[] => {
     let products: Product[] = []
 
-    this.productService.getAllProducts()
-      .subscribe(response => {
-        if (response.status === 'error') {
-          this.messageService.setMessageInfo(response.message!, 'error')
-        }
-        else if (response.products) {
-          products = response.products
-        }
-        else {
-          console.log(response)
-        }
-      })
+    // this.productService.getAllProducts()
+    //   .subscribe(response => {
+    //     if (response.status === 'error') {
+    //       this.messageService.setMessageInfo(response.message!, 'error')
+    //     }
+    //     else if (response.products) {
+    //       products = response.products
+    //     }
+    //     else {
+    //       console.log(response)
+    //     }
+    //   })
 
     return products
   }
