@@ -1,32 +1,39 @@
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable, of } from 'rxjs'
+import { Observable } from 'rxjs'
+import { apiURL } from '../app.component'
 
 import { LoginForm } from '../Interfaces/Forms'
-import { ServerResponse } from '../Interfaces/ServerResponses'
+import { LoginResponse, ServerResponse } from '../Interfaces/ServerResponses'
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  private loggedClientID: number
+  url: string = `${apiURL}/login`
 
-  constructor() {
-    this.loggedClientID = 1
+  private loggedClientID = 0
+  private loggedIn = false
+
+  constructor(
+    private httpClient: HttpClient
+  ) { }
+
+  postLogin = (loginInfo: LoginForm): Observable<LoginResponse> =>
+    this.httpClient.post<LoginResponse>(`${this.url}/verify`, loginInfo)
+
+  logout = () => {
+    this.loggedIn = false
+    this.loggedClientID = 0
+    window.location.href = '/login'
   }
 
   getLoggedClientID = () => this.loggedClientID
 
-  postLogin = (loginInfo: LoginForm): Observable<ServerResponse> => {
-    console.log(loginInfo)
-    const okResponse: ServerResponse = {
-      status: 'ok'
+  setLoggedClientID = (clientID: number) => {
+    if (!this.loggedIn) {
+      this.loggedClientID = clientID
+      this.loggedIn = true
     }
-
-    const errorResponse: ServerResponse = {
-      status: 'error',
-      message: 'No se pudo iniciar sesión'
-    }
-
-    return of(errorResponse)
   }
 }

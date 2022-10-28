@@ -53,6 +53,7 @@ import { AdminAppointmentInfoComponent } from './Components/Admin/appointment-in
 import { AdminBillsComponent } from './Components/Admin/bills/bills.component';
 import { EditEmployeeFormComponent } from './Components/Forms/edit-employee-form/edit-employee-form.component';
 import { ReportsComponent } from './Components/Admin/reports/reports.component';
+import { EditClientFormComponent } from './Components/Forms/edit-client-form/edit-client-form.component';
 
 
 @NgModule({
@@ -97,7 +98,8 @@ import { ReportsComponent } from './Components/Admin/reports/reports.component';
     AdminAppointmentInfoComponent,
     AdminBillsComponent,
     EditEmployeeFormComponent,
-    ReportsComponent
+    ReportsComponent,
+    EditClientFormComponent
   ],
   imports: [
     BrowserModule,

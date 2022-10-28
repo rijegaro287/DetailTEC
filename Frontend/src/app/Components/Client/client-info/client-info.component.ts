@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
 
 import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries'
 import { Client } from 'src/app/Interfaces/Client'
 
 import { ClientService } from 'src/app/Services/client.service'
-import { LoginService } from 'src/app/Services/login.service'
 import { MessageService } from 'src/app/Services/message.service'
 
 @Component({
@@ -17,13 +17,12 @@ export class ClientInfoComponent implements OnInit {
   client: Client
 
   constructor(
-    private loginService: LoginService,
+    private route: ActivatedRoute,
     private clientService: ClientService,
     protected messageService: MessageService
   ) {
     this.clientInfoTitles = [
       { key: "id", replacement: "Cédula" },
-      { key: "usuario", replacement: "Usuario" },
       { key: "nombre", replacement: "Nombre" },
       { key: "apellido1", replacement: "Primer apellido" },
       { key: "apellido1", replacement: "Segundo apellido" },
@@ -36,19 +35,27 @@ export class ClientInfoComponent implements OnInit {
     this.client = {} as Client
   }
 
-  ngOnInit(): void {
-    const id = this.loginService.getLoggedClientID()
-    // this.clientService.getClient(id)
-    //   .subscribe(response => {
-    //     if (response.status === 'error') {
-    //       this.messageService.setMessageInfo(response.message!, 'error')
-    //     }
-    //     else if (response.client) {
-    //       this.client = response.client
-    //     }
-    //     else {
-    //       console.log(response)
-    //     }
-    //   })
+  async ngOnInit(): Promise<void> {
+    const clientID = Number(this.route.snapshot.paramMap.get('clientID'))
+
+    await this.getClient(clientID)
+      .then((client) => { this.client = client })
+  }
+
+  getClient = (clientID: number): Promise<Client> => {
+    return new Promise((resolve, reject) => {
+      this.clientService.getClient(clientID)
+        .subscribe(response => {
+          if (response.status === 'error') {
+            this.messageService.setMessageInfo(response.message!, 'error')
+          }
+          else if (response.client) {
+            resolve(response.client)
+          }
+          else {
+            console.log(response)
+          }
+        })
+    })
   }
 }

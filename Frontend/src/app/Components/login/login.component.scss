@@ -29,3 +29,21 @@ select {
     width: 100%;
     padding: .5rem;
 }
+
+.loginContainer {
+    height: 100vh;
+}
+
+.loginForm {
+    height: 100vh;
+    display: grid;
+    place-content: center;
+
+    & fieldset {
+        width: 120%;
+        padding: 2rem;
+        border: #F2F2F2 0.1px solid;
+        border-radius: 1rem;
+        background-color: #F7F7F7;
+    }
+}

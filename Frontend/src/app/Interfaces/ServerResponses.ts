@@ -12,6 +12,10 @@ interface ServerResponse {
     message?: string
 }
 
+interface LoginResponse extends ServerResponse {
+    clientID?: number
+}
+
 interface EmployeesResponse extends ServerResponse {
     employees?: Employee[]
 }
@@ -77,6 +81,7 @@ interface BillResponse extends ServerResponse {
 }
 
 export {
+    LoginResponse,
     ServerResponse,
     EmployeesResponse,
     EmployeeResponse,

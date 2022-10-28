@@ -1,5 +1,5 @@
 <form [formGroup]="this.formsService.form" (ngSubmit)="onSubmit()">
-    <div class="row mb-2">
+    <div class="row mb-3">
         <div class="col-4">
             <label class="form-label" for="nameInput">Nombre:</label>
             <input class="form-control" id="nameInput" type="text" formControlName="nombre">
@@ -16,7 +16,7 @@
         </div>
     </div>
 
-    <div class="row mb-2">
+    <div class="row mb-3">
         <div class="col-6">
             <label class="form-label" for="emailInput">Correo electrónico:</label>
             <input class="form-control" id="emailInput" type="email" formControlName="email">
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <div class="row mb-2">
+    <div class="row mb-3">
         <div class="col-6">
             <app-multivalued-input label="Telefonos" inputName="telefonos" inputType="number">
             </app-multivalued-input>

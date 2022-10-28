@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core'
 import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms'
 
 import { LoginForm } from 'src/app/Interfaces/Forms'
+import { LoginResponse } from 'src/app/Interfaces/ServerResponses'
+import { FormsService } from 'src/app/Services/forms.service'
 
 import { LoginService } from 'src/app/Services/login.service'
 import { MessageService } from 'src/app/Services/message.service'
@@ -12,40 +14,51 @@ import { MessageService } from 'src/app/Services/message.service'
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  loginForm: FormGroup
   email: FormControl
   password: FormControl
+  tipoUsuario: FormControl
 
   constructor(
     private loginService: LoginService,
+    protected formsService: FormsService,
     protected messageService: MessageService
   ) {
     this.email = new FormControl('', [Validators.required, Validators.email])
     this.password = new FormControl('', [Validators.required])
-
-    this.loginForm = new FormGroup({ email: this.email, password: this.password })
+    this.tipoUsuario = new FormControl('', [Validators.required])
   }
 
   ngOnInit(): void {
-    this.loginForm.reset()
+    this.formsService.resetForm()
     this.messageService.resetMessageInfo()
+
+    this.formsService.form.addControl('email', this.email)
+    this.formsService.form.addControl('password', this.password)
+    this.formsService.form.addControl('tipoUsuario', this.tipoUsuario)
   }
 
   onSubmit = () => {
     const validInputs = this.validateInputs()
     if (validInputs) {
-      const loginInfo: LoginForm = this.loginForm.value
+      this.logIn().then((response) => {
+        if (response.status === 'error') {
+          this.messageService.setMessageInfo(response.message!, 'error')
+        } else if (response.clientID) {
+          window.location.href = `/client/info/${(response.clientID)}`
+        } else {
+          window.location.href = '/admin'
+        }
+      })
+    }
+  }
+
+  logIn = (): Promise<LoginResponse> => {
+    return new Promise((resolve, reject) => {
+      const loginInfo: LoginForm = this.formsService.getFormValue()
 
       this.loginService.postLogin(loginInfo)
-        .subscribe(response => {
-          if (response.status === 'error') {
-            this.messageService.setMessageInfo(response.message!, 'error')
-          }
-          else {
-            console.log(`status: ${response.status}`, `message: ${response.message}`)
-          }
-        })
-    }
+        .subscribe((response) => resolve(response))
+    })
   }
 
   validateInputs = (): boolean => {
