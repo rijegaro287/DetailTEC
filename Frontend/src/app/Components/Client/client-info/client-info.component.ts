@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { Location } from '@angular/common';
 
 import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries'
 import { Client } from 'src/app/Interfaces/Client'
@@ -17,7 +17,7 @@ export class ClientInfoComponent implements OnInit {
   client: Client
 
   constructor(
-    private route: ActivatedRoute,
+    private location: Location,
     private clientService: ClientService,
     protected messageService: MessageService
   ) {
@@ -36,7 +36,8 @@ export class ClientInfoComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    const clientID = Number(this.route.snapshot.paramMap.get('clientID'))
+    const state = this.location.getState() as any
+    const clientID = state.clientID
 
     await this.getClient(clientID)
       .then((client) => { this.client = client })

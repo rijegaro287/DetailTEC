@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
         if (response.status === 'error') {
           this.messageService.setMessageInfo(response.message!, 'error')
         } else if (response.clientID) {
-          window.location.href = `/client/info/${(response.clientID)}`
+          window.location.href = `/client/${(response.clientID)}`
         } else {
           window.location.href = '/admin'
         }

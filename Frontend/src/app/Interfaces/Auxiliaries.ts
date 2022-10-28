@@ -1,6 +1,7 @@
 interface NavbarLink {
     href: string
     name: string
+    state?: any
 }
 
 interface KeyReplacement<Type> {

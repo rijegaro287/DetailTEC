@@ -57,11 +57,10 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'client',
+    path: 'client/:clientID',
     component: ClientMainComponent,
     children: [
-      { path: '', redirectTo: 'info', pathMatch: 'full' },
-      { path: 'info/:clientID', component: ClientInfoComponent },
+      { path: 'info', component: ClientInfoComponent },
       { path: 'appointments', component: ClientAppointmentsComponent },
       { path: 'appointments/:id', component: ClientAppointmentInfoComponent },
       { path: 'bills', component: ClientBillsComponent },
