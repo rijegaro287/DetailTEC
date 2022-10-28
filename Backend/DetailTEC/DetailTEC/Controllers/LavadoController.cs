@@ -7,7 +7,9 @@ namespace DetailTEC.Controllers
 {
   [ApiController]
   [Route("lavado")]
-  public class LavadoController : Controller
+
+    //  controlador para lavado: get all, get one, post, put, delete
+    public class LavadoController : Controller
   {
     [HttpGet]
     [Route("get_all")]

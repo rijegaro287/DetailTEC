@@ -23,12 +23,25 @@ export class AppointmentsService {
     private httpClient: HttpClient
   ) { }
 
+  /**
+   * Solicita al servidor todas las citas que se encuentran en la base de datos
+  */
   getAllAppointments = (): Observable<AppointmentsResponse> =>
     this.httpClient.get<AppointmentsResponse>(`${this.url}/get_all`)
 
+  /**
+   * Solicita al servidor la cita con el id especificado
+   * @param id ID de la cita a buscar
+   * @returns Objeto con la respuesta del servidor
+  */
   getAppointment = (id: number): Observable<AppointmentResponse> =>
     this.httpClient.get<AppointmentResponse>(`${this.url}/get/${id}`)
 
+  /**
+   * Solicita al servidor que cree una nueva cita
+   * @param appointment Objeto con los datos de la cita a crear
+   * @returns Objeto con la respuesta del servidor
+  */
   createAppointment = (appointment: any): Observable<ServerResponse> => {
     appointment.id = appointment.id.toString()
     appointment.cedulaCliente = appointment.cedulaCliente.toString()
@@ -44,6 +57,12 @@ export class AppointmentsService {
     return this.httpClient.post<ServerResponse>(`${this.url}/add`, appointment)
   }
 
+  /**
+   * Solicita al servidor que actualice los datos de la cita con el id especificado
+   * @param appointmentID ID de la cita a actualizar
+   * @param appointment Objeto con los datos de la cita a actualizar
+   * @returns Objeto con la respuesta del servidor
+  */
   updateAppointment = (appointmentID: number, appointment: any): Observable<ServerResponse> => {
     appointment.id = appointment.id.toString()
     appointment.cedulaCliente = appointment.cedulaCliente.toString()
@@ -59,13 +78,27 @@ export class AppointmentsService {
     return this.httpClient.patch<ServerResponse>(`${this.url}/update/${appointmentID}`, appointment)
   }
 
+  /**
+   * Solicita al servidor que elimine la cita con el id especificado
+   * @param id ID de la cita a eliminar
+   * @returns Objeto con la respuesta del servidor
+  */
   deleteAppointment = (id: number): Observable<ServerResponse> =>
     this.httpClient.delete<ServerResponse>(`${this.url}/delete/${id}`)
 
+  /**
+   * Solicita al servidor que genere una factura para la cita con el id especificado
+   * @param id ID de la cita a facturar
+   * @returns Objeto con la respuesta del servidor
+  */
   generateBill = (id: number): Observable<ServerResponse> =>
     this.httpClient.get<ServerResponse>(`${this.url}/generar/${id}`)
 
-
+  /**
+   * Solicita al servidor todas las citas de un cliente con la cédula especificada
+   * @param id ID del cliente
+   * @returns Todas las citas del cliente
+  */
   getClientAppointments = (id: number): Promise<Appointment[]> => {
     return new Promise<Appointment[]>((resolve, reject) => {
       this.getAllAppointments()

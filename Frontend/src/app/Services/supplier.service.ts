@@ -20,12 +20,23 @@ export class SupplierService {
     private httpClient: HttpClient
   ) { }
 
+  /** Solicita al servidor todos los proveedores */
   getAllSuppliers = (): Observable<SuppliersResponse> =>
     this.httpClient.get<SuppliersResponse>(`${this.url}/get_all`)
 
+  /**
+   * Solicita al servidor los datos de un proveedor dado
+   * @param id ID del proveedor
+   * @returns Objeto con los datos del proveedor
+  */
   getSupplier = (id: number): Observable<SupplierResponse> =>
     this.httpClient.get<SupplierResponse>(`${this.url}/get/${id}`)
 
+  /**
+   * Solicita al servidor que cree un nuevo proveedor
+   * @param supplier Objeto con la información del proveedor
+   * @returns Objeto con respuesta del servidor
+  */
   createSupplier = (supplier: any): Observable<ServerResponse> => {
     supplier.id = supplier.id.toString()
 
@@ -34,6 +45,12 @@ export class SupplierService {
     return this.httpClient.post<ServerResponse>(`${this.url}/add`, supplier)
   }
 
+  /**
+   * Solicita al servidor que actualice un proveedor
+   * @param supplierID ID del proveedor
+   * @param supplier Objeto con la información del proveedor
+   * @returns Objeto con respuesta del servidor
+  */
   updateSupplier = (supplierID: number, supplier: any): Observable<ServerResponse> => {
     supplier.id = supplier.id.toString()
 
@@ -43,6 +60,11 @@ export class SupplierService {
       `${this.url}/update/${supplierID}`, supplier)
   }
 
+  /**
+   * Solicita al servidor que elimine un proveedor
+   * @param id ID del proveedor
+   * @returns Objeto con respuesta del servidor
+  */
   deleteSupplier = (id: number): Observable<ServerResponse> =>
     this.httpClient.delete<ServerResponse>(`${this.url}/delete/${id}`)
 }

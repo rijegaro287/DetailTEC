@@ -5,9 +5,13 @@ using DetailTEC.Data;
 
 namespace DetailTEC.Data
 {
+
+    // manejo de lavados en la base de datos
   public class LavadoData
   {
 
+
+    // insertar lavado en la base de datos
     public static bool Registrar(Lavado lavado)
     {
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
@@ -55,6 +59,8 @@ namespace DetailTEC.Data
       }
     }
 
+    // realizar cambios a un lavado segun su id
+
     public static bool Modificar(Lavado lavado, string id)
     {
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
@@ -92,6 +98,7 @@ namespace DetailTEC.Data
       }
     }
 
+    // lista todos los lavados en la base de datos
     public static List<LavadoForGet> Listar()
     {
       List<LavadoForGet> oListaUsuario = new List<LavadoForGet>();
@@ -172,6 +179,8 @@ namespace DetailTEC.Data
       }
     }
 
+    // obtiene un lavado segun su id
+
     public static LavadoForGet Obtener(string ID)
     {
       LavadoForGet lavado = new LavadoForGet();
@@ -233,6 +242,7 @@ namespace DetailTEC.Data
       }
     }
 
+    // elimina un lavado segun su id
     public static bool Eliminar(string ID)
     {
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))

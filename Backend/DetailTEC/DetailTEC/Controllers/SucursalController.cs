@@ -6,6 +6,8 @@ namespace DetailTEC.Controllers
 {
   [ApiController]
   [Route("sucursal")]
+
+  // controlador de sucursal: get all, get one, post, put, delete
   public class SucursalController : ControllerBase
   {
     [HttpGet]

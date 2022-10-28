@@ -10,6 +10,7 @@ namespace DetailTEC.Controllers
     [ApiController]
     [Route("productosComprados")]
     //[EnableCors("AllowAllOrigins")]
+    // controlador de productos comprados: get all, get one, post, put, delete
     public class ProductosCompradosController : ControllerBase
     {
 

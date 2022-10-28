@@ -4,8 +4,12 @@ using DetailTEC.Models;
 
 namespace DetailTEC.Data
 {
+
+    // manejo de productos comprados por clientes en la base de datos
     public class ProductosCompradosData
     {
+
+        // inserta un producto comprado en la base de datos
         public static bool Registrar(ProductosComprados productosComprados)
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
@@ -30,6 +34,8 @@ namespace DetailTEC.Data
                 }
             }
         }
+
+        // cambia valores determinados de producto comprado 
 
         public static bool Modificar(ProductosComprados productosComprados)
         {
@@ -57,6 +63,7 @@ namespace DetailTEC.Data
             }
         }
 
+        // lista todos los productos comprados
         public static List<ProductosCompradosForGet> Listar()
         {
             List<ProductosCompradosForGet> oListaUsuario = new List<ProductosCompradosForGet>();
@@ -103,6 +110,8 @@ namespace DetailTEC.Data
             }
         }
 
+
+        // obtiene un producto comprado segun la cedula del cliente
         public static ProductosCompradosForGet Obtener(string cedula)
         {
             ProductosCompradosForGet productosComprados = new ProductosCompradosForGet();
@@ -149,6 +158,7 @@ namespace DetailTEC.Data
             }
         }
 
+        // elimina un producto comprado segun la cedula del cliente
         public static bool Eliminar(string cedula)
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))

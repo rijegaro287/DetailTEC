@@ -4,8 +4,12 @@ using System.Data;
 
 namespace DetailTEC.Data
 {
+
+    // Manejo de sucursales en la base de datos
   public class SucursalData
   {
+
+    // Agrega un trabajador a la base de datos
     public static bool Registrar(Sucursal sucursal)
     {
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
@@ -38,6 +42,7 @@ namespace DetailTEC.Data
       }
     }
 
+    // Cambia los valores de sucursal determinada
     public static bool Modificar(Sucursal sucursal, string id)
     {
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
@@ -72,6 +77,8 @@ namespace DetailTEC.Data
       }
     }
 
+
+    // retorna todas las sucursales
     public static List<SucursalForGet> Listar()
     {
       List<SucursalForGet> oListaUsuario = new List<SucursalForGet>();
@@ -125,6 +132,7 @@ namespace DetailTEC.Data
       }
     }
 
+    // obtiene una sucursal segun su id
     public static SucursalForGet Obtener(string ID)
     {
       SucursalForGet sucursal = new SucursalForGet();
@@ -177,6 +185,7 @@ namespace DetailTEC.Data
       }
     }
 
+    // elimina sucursal segun su id
     public static bool Eliminar(string id)
     {
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))

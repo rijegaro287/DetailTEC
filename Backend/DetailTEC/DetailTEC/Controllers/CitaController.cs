@@ -7,7 +7,9 @@ namespace DetailTEC.Controllers
 {
   [ApiController]
   [Route("cita")]
-  public class CitaController : ControllerBase
+
+    // manejo de cita: get all, get one, post, put, delete
+    public class CitaController : ControllerBase
   {
     [HttpGet]
     [Route("get_all")]

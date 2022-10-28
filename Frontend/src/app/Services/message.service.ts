@@ -13,6 +13,11 @@ export class MessageService {
 
   constructor() { }
 
+  /**
+   * Muestra un mensaje
+   * @param message Mensaje a mostrar
+   * @param type Tipo de mensaje
+  */
   setMessageInfo = (
     message: MessageInfo['message'],
     type: MessageInfo['type']
@@ -21,6 +26,9 @@ export class MessageService {
     this.messageInfo.type = type
   }
 
+  /**
+   * Reinicia el estado del mensaje y lo oculta
+  */
   resetMessageInfo = () => {
     this.messageInfo = {
       message: '',

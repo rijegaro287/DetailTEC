@@ -4,8 +4,12 @@ using System.Data;
 
 namespace DetailTEC.Data
 {
+
+    // manejo de proveedores en la base de datos
   public class ProveedorData
   {
+
+    // inserta proveedor a base de datos
     public static bool Registrar(Proveedor proveedor)
     {
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
@@ -48,6 +52,7 @@ namespace DetailTEC.Data
       }
     }
 
+    // cambia valores de proveedor segun su id
     public static bool Modificar(Proveedor proveedor, string id)
     {
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
@@ -94,6 +99,7 @@ namespace DetailTEC.Data
       }
     }
 
+    // Lista todos los proveedores de la base de datos
     public static List<Proveedor> Listar()
     {
       List<Proveedor> oListaUsuario = new List<Proveedor>();
@@ -164,6 +170,8 @@ namespace DetailTEC.Data
       }
     }
 
+
+    // obtiene un proveedor segun su cedula
     public static Proveedor Obtener(string cedula)
     {
       Proveedor proveedor = new Proveedor();
@@ -220,6 +228,7 @@ namespace DetailTEC.Data
       }
     }
 
+    // elimina un proveedor segun su cedula
     public static bool Eliminar(string cedula)
     {
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))

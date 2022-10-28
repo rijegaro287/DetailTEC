@@ -18,6 +18,7 @@ export class ReportsService {
     private httpClient: HttpClient
   ) { }
 
+
   // getBillReport = (appointmentID: number): Observable<ServerResponse> =>
   //   this.httpClient.get<ServerResponse>(`${this.url}/facturacion/${appointmentID}`)
 
@@ -31,18 +32,29 @@ export class ReportsService {
     // this.httpClient.get<ServerResponse>(`${this.url}/planilla`)
     // this.httpClient.post<ServerResponse>(`${this.url}/planilla`, {responseType: 'blob'})
 
-    public getBillReport(appointmentID: number){
-      return this.httpClient.get(`${this.url}/facturacion/${appointmentID}`, {observe: 'response', responseType: 'blob'})
+  /** 
+   * Solicita al servidor que genere la factura de una cita dada
+   * @param appointmentID ID de la cita
+  */
+  public getBillReport(appointmentID: number){
+    return this.httpClient.get(`${this.url}/facturacion/${appointmentID}`, {observe: 'response', responseType: 'blob'})
+  }
+
+  /** 
+   * Solicita al servidor que genere un reporte de todos los lavados
+   * que ha solicitado un cliente
+   * @param clientID ID del cliente
+  */
+    public getWashesReport(clienttID: number){
+      return this.httpClient.get(`${this.url}/lavados/${clienttID}`, {observe: 'response', responseType: 'blob'})
     }
 
-    public getWashesReport(clientID: number){
-      return this.httpClient.get(`${this.url}/lavados/${clientID}`, {observe: 'response', responseType: 'blob'})
-    }
-
+  /** Solicita al servidor que genere un reporte con todos los puntos redimidos */
     public getPointsReport(){
       return this.httpClient.get(`${this.url}/puntos`, {observe: 'response', responseType: 'blob'})
     }
 
+  /** Solicita al servidor que genere la planilla de todos los empleados */
     public getPayrollReport(){
       return this.httpClient.get(`${this.url}/planilla`, {observe: 'response', responseType: 'blob'})
     }
