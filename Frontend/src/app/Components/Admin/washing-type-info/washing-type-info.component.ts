@@ -54,6 +54,14 @@ export class AdminWashingTypeInfoComponent implements OnInit {
   }
 
   deleteWashingType(): void {
-
+    this.washingTypeService.deleteWashingType(this.washingType.id)
+      .subscribe(response => {
+        if (response.status === 'error') {
+          this.messageService.setMessageInfo(response.message!, 'error')
+        }
+        else {
+          window.location.href = '/admin/washing_types'
+        }
+      })
   }
 }

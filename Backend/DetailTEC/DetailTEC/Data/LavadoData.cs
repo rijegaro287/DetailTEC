@@ -81,20 +81,6 @@ namespace DetailTEC.Data
         {
           oConexion.Open();
           cmd1.ExecuteNonQuery();
-          SqlCommand cmd2 = null;
-          if (lavado.idProductos != null)
-          {
-            for (int i = 0; i < (lavado.idProductos.Count); i++)
-            {
-              cmd2 = new SqlCommand("update PRODUCTO_LAVADO set ID_Producto=@param1, ID_Lavado=@param2 where " +
-                  " ID_Lavado = @param3", oConexion);
-              cmd2.Parameters.Add("@param1", SqlDbType.Int).Value = lavado.idProductos[i];
-              cmd2.Parameters.Add("@param2", SqlDbType.Int).Value = lavado.id;
-              cmd2.Parameters.Add("@param3", SqlDbType.Int).Value = Convert.ToInt32(id);
-              cmd2.CommandType = CommandType.Text;
-              cmd2.ExecuteNonQuery();
-            }
-          }
 
           return true;
         }

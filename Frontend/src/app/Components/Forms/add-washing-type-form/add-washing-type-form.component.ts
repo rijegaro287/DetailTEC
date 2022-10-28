@@ -30,7 +30,6 @@ export class AddWashingTypeFormComponent implements OnInit, OnChanges {
   productOptions: SelectOption[]
   cost: number
 
-
   @Input() washingTypeInfo?: WashingType
 
   constructor(
@@ -90,7 +89,10 @@ export class AddWashingTypeFormComponent implements OnInit, OnChanges {
       this.washingTypeInfo.idProductos.forEach(productID => {
         productsFormArray.push(new FormControl(productID))
       })
+
+      this.cost = this.washingTypeInfo.costo
     }
+
   }
 
   onSubmit = async () => {
