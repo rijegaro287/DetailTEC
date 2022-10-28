@@ -6,6 +6,8 @@ namespace DetailTEC.Controllers
 {
   [ApiController]
   [Route("proveedor")]
+
+  // controlador de proveedor: get all, get one, post, put, delete 
   public class ProveedorController : Controller
   {
     [HttpGet]

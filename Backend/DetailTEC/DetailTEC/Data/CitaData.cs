@@ -4,8 +4,12 @@ using DetailTEC.Models;
 
 namespace DetailTEC.Data
 {
+
+    // manejo de citas en la base de datos
   public class CitaData
   {
+
+        // inserta cita en la base de datos
     public static bool Registrar(Cita cita)
     {
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
@@ -118,6 +122,7 @@ namespace DetailTEC.Data
       }
     }
 
+    // modifica valores de cita en la base de datos
     public static bool Modificar(Cita cita, string id)
     {
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
@@ -154,6 +159,7 @@ namespace DetailTEC.Data
       }
     }
 
+    // genera cita
     public static bool Generar(string id)
     {
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
@@ -182,6 +188,7 @@ namespace DetailTEC.Data
       }
     }
 
+    // obtiene todas las listas en la base de datos
     public static List<CitaForGet> Listar()
     {
       List<CitaForGet> oListaUsuario = new List<CitaForGet>();
@@ -283,6 +290,8 @@ namespace DetailTEC.Data
         }
       }
     }
+
+    // obtiene facturas segun cita
 
     public static List<CitaForGet> Facturas()
     {
@@ -386,6 +395,7 @@ namespace DetailTEC.Data
       }
     }
 
+    // obtiene cita segun id
     public static CitaForGet Obtener(string ID)
     {
       CitaForGet cita = new CitaForGet();
@@ -471,6 +481,7 @@ namespace DetailTEC.Data
       }
     }
 
+    // elimina cita segun id
     public static bool Eliminar(string ID)
     {
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))

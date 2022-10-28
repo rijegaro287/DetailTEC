@@ -4,8 +4,12 @@ using System.Data;
 using DetailTEC.Helpers;
 namespace DetailTEC.Data
 {
+
+    // manejo de los clientes en la base de datos
     public class ClienteData
     {
+
+        // inserta cliente en la base de datos
         public static bool Registrar(Cliente cliente)
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
@@ -80,6 +84,7 @@ namespace DetailTEC.Data
             }
         }
 
+        // cambia valores en la base de datos 
         public static bool Modificar(Cliente cliente, string cedula)
         {
 
@@ -197,6 +202,7 @@ namespace DetailTEC.Data
             }
         }
 
+        // lista todos los clientes de la base de datos
         public static List<ClienteForGet> Listar()
         {
             List<ClienteForGet> oListaUsuario = new List<ClienteForGet>();
@@ -285,6 +291,7 @@ namespace DetailTEC.Data
             }
         }
 
+        // obtiene un cliente de la base de datos segun su cedula
         public static ClienteForGet Obtener(string cedula)
         {
             ClienteForGet cliente = new ClienteForGet();
@@ -358,6 +365,7 @@ namespace DetailTEC.Data
             }
         }
 
+        // elimina un cliente ssegun su cedula
         public static bool Eliminar(string cedula)
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
@@ -414,6 +422,7 @@ namespace DetailTEC.Data
             }
         }
 
+        // genera contraseña aleatoria al crear el cliente
         private static string GenerateRandomPassword()
         {
             int passwordLength = 12;

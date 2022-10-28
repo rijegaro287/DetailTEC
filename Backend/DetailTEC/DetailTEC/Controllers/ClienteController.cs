@@ -6,7 +6,9 @@ namespace DetailTEC.Controllers
 {
   [ApiController]
   [Route("cliente")]
-  public class ClienteController : Controller
+
+    // manejo de clientes: get all, get one, post, put, delete
+    public class ClienteController : Controller
   {
     [HttpGet]
     [Route("get_all")]

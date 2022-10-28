@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DetailTEC.Controllers
 {
+    // manejo de trabajadores: get all, get one, post, put, delete
   [ApiController]
   [Route("trabajador")]
   public class TrabajadorController : ControllerBase

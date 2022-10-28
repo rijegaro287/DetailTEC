@@ -4,8 +4,11 @@ using DetailTEC.Models;
 
 namespace DetailTEC.Data
 {
-  public class TrabajadorData
+    // Manejo de trabajadores
+    public class TrabajadorData
   {
+
+    // Insertar trabajador
     public static bool Registrar(Trabajador trabajador)
     {
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
@@ -48,6 +51,7 @@ namespace DetailTEC.Data
       }
     }
 
+    // modificar parametros de trabajador en la base de datos
     public static bool Modificar(Trabajador trabajador, string cedula)
     {
             string passwordSet = GetPassword(trabajador, cedula);
@@ -94,6 +98,7 @@ namespace DetailTEC.Data
       }
     }
 
+    // lista todos los trabajadores de la base de datos
     public static List<TrabajadorForGet> Listar()
     {
       List<TrabajadorForGet> oListaUsuario = new List<TrabajadorForGet>();
@@ -141,6 +146,8 @@ namespace DetailTEC.Data
             }
         }
 
+
+    // retorna el trabajador segun su cedula
     public static TrabajadorForGet Obtener(string cedula)
     {
       TrabajadorForGet trabajador = new TrabajadorForGet();
@@ -187,6 +194,7 @@ namespace DetailTEC.Data
       }
     }
 
+    // elimina un trabajador de la base de datos segun su cedula
     public static bool Eliminar(string cedula)
     {
       using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))

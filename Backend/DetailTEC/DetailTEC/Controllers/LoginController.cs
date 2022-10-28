@@ -10,7 +10,9 @@ namespace DetailTEC.Controllers
 {
   [ApiController]
   [Route("login")]
-  public class LoginController : Controller
+
+    // controlador de log in: post
+    public class LoginController : Controller
   {
 
     [HttpPost]

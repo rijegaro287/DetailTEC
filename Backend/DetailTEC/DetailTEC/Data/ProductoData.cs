@@ -5,8 +5,12 @@ using System.Data;
 
 namespace DetailTEC.Data
 {
+
+    // manejo de productos en la base de datos
     public class ProductoData
     {
+
+        // inserta producto a la base de datos
         public static bool Registrar(Producto producto)
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
@@ -38,6 +42,7 @@ namespace DetailTEC.Data
             }
         }
 
+        // modifica valores determinados de un producto segun su id
         public static bool Modificar(Producto producto, string id)
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
@@ -67,6 +72,7 @@ namespace DetailTEC.Data
             }
         }
 
+        // lista todos los productos en la base de datos
         public static List<ProductoForGet> Listar()
         {
             List<ProductoForGet> oListaUsuario = new List<ProductoForGet>();
@@ -115,6 +121,7 @@ namespace DetailTEC.Data
         }
 
 
+        // obtiene un producto segun su id
         public static ProductoForGet Obtener(string id)
 
         {
@@ -162,6 +169,7 @@ namespace DetailTEC.Data
             }
         }
 
+        // elimina un producto segun su id
         public static bool Eliminar(string id)
         {
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
