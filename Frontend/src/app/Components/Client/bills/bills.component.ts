@@ -51,7 +51,13 @@ export class ClientBillsComponent implements OnInit {
   downloadBill = (appointmentID: number): void => {
     this.reportsService.getBillReport(appointmentID)
       .subscribe(response => {
-        console.log(response);
+        // console.log(response);
+        let fileName = response.headers.get('Content-Disposition')
+        ?.split(';')[1].split('=')[1]
+        let blob:Blob = response.body as Blob
+        let a = document.createElement('a')
+        a.href = window.URL.createObjectURL(blob)
+        a.click()
       })
   }
 }
