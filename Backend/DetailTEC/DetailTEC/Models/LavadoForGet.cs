@@ -10,6 +10,8 @@
 
         public int precio { get; set; }
         public int duracionMinutos { get; set; }
+
+        public List<int> idProductos { get; set; }
         public List<string> nombresProductos { get; set; }
         public int puntuacion { get; set; }
     }

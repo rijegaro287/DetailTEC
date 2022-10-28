@@ -10,6 +10,9 @@
         public DateTime fecha { get; set; }
         public string hora { get; set; }
         public string medioPago { get; set; }
+
+        public int generada { get; set; }
+        
         public List<string> idEmpleados { get; set; }
     }
 }

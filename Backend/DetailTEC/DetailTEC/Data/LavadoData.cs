@@ -111,7 +111,7 @@ namespace DetailTEC.Data
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
 
-                SqlCommand cmd = new SqlCommand("select L.*, P.nombreP from LAVADO as L, PRODUCTO_LAVADO as T, PRODUCTO as P " +
+                SqlCommand cmd = new SqlCommand("select L.*, T.ID_Producto, P.nombreP from LAVADO as L, PRODUCTO_LAVADO as T, PRODUCTO as P " +
                     " where L.ID = T.ID_Lavado AND T.ID_Producto = P.ID", oConexion);
                 try
                 {
@@ -122,6 +122,8 @@ namespace DetailTEC.Data
                     int i = 0;
 
                     List<string> nombresList = new List<string>();
+                    List<int> idList = new List<int>();
+
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
 
@@ -131,9 +133,11 @@ namespace DetailTEC.Data
                             {
                                 if (!firstRead)
                                 {
+                                    oListaUsuario[i].idProductos = idList;
                                     oListaUsuario[i].nombresProductos = nombresList;
                                     i++;
                                     nombresList = new List<string>();
+                                    idList = new List<int>();
                                 }
 
                                 idRef = dr["ID"].ToString();
@@ -151,11 +155,13 @@ namespace DetailTEC.Data
 
                                 });
                                 firstRead = false;
+                                idList.Add(Convert.ToInt16(dr["ID_Producto"]));
                                 nombresList.Add(dr["NombreP"].ToString());
 
                             }
-                            else
-                            {
+                            else {  
+                            
+                                idList.Add(Convert.ToInt32(dr["ID_Producto"]));
                                 nombresList.Add(dr["NombreP"].ToString());
 
                             }
@@ -166,6 +172,7 @@ namespace DetailTEC.Data
 
                     }
                     oListaUsuario[i].nombresProductos = nombresList;
+                    oListaUsuario[i].idProductos = idList;
                     return oListaUsuario;
 
                 }
@@ -182,7 +189,7 @@ namespace DetailTEC.Data
             LavadoForGet lavado = new LavadoForGet();
             using (SqlConnection oConexion = new SqlConnection(Conexion.rutaConexion))
             {
-                SqlCommand cmd = new SqlCommand("select L.*, P.nombreP from LAVADO as L, PRODUCTO_LAVADO as T, PRODUCTO as P " +
+                SqlCommand cmd = new SqlCommand("select L.*, T.ID_Producto, P.nombreP from LAVADO as L, PRODUCTO_LAVADO as T, PRODUCTO as P " +
                     " where L.ID = "+ID  +" AND L.ID = T.ID_Lavado AND T.ID_Producto = P.ID", oConexion);
 
                 try
@@ -191,7 +198,7 @@ namespace DetailTEC.Data
                     cmd.ExecuteNonQuery();
                     bool firstRead = true;
                     List<string> nombresList = new List<string>();
-
+                    List<int> idList = new List<int>();
                     using (SqlDataReader dr = cmd.ExecuteReader())
                     {
 
@@ -213,10 +220,12 @@ namespace DetailTEC.Data
                                 };
 
                                 nombresList.Add(dr["NombreP"].ToString());
+                                idList.Add(Convert.ToInt32(dr["ID_Producto"]));
                                 firstRead = false;
                             }
                             else
                             {
+                                idList.Add(Convert.ToInt32(dr["ID_Producto"]));
                                 nombresList.Add(dr["NombreP"].ToString());
 
                             }
@@ -224,6 +233,7 @@ namespace DetailTEC.Data
 
                     }
 
+                    lavado.idProductos = idList;
                     lavado.nombresProductos = nombresList;
 
                     return lavado;

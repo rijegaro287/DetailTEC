@@ -184,6 +184,7 @@ create table CITA
 	Fecha date not null,
 	Hora time not null,
 	Medio_pago varchar(20) not null,
+	Generada tinyint not null,
 	PRIMARY KEY(ID)
 )
 

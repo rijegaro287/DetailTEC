@@ -34,6 +34,29 @@ namespace DetailTEC.Controllers
     }
 
     [HttpGet]
+    [Route("facturas")]
+    public Object Facturas()
+    {
+      try
+      {
+        List<CitaForGet> citas = CitaData.Facturas();
+        return new
+        {
+          status = "ok",
+          appointments = citas
+        };
+      }
+      catch (System.Exception err)
+      {
+        return new
+        {
+          status = "error",
+          message = err.Message
+        };
+      }
+    }
+
+    [HttpGet]
     [Route("get/{id}")]
     public Object Get(string id)
     {
@@ -101,6 +124,28 @@ namespace DetailTEC.Controllers
       }
     }
 
+    [HttpPatch]
+    [Route("generar/{id}")]
+    public Object Put(string id)
+    {
+      bool ok = CitaData.Generar(id);
+      if (ok)
+      {
+        return new
+        {
+          status = "ok",
+          message = "Factura generada correctamente"
+        };
+      }
+      else
+      {
+        return new
+        {
+          status = "error",
+          message = "No se pudo generar la Factura"
+        };
+      }
+    }
     [HttpDelete]
     [Route("delete/{id}")]
     public Object Delete(string id)
