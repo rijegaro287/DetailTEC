@@ -35,17 +35,17 @@ export class ClientAppointmentInfoComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'))
-    this.appointmentService.getAppointment(id)
-      .subscribe(response => {
-        if (response.status === 'error') {
-          this.messageService.setMessageInfo(response.message!, 'error')
-        }
-        else if (response.appointment) {
-          this.appointment = response.appointment
-        }
-        else {
-          console.log(response)
-        }
-      })
+    // this.appointmentService.getAppointment(id)
+    //   .subscribe(response => {
+    //     if (response.status === 'error') {
+    //       this.messageService.setMessageInfo(response.message!, 'error')
+    //     }
+    //     else if (response.appointment) {
+    //       this.appointment = response.appointment
+    //     }
+    //     else {
+    //       console.log(response)
+    //     }
+    //   })
   }
 }

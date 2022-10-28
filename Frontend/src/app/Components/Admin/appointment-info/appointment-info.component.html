@@ -5,10 +5,20 @@
 
     <app-info-card [infoTitles]="appointmentInfoTitles" [info]="appointment"></app-info-card>
 
-    <div class="d-flex justify-content-end mb-3">
-        <app-modal [options]="{size:'md', scrollable:true}" [showModalButtonText]="'Editar cita'"
-            [modalHeader]="'Edición de cita'">
-            <app-admin-add-appointment-form [appointmentInfo]="appointment"></app-admin-add-appointment-form>
-        </app-modal>
+    <div class="d-flex justify-content-between mb-3">
+        <div>
+            <button class="btn btn-outline-secondary" (click)="auxFunctionsService.goBack()">Regresar</button>
+        </div>
+
+        <div class="d-flex gap-2">
+            <button class="btn btn-outline-success" (click)="generateBill()">Generar factura</button>
+
+            <app-modal [options]="{size:'md', scrollable:true}" [showModalButtonText]="'Editar cita'"
+                [modalHeader]="'Edición de cita'">
+                <app-admin-add-appointment-form [appointmentInfo]="appointment"></app-admin-add-appointment-form>
+            </app-modal>
+
+            <button class="btn btn-outline-danger" (click)="deleteAppointment()">Eliminar cita</button>
+        </div>
     </div>
 </div>

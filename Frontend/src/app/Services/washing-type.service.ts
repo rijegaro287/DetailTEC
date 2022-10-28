@@ -8,8 +8,6 @@ import {
   WashingTypeResponse
 } from '../Interfaces/ServerResponses'
 
-import { AuxFunctionsService } from './aux-functions.service'
-
 import { apiURL } from '../app.component'
 
 @Injectable({

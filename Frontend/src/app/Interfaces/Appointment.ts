@@ -1,13 +1,18 @@
 interface Appointment {
 	id: number
-	idCliente: number
+	cedulaCliente: number
 	nombreCliente?: string
 	placaVehiculo: string
-	nombreSucursal: string
-	tipoLavado: string
+	idSucursal: number
+	nombreSucursal?: string
+	tipoLavado: number
+	nombreLavado?: string
 	fecha: string
 	hora: string
+	medioPago: string
+	montoPagado: number
 	idEmpleados: number[]
+	nombresEmpleados?: string[]
 }
 
 export { Appointment }

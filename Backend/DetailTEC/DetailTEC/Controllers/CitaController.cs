@@ -1,4 +1,5 @@
-﻿using DetailTEC.Data;
+﻿using System.Net;
+using DetailTEC.Data;
 using DetailTEC.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -99,6 +100,7 @@ namespace DetailTEC.Controllers
         };
       }
     }
+
     [HttpPatch]
     [Route("update/{id}")]
     public Object Put([FromBody] Cita cita, string id)
@@ -122,7 +124,7 @@ namespace DetailTEC.Controllers
       }
     }
 
-    [HttpPatch]
+    [HttpGet]
     [Route("generar/{id}")]
     public Object Put(string id)
     {
@@ -144,6 +146,7 @@ namespace DetailTEC.Controllers
         };
       }
     }
+
     [HttpDelete]
     [Route("delete/{id}")]
     public Object Delete(string id)

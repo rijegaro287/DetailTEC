@@ -38,17 +38,17 @@ export class ClientAppointmentsComponent implements OnInit {
     this.clientID = this.loginService.getLoggedClientID()
     this.messageService.resetMessageInfo()
 
-    this.appointmentService.getClientAppointments(this.clientID)
-      .subscribe(response => {
-        if (response.status === 'error') {
-          this.messageService.setMessageInfo(response.message!, 'error')
-        }
-        else if (response.appointments) {
-          this.tableData = response.appointments
-        }
-        else {
-          console.log(response)
-        }
-      })
+    // this.appointmentService.getClientAppointments(this.clientID)
+    //   .subscribe(response => {
+    //     if (response.status === 'error') {
+    //       this.messageService.setMessageInfo(response.message!, 'error')
+    //     }
+    //     else if (response.appointments) {
+    //       this.tableData = response.appointments
+    //     }
+    //     else {
+    //       console.log(response)
+    //     }
+    //   })
   }
 }

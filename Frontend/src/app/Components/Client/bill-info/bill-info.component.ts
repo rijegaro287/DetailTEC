@@ -36,19 +36,19 @@ export class ClientBillInfoComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'))
-    this.billService.getBill(id)
-      .subscribe(response => {
-        if (response.status === 'error') {
-          this.messageService.setMessageInfo(response.message!, 'error')
-        }
-        else if (response.bill) {
-          this.bill = response.bill
+    // this.billService.getBill(id)
+    //   .subscribe(response => {
+    //     if (response.status === 'error') {
+    //       this.messageService.setMessageInfo(response.message!, 'error')
+    //     }
+    //     else if (response.bill) {
+    //       this.bill = response.bill
 
-          this.formsService.form.get('id')?.setValue(this.bill.id)
-        }
-        else {
-          console.log(response)
-        }
-      })
+    //       this.formsService.form.get('id')?.setValue(this.bill.id)
+    //     }
+    //     else {
+    //       console.log(response)
+    //     }
+    //   })
   }
 }

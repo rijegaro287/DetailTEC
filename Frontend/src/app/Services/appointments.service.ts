@@ -1,69 +1,83 @@
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable, of } from 'rxjs'
+import { Observable } from 'rxjs'
 
-import { Appointment } from '../Interfaces/Appointment'
 import {
   ServerResponse,
   AppointmentsResponse,
   AppointmentResponse
 } from '../Interfaces/ServerResponses'
 
-import { APPOINTMENTS } from '../TestDB/Appointments'
-
+import { apiURL } from '../app.component'
+import { AuxFunctionsService } from './aux-functions.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AppointmentsService {
+  url = `${apiURL}/cita`
 
-  constructor() { }
+  constructor(
+    private auxFunctionsService: AuxFunctionsService,
+    private httpClient: HttpClient
+  ) { }
 
-  getAllAppointments = ():
-    Observable<AppointmentsResponse> => {
-    const okResponse: AppointmentsResponse = {
-      status: 'ok',
-      appointments: APPOINTMENTS
-    }
+  getAllAppointments = (): Observable<AppointmentsResponse> =>
+    this.httpClient.get<AppointmentsResponse>(`${this.url}/get_all`)
 
-    const errorResponse: ServerResponse = {
-      status: 'error',
-      message: 'No se pudieron obtener las facturas'
-    }
+  getAppointment = (id: number): Observable<AppointmentResponse> =>
+    this.httpClient.get<AppointmentResponse>(`${this.url}/get/${id}`)
 
-    return of(okResponse)
+  createAppointment = (appointment: any): Observable<ServerResponse> => {
+    appointment.id = appointment.id.toString()
+    appointment.cedulaCliente = appointment.cedulaCliente.toString()
+    appointment.idSucursal = Number(appointment.idSucursal)
+    appointment.tipoLavado = Number(appointment.tipoLavado)
+
+    appointment.fecha = this.auxFunctionsService
+      .dateToString(appointment.fecha)
+
+    appointment.hora = this.auxFunctionsService
+      .timeToString(appointment.hora)
+
+    return this.httpClient.post<ServerResponse>(`${this.url}/add`, appointment)
   }
 
-  getAppointment = (id: number):
-    Observable<AppointmentResponse> => {
-    const appointment: Appointment = APPOINTMENTS.find(appointment => appointment.id === id)!
+  updateAppointment = (appointmentID: number, appointment: any): Observable<ServerResponse> => {
+    appointment.id = appointment.id.toString()
+    appointment.cedulaCliente = appointment.cedulaCliente.toString()
+    appointment.idSucursal = Number(appointment.idSucursal)
+    appointment.tipoLavado = Number(appointment.tipoLavado)
 
-    const okResponse: AppointmentResponse = {
-      status: 'ok',
-      appointment: appointment
-    }
+    appointment.fecha = this.auxFunctionsService
+      .dateToString(appointment.fecha)
 
-    const errorResponse: ServerResponse = {
-      status: 'error',
-      message: 'No se pudo obtener la factura'
-    }
+    appointment.hora = this.auxFunctionsService
+      .timeToString(appointment.hora)
 
-    return of(okResponse)
+    return this.httpClient.patch<ServerResponse>(`${this.url}/update/${appointmentID}`, appointment)
   }
 
-  getClientAppointments = (clientID: number):
-    Observable<AppointmentsResponse> => {
-    const appointments: Appointment[] = APPOINTMENTS.filter(appointment => appointment.idCliente === clientID)!
+  deleteAppointment = (id: number): Observable<ServerResponse> =>
+    this.httpClient.delete<ServerResponse>(`${this.url}/delete/${id}`)
 
-    const okResponse: AppointmentsResponse = {
-      status: 'ok',
-      appointments: appointments
-    }
+  generateBill = (id: number): Observable<ServerResponse> =>
+    this.httpClient.get<ServerResponse>(`${this.url}/generar/${id}`)
 
-    const errorResponse: ServerResponse = {
-      status: 'error',
-      message: 'No se pudo obtener la factura'
-    }
+  // getClientAppointments = (clientID: number):
+  //   Observable<AppointmentsResponse> => {
+  //   const appointments: Appointment[] = APPOINTMENTS.filter(appointment => appointment.idCliente === clientID)!
 
-    return of(okResponse)
-  }
+  //   const okResponse: AppointmentsResponse = {
+  //     status: 'ok',
+  //     appointments: appointments
+  //   }
+
+  //   const errorResponse: ServerResponse = {
+  //     status: 'error',
+  //     message: 'No se pudo obtener la factura'
+  //   }
+
+  //   return of(okResponse)
+  // }
 }

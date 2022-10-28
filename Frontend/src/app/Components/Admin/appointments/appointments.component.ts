@@ -20,12 +20,13 @@ export class AdminAppointmentsComponent implements OnInit {
     protected messageService: MessageService
   ) {
     this.tableColumns = [
-      { key: "idCliente", replacement: "Cédula del cliente" },
+      { key: "cedulaCliente", replacement: "Cédula del cliente" },
       { key: "placaVehiculo", replacement: "Placa del vehículo" },
       { key: "nombreSucursal", replacement: "Sucursal" },
-      { key: "tipoLavado", replacement: "Servicio solicitado" },
+      { key: "nombreLavado", replacement: "Servicio" },
       { key: "fecha", replacement: "Fecha" },
-      { key: "hora", replacement: "Hora" }
+      { key: "hora", replacement: "Hora" },
+      { key: "montoPagado", replacement: "Monto" }
     ]
 
     this.tableData = []
@@ -38,6 +39,12 @@ export class AdminAppointmentsComponent implements OnInit {
           this.messageService.setMessageInfo(response.message!, 'error')
         }
         else if (response.appointments) {
+          response.appointments.forEach((appointment) => {
+            appointment.fecha = appointment.fecha.split('T')[0]
+            appointment.hora =
+              `${appointment.hora.split(':')[0]}:${appointment.hora.split(':')[1]}`
+          })
+
           this.tableData = response.appointments
         }
         else {

@@ -40,17 +40,17 @@ export class ClientBillsComponent implements OnInit {
     this.messageService.resetMessageInfo()
     this.clientID = this.loginService.getLoggedClientID()
 
-    this.billService.getClientBills(this.clientID)
-      .subscribe(response => {
-        if (response.status === 'error') {
-          this.messageService.setMessageInfo(response.message!, 'error')
-        }
-        else if (response.bills) {
-          this.tableData = response.bills
-        }
-        else {
-          console.log(response)
-        }
-      })
+    // this.billService.getClientBills(this.clientID)
+    //   .subscribe(response => {
+    //     if (response.status === 'error') {
+    //       this.messageService.setMessageInfo(response.message!, 'error')
+    //     }
+    //     else if (response.bills) {
+    //       this.tableData = response.bills
+    //     }
+    //     else {
+    //       console.log(response)
+    //     }
+    //   })
   }
 }

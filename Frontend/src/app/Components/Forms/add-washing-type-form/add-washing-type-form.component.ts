@@ -114,7 +114,8 @@ export class AddWashingTypeFormComponent implements OnInit, OnChanges {
             }
           }
         })
-    } else {
+    }
+    else {
       await this.createWashingType()
         .then(response => {
           this.auxFunctionsService.handleResponse(response)
