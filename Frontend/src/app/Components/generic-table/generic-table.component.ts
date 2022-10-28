@@ -11,6 +11,7 @@ export class GenericTableComponent<Type> implements OnInit {
   @Input() tableColumns: KeyReplacement<Type>[]
   @Input() tableData: Type[]
   @Input() rowIDKey: keyof Type
+  @Input() onClick?: (rowID: number) => void
 
   constructor() {
     this.tableColumns = []
@@ -21,8 +22,14 @@ export class GenericTableComponent<Type> implements OnInit {
   ngOnInit(): void { }
 
   onRowClicked = (row: Type) => {
-    const location = window.location
-    const rowID = row[this.rowIDKey]
-    location.href = `${location.pathname}/${rowID}`
+    if (this.onClick) {
+      const rowID = row[this.rowIDKey]
+      this.onClick(rowID as any)
+    }
+    else {
+      const location = window.location
+      const rowID = row[this.rowIDKey]
+      location.href = `${location.pathname}/${rowID}`
+    }
   }
 }

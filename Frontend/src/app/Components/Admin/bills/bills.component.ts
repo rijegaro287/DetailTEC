@@ -5,6 +5,7 @@ import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries';
 
 import { BillService } from 'src/app/Services/bill.service';
 import { MessageService } from 'src/app/Services/message.service';
+import { ReportsService } from 'src/app/Services/reports.service';
 
 @Component({
   selector: 'app-bills',
@@ -17,6 +18,7 @@ export class AdminBillsComponent implements OnInit {
 
   constructor(
     private billService: BillService,
+    private reportsService: ReportsService,
     protected messageService: MessageService
   ) {
     this.tableColumns = [
@@ -50,6 +52,13 @@ export class AdminBillsComponent implements OnInit {
         else {
           console.log(response)
         }
+      })
+  }
+
+  downloadBill = (appointmentID: number): void => {
+    this.reportsService.getBillReport(appointmentID)
+      .subscribe(response => {
+        console.log(response);
       })
   }
 }

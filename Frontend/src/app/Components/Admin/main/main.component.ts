@@ -19,7 +19,8 @@ export class AdminMainComponent implements OnInit {
       { href: 'washing_types', name: 'Lavados' },
       { href: 'suppliers', name: 'Proveedores' },
       { href: 'products', name: 'Productos' },
-      { href: 'bills', name: 'Facturas' }
+      { href: 'bills', name: 'Facturas' },
+      { href: 'reports', name: 'Reportes' }
     ]
   }
 

@@ -11,6 +11,8 @@
         </div>
 
         <div class="d-flex gap-2">
+            <button class="btn btn-outline-primary" (click)="downloadWashes()">Reporte de lavados</button>
+
             <app-modal [options]="{size:'lg', scrollable:true}" [showModalButtonText]="'Editar cliente'"
                 [modalHeader]="'Edición de cliente'">
 

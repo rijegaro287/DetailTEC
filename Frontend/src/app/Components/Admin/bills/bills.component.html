@@ -4,7 +4,8 @@
   <app-message [messageInfo]="messageService.messageInfo"></app-message>
 
   <div class="overflow-scroll" style="height: 60vh;">
-    <app-generic-table [tableColumns]="tableColumns" [tableData]="tableData" rowIDKey="id"></app-generic-table>
+    <app-generic-table [tableColumns]="tableColumns" [tableData]="tableData" [rowIDKey]="'id'" [onClick]="downloadBill">
+    </app-generic-table>
   </div>
 
 </div>

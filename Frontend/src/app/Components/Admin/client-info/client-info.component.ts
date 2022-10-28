@@ -7,6 +7,7 @@ import { MessageService } from 'src/app/Services/message.service'
 import { Client } from 'src/app/Interfaces/Client'
 import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries'
 import { AuxFunctionsService } from 'src/app/Services/aux-functions.service'
+import { ReportsService } from 'src/app/Services/reports.service'
 
 @Component({
   selector: 'app-client-info',
@@ -20,6 +21,7 @@ export class AdminClientInfoComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private clientService: ClientService,
+    private reportsService: ReportsService,
     protected auxFunctionsService: AuxFunctionsService,
     protected messageService: MessageService
   ) {
@@ -64,6 +66,13 @@ export class AdminClientInfoComponent implements OnInit {
         else {
           window.location.href = '/admin/clients'
         }
+      })
+  }
+
+  downloadWashes = (): void => {
+    this.reportsService.getWashesReport(this.client.id)
+      .subscribe(response => {
+        console.log(response)
       })
   }
 }

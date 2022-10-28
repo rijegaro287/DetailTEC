@@ -19,7 +19,6 @@ import { AdminWashingTypesComponent } from './Components/Admin/washing-types/was
 import { AdminWashingTypeInfoComponent } from './Components/Admin/washing-type-info/washing-type-info.component'
 import { AdminAppointmentsComponent } from './Components/Admin/appointments/appointments.component'
 import { AdminAppointmentInfoComponent } from './Components/Admin/appointment-info/appointment-info.component'
-import { AdminBillInfoComponent } from './Components/Admin/bill-info/bill-info.component'
 import { AdminBillsComponent } from './Components/Admin/bills/bills.component'
 
 /* Client */
@@ -29,6 +28,7 @@ import { ClientBillsComponent } from './Components/Client/bills/bills.component'
 import { ClientBillInfoComponent } from './Components/Client/bill-info/bill-info.component'
 import { ClientAppointmentsComponent } from './Components/Client/appointments/appointments.component'
 import { ClientAppointmentInfoComponent } from './Components/Client/appointment-info/appointment-info.component'
+import { ReportsComponent } from './Components/Admin/reports/reports.component'
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -53,7 +53,7 @@ const routes: Routes = [
       { path: 'products', component: AdminProductsComponent },
       { path: 'products/:id', component: AdminProductInfoComponent },
       { path: 'bills', component: AdminBillsComponent },
-      { path: 'bills/:id', component: AdminBillInfoComponent }
+      { path: 'reports', component: ReportsComponent }
     ]
   },
   {
