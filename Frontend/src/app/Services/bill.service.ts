@@ -22,9 +22,17 @@ export class BillService {
     private httpClient: HttpClient
   ) { }
 
+  /**
+   * Solicita al servidor que devuelva todas las facturas
+  */
   getAllBills = (): Observable<AppointmentsResponse> =>
     this.httpClient.get<AppointmentsResponse>(`${this.url}/facturas`)
 
+  /**
+   * Solicita al servidor que devuelva la información de una factura
+   * @param id de la cita
+   * @returns Objeto con respuesta del servidor
+  */
   getClientBills = (id: number): Promise<Appointment[]> => {
     return new Promise<Appointment[]>((resolve, reject) => {
       this.getAllBills()

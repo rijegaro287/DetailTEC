@@ -19,21 +19,10 @@ export class LoginService {
     private httpClient: HttpClient
   ) { }
 
+  /** 
+   * Solicita al servidor que inicie sesión 
+   * @param loginForm Objeto con el correo, la contraseña y el tipo de usuario
+  */
   postLogin = (loginInfo: LoginForm): Observable<LoginResponse> =>
     this.httpClient.post<LoginResponse>(`${this.url}/verify`, loginInfo)
-
-  logout = () => {
-    this.loggedIn = false
-    this.loggedClientID = 0
-    window.location.href = '/login'
-  }
-
-  getLoggedClientID = () => this.loggedClientID
-
-  setLoggedClientID = (clientID: number) => {
-    if (!this.loggedIn) {
-      this.loggedClientID = clientID
-      this.loggedIn = true
-    }
-  }
 }
