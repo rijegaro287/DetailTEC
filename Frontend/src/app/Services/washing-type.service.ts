@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core'
-import { Observable, of } from 'rxjs'
+import { HttpClient } from '@angular/common/http'
+import { Observable } from 'rxjs'
 
 import {
   ServerResponse,
@@ -7,43 +8,42 @@ import {
   WashingTypeResponse
 } from '../Interfaces/ServerResponses'
 
-import { WashingType } from '../Interfaces/WashingType'
+import { AuxFunctionsService } from './aux-functions.service'
 
-import { WASHINGTYPES } from '../TestDB/WashingTypes'
+import { apiURL } from '../app.component'
 
 @Injectable({
   providedIn: 'root'
 })
 export class WashingTypeService {
-  constructor() { }
+  url = `${apiURL}/lavado`
 
-  getAllWashingTypes = (): Observable<WashingTypesResponse> => {
-    const okResponse: WashingTypesResponse = {
-      status: 'ok',
-      washingTypes: WASHINGTYPES
-    }
+  constructor(
+    private httpClient: HttpClient
+  ) { }
 
-    const errorResponse: ServerResponse = {
-      status: 'error',
-      message: 'No se pudieron obtener los tipos de lavado'
-    }
+  getAllWashingTypes = (): Observable<WashingTypesResponse> =>
+    this.httpClient.get<WashingTypesResponse>(`${this.url}/get_all`)
 
-    return of(okResponse)
+  getWashingType = (id: number): Observable<WashingTypeResponse> =>
+    this.httpClient.get<WashingTypeResponse>(`${this.url}/get/${id}`)
+
+  createWashingType = (washingType: any): Observable<ServerResponse> => {
+    washingType.id = washingType.id.toString()
+
+    washingType.idProductos.forEach((id: string) => Number(id))
+
+    return this.httpClient.post<ServerResponse>(`${this.url}/add`, washingType)
   }
 
-  getWashingType = (name: string): Observable<WashingTypeResponse> => {
-    const washingType: WashingType = WASHINGTYPES.find(washingType => washingType.nombre === name)!
+  updateWashingType = (washingTypeID: number, washingType: any): Observable<ServerResponse> => {
+    washingType.id = washingType.id.toString()
 
-    const okResponse: WashingTypeResponse = {
-      status: 'ok',
-      washingType: washingType
-    }
+    washingType.idProductos.forEach((id: string) => Number(id))
 
-    const errorResponse: ServerResponse = {
-      status: 'error',
-      message: 'No se pudo obtener el tipo de lavado'
-    }
-
-    return of(okResponse)
+    return this.httpClient.patch<ServerResponse>(`${this.url}/update/${washingTypeID}`, washingType)
   }
+
+  deleteWashingType = (id: number): Observable<ServerResponse> =>
+    this.httpClient.delete<ServerResponse>(`${this.url}/delete/${id}`)
 }

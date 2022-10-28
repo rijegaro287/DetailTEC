@@ -3,9 +3,10 @@ import { FormArray, FormControl, Validators } from '@angular/forms'
 
 import { ServerResponse } from 'src/app/Interfaces/ServerResponses'
 import { Supplier } from 'src/app/Interfaces/Supplier'
-import { AuxFunctionsService } from 'src/app/Services/aux-functions.service'
 
 import { FormsService } from 'src/app/Services/forms.service'
+import { AuxFunctionsService } from 'src/app/Services/aux-functions.service'
+import { MessageService } from 'src/app/Services/message.service'
 import { SupplierService } from 'src/app/Services/supplier.service'
 
 @Component({
@@ -25,6 +26,7 @@ export class AddSupplierFormComponent implements OnInit, OnChanges {
   constructor(
     private supplierService: SupplierService,
     private auxFunctionsService: AuxFunctionsService,
+    protected messageService: MessageService,
     protected formsService: FormsService
   ) {
     this.id = new FormControl('', [Validators.required])
@@ -60,8 +62,22 @@ export class AddSupplierFormComponent implements OnInit, OnChanges {
   }
 
   onSubmit = async () => {
-    if (this.supplierInfo) {
-      // Modify supplier info
+    if (this.supplierInfo && Object.keys(this.supplierInfo).length) {
+      await this.updateSupplier()
+        .then((response: ServerResponse) => {
+          if (response.status === 'error') {
+            this.messageService.setMessageInfo(response.message!, 'error')
+          }
+          else {
+            if (this.supplierInfo!.id !== this.formsService.form.value.id) {
+              window.location.href =
+                `/admin/suppliers/${this.formsService.form.value.id}`
+            }
+            else {
+              window.location.reload()
+            }
+          }
+        })
     } else {
       await this.createSupplier()
         .then(response => {

@@ -1,6 +1,4 @@
-﻿
-
-using DetailTEC.Data;
+﻿using DetailTEC.Data;
 using DetailTEC.Models;
 using Microsoft.AspNetCore.Mvc;
 

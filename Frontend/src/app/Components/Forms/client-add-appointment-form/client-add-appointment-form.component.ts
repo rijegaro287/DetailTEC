@@ -76,18 +76,18 @@ export class ClientAddAppointmentFormComponent implements OnInit {
   getWashingTypes = (): WashingType[] => {
     let washingTypes: WashingType[] = []
 
-    this.washingTypeService.getAllWashingTypes()
-      .subscribe(response => {
-        if (response.status == "error") {
-          this.messageService.setMessageInfo(response.message!, "error")
-        }
-        else if (response.washingTypes) {
-          washingTypes = response.washingTypes
-        }
-        else {
-          console.log(response)
-        }
-      })
+    // this.washingTypeService.getAllWashingTypes()
+    //   .subscribe(response => {
+    //     if (response.status == "error") {
+    //       this.messageService.setMessageInfo(response.message!, "error")
+    //     }
+    //     else if (response.washingTypes) {
+    //       washingTypes = response.washingTypes
+    //     }
+    //     else {
+    //       console.log(response)
+    //     }
+    //   })
 
     return washingTypes
   }

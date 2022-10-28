@@ -5,6 +5,7 @@ import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries'
 import { WashingType } from 'src/app/Interfaces/WashingType'
 
 import { MessageService } from 'src/app/Services/message.service'
+import { AuxFunctionsService } from 'src/app/Services/aux-functions.service'
 import { WashingTypeService } from 'src/app/Services/washing-type.service'
 
 @Component({
@@ -19,6 +20,7 @@ export class AdminWashingTypeInfoComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private washingTypeService: WashingTypeService,
+    protected auxFunctionsService: AuxFunctionsService,
     protected messageService: MessageService
   ) {
     this.washingTypeInfoTitles = [
@@ -36,8 +38,8 @@ export class AdminWashingTypeInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const name = this.route.snapshot.paramMap.get('name')!
-    this.washingTypeService.getWashingType(name)
+    const id = Number(this.route.snapshot.paramMap.get('id')!)
+    this.washingTypeService.getWashingType(id)
       .subscribe(response => {
         if (response.status === 'error') {
           this.messageService.setMessageInfo(response.message!, 'error')
@@ -49,5 +51,9 @@ export class AdminWashingTypeInfoComponent implements OnInit {
           console.log(response)
         }
       })
+  }
+
+  deleteWashingType(): void {
+
   }
 }
