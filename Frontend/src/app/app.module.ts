@@ -35,7 +35,6 @@ import { AdminWashingTypeInfoComponent } from './Components/Admin/washing-type-i
 import { ClientMainComponent } from './Components/Client/main/main.component'
 import { ClientInfoComponent } from './Components/Client/client-info/client-info.component'
 import { ClientBillsComponent } from './Components/Client/bills/bills.component'
-import { ClientBillInfoComponent } from './Components/Client/bill-info/bill-info.component';
 import { ClientAppointmentsComponent } from './Components/Client/appointments/appointments.component';
 import { ClientAppointmentInfoComponent } from './Components/Client/appointment-info/appointment-info.component';
 
@@ -81,7 +80,6 @@ import { EditClientFormComponent } from './Components/Forms/edit-client-form/edi
     AddEmployeeFormComponent,
     AddClientFormComponent,
     MultivaluedInputComponent,
-    ClientBillInfoComponent,
     AddBranchFormComponent,
     AddSupplierFormComponent,
     AddProductFormComponent,

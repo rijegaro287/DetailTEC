@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core'
+import { Location } from '@angular/common';
 
-import { LoginService } from 'src/app/Services/login.service'
 import { MessageService } from 'src/app/Services/message.service'
 import { BillService } from 'src/app/Services/bill.service'
 
-import { Bill } from 'src/app/Interfaces/Bill'
+import { Appointment } from 'src/app/Interfaces/Appointment'
 import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries'
+import { ReportsService } from 'src/app/Services/reports.service';
 
 @Component({
   selector: 'app-bills',
@@ -13,44 +14,44 @@ import { KeyReplacement } from 'src/app/Interfaces/Auxiliaries'
   styleUrls: ['./bills.component.sass']
 })
 export class ClientBillsComponent implements OnInit {
-  tableColumns: KeyReplacement<Bill>[]
-  tableData: Bill[]
-  clientID: number
+  tableColumns: KeyReplacement<Appointment>[]
+  tableData: Appointment[]
 
   constructor(
-    private loginService: LoginService,
+    private location: Location,
     private billService: BillService,
+    private reportsService: ReportsService,
     protected messageService: MessageService
   ) {
     this.tableColumns = [
+      { key: "placaVehiculo", replacement: "Placa del vehículo" },
       { key: "nombreSucursal", replacement: "Sucursal" },
-      { key: "tipoLavado", replacement: "Servicio brindado" },
+      { key: "nombreLavado", replacement: "Servicio" },
       { key: "fecha", replacement: "Fecha" },
       { key: "hora", replacement: "Hora" },
-      { key: "montoPagado", replacement: "Monto pagado" },
-      { key: "puntosUtilizados", replacement: "Puntos utilizados" }
+      { key: "montoPagado", replacement: "Monto" }
     ]
 
     this.tableData = []
-    this.clientID = 0
   }
 
 
   ngOnInit(): void {
     this.messageService.resetMessageInfo()
-    this.clientID = this.loginService.getLoggedClientID()
 
-    // this.billService.getClientBills(this.clientID)
-    //   .subscribe(response => {
-    //     if (response.status === 'error') {
-    //       this.messageService.setMessageInfo(response.message!, 'error')
-    //     }
-    //     else if (response.bills) {
-    //       this.tableData = response.bills
-    //     }
-    //     else {
-    //       console.log(response)
-    //     }
-    //   })
+    const state = this.location.getState() as any
+    const clientID = state.clientID
+
+    this.billService.getClientBills(clientID)
+      .then((bills) => {
+        this.tableData = bills
+      })
+  }
+
+  downloadBill = (appointmentID: number): void => {
+    this.reportsService.getBillReport(appointmentID)
+      .subscribe(response => {
+        console.log(response);
+      })
   }
 }

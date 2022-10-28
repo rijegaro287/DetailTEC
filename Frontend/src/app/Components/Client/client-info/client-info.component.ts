@@ -29,6 +29,8 @@ export class ClientInfoComponent implements OnInit {
       { key: "email", replacement: "Correo" },
       { key: "telefonos", replacement: "Telefonos" },
       { key: "direcciones", "replacement": "Direcciones" },
+      { key: "total", replacement: "Puntos totales" },
+      { key: "utilizados", replacement: "Puntos redimidos" },
       { key: "actuales", replacement: "Puntos disponibles" }
     ]
 
