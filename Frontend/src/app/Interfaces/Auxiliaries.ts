@@ -26,7 +26,7 @@ interface TimeInput {
 }
 
 interface SelectOption {
-    value: string
+    value: string | number
     text: string
     disabled?: boolean
 }

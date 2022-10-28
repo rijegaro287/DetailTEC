@@ -7,8 +7,34 @@
 
     <div class="row mb-3">
         <div class="col-6">
+            <label class="form-label" for="idInput">ID:</label>
+            <input class="form-control" id="idInput" type="number" formControlName="id">
+        </div>
+
+        <div class="col-6">
             <label class="form-label" for="nameInput">Nombre:</label>
             <input class="form-control" id="nameInput" type="text" formControlName="nombre">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-6">
+            <label class="form-label" for="employeeNumber">Cantidad de empleados:</label>
+            <input (change)="calculateCost()" class="form-control" id=" employeeNumber" type="number"
+                formControlName="cantidadEmpleados">
+        </div>
+
+        <div class="col-6">
+            <label class="form-label" for="costInput">Comisión del empleado:</label>
+            <input (change)="calculateCost()" class="form-control" id="costInput" type="number"
+                formControlName="comisionEmpleado">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-6">
+            <label class="form-label" for="durationInput">Duración (minutos):</label>
+            <input class="form-control" id="durationInput" type="number" formControlName="duracionMinutos">
         </div>
 
         <div class="col-6">
@@ -18,27 +44,8 @@
     </div>
 
     <div class="row mb-3">
-        <div class="col-4">
-            <label class="form-label" for="employeeNumber">Cantidad de empleados:</label>
-            <input (change)="calculateCost()" class="form-control" id=" employeeNumber" type="number"
-                formControlName="cantidadEmpleados">
-        </div>
-
-        <div class="col-4">
-            <label class="form-label" for="costInput">Comisión del empleado:</label>
-            <input (change)="calculateCost()" class="form-control" id="costInput" type="number"
-                formControlName="comisionEmpleado">
-        </div>
-
-        <div class="col-4">
-            <label class="form-label" for="durationInput">Duración (minutos):</label>
-            <input class="form-control" id="durationInput" type="number" formControlName="duracionMinutos">
-        </div>
-    </div>
-
-    <div class="row mb-3">
         <div class="col-6">
-            <app-multivalued-select label="Productos necesarios" inputName="productos" [options]="productOptions"
+            <app-multivalued-select label="Productos necesarios" inputName="idProductos" [options]="productOptions"
                 [onChangeCallback]="calculateCost">
             </app-multivalued-select>
         </div>

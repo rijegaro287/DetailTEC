@@ -8,8 +8,6 @@ import {
   ProductResponse
 } from '../Interfaces/ServerResponses'
 
-import { AuxFunctionsService } from './aux-functions.service'
-
 import { apiURL } from '../app.component'
 
 @Injectable({
@@ -19,8 +17,7 @@ export class ProductService {
   url = `${apiURL}/producto`
 
   constructor(
-    private httpClient: HttpClient,
-    private auxFunctionsService: AuxFunctionsService
+    private httpClient: HttpClient
   ) { }
 
   getAllProducts = (): Observable<ProductsResponse> =>

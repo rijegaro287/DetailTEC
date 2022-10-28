@@ -57,7 +57,7 @@ namespace DetailTEC.Data
         cmd.Parameters.Add("@param7", SqlDbType.Char, 9).Value = sucursal.idGerente;
         cmd.Parameters.Add("@param8", SqlDbType.Date).Value = sucursal.fechaApertura;
         cmd.Parameters.Add("@param9", SqlDbType.Date).Value = sucursal.fechaInicioGerente;
-        cmd.Parameters.Add("@param10", SqlDbType.Int).Value = Convert.ToInt32(id);
+        cmd.Parameters.Add("@param10", SqlDbType.Int).Value = id;
         cmd.CommandType = CommandType.Text;
         try
         {
