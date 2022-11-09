@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms'
+import { FormControl, Validators, ValidationErrors } from '@angular/forms'
 
 import { LoginForm } from 'src/app/Interfaces/Forms'
 import { LoginResponse } from 'src/app/Interfaces/ServerResponses'
